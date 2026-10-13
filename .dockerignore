@@ -1,0 +1,16 @@
+models/
+data/raw/
+data/processed/
+data/jobs.sqlite
+.env
+__pycache__/
+*.pyc
+*.pyo
+.git/
+.pytest_cache/
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+notebooks/
