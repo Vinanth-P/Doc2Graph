@@ -85,6 +85,10 @@ class GazetteerMatcher:
         self._rf = rf_process
         self._entries: dict[str, list[str]] = {}   # type → list of names
         base = Path(gazetteer_dir)
+        if not base.is_absolute() and not base.exists():
+            alt = Path(__file__).resolve().parents[2] / base
+            if alt.exists():
+                base = alt
         type_files = {
             "PERSON": "persons.txt",
             "ORG": "organizations.txt",
@@ -97,23 +101,38 @@ class GazetteerMatcher:
                 self._entries[etype] = names
 
     def match(self, text: str, chunk_id: str, threshold: int = 90) -> list[Entity]:
+        from rapidfuzz.fuzz import ratio
+
+        # Compare dictionary names with actual token spans, not the entire
+        # sentence. This finds multiple/repeated names and preserves offsets
+        # even for case differences or a fuzzy spelling match.
+        tokens = list(re.finditer(r"\w+(?:[&.'-]\w+)*", text))
         entities: list[Entity] = []
         for etype, names in self._entries.items():
             if not names:
                 continue
-            result = self._rf.extractOne(text, names, score_cutoff=threshold)
-            if result:
-                matched, score, _ = result
-                entities.append(Entity(
-                    entity_id=f"{chunk_id}:gaz:{matched}",
-                    text=matched,
-                    canonical_name=matched.strip().title(),
-                    type=etype,
-                    start_char=text.find(matched),
-                    end_char=text.find(matched) + len(matched),
-                    source="gazetteer",
-                    chunk_id=chunk_id,
-                ))
+            by_length: dict[int, list[str]] = {}
+            for name in names:
+                length = len(re.findall(r"\w+(?:[&.'-]\w+)*", name))
+                if length:
+                    by_length.setdefault(length, []).append(name)
+            for length, candidates in by_length.items():
+                for index in range(len(tokens) - length + 1):
+                    start, end = tokens[index].start(), tokens[index + length - 1].end()
+                    surface = text[start:end]
+                    result = self._rf.extractOne(
+                        surface, candidates, scorer=ratio, processor=str.casefold,
+                        score_cutoff=threshold,
+                    )
+                    if result:
+                        matched, _, _ = result
+                        entities.append(Entity(
+                            entity_id=f"{chunk_id}:{start}:{end}",
+                            text=surface,
+                            canonical_name=matched.strip().title(),
+                            type=etype, start_char=start, end_char=end,
+                            source="gazetteer", chunk_id=chunk_id,
+                        ))
         return entities
 
 

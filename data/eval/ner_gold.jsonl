@@ -1,0 +1,11 @@
+{"text": "Elon Musk founded Tesla in California.", "entities": [{"start": 0, "end": 9, "type": "PERSON"}, {"start": 18, "end": 23, "type": "ORG"}, {"start": 27, "end": 37, "type": "GPE"}]}
+{"text": "Google acquired DeepMind in London.", "entities": [{"start": 0, "end": 6, "type": "ORG"}, {"start": 16, "end": 24, "type": "ORG"}, {"start": 28, "end": 34, "type": "GPE"}]}
+{"text": "Tim Cook leads Apple in Cupertino.", "entities": [{"start": 0, "end": 8, "type": "PERSON"}, {"start": 15, "end": 20, "type": "ORG"}, {"start": 24, "end": 33, "type": "GPE"}]}
+{"text": "Satya Nadella is the CEO of Microsoft.", "entities": [{"start": 0, "end": 13, "type": "PERSON"}, {"start": 28, "end": 37, "type": "ORG"}]}
+{"text": "Amazon operates out of Seattle, Washington.", "entities": [{"start": 0, "end": 6, "type": "ORG"}, {"start": 23, "end": 30, "type": "GPE"}, {"start": 32, "end": 42, "type": "GPE"}]}
+{"text": "Jensen Huang co-founded NVIDIA in California.", "entities": [{"start": 0, "end": 12, "type": "PERSON"}, {"start": 24, "end": 30, "type": "ORG"}, {"start": 34, "end": 44, "type": "GPE"}]}
+{"text": "OpenAI partnered with Microsoft in Washington.", "entities": [{"start": 0, "end": 6, "type": "ORG"}, {"start": 22, "end": 31, "type": "ORG"}, {"start": 35, "end": 45, "type": "GPE"}]}
+{"text": "Sam Altman returned to OpenAI in San Francisco.", "entities": [{"start": 0, "end": 10, "type": "PERSON"}, {"start": 23, "end": 29, "type": "ORG"}, {"start": 33, "end": 46, "type": "GPE"}]}
+{"text": "Mark Zuckerberg founded Meta in California.", "entities": [{"start": 0, "end": 15, "type": "PERSON"}, {"start": 24, "end": 28, "type": "ORG"}, {"start": 32, "end": 42, "type": "GPE"}]}
+{"text": "SpaceX launched a new rocket from Texas.", "entities": [{"start": 0, "end": 6, "type": "ORG"}, {"start": 34, "end": 39, "type": "GPE"}]}
+

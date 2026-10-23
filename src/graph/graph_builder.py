@@ -33,6 +33,10 @@ class ResolvedEntity:
     aliases: list[str]
     initials_key: str
 
+    @property
+    def canonical_name(self) -> str:
+        return self.name
+
     def to_dict(self) -> dict:
         return {
             "id": self.canonical_id,

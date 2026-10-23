@@ -2,12 +2,12 @@
 from __future__ import annotations
 
 import pytest
-import spacy
+from src.ingestion.preprocessor import get_nlp
 
 
 @pytest.fixture(scope="session")
 def nlp():
-    return spacy.load("en_core_web_sm")
+    return get_nlp()
 
 
 @pytest.fixture

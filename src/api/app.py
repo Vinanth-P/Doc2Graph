@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Response, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
@@ -56,6 +56,12 @@ app.add_middleware(
 app.include_router(ingest.router)
 app.include_router(graph.router)
 app.include_router(search.router)
+
+
+@app.get("/favicon.ico", include_in_schema=False)
+async def favicon():
+    return Response(status_code=status.HTTP_204_NO_CONTENT)
+
 
 # Serve the D3.js UI at /
 app.mount("/", StaticFiles(directory="src/api/static", html=True), name="static")

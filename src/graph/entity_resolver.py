@@ -22,7 +22,7 @@ import re
 from collections import defaultdict
 from itertools import combinations
 from pathlib import Path
-from typing import Optional
+from typing import Optional, Any
 
 from rapidfuzz.distance import JaroWinkler
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -31,7 +31,8 @@ import numpy as np
 
 from src.nlp.ner import Entity
 
-MODEL_PATH = Path("models/entity_resolver.joblib")
+_PROJECT_ROOT = Path(__file__).resolve().parents[2]
+MODEL_PATH = _PROJECT_ROOT / "models" / "entity_resolver.joblib"
 
 # ── Corporate suffix stoplist ─────────────────────────────────────────────────
 
@@ -52,9 +53,13 @@ def _tokenize(name: str) -> list[str]:
 
 
 def compute_initials_key(name: str) -> str:
-    """'International Business Machines' → 'IBM', 'Elon Musk' → 'EM'."""
+    """'International Business Machines' → 'IBM', 'Elon Musk' → 'EM', 'IBM' → 'IBM'."""
+    clean = re.sub(r"[^\w\s]", "", name).strip()
+    words = clean.split()
+    if len(words) == 1 and words[0].isupper() and 2 <= len(words[0]) <= 8:
+        return words[0]
     tokens = re.sub(r"[^\w\s]", " ", name).split()
-    return "".join(t[0].upper() for t in tokens if t[0].isalpha())
+    return "".join(t[0].upper() for t in tokens if t and t[0].isalpha())
 
 
 def _token_overlap_ratio(a: str, b: str) -> float:
@@ -225,14 +230,15 @@ class EntityResolver:
         return {eid: find(eid) for eid in parent}
 
     async def resolve_against_graph(
-        self, entity: Entity, session
+        self, entity: Any, session
     ) -> Optional[str]:
         """Check Neo4j for an existing entity matching this one.
 
         Returns the existing entity ID to merge into, or None to create new.
         """
-        escaped = _lucene_escape(entity.canonical_name)
-        init_key = compute_initials_key(entity.canonical_name)
+        name = getattr(entity, "canonical_name", None) or getattr(entity, "name", "")
+        escaped = _lucene_escape(name)
+        init_key = getattr(entity, "initials_key", None) or compute_initials_key(name)
 
         # Full-text candidates
         ft_result = await session.run(
@@ -266,7 +272,7 @@ class EntityResolver:
 
         for cand in candidates:
             cand_name = cand["name"]
-            fv = _feature_vector(entity.canonical_name, cand_name)
+            fv = _feature_vector(name, cand_name)
             if self._lr is not None:
                 try:
                     prob = float(self._lr.predict_proba([fv])[0][1])
@@ -276,8 +282,8 @@ class EntityResolver:
                 except Exception:
                     pass
             # Heuristic fallback
-            jw = JaroWinkler.similarity(entity.canonical_name, cand_name)
-            abbr = _abbreviation_score(entity.canonical_name, cand_name)
+            jw = JaroWinkler.similarity(name, cand_name)
+            abbr = _abbreviation_score(name, cand_name)
             score = max(jw * 0.7 + abbr * 0.3, jw if abbr > 0.8 else 0.0)
             if score >= self._threshold:
                 return cand["id"]

@@ -1,7 +1,7 @@
 """Preprocessor — sentence splitting, normalization, SHA-256 hashing, language detection.
 
 This module is the *single* sentence splitter used by the entire pipeline.
-spaCy's sentencizer is used instead of Punkt to keep sentence indices
+spaCy's parser is used instead of Punkt to keep sentence indices
 consistent with the NER and dep-parse stages (which also use spaCy).
 """
 from __future__ import annotations
@@ -10,9 +10,12 @@ import hashlib
 import re
 import unicodedata
 from dataclasses import dataclass, field
+from pathlib import Path
 
 import spacy
+from spacy.symbols import ORTH
 from langdetect import detect, DetectorFactory, LangDetectException
+from src.ingestion.text_validation import validate_text
 
 # Make langdetect deterministic
 DetectorFactory.seed = 0
@@ -25,6 +28,18 @@ def get_nlp() -> spacy.Language:
     global _nlp
     if _nlp is None:
         _nlp = spacy.load("en_core_web_sm")
+        # Some mixed-case names ending in capitals (e.g. SpaceX.) are
+        # tokenized as abbreviations, hiding the sentence-ending period.
+        # Known single-word organizations are names, not abbreviations.
+        gazetteer = Path(__file__).resolve().parents[2] / "data/gazetteers/organizations.txt"
+        if gazetteer.exists():
+            for line in gazetteer.read_text(encoding="utf-8").splitlines():
+                name = line.strip()
+                if name.isalpha() and len(name) > 1:
+                    for surface in {name, name.upper()}:
+                        _nlp.tokenizer.add_special_case(
+                            surface + ".", [{ORTH: surface}, {ORTH: "."}],
+                        )
     return _nlp
 
 
@@ -74,15 +89,22 @@ def detect_language(text: str) -> str:
 
 # ── Main API ──────────────────────────────────────────────────────────────────
 
-def preprocess(raw_bytes: bytes, filename: str) -> PreprocessedDoc:
+def preprocess(
+    raw_bytes: bytes,
+    filename: str,
+    text: str | None = None,
+) -> PreprocessedDoc:
     """Full preprocessing pipeline: normalize → detect language → split sentences.
 
     Raises:
         ValueError: if detected language is not English.
     """
     doc_id = sha256_hex(raw_bytes)
-    # Decode to string for normalization
-    text = raw_bytes.decode("utf-8", errors="replace")
+    # Use extracted/cleaned text if provided (e.g. from PDF/DOCX loader), else decode bytes
+    if text is None:
+        from src.ingestion.loader import load_txt
+        text = load_txt(raw_bytes)
+    validate_text(text)
     text = normalize_text(text)
 
     # Language gate

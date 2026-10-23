@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import io
 from pathlib import Path
+from src.ingestion.text_validation import validate_text
 
 
 def load_pdf(content: bytes) -> str:
@@ -37,14 +38,18 @@ def load_docx(content: bytes) -> str:
 
 
 def load_txt(content: bytes) -> str:
-    """Decode a plain-text file. Tries UTF-8 then latin-1."""
-    # Strip UTF-8 BOM if present
-    if content.startswith(b"\xef\xbb\xbf"):
-        content = content[3:]
+    """Decode Unicode text or Windows-1252 without silently replacing bytes."""
     try:
-        return content.decode("utf-8")
+        if content.startswith((b"\xff\xfe", b"\xfe\xff")):
+            text = content.decode("utf-16")
+        else:
+            text = content.decode("utf-8-sig")
     except UnicodeDecodeError:
-        return content.decode("latin-1")
+        try:
+            text = content.decode("cp1252")
+        except UnicodeDecodeError as exc:
+            raise ValueError("Text encoding is unsupported. Save the document as UTF-8.") from exc
+    return validate_text(text)
 
 
 def load_document(content: bytes, ftype: str) -> str:
@@ -53,4 +58,4 @@ def load_document(content: bytes, ftype: str) -> str:
     loader = loaders.get(ftype)
     if loader is None:
         raise ValueError(f"Unsupported file type: {ftype!r}")
-    return loader(content)
+    return validate_text(loader(content))

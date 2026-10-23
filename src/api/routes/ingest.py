@@ -6,13 +6,14 @@ import zipfile
 from uuid import uuid4
 
 from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, UploadFile
+from starlette.concurrency import run_in_threadpool
 from langdetect import detect, DetectorFactory, LangDetectException
 
 from src.api import job_store, workers
 from src.api.auth import require_api_key
 from src.api.schemas import JobStatusResponse, UploadResponse
 from src.config import Settings, get_settings
-from src.ingestion.loader import load_document
+from src.ingestion.loader import load_document, load_txt
 
 DetectorFactory.seed = 0  # deterministic langdetect
 
@@ -48,43 +49,25 @@ async def _read_and_validate(
     elif content.startswith(b"PK\x03\x04"):
         try:
             with zipfile.ZipFile(io.BytesIO(content)) as zf:
-                if "[Content_Types].xml" in zf.namelist():
+                if {"[Content_Types].xml", "word/document.xml"} <= set(zf.namelist()):
                     ftype = "docx"
                 else:
                     raise HTTPException(415, "ZIP is not a DOCX")
         except zipfile.BadZipFile:
             raise HTTPException(415, "Corrupt file")
-    elif content[:512].replace(b"\r", b"").replace(b"\n", b"").replace(b"\t", b"").isascii() \
-            or content[:3] == b"\xef\xbb\xbf":
-        ftype = "txt"
     else:
-        raise HTTPException(415, "Unsupported file type (PDF, DOCX, TXT only)")
+        try:
+            load_txt(content)  # Validate the entire payload, not just its header.
+            ftype = "txt"
+        except ValueError as exc:
+            raise HTTPException(415, str(exc)) from exc
 
     return content, ftype
 
 
 def _sample_text(content: bytes, ftype: str) -> str:
-    """Extract a text sample for language detection without full parsing."""
-    try:
-        if ftype == "txt":
-            return content[:3000].decode("utf-8", errors="replace")
-        elif ftype == "pdf":
-            import pdfplumber, io as _io
-            with pdfplumber.open(_io.BytesIO(content)) as pdf:
-                pages_text = []
-                for page in pdf.pages[:3]:
-                    t = page.extract_text()
-                    if t:
-                        pages_text.append(t)
-                return " ".join(pages_text)[:3000]
-        elif ftype == "docx":
-            from docx import Document
-            import io as _io
-            doc = Document(_io.BytesIO(content))
-            return " ".join(p.text for p in doc.paragraphs[:20])[:3000]
-    except Exception:
-        pass
-    return content[:3000].decode("utf-8", errors="replace")
+    """Use the real loader; a parsing failure must never decode raw binary."""
+    return load_document(content, ftype)[:3000]
 
 
 @router.post("/upload", response_model=UploadResponse, dependencies=[Depends(require_api_key)])
@@ -97,7 +80,10 @@ async def upload_document(
     content, ftype = await _read_and_validate(file, settings)
 
     # Language gate — must run BEFORE background task dispatch
-    sample = _sample_text(content, ftype)
+    try:
+        sample = await run_in_threadpool(_sample_text, content, ftype)
+    except Exception as exc:
+        raise HTTPException(422, f"Could not extract readable document text: {exc}") from exc
     try:
         lang = detect(sample)
     except LangDetectException:

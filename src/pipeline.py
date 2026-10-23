@@ -10,7 +10,7 @@ from src import pipeline_lock
 from src.config import get_settings
 from src.ingestion.loader import load_document
 from src.ingestion.pdf_cleaner import clean_pdf_text
-from src.ingestion.preprocessor import preprocess, build_windows
+from src.ingestion.preprocessor import preprocess, build_windows, get_nlp
 from src.nlp.ner import NERRunner
 from src.nlp.coref_resolver import RuleBasedCorefResolver
 from src.nlp.relation_extractor import DepPatternExtractor
@@ -22,19 +22,13 @@ from src.graph.graph_builder import (
     build_resolved_entities,
     build_resolved_edges,
 )
-from src.graph.neo4j_client import get_driver
+from src.graph.neo4j_client import get_driver, create_driver
 
 logger = logging.getLogger(__name__)
 
-# Shared spaCy model across pipeline (loaded once per process)
-_nlp: spacy.Language | None = None
-
-
 def _get_nlp() -> spacy.Language:
-    global _nlp
-    if _nlp is None:
-        _nlp = spacy.load("en_core_web_sm")
-    return _nlp
+    # Share the tokenizer and parser used for preprocessing.
+    return get_nlp()
 
 
 def run_pipeline(
@@ -64,7 +58,7 @@ def run_pipeline(
         text = load_document(raw_bytes, ftype)
         if ftype == "pdf":
             text = clean_pdf_text(text)
-        preprocessed = preprocess(raw_bytes, filename)
+        preprocessed = preprocess(raw_bytes, filename, text=text)
         chunks = preprocessed.chunks
         logger.info("[%s] %d sentences extracted", job_id, len(chunks))
 
@@ -85,6 +79,7 @@ def run_pipeline(
         # ── Phase 2b: Coreference ─────────────────────────────────────────
         coref = RuleBasedCorefResolver()
         coref_map = coref.resolve(chunks, entities_by_chunk)
+        entity_by_id = {e.entity_id: e for e in all_entities}
 
         # ── Phase 2c: Relation Extraction ─────────────────────────────────
         extractor = DepPatternExtractor()
@@ -112,23 +107,29 @@ def run_pipeline(
                 entities=window_entities,
                 center_chunk_id=center_chunk.chunk_id,
                 center_sent_idx=center_chunk.sent_idx,
+                coref_map=coref_map,
+                entity_by_id=entity_by_id,
+                window_chunks=window_chunks,
             )
             raw_triples.extend(triples)
 
-        # Deduplicate by (sent_idx, subj_id, pred, obj_id)
+        # Preserve preposition context and polarity until normalization.
         seen_keys: set = set()
         deduped_triples = []
         for t in raw_triples:
-            key = (t.sent_idx, t.subject.entity_id, t.predicate, t.object.entity_id)
+            key = (t.chunk_id, t.subject.entity_id, t.predicate, t.prep,
+                   t.object.entity_id, t.has_negation)
             if key not in seen_keys:
                 seen_keys.add(key)
                 deduped_triples.append(t)
 
         # Score and normalize
-        scores = scorer.score_batch(deduped_triples)
-        normalized = normalizer.normalize_batch(deduped_triples)
-        for nt, score in zip(normalized, scores):
-            nt.confidence = score
+        normalized = []
+        for triple in deduped_triples:
+            nt = normalizer.normalize(triple)
+            if nt is not None:
+                nt.confidence = scorer.score(triple)
+                normalized.append(nt)
 
         logger.info("[%s] %d triples extracted", job_id, len(normalized))
 
@@ -137,44 +138,45 @@ def run_pipeline(
         id_map = resolver.resolve_within_doc(all_entities)
 
         # ── Phase 4: Graph Write ──────────────────────────────────────────
-        resolved_entities, entity_to_chunks = build_resolved_entities(all_entities, id_map)
-        resolved_edges = build_resolved_edges(normalized, id_map)
+        resolved_entities, _ = build_resolved_entities(all_entities, id_map)
 
         # Cross-document resolution + graph write run in a new event loop
         async def _write():
-            driver = await get_driver(
+            driver = create_driver(
                 settings.neo4j_uri, settings.neo4j_user, settings.neo4j_password
             )
-            builder = GraphBuilder()
-            async with driver.session() as session:
-                await builder.write_document(session, filename, preprocessed.doc_id)
-                await builder.write_chunks(session, chunks)
+            try:
+                builder = GraphBuilder()
+                async with driver.session() as session:
+                    await builder.write_document(session, filename, preprocessed.doc_id)
+                    await builder.write_chunks(session, chunks)
 
-                # Cross-doc resolution: check existing nodes before creating new ones
-                final_entities = []
-                cross_doc_map: dict[str, str] = {}
-                for ent in resolved_entities:
-                    existing_id = await resolver.resolve_against_graph(ent, session)
-                    if existing_id:
-                        cross_doc_map[ent.canonical_id] = existing_id
-                    else:
-                        final_entities.append(ent)
+                    # Cross-doc resolution: check existing nodes before creating new ones
+                    cross_doc_map: dict[str, str] = {}
+                    for ent in resolved_entities:
+                        existing_id = await resolver.resolve_against_graph(ent, session)
+                        if existing_id:
+                            cross_doc_map[ent.canonical_id] = existing_id
 
-                # Update id_map with cross-doc merges
-                full_id_map = {**id_map}
-                for old_id, new_id in cross_doc_map.items():
-                    for k, v in full_id_map.items():
-                        if v == old_id:
-                            full_id_map[k] = new_id
+                    # Update id_map with cross-doc merges
+                    full_id_map = {**id_map}
+                    for old_id, new_id in cross_doc_map.items():
+                        for k, v in full_id_map.items():
+                            if v == old_id:
+                                full_id_map[k] = new_id
 
-                # Re-build edges with updated ID map
-                final_edges = build_resolved_edges(normalized, full_id_map)
+                    # Rebuild all payloads with the same IDs, including aliases
+                    # and mentions for entities that already exist in the graph.
+                    final_entities, entity_to_chunks = build_resolved_entities(all_entities, full_id_map)
+                    final_edges = build_resolved_edges(normalized, full_id_map)
 
-                await builder.write_entities(session, final_entities)
-                await builder.write_mentions(session, entity_to_chunks)
-                await builder.write_edges(session, final_edges)
+                    await builder.write_entities(session, final_entities)
+                    await builder.write_mentions(session, entity_to_chunks)
+                    await builder.write_edges(session, final_edges)
 
-            return len(final_entities), len(final_edges)
+                return len(resolved_entities) - len(cross_doc_map), len(final_edges)
+            finally:
+                await driver.close()
 
         n_entities, n_edges = asyncio.run(_write())
         logger.info("[%s] Written %d entities, %d edges", job_id, n_entities, n_edges)
@@ -182,7 +184,8 @@ def run_pipeline(
         return {
             "doc_id": preprocessed.doc_id,
             "sentences": len(chunks),
-            "entities": n_entities,
+            "entities": len(resolved_entities),
+            "new_entities": n_entities,
             "edges": n_edges,
         }
 

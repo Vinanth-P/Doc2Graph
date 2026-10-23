@@ -33,6 +33,10 @@ async def init_db() -> None:
             )
             """
         )
+        # Clean up any leftover jobs from prior server run
+        await db.execute(
+            "UPDATE jobs SET status = 'failed', error = 'Interrupted by server restart' WHERE status IN ('running', 'queued')"
+        )
         await db.commit()
 
 
@@ -88,4 +92,10 @@ async def list_jobs(limit: int = 50) -> list[dict]:
             "SELECT * FROM jobs ORDER BY created_at DESC LIMIT ?", (limit,)
         ) as cursor:
             rows = await cursor.fetchall()
-            return [dict(r) for r in rows]
+            results = []
+            for row in rows:
+                data = dict(row)
+                if data.get("result"):
+                    data["result"] = json.loads(data["result"])
+                results.append(data)
+            return results

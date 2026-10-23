@@ -1,0 +1,21 @@
+{"predicate": "found", "source": "svo", "dep_distance": 2, "has_negation": false, "subject_type": "PERSON", "object_type": "ORG", "label": 1}
+{"predicate": "acquire", "source": "svo", "dep_distance": 2, "has_negation": false, "subject_type": "ORG", "object_type": "ORG", "label": 1}
+{"predicate": "invest", "source": "prep", "dep_distance": 3, "has_negation": false, "subject_type": "ORG", "object_type": "ORG", "label": 1}
+{"predicate": "work", "source": "prep", "dep_distance": 3, "has_negation": false, "subject_type": "PERSON", "object_type": "ORG", "label": 1}
+{"predicate": "locate", "source": "prep", "dep_distance": 2, "has_negation": false, "subject_type": "ORG", "object_type": "GPE", "label": 1}
+{"predicate": "hire", "source": "svo", "dep_distance": 2, "has_negation": false, "subject_type": "ORG", "object_type": "PERSON", "label": 1}
+{"predicate": "partner", "source": "prep", "dep_distance": 2, "has_negation": false, "subject_type": "ORG", "object_type": "ORG", "label": 1}
+{"predicate": "founder", "source": "nominal", "dep_distance": 1, "has_negation": false, "subject_type": "PERSON", "object_type": "ORG", "label": 1}
+{"predicate": "ceo", "source": "appos", "dep_distance": 1, "has_negation": false, "subject_type": "PERSON", "object_type": "ORG", "label": 1}
+{"predicate": "buy", "source": "svo", "dep_distance": 2, "has_negation": false, "subject_type": "ORG", "object_type": "ORG", "label": 1}
+{"predicate": "see", "source": "svo", "dep_distance": 8, "has_negation": false, "subject_type": "PERSON", "object_type": "GPE", "label": 0}
+{"predicate": "mention", "source": "prep", "dep_distance": 7, "has_negation": false, "subject_type": "ORG", "object_type": "PERSON", "label": 0}
+{"predicate": "found", "source": "svo", "dep_distance": 3, "has_negation": true, "subject_type": "PERSON", "object_type": "ORG", "label": 0}
+{"predicate": "random", "source": "prep", "dep_distance": 9, "has_negation": false, "subject_type": "GPE", "object_type": "PERSON", "label": 0}
+{"predicate": "travel", "source": "svo", "dep_distance": 6, "has_negation": false, "subject_type": "PERSON", "object_type": "ORG", "label": 0}
+{"predicate": "say", "source": "svo", "dep_distance": 7, "has_negation": false, "subject_type": "PERSON", "object_type": "ORG", "label": 0}
+{"predicate": "lead", "source": "svo", "dep_distance": 2, "has_negation": false, "subject_type": "PERSON", "object_type": "ORG", "label": 1}
+{"predicate": "appoint", "source": "svo", "dep_distance": 3, "has_negation": false, "subject_type": "ORG", "object_type": "PERSON", "label": 1}
+{"predicate": "deny", "source": "svo", "dep_distance": 4, "has_negation": true, "subject_type": "ORG", "object_type": "ORG", "label": 0}
+{"predicate": "ignore", "source": "prep", "dep_distance": 8, "has_negation": false, "subject_type": "PERSON", "object_type": "PERSON", "label": 0}
+

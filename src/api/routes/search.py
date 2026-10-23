@@ -15,10 +15,11 @@ router = APIRouter(prefix="/api/search", tags=["search"])
 async def search(
     q: str = Query(..., description="Search query"),
     limit: int = Query(20, ge=1, le=100),
+    doc_id: str | None = Query(None, min_length=1),
     settings: Settings = Depends(get_settings),
 ):
     """Full-text search over entity names and aliases."""
     driver = await get_driver(settings.neo4j_uri, settings.neo4j_user, settings.neo4j_password)
     engine = QueryEngine(driver)
-    results = await engine.search_entities(q, limit)
+    results = await engine.search_entities(q, limit, doc_id=doc_id)
     return [SearchResult(**r) for r in results]

@@ -1,0 +1,21 @@
+{"name_a": "International Business Machines", "name_b": "IBM", "label": 1}
+{"name_a": "Tesla Motors", "name_b": "Tesla", "label": 1}
+{"name_a": "Alphabet Inc", "name_b": "Alphabet", "label": 1}
+{"name_a": "Apple Computer", "name_b": "Apple", "label": 1}
+{"name_a": "Microsoft Corporation", "name_b": "Microsoft", "label": 1}
+{"name_a": "Elon Musk", "name_b": "Elon R. Musk", "label": 1}
+{"name_a": "Amazon.com Inc", "name_b": "Amazon", "label": 1}
+{"name_a": "Meta Platforms", "name_b": "Meta", "label": 1}
+{"name_a": "OpenAI LLC", "name_b": "OpenAI", "label": 1}
+{"name_a": "DeepMind Technologies", "name_b": "DeepMind", "label": 1}
+{"name_a": "Tesla", "name_b": "Apple", "label": 0}
+{"name_a": "Google", "name_b": "Microsoft", "label": 0}
+{"name_a": "Elon Musk", "name_b": "Jeff Bezos", "label": 0}
+{"name_a": "California", "name_b": "Texas", "label": 0}
+{"name_a": "Amazon", "name_b": "Apple", "label": 0}
+{"name_a": "OpenAI", "name_b": "Anthropic", "label": 0}
+{"name_a": "IBM", "name_b": "NVIDIA", "label": 0}
+{"name_a": "Meta", "name_b": "Microsoft", "label": 0}
+{"name_a": "SpaceX", "name_b": "Boeing", "label": 0}
+{"name_a": "San Francisco", "name_b": "Seattle", "label": 0}
+

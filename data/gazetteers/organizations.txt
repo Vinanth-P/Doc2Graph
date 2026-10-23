@@ -1,0 +1,12 @@
+Tesla
+SpaceX
+Apple
+Google
+DeepMind
+Microsoft
+OpenAI
+Amazon
+NVIDIA
+Meta
+Anthropic
+

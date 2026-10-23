@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doc2Graph — Knowledge Graph Builder</title>
+  <link rel="stylesheet" href="/style.css">
+  <!-- D3.js v7 CDN -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="brand">
+        <span class="logo">🧠</span>
+        <div>
+          <h1>Doc2Graph</h1>
+          <span class="subtitle">Document Knowledge Graph Builder — Classical ML</span>
+        </div>
+      </div>
+      <div class="stats-bar" id="statsBar">
+        <div class="stat-pill"><span class="stat-num" id="statEntities">0</span> Entities</div>
+        <div class="stat-pill"><span class="stat-num" id="statEdges">0</span> Relations</div>
+        <div class="stat-pill"><span class="stat-num" id="statDocs">0</span> Documents</div>
+      </div>
+      <div class="header-actions">
+        <button class="btn btn-secondary" id="btnRefresh" title="Refresh Graph">🔄 Refresh</button>
+      </div>
+    </header>
+
+    <!-- Main Workspace -->
+    <div class="workspace">
+      <!-- Left Sidebar -->
+      <aside class="sidebar">
+        <!-- Document Upload -->
+        <section class="card upload-card">
+          <p class="file-hint" id="activeDocumentName" role="status">Upload a document to view its graph.</p>
+          <h2>📄 Ingest Document</h2>
+          <div class="drop-zone" id="dropZone">
+            <input type="file" id="fileInput" accept=".pdf,.docx,.txt" style="display:none">
+            <div class="drop-prompt">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="17 8 12 3 7 8"/>
+                <line x1="12" y1="3" x2="12" y2="15"/>
+              </svg>
+              <p>Drag & drop <strong>PDF, DOCX, TXT</strong> or <button type="button" class="link-btn" id="browseBtn">browse</button></p>
+              <span class="file-hint">English only · Max 50 MB</span>
+            </div>
+          </div>
+          <div class="job-status" id="jobStatus" style="display: none;">
+            <div class="job-header">
+              <span id="jobFileName" class="file-name">document.pdf</span>
+              <span id="jobBadge" class="badge">pending</span>
+            </div>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" id="jobProgress"></div>
+            </div>
+            <div class="job-msg" id="jobMsg">Uploading...</div>
+          </div>
+        </section>
+
+        <!-- Search & Filter -->
+        <section class="card search-card">
+          <h2>🔍 Search & Filter</h2>
+          <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search entities (e.g. Tesla, Musk)...">
+            <button class="btn btn-primary" id="btnSearch">Search</button>
+          </div>
+          <div class="search-results" id="searchResults" style="display: none;"></div>
+
+          <div class="filter-group">
+            <label class="filter-label">Filter by Type:</label>
+            <div class="type-tags" id="typeFilters">
+              <button class="type-tag active" data-type="ALL">All</button>
+              <button class="type-tag" data-type="PERSON" style="--c: #4F46E5;">Person</button>
+              <button class="type-tag" data-type="ORG" style="--c: #0284C7;">Org</button>
+              <button class="type-tag" data-type="GPE" style="--c: #059669;">Location</button>
+              <button class="type-tag" data-type="PRODUCT" style="--c: #D97706;">Product</button>
+              <button class="type-tag" data-type="EVENT" style="--c: #DC2626;">Event</button>
+              <button class="type-tag" data-type="LAW" style="--c: #7C3AED;">Law</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Entity Inspector Drawer -->
+        <section class="card details-card" id="entityDetails" style="display: none;">
+          <div class="details-header">
+            <h2>📌 Entity Details</h2>
+            <button class="close-btn" id="btnCloseDetails">&times;</button>
+          </div>
+          <div class="entity-info">
+            <h3 id="detailName">—</h3>
+            <span class="badge" id="detailType">—</span>
+            <div class="detail-aliases" id="detailAliases"></div>
+          </div>
+          <div class="relations-list" id="detailRelations">
+            <h4>Outgoing Relations</h4>
+            <ul id="outgoingRels"></ul>
+          </div>
+          <button class="btn btn-secondary btn-full" id="btnFocusNode">Focus Neighborhood</button>
+        </section>
+      </aside>
+
+      <!-- Graph Viewport -->
+      <main class="graph-canvas-container">
+        <svg id="graphSvg"></svg>
+        <!-- Overlay Controls -->
+        <div class="canvas-controls">
+          <button id="zoomIn" title="Zoom in">+</button>
+          <button id="zoomOut" title="Zoom out">−</button>
+          <button id="zoomReset" title="Reset view">⛶</button>
+        </div>
+        <!-- Legend -->
+        <div class="graph-legend">
+          <span class="legend-item"><span class="legend-dot" style="background:#4F46E5;"></span> PERSON</span>
+          <span class="legend-item"><span class="legend-dot" style="background:#0284C7;"></span> ORG</span>
+          <span class="legend-item"><span class="legend-dot" style="background:#059669;"></span> GPE</span>
+          <span class="legend-item"><span class="legend-dot" style="background:#D97706;"></span> PRODUCT</span>
+          <span class="legend-item"><span class="legend-dot" style="background:#DC2626;"></span> EVENT</span>
+          <span class="legend-item"><span class="legend-dot" style="background:#7C3AED;"></span> LAW</span>
+        </div>
+        <!-- Tooltip -->
+        <div class="graph-tooltip" id="tooltip" style="display: none;"></div>
+      </main>
+    </div>
+  </div>
+
+  <script src="/graph.js"></script>
+</body>
+</html>

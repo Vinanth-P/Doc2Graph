@@ -14,6 +14,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from typing import Optional
+import re
 
 from rapidfuzz.distance import JaroWinkler
 
@@ -77,30 +78,30 @@ class RuleBasedCorefResolver:
         for chunk in chunks:
             ents = entities_by_chunk.get(chunk.chunk_id, [])
 
-            # Update recency pointers
-            for ent in ents:
-                if ent.type == "PERSON":
-                    recent_person = ent
-                elif ent.type == "ORG":
-                    recent_org = ent
-                all_entities.append(ent)
+            # Process mentions in reading order. A later object must not become
+            # the antecedent of an earlier pronoun ("He hired Alice").
+            phrases = PRONOUNS_PERSON | PRONOUNS_ORG | DEF_NP_PERSON | DEF_NP_ORG
+            pattern = r"\b(?:" + "|".join(re.escape(p) for p in sorted(phrases, key=len, reverse=True)) + r")\b"
+            events = [(e.end_char, 0, e) for e in ents]
+            events += [
+                (m.start(), 1, m) for m in re.finditer(pattern, chunk.text, re.IGNORECASE)
+                if not any(e.start_char <= m.start() < e.end_char for e in ents)
+            ]
+            for _, kind, mention in sorted(events, key=lambda event: (event[0], event[1])):
+                if kind == 0:
+                    if mention.type == "PERSON":
+                        recent_person = mention
+                    elif mention.type == "ORG":
+                        recent_org = mention
+                    continue
+                phrase = mention.group().lower()
+                antecedent = recent_person if phrase in PRONOUNS_PERSON | DEF_NP_PERSON else recent_org
+                # Position keys distinguish repeated pronouns in one sentence.
+                resolution[f"{chunk.chunk_id}:ref:{mention.start()}"] = antecedent.entity_id if antecedent else ""
+                if antecedent:
+                    resolution.setdefault(f"{chunk.chunk_id}:{phrase}", antecedent.entity_id)
 
-            # Tier 1 & 2: pronoun resolution by recency
-            words = chunk.text.lower().split()
-            for word in words:
-                if word in PRONOUNS_PERSON and recent_person:
-                    resolution[f"{chunk.chunk_id}:{word}"] = recent_person.entity_id
-                elif word in PRONOUNS_ORG and recent_org:
-                    resolution[f"{chunk.chunk_id}:{word}"] = recent_org.entity_id
-
-            # Tier 3: definite NP resolution
-            text_low = chunk.text.lower()
-            for np in DEF_NP_ORG:
-                if np in text_low and recent_org:
-                    resolution[f"{chunk.chunk_id}:{np}"] = recent_org.entity_id
-            for np in DEF_NP_PERSON:
-                if np in text_low and recent_person:
-                    resolution[f"{chunk.chunk_id}:{np}"] = recent_person.entity_id
+            all_entities.extend(ents)
 
             # Tier 4: alias detection — link short forms to the known full name
             for ent in ents:

@@ -1,0 +1,15 @@
+{"text":"Elon Musk founded Tesla. Google acquired DeepMind.","relations":[["Elon Musk","FOUNDED","Tesla"],["Google","ACQUIRED","DeepMind"]]}
+{"text":"Alice works for Google.","relations":[["Alice","MEMBER_OF","Google"]]}
+{"text":"Alice works at Google.","relations":[["Alice","MEMBER_OF","Google"]]}
+{"text":"Tesla is headquartered in Austin.","relations":[["Tesla","LOCATED_IN","Austin"]]}
+{"text":"Google is based in London.","relations":[["Google","LOCATED_IN","London"]]}
+{"text":"Google invested in Tesla.","relations":[["Google","INVESTED_IN","Tesla"]]}
+{"text":"Google partnered with Microsoft.","relations":[["Google","PARTNER_WITH","Microsoft"]]}
+{"text":"Microsoft was acquired by Google.","relations":[["Google","ACQUIRED","Microsoft"]]}
+{"text":"Tesla was founded by Elon Musk.","relations":[["Elon Musk","FOUNDED","Tesla"]]}
+{"text":"Alice was hired by Google.","relations":[["Alice","EMPLOYED_BY","Google"]]}
+{"text":"Elon Musk founded Tesla. He leads SpaceX.","relations":[["Elon Musk","FOUNDED","Tesla"],["Elon Musk","RELATED_TO","SpaceX"]]}
+{"text":"Google did not acquire Microsoft.","relations":[]}
+{"text":"Alice does not work for Google.","relations":[]}
+{"text":"Tesla is not headquartered in Austin.","relations":[]}
+{"text":"Google did not acquire Microsoft. Elon Musk founded Tesla.","relations":[["Elon Musk","FOUNDED","Tesla"]]}

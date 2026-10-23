@@ -41,8 +41,18 @@ class NormalizedTriple:
 
 # ── Loader ────────────────────────────────────────────────────────────────────
 
-def load_relations_config(path: str = "config/relations.yaml") -> dict:
-    with open(path) as f:
+_PROJECT_ROOT = Path(__file__).resolve().parents[2]
+_DEFAULT_CONFIG_PATH = _PROJECT_ROOT / "config" / "relations.yaml"
+
+
+def load_relations_config(path: str | Path = "config/relations.yaml") -> dict:
+    p = Path(path)
+    if not p.is_absolute() and not p.exists():
+        alt = _PROJECT_ROOT / p
+        if alt.exists():
+            p = alt
+
+    with open(p, encoding="utf-8") as f:
         data = yaml.safe_load(f)
     return data.get("canonical_relations", {})
 
@@ -50,10 +60,13 @@ def load_relations_config(path: str = "config/relations.yaml") -> dict:
 # ── Normalizer ────────────────────────────────────────────────────────────────
 
 class PredicateNormalizer:
-    def __init__(self, config_path: str = "config/relations.yaml"):
+    def __init__(self, config_path: str | Path = "config/relations.yaml"):
         self._config = load_relations_config(config_path)
 
-    def normalize(self, triple: RawTriple) -> NormalizedTriple:
+    def normalize(self, triple: RawTriple) -> NormalizedTriple | None:
+        # The graph represents asserted facts and has no negated-edge schema.
+        if triple.has_negation:
+            return None
         for rel_name, conf in self._config.items():
             for entry in conf.get("lemmas", []):
                 if triple.predicate != entry["lemma"]:
@@ -101,4 +114,4 @@ class PredicateNormalizer:
         )
 
     def normalize_batch(self, triples: list[RawTriple]) -> list[NormalizedTriple]:
-        return [self.normalize(t) for t in triples]
+        return [normalized for t in triples if (normalized := self.normalize(t)) is not None]

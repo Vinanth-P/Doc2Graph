@@ -6,10 +6,9 @@ Features (all classical, no embeddings):
   3. is_appos           — appositive pattern flag
   4. is_prep            — prepositional pattern flag
   5. is_nominal         — nominal/role-noun pattern flag
-  6. entity_type_pair   — label-encoded (e.g., "PERSON_ORG")
-  7. verb_in_whitelist  — 1 if predicate lemma is in relations.yaml
-  8. sentence_length    — number of tokens (proxy for noise)
-  9. has_negation       — 1 if negation in governor's subtree
+  6. verb_in_whitelist  — 1 if predicate lemma is in relations.yaml
+  7. has_negation       — 1 if negation in governor's subtree
+  8. entity_type_pair   — fixed one-hot vocabulary, identical across processes
 
 Training:
   Run scripts/benchmark.py --train to fit the LR on relations_gold.jsonl
@@ -27,8 +26,10 @@ from typing import Optional
 
 from src.nlp.relation_extractor import RawTriple
 from src.nlp.predicate_normalizer import load_relations_config
+from src.type_map import NODE_TYPES
 
-MODEL_PATH = Path("models/relation_scorer.joblib")
+_PROJECT_ROOT = Path(__file__).resolve().parents[2]
+MODEL_PATH = _PROJECT_ROOT / "models" / "relation_scorer.joblib"
 
 # Whitelist lemmas built from relations.yaml
 def _whitelist_lemmas(config: dict) -> frozenset[str]:
@@ -39,13 +40,8 @@ def _whitelist_lemmas(config: dict) -> frozenset[str]:
     return frozenset(lemmas)
 
 
-TYPE_PAIR_VOCAB: dict[str, int] = {}
-
-def _encode_type_pair(a_type: str, b_type: str) -> float:
-    key = f"{a_type}_{b_type}"
-    if key not in TYPE_PAIR_VOCAB:
-        TYPE_PAIR_VOCAB[key] = len(TYPE_PAIR_VOCAB)
-    return float(TYPE_PAIR_VOCAB[key])
+FEATURE_VERSION = 2
+TYPE_PAIRS = tuple((a, b) for a in sorted(NODE_TYPES) for b in sorted(NODE_TYPES))
 
 
 def _feature_vector(triple: RawTriple, whitelist: frozenset[str]) -> list[float]:
@@ -55,9 +51,9 @@ def _feature_vector(triple: RawTriple, whitelist: frozenset[str]) -> list[float]
         float(triple.source == "appos"),
         float(triple.source == "prep"),
         float(triple.source == "nominal"),
-        _encode_type_pair(triple.subject.type, triple.object.type),
         float(triple.predicate in whitelist),
         float(bool(triple.has_negation)),
+        *[float((triple.subject.type, triple.object.type) == pair) for pair in TYPE_PAIRS],
     ]
 
 
@@ -73,13 +69,19 @@ class RelationScorer:
         if MODEL_PATH.exists():
             try:
                 import joblib
-                return joblib.load(MODEL_PATH)
+                artifact = joblib.load(MODEL_PATH)
+                # Old artifacts used encounter-order type IDs and cannot safely
+                # consume the deterministic feature schema.
+                if isinstance(artifact, dict) and artifact.get("feature_version") == FEATURE_VERSION:
+                    return artifact["model"]
             except Exception:
                 pass
         return None
 
     def score(self, triple: RawTriple) -> float:
         """Return a confidence in [0, 1]."""
+        if triple.has_negation:
+            return 0.0
         fv = _feature_vector(triple, self._whitelist)
         if self._model is not None:
             try:
@@ -146,7 +148,7 @@ class RelationScorer:
         # Fit on all data for the final model
         pipe.fit(X_arr, y_arr)
         MODEL_PATH.parent.mkdir(exist_ok=True)
-        joblib.dump(pipe, MODEL_PATH)
+        joblib.dump({"feature_version": FEATURE_VERSION, "model": pipe}, MODEL_PATH)
 
         return {
             "cv_f1_mean": float(cv_scores.mean()),

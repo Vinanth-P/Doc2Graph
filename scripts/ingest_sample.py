@@ -49,7 +49,7 @@ def main():
     print(f"Found {len(files)} file(s) to process.")
 
     for fpath in files:
-        print(f"\n→ Processing: {fpath.name}")
+        print(f"\n-> Processing: {fpath.name}")
         raw_bytes = fpath.read_bytes()
 
         # Detect type by extension for CLI (magic bytes checked inside pipeline)
@@ -62,9 +62,9 @@ def main():
 
         try:
             result = run_pipeline(raw_bytes, fpath.name, ftype, job_id="cli")
-            print(f"  ✓ {result['entities']} entities, {result['edges']} edges")
+            print(f"  [OK] {result['entities']} entities, {result['edges']} edges")
         except Exception as exc:
-            print(f"  ✗ Failed: {exc}")
+            print(f"  [ERROR] Failed: {exc}")
 
 
 if __name__ == "__main__":

@@ -24,7 +24,7 @@ async def dispatch_pipeline(
     """Run the pipeline in a background thread, update job store on completion."""
     await job_store.update_job(job_id, status=job_store.JobStatus.RUNNING)
 
-    loop = asyncio.get_event_loop()
+    loop = asyncio.get_running_loop()
     try:
         result = await loop.run_in_executor(
             _executor,
