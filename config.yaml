@@ -1,0 +1,5 @@
+pipeline_mode: accurate
+max_upload_mb: 50
+window_size: 3
+window_stride: 2
+resolution_threshold: 0.85

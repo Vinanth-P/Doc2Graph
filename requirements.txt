@@ -1,11 +1,7 @@
 # ── Core NLP ─────────────────────────────────────────────────────────────────
 spacy>=3.7,<4.0
-en_core_web_sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.7.1/en_core_web_sm-3.7.1-py3-none-any.whl
-gliner>=0.2.0
-fastcoref>=2.1.6
-transformers>=4.40.0
-sentence-transformers>=3.0.0
-faiss-cpu>=1.8.0          # CPU FAISS for blocking; GPU not needed here
+# en_core_web_sm installed via: python -m spacy download en_core_web_sm
+rapidfuzz>=3.9.0
 scikit-learn>=1.4.0
 nltk>=3.8.0
 
@@ -22,14 +18,13 @@ neo4j>=5.20.0
 # ── Web framework ─────────────────────────────────────────────────────────────
 fastapi>=0.111.0
 uvicorn[standard]>=0.30.0
-python-multipart>=0.0.9   # required by FastAPI for file uploads
+python-multipart>=0.0.9
 
 # ── Config & utilities ────────────────────────────────────────────────────────
 pydantic>=2.7.0
 pydantic-settings>=2.3.0
 pyyaml>=6.0.1
 filelock>=3.14.0
-rapidfuzz>=3.9.0
 
 # ── Storage & jobs ────────────────────────────────────────────────────────────
 aiosqlite>=0.20.0

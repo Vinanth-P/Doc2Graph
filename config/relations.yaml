@@ -1,0 +1,54 @@
+canonical_relations:
+
+  MEMBER_OF:
+    lemmas:
+      - {lemma: "join",   requires_prep: null,          lemma_swap: false}
+      - {lemma: "work",   requires_prep: ["for", "at"], lemma_swap: false}
+      - {lemma: "belong", requires_prep: ["to"],         lemma_swap: false}
+    entity_type_pairs: [[PERSON, ORG]]
+
+  EMPLOYED_BY:
+    lemmas:
+      - {lemma: "hire",    requires_prep: null, lemma_swap: true}
+      - {lemma: "employ",  requires_prep: null, lemma_swap: true}
+      - {lemma: "appoint", requires_prep: null, lemma_swap: true}
+    entity_type_pairs: [[PERSON, ORG]]
+
+  ACQUIRED:
+    lemmas:
+      - {lemma: "acquire",  requires_prep: null, lemma_swap: false}
+      - {lemma: "buy",      requires_prep: null, lemma_swap: false}
+      - {lemma: "purchase", requires_prep: null, lemma_swap: false}
+    # "merge" excluded — bidirectional/ambiguous
+    entity_type_pairs: [[ORG, ORG]]
+
+  LOCATED_IN:
+    lemmas:
+      - {lemma: "locate",      requires_prep: ["in", "at"], lemma_swap: false}
+      - {lemma: "base",        requires_prep: ["in", "at"], lemma_swap: false}
+      - {lemma: "headquarter", requires_prep: ["in", "at"], lemma_swap: false}
+    entity_type_pairs: [[ORG, GPE], [PERSON, GPE]]
+
+  FOUNDED:
+    lemmas:
+      - lemma: "found"
+        requires_prep: null
+        lemma_swap: false
+        # Disambiguate "found" (find past tense) vs "found" (establish):
+        # predicate_normalizer.py checks that the direct object is typed ORG.
+        # "Musk found a bug" → reject (dobj not ORG)
+        # "Musk founded Tesla" → accept (dobj=Tesla, ORG)
+    entity_type_pairs: [[PERSON, ORG]]
+
+  INVESTED_IN:
+    lemmas:
+      - {lemma: "invest",  requires_prep: ["in"], lemma_swap: false}
+      - {lemma: "fund",    requires_prep: null,   lemma_swap: false}
+      - {lemma: "finance", requires_prep: null,   lemma_swap: false}
+    entity_type_pairs: [[ORG, ORG], [PERSON, ORG]]
+
+  PARTNER_WITH:
+    lemmas:
+      - {lemma: "partner",     requires_prep: ["with"], lemma_swap: false}
+      - {lemma: "collaborate", requires_prep: ["with"], lemma_swap: false}
+    entity_type_pairs: [[ORG, ORG]]
