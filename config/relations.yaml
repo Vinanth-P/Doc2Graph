@@ -3,7 +3,6 @@ canonical_relations:
   MEMBER_OF:
     lemmas:
       - {lemma: "join",   requires_prep: null,          lemma_swap: false}
-      - {lemma: "work",   requires_prep: ["for", "at"], lemma_swap: false}
       - {lemma: "belong", requires_prep: ["to"],         lemma_swap: false}
     entity_type_pairs: [[PERSON, ORG]]
 
@@ -12,6 +11,7 @@ canonical_relations:
       - {lemma: "hire",    requires_prep: null, lemma_swap: true}
       - {lemma: "employ",  requires_prep: null, lemma_swap: true}
       - {lemma: "appoint", requires_prep: null, lemma_swap: true}
+      - {lemma: "work",    requires_prep: ["for", "at"], lemma_swap: false}
     entity_type_pairs: [[PERSON, ORG]]
 
   ACQUIRED:
@@ -27,6 +27,7 @@ canonical_relations:
       - {lemma: "locate",      requires_prep: ["in", "at"], lemma_swap: false}
       - {lemma: "base",        requires_prep: ["in", "at"], lemma_swap: false}
       - {lemma: "headquarter", requires_prep: ["in", "at"], lemma_swap: false}
+      - {lemma: "join",        requires_prep: ["in", "at"], lemma_swap: false}
     entity_type_pairs: [[ORG, GPE], [PERSON, GPE]]
 
   FOUNDED:

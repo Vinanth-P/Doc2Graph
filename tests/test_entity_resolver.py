@@ -26,6 +26,10 @@ def test_abbreviation_score_ibm():
     assert score >= 0.8
 
 
+def test_abbreviation_score_mixed_case_acronym():
+    assert _abbreviation_score("IISc", "Indian Institute of Science") >= 0.8
+
+
 def test_abbreviation_score_identical_initials():
     score = _abbreviation_score("AT&T", "AT&T")
     assert score >= 0.8

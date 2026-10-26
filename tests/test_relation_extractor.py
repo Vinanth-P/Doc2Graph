@@ -107,3 +107,60 @@ def test_coref_substitution(nlp):
     assert triples[0].subject.canonical_name == "Elon Musk"
     assert triples[0].object.canonical_name == "SpaceX"
 
+
+def test_reduced_clause_keeps_partner_predicate(nlp):
+    extractor = DepPatternExtractor()
+    text = "TechNova Solutions partnered with the Indian Institute of Science."
+    doc = nlp(text)
+    technova = _make_entity("TechNova Solutions", 0, 20, "ORG")
+    iisc = _make_entity("the Indian Institute of Science", 38, 69, "ORG")
+
+    triples = extractor.extract(
+        doc=doc,
+        entities=[technova, iisc],
+        center_chunk_id="c:0",
+        center_sent_idx=0,
+    )
+
+    partner = [t for t in triples if t.prep == "with"]
+    assert partner
+    assert partner[0].predicate == "partner"
+    assert partner[0].subject.text == "TechNova Solutions"
+
+
+def test_location_modifier_uses_nearest_organization(nlp):
+    extractor = DepPatternExtractor()
+    text = "TechNova Solutions, a company headquartered in Mumbai."
+    doc = nlp(text)
+    technova = _make_entity("TechNova Solutions", 0, 20, "ORG")
+    mumbai = _make_entity("Mumbai", 48, 54, "GPE")
+
+    triples = extractor.extract(
+        doc=doc,
+        entities=[technova, mumbai],
+        center_chunk_id="c:0",
+        center_sent_idx=0,
+    )
+
+    location = [t for t in triples if t.object.text == "Mumbai"]
+    assert location
+    assert location[0].subject.text == "TechNova Solutions"
+
+
+def test_supported_verb_can_extract_noun_phrase_product(nlp):
+    extractor = DepPatternExtractor()
+    text = "IISc provided the computing infrastructure."
+    doc = nlp(text)
+    iisc = _make_entity("IISc", 0, 4, "ORG")
+
+    triples = extractor.extract(
+        doc=doc,
+        entities=[iisc],
+        center_chunk_id="c:0",
+        center_sent_idx=0,
+    )
+
+    provided = [t for t in triples if t.predicate == "provide"]
+    assert provided
+    assert provided[0].object.type == "PRODUCT"
+    assert provided[0].object.text == "the computing infrastructure"

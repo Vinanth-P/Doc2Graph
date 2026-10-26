@@ -24,8 +24,8 @@ def chunk(text, index=0):
 
 
 @pytest.mark.parametrize("text,subject,subject_type,obj,obj_type,relation", [
-    ("Alice works for Google.", "Alice", "PERSON", "Google", "ORG", "MEMBER_OF"),
-    ("Alice works at Google.", "Alice", "PERSON", "Google", "ORG", "MEMBER_OF"),
+    ("Alice works for Google.", "Alice", "PERSON", "Google", "ORG", "EMPLOYED_BY"),
+    ("Alice works at Google.", "Alice", "PERSON", "Google", "ORG", "EMPLOYED_BY"),
     ("Tesla is headquartered in Austin.", "Tesla", "ORG", "Austin", "GPE", "LOCATED_IN"),
     ("Google is based in London.", "Google", "ORG", "London", "GPE", "LOCATED_IN"),
     ("Google invested in Tesla.", "Google", "ORG", "Tesla", "ORG", "INVESTED_IN"),

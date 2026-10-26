@@ -58,10 +58,12 @@ def test_work_without_prep_falls_to_related_to(normalizer):
     assert r.relation_type == "RELATED_TO"
 
 
-def test_work_with_correct_prep_maps_member_of(normalizer):
+def test_work_with_correct_prep_maps_employed_by(normalizer):
     t = _triple("work", "PERSON", "ORG", prep="at")
     r = normalizer.normalize(t)
-    assert r.relation_type == "MEMBER_OF"
+    assert r.relation_type == "EMPLOYED_BY"
+    assert r.subject.type == "PERSON"
+    assert r.object.type == "ORG"
 
 
 def test_found_with_org_object_maps_founded(normalizer):

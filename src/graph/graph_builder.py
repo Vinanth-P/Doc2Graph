@@ -85,6 +85,36 @@ class GraphBuilder:
         "USES", "STORES_DATA_IN",
     ]
 
+    async def clear_document(self, session: AsyncSession, doc_id: str) -> None:
+        """Remove evidence owned by a document before replacing its graph."""
+        await session.run(
+            """
+            MATCH (a:Entity)-[r]->(b:Entity)
+            WHERE any(cid IN coalesce(r.chunk_ids, [])
+                WHERE cid STARTS WITH $doc_id + ':')
+            DELETE r
+            """,
+            doc_id=doc_id,
+        )
+        await session.run(
+            """
+            MATCH (c:Chunk {doc_id: $doc_id})
+            DETACH DELETE c
+            """,
+            doc_id=doc_id,
+        )
+        await session.run(
+            """
+            MATCH (entity:Entity)
+            WHERE NOT (entity)-[:MENTIONED_IN]->()
+            DETACH DELETE entity
+            """
+        )
+        await session.run(
+            "MATCH (d:Document {id: $doc_id}) DETACH DELETE d",
+            doc_id=doc_id,
+        )
+
     async def write_document(self, session: AsyncSession, filename: str, doc_id: str) -> None:
         await session.run(
             """

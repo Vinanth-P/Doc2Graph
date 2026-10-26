@@ -56,10 +56,17 @@ def compute_initials_key(name: str) -> str:
     """'International Business Machines' → 'IBM', 'Elon Musk' → 'EM', 'IBM' → 'IBM'."""
     clean = re.sub(r"[^\w\s]", "", name).strip()
     words = clean.split()
-    if len(words) == 1 and words[0].isupper() and 2 <= len(words[0]) <= 8:
-        return words[0]
+    if (
+        len(words) == 1
+        and re.fullmatch(r"[A-Z]{2,}[a-z]?", words[0])
+        and len(words[0]) <= 8
+    ):
+        return words[0].upper()
     tokens = re.sub(r"[^\w\s]", " ", name).split()
-    return "".join(t[0].upper() for t in tokens if t and t[0].isalpha())
+    return "".join(
+        t[0].upper() for t in tokens
+        if t and t[0].isalpha() and t.casefold() not in {"a", "an", "the", "of", "and"}
+    )
 
 
 def _token_overlap_ratio(a: str, b: str) -> float:
@@ -81,6 +88,14 @@ def _abbreviation_score(a: str, b: str) -> float:
         return 1.0
     if ka == kb and len(ka) >= 2:
         return 0.8
+    # Mixed-case acronyms such as "IISc" may include a final disambiguating
+    # letter while still explicitly abbreviating the full organization name.
+    for acronym, initials in ((a_clean, kb), (b_clean, ka)):
+        if (
+            2 <= len(initials) <= len(acronym) <= 8
+            and acronym.startswith(initials)
+        ):
+            return 0.9
     return 0.0
 
 
@@ -168,8 +183,11 @@ def build_candidate_pairs(
     init_idx: dict[str, list[str]] = defaultdict(list)
     for e in entities:
         k = compute_initials_key(e.canonical_name)
-        if len(k) >= 1:   # allow single-char keys (e.g. "IBM" → "I.B.M" → "IBM")
-            init_idx[k].append(e.entity_id)
+        keys = {k}
+        if len(k) >= 2:
+            keys.update(k[:size] for size in range(2, len(k) + 1))
+        for key in keys:
+            init_idx[key].append(e.entity_id)
 
     for bucket in init_idx.values():
         if len(bucket) > bucket_cap:
@@ -210,6 +228,9 @@ class EntityResolver:
     def _score(self, a: Entity, b: Entity) -> float:
         if _is_person_name_conflict(a, b):
             return 0.0
+        abbreviation = _abbreviation_score(a.canonical_name, b.canonical_name)
+        if abbreviation >= 0.9:
+            return 1.0
         fv = _feature_vector(a.canonical_name, b.canonical_name)
         if self._lr is not None:
             try:

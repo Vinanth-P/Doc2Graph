@@ -118,6 +118,28 @@ def _has_negation(token: Token) -> bool:
     return any(c.dep_ == "neg" for c in token.subtree)
 
 
+def _noun_phrase_product(token: Token, chunk_id: str) -> Optional[Entity]:
+    """Create a product/concept entity for a supported verb's named object."""
+    for noun_chunk in token.doc.noun_chunks:
+        if noun_chunk.root.i != token.i:
+            continue
+        text = noun_chunk.text.strip()
+        if len(text.split()) < 2:
+            return None
+        return Entity(
+            entity_id=f"{chunk_id}:concept:{noun_chunk.start_char}:{noun_chunk.end_char}",
+            text=text,
+            canonical_name=" ".join(text.split()).strip(".,;:"),
+            type="PRODUCT",
+            start_char=noun_chunk.start_char,
+            end_char=noun_chunk.end_char,
+            source="noun_phrase",
+            chunk_id=chunk_id,
+            sentence=token.doc.text,
+        )
+    return None
+
+
 # ── Extractor ─────────────────────────────────────────────────────────────────
 
 class DepPatternExtractor:
@@ -191,7 +213,13 @@ class DepPatternExtractor:
             if subj_tok is None or obj_tok is None:
                 continue
             subj_ent = _token_to_entity(subj_tok, span_map, chunk_id, coref_map, entity_by_id)
-            obj_ent  = _token_to_entity(obj_tok,  span_map, chunk_id, coref_map, entity_by_id)
+            obj_ent = _token_to_entity(
+                obj_tok, span_map, chunk_id, coref_map, entity_by_id
+            )
+            if obj_ent is None and token.lemma_ in {
+                "provide", "store", "use", "develop"
+            }:
+                obj_ent = _noun_phrase_product(obj_tok, chunk_id)
             if subj_ent is None or obj_ent is None:
                 continue
             prep = next(
@@ -262,11 +290,35 @@ class DepPatternExtractor:
             governor = token.head
             subject_token = None
             subject_ent_override = None
+            # Reduced clauses such as "TechNova Solutions partnered with
+            # IISc" are attached to the subject noun by spaCy. Use that
+            # noun as the subject before walking to an unrelated ancestor.
+            if (
+                governor.pos_ in {"VERB", "AUX"}
+                and governor.dep_ in {"acl", "relcl"}
+            ):
+                subject_token = governor.head
+
+            # In "AIRI in Bengaluru" and "IISc, located in Bengaluru",
+            # the location preposition can attach to a nearby verb/adjective.
+            # A preceding organization is the subject of the location fact.
+            if token.text.lower() in {"in", "at"} and pobj is not None:
+                preceding_orgs = [
+                    entity for entity in span_map.values()
+                    if entity.type in {"ORG", "PERSON"}
+                    and entity.end_char <= token.idx
+                ]
+                if preceding_orgs:
+                    nearest = max(preceding_orgs, key=lambda entity: entity.end_char)
+                    if _token_to_entity(pobj, span_map, chunk_id, coref_map, entity_by_id):
+                        subject_ent_override = nearest
+
             if governor.pos_ in {"VERB", "AUX", "ADJ"}:
-                subject_token = next(
-                    (c for c in governor.children if c.dep_ in {"nsubj", "nsubjpass"}),
-                    None,
-                )
+                if subject_token is None:
+                    subject_token = next(
+                        (c for c in governor.children if c.dep_ in {"nsubj", "nsubjpass"}),
+                        None,
+                    )
                 if subject_token is None and governor.pos_ == "ADJ":
                     subject_token = governor.head
             else:
@@ -297,7 +349,9 @@ class DepPatternExtractor:
                     subject_ent_override = max(
                         preceding, key=lambda entity: entity.end_char
                     )
-            if subject_token is None:
+            if subject_ent_override is not None:
+                head_ent = subject_ent_override
+            elif subject_token is None:
                 head_ent = subject_ent_override
             else:
                 head_ent = _token_to_entity(subject_token, span_map, chunk_id, coref_map, entity_by_id)

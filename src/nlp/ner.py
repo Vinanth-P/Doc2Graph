@@ -173,7 +173,7 @@ class GazetteerMatcher:
                         entities.append(Entity(
                             entity_id=f"{chunk_id}:{start}:{end}",
                             text=surface,
-                            canonical_name=matched.strip().title(),
+                            canonical_name=" ".join(matched.strip().split()).title(),
                             type=etype, start_char=start, end_char=end,
                             source="gazetteer", chunk_id=chunk_id,
                         ))

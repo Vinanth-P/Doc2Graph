@@ -28,6 +28,25 @@ from src.graph.neo4j_client import get_driver, create_driver
 logger = logging.getLogger(__name__)
 
 
+def _remove_document_title_entities(
+    chunks,
+    entities_by_chunk: dict[str, list],
+) -> dict[str, list]:
+    """Keep report titles as document metadata, not semantic graph entities."""
+    filtered: dict[str, list] = {}
+    first_chunk_id = chunks[0].chunk_id if chunks else None
+    for chunk in chunks:
+        entities = entities_by_chunk.get(chunk.chunk_id, [])
+        if chunk.chunk_id != first_chunk_id or "\n" not in chunk.text:
+            filtered[chunk.chunk_id] = entities
+            continue
+        title_end = chunk.text.index("\n")
+        filtered[chunk.chunk_id] = [
+            entity for entity in entities if entity.start_char >= title_end
+        ]
+    return filtered
+
+
 def _write_intermediate_graph(
     path: Path,
     entities,
@@ -107,6 +126,11 @@ def run_pipeline(
             entities_by_chunk[chunk.chunk_id] = chunk_entities
             all_entities.extend(chunk_entities)
 
+        entities_by_chunk = _remove_document_title_entities(chunks, entities_by_chunk)
+        all_entities = [
+            entity for chunk_entities in entities_by_chunk.values()
+            for entity in chunk_entities
+        ]
         logger.info("[%s] %d raw entities extracted", job_id, len(all_entities))
 
         # ── Phase 2b: Coreference ─────────────────────────────────────────
@@ -147,6 +171,15 @@ def run_pipeline(
                 window_chunks=window_chunks,
             )
             raw_triples.extend(triples)
+
+        # Relation extraction may add a source-supported concept entity when
+        # a supported verb's object is a noun phrase rather than a named entity.
+        entity_by_id = {e.entity_id: e for e in all_entities}
+        for triple in raw_triples:
+            for entity in (triple.subject, triple.object):
+                if entity.entity_id not in entity_by_id:
+                    all_entities.append(entity)
+                    entity_by_id[entity.entity_id] = entity
 
         # Preserve preposition context and polarity until normalization.
         seen_keys: set = set()
@@ -207,6 +240,9 @@ def run_pipeline(
             try:
                 builder = GraphBuilder()
                 async with driver.session() as session:
+                    clear_document = getattr(builder, "clear_document", None)
+                    if clear_document is not None:
+                        await clear_document(session, preprocessed.doc_id)
                     await builder.write_document(session, filename, preprocessed.doc_id)
                     await builder.write_chunks(session, chunks)
 
