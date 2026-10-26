@@ -260,15 +260,65 @@ class DepPatternExtractor:
             if pobj is None:
                 continue
             governor = token.head
-            subject_token = governor
+            subject_token = None
+            subject_ent_override = None
             if governor.pos_ in {"VERB", "AUX", "ADJ"}:
                 subject_token = next(
                     (c for c in governor.children if c.dep_ in {"nsubj", "nsubjpass"}),
                     None,
                 )
+                if subject_token is None and governor.pos_ == "ADJ":
+                    subject_token = governor.head
+            else:
+                subject_token = governor
             if subject_token is None:
-                continue
-            head_ent = _token_to_entity(subject_token, span_map, chunk_id, coref_map, entity_by_id)
+                # Nominal modifiers such as "funded the phase of DocSense"
+                # attach the preposition to a noun, not to the governing verb.
+                for ancestor in governor.ancestors:
+                    if ancestor.pos_ == "VERB":
+                        subject_token = next(
+                            (c for c in ancestor.children
+                             if c.dep_ in {"nsubj", "nsubjpass"}),
+                            None,
+                        )
+                        if subject_token is not None:
+                            governor = ancestor
+                            break
+            if subject_token is None:
+                # SpaCy may attach a reduced clause ("Solutions partnered")
+                # or a participle ("IISc, located") to the preceding noun.
+                # Use the nearest preceding entity as the grammatical subject
+                # only when the dependency tree supplies no subject.
+                preceding = [
+                    entity for entity in span_map.values()
+                    if entity.end_char <= token.idx
+                ]
+                if preceding:
+                    subject_ent_override = max(
+                        preceding, key=lambda entity: entity.end_char
+                    )
+            if subject_token is None:
+                head_ent = subject_ent_override
+            else:
+                head_ent = _token_to_entity(subject_token, span_map, chunk_id, coref_map, entity_by_id)
+            if head_ent is None:
+                for ancestor in (governor, *governor.ancestors):
+                    if ancestor.pos_ != "VERB":
+                        continue
+                    candidate = next(
+                        (child for child in ancestor.children
+                         if child.dep_ in {"nsubj", "nsubjpass"}),
+                        None,
+                    )
+                    if candidate is not None:
+                        candidate_ent = _token_to_entity(
+                            candidate, span_map, chunk_id, coref_map, entity_by_id
+                        )
+                        if candidate_ent is not None:
+                            head_ent = candidate_ent
+                            subject_token = candidate
+                            governor = ancestor
+                            break
             obj_ent  = _token_to_entity(pobj, span_map, chunk_id, coref_map, entity_by_id)
             if head_ent and obj_ent:
                 predicate = governor.lemma_.lower()
@@ -280,7 +330,7 @@ class DepPatternExtractor:
                     source="prep",
                     sent_idx=sent_idx,
                     chunk_id=chunk_id,
-                    dep_distance=_dep_distance(subject_token, pobj),
+                    dep_distance=_dep_distance(subject_token or governor, pobj),
                     has_negation=_has_negation(governor),
                 ))
         return triples

@@ -84,6 +84,23 @@ def _abbreviation_score(a: str, b: str) -> float:
     return 0.0
 
 
+def _is_person_name_conflict(a: Entity, b: Entity) -> bool:
+    """Reject merges where two multi-token people only share a surname."""
+    if a.type != "PERSON" or b.type != "PERSON":
+        return False
+    a_tokens = _tokenize(a.canonical_name)
+    b_tokens = _tokenize(b.canonical_name)
+    if len(a_tokens) < 2 or len(b_tokens) < 2:
+        return False
+    if a_tokens[-1] != b_tokens[-1] or a_tokens[0] == b_tokens[0]:
+        return False
+    return (
+        _abbreviation_score(a.canonical_name, b.canonical_name) == 0.0
+        and a.canonical_name.casefold() not in b.canonical_name.casefold()
+        and b.canonical_name.casefold() not in a.canonical_name.casefold()
+    )
+
+
 def _lucene_escape(text: str) -> str:
     """Escape Lucene special characters for Neo4j full-text queries."""
     specials = r'\+-&&||!(){}[]^"~*?:/'
@@ -191,6 +208,8 @@ class EntityResolver:
         return None
 
     def _score(self, a: Entity, b: Entity) -> float:
+        if _is_person_name_conflict(a, b):
+            return 0.0
         fv = _feature_vector(a.canonical_name, b.canonical_name)
         if self._lr is not None:
             try:
@@ -221,11 +240,28 @@ class EntityResolver:
                 x = parent[x]
             return x
 
+        def preferred_root(first: str, second: str) -> tuple[str, str]:
+            by_id = {entity.entity_id: entity for entity in entities}
+            first_entity = by_id[first]
+            second_entity = by_id[second]
+            first_score = (
+                len(_tokenize(first_entity.canonical_name)),
+                len(first_entity.canonical_name),
+                first_entity.canonical_name.casefold(),
+            )
+            second_score = (
+                len(_tokenize(second_entity.canonical_name)),
+                len(second_entity.canonical_name),
+                second_entity.canonical_name.casefold(),
+            )
+            return (second, first) if second_score > first_score else (first, second)
+
         for a, b in pairs:
             if self._score(a, b) >= self._threshold:
                 ra, rb = find(a.entity_id), find(b.entity_id)
                 if ra != rb:
-                    parent[rb] = ra
+                    root, child = preferred_root(ra, rb)
+                    parent[child] = root
 
         return {eid: find(eid) for eid in parent}
 

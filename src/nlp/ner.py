@@ -32,6 +32,7 @@ class Entity:
     end_char: int
     source: str              # "regex" | "gazetteer" | "spacy"
     chunk_id: str
+    sentence: str = ""       # original sentence context, if available
 
     def __hash__(self):
         return hash(self.entity_id)
@@ -54,6 +55,31 @@ _REGEX_PATTERNS: list[tuple[str, re.Pattern]] = [
     ("EMAIL", re.compile(r"\b[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}\b")),
 ]
 
+_ORG_SUFFIXES = re.compile(
+    r"\b(?:Solutions|Institute|Institutes|University|Corporation|Corp\.?|"
+    r"Company|Systems|Technologies|Foundation|Bank|Labs?)\b$",
+    re.IGNORECASE,
+)
+_NON_PERSON_STARTS = frozenset({
+    "in", "on", "at", "by", "from", "to", "for", "the", "this", "that",
+    "january", "february", "march", "april", "may", "june", "july",
+    "august", "september", "october", "november", "december",
+})
+_GENERIC_ACRONYMS = frozenset({"AI"})
+
+
+def _canonical_name(text: str) -> str:
+    value = re.sub(r"\s+", " ", text.strip(" \t\r\n.,;:"))
+    value = re.sub(r"^(?:the|a|an)\s+", "", value, flags=re.IGNORECASE)
+    return " ".join(
+        token if (
+            (token.isupper() and len(token) > 1)
+            or any(char.isupper() for char in token[1:])
+            or any(char.isdigit() for char in token)
+        ) else token.title()
+        for token in value.split()
+    )
+
 
 def regex_entities(text: str, chunk_id: str) -> list[Entity]:
     entities: list[Entity] = []
@@ -65,13 +91,31 @@ def regex_entities(text: str, chunk_id: str) -> list[Entity]:
             entities.append(Entity(
                 entity_id=eid,
                 text=m.group(),
-                canonical_name=m.group().strip().title(),
+                canonical_name=_canonical_name(m.group()),
                 type=etype,
                 start_char=m.start(),
                 end_char=m.end(),
                 source="regex",
                 chunk_id=chunk_id,
             ))
+    for match in re.finditer(
+        r"\b(?:[A-Z]{2,}[a-z]?|[A-Z][a-z]+\d+[A-Za-z]*)\b", text
+    ):
+        if (
+            match.group().casefold() in _NON_PERSON_STARTS
+            or match.group() in _GENERIC_ACRONYMS
+        ):
+            continue
+        entities.append(Entity(
+            entity_id=f"{chunk_id}:{match.start()}:{match.end()}",
+            text=match.group(),
+            canonical_name=_canonical_name(match.group()),
+            type="PRODUCT" if any(char.isdigit() for char in match.group()) else "ORG",
+            start_char=match.start(),
+            end_char=match.end(),
+            source="regex",
+            chunk_id=chunk_id,
+        ))
     return entities
 
 
@@ -148,7 +192,7 @@ def spacy_entities(doc: Doc, chunk_id: str) -> list[Entity]:
         entities.append(Entity(
             entity_id=eid,
             text=ent.text,
-            canonical_name=ent.text.strip().title(),
+            canonical_name=_canonical_name(ent.text),
             type=itype,
             start_char=ent.start_char,
             end_char=ent.end_char,
@@ -172,11 +216,54 @@ class NERRunner:
         regex_ents    = regex_entities(raw_text, chunk_id)
         gazetteer_ents = self._gazetteers.match(raw_text, chunk_id)
         spacy_ents    = spacy_entities(doc, chunk_id)
+        known_person_tokens = {
+            token.casefold()
+            for entity in spacy_ents
+            if entity.type == "PERSON"
+            for token in re.findall(r"[A-Za-z]+", entity.text)
+        }
+        pattern_ents: list[Entity] = []
+        for match in re.finditer(
+            r"\b[A-Z][a-z]+(?:\s+[A-Z][a-z]+)+\b", raw_text
+        ):
+            words = re.findall(r"[A-Za-z]+", match.group())
+            if (
+                len(words) == 2
+                and not _ORG_SUFFIXES.search(match.group())
+                and words[0].casefold() not in _NON_PERSON_STARTS
+                and (
+                    any(word.casefold() in known_person_tokens for word in words)
+                    or all(word[0].isupper() for word in words)
+                )
+            ):
+                pattern_ents.append(Entity(
+                    entity_id=f"{chunk_id}:{match.start()}:{match.end()}",
+                    text=match.group(),
+                    canonical_name=_canonical_name(match.group()),
+                    type="PERSON",
+                    start_char=match.start(),
+                    end_char=match.end(),
+                    source="pattern",
+                    chunk_id=chunk_id,
+                ))
+
+        # Small, deterministic repair for common model confusions. It is
+        # restricted to organization-name suffixes rather than arbitrary NPs.
+        for entity in spacy_ents:
+            if entity.type in {"PRODUCT", "ORG"} and _ORG_SUFFIXES.search(entity.text):
+                entity.type = "ORG"
 
         merged = self._merge({
             "regex":     regex_ents,
             "gazetteer": gazetteer_ents,
-            "spacy":     spacy_ents,
+            "pattern":   pattern_ents,
+            "spacy":      spacy_ents,
         })
         # Only return node-types for graph construction
-        return [e for e in merged if e.type in NODE_TYPES]
+        # DATE/MONEY/EMAIL are retained by the lower-level extractors as
+        # metadata, but are not graph nodes.
+        return [
+            Entity(**{**e.__dict__, "sentence": raw_text})
+            for e in merged
+            if e.type in NODE_TYPES
+        ]

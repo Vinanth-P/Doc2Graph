@@ -2,7 +2,7 @@
 import pytest
 from src.graph.entity_resolver import (
     compute_initials_key, _token_overlap_ratio,
-    _abbreviation_score, build_candidate_pairs,
+    _abbreviation_score, build_candidate_pairs, EntityResolver,
 )
 from src.nlp.ner import Entity
 
@@ -62,3 +62,23 @@ def test_same_type_guard():
     entities = [_ent("Tesla", "ORG"), _ent("Tesla", "PERSON")]
     pairs = build_candidate_pairs(entities)
     assert len(pairs) == 0   # different types
+
+
+def test_resolver_prefers_full_organization_name_for_abbreviation():
+    entities = [
+        _ent("AIRI"),
+        _ent("Artificial Intelligence Research Institute"),
+    ]
+    mapping = EntityResolver().resolve_within_doc(entities)
+    full_id = "Artificial Intelligence Research Institute"
+    assert mapping["AIRI"] == full_id
+    assert mapping[full_id] == full_id
+
+
+def test_same_surname_people_remain_distinct():
+    entities = [
+        _ent("Ananya Sharma", "PERSON"),
+        _ent("Priya Sharma", "PERSON"),
+    ]
+    mapping = EntityResolver().resolve_within_doc(entities)
+    assert mapping["Ananya Sharma"] != mapping["Priya Sharma"]

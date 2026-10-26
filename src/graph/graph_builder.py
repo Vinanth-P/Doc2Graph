@@ -19,7 +19,7 @@ from src.type_map import TYPE_TO_LABEL
 from src.nlp.ner import Entity
 from src.nlp.predicate_normalizer import NormalizedTriple
 from src.ingestion.preprocessor import SentenceChunk
-from src.graph.entity_resolver import compute_initials_key
+from src.graph.entity_resolver import compute_initials_key, _tokenize
 
 
 # ── Data classes ──────────────────────────────────────────────────────────────
@@ -42,7 +42,7 @@ class ResolvedEntity:
             "id": self.canonical_id,
             "name": self.name,
             "type": self.type,
-            "aliases": list(set(self.aliases)),
+            "aliases": sorted(set(self.aliases)),
             "initials_key": self.initials_key,
         }
 
@@ -57,15 +57,18 @@ class ResolvedEdge:
     extractors: list[str]
     confidence: float
     raw_predicate: str = ""
+    evidence: str = ""
 
     def to_dict(self) -> dict:
         return {
+            "relation_type": self.relation_type,
             "source_id": self.source_id,
             "target_id": self.target_id,
             "chunk_ids": self.chunk_ids,
             "extractors": list(set(self.extractors)),
             "confidence": self.confidence,
             "raw_predicate": self.raw_predicate,
+            "evidence": self.evidence,
         }
 
 
@@ -78,7 +81,8 @@ class GraphBuilder:
     CANONICAL_TYPES = [
         "MEMBER_OF", "EMPLOYED_BY", "ACQUIRED",
         "LOCATED_IN", "FOUNDED", "INVESTED_IN", "PARTNER_WITH",
-        "RELATED_TO",
+        "RELATED_TO", "LEADS", "PROVIDED", "FUNDED", "DEVELOPED",
+        "USES", "STORES_DATA_IN",
     ]
 
     async def write_document(self, session: AsyncSession, filename: str, doc_id: str) -> None:
@@ -137,7 +141,10 @@ class GraphBuilder:
                               n.aliases = e.aliases,
                               n.initials_key = e.initials_key
                 ON MATCH SET  n.aliases = apoc.coll.toSet(
-                                  coalesce(n.aliases, []) + e.aliases)
+                                  coalesce(n.aliases, []) + e.aliases),
+                              n.name = e.name,
+                              n.type = e.type,
+                              n.initials_key = e.initials_key
                 SET n:{label}
                 """,
                 entities=group,
@@ -183,7 +190,8 @@ class GraphBuilder:
                 ON CREATE SET r.chunk_ids    = e.chunk_ids,
                               r.extractors   = e.extractors,
                               r.confidence   = e.confidence,
-                              r.raw_predicate = e.raw_predicate
+                              r.raw_predicate = e.raw_predicate,
+                              r.evidence     = e.evidence
                 ON MATCH SET  r.chunk_ids    = apoc.coll.toSet(
                                   coalesce(r.chunk_ids, []) + e.chunk_ids),
                               r.extractors   = apoc.coll.toSet(
@@ -191,6 +199,9 @@ class GraphBuilder:
                               r.confidence   = CASE
                                   WHEN e.confidence > r.confidence
                                   THEN e.confidence ELSE r.confidence END
+                              ,r.evidence = CASE
+                                  WHEN e.confidence >= coalesce(r.confidence, 0)
+                                  THEN e.evidence ELSE r.evidence END
                 SET r.evidence_count = size(r.chunk_ids)
                 """,
                 edges=group,
@@ -221,6 +232,16 @@ def build_resolved_entities(
             # Accumulate aliases
             if ent.text not in canonical[cid].aliases:
                 canonical[cid].aliases.append(ent.text)
+            current = canonical[cid].name
+            current_key = (len(_tokenize(current)), len(current), current.casefold())
+            candidate_key = (
+                len(_tokenize(ent.canonical_name)),
+                len(ent.canonical_name),
+                ent.canonical_name.casefold(),
+            )
+            if candidate_key > current_key:
+                canonical[cid].name = ent.canonical_name
+                canonical[cid].initials_key = compute_initials_key(ent.canonical_name)
 
     return list(canonical.values()), dict(entity_to_chunks)
 
@@ -246,17 +267,20 @@ def build_resolved_edges(
             if t.chunk_id not in e.chunk_ids:
                 e.chunk_ids.append(t.chunk_id)
             e.confidence = max(e.confidence, t.confidence)
-            if "dep_pattern" not in e.extractors:
-                e.extractors.append("dep_pattern")
+            if t.extractor and t.extractor not in e.extractors:
+                e.extractors.append(t.extractor)
+            if t.confidence >= e.confidence and t.evidence:
+                e.evidence = t.evidence
         else:
             edge_map[key] = ResolvedEdge(
                 relation_type=t.relation_type,
                 source_id=src_id,
                 target_id=tgt_id,
                 chunk_ids=[t.chunk_id],
-                extractors=["dep_pattern"],
+                extractors=[t.extractor or "dep_pattern"],
                 confidence=t.confidence,
                 raw_predicate=t.raw_predicate,
+                evidence=t.evidence,
             )
 
     return list(edge_map.values())

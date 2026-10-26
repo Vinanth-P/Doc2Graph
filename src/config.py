@@ -22,6 +22,8 @@ class Settings(BaseSettings):
     max_upload_mb: int = 50
     window_size: int = 3
     window_stride: int = 2
+    debug_pipeline: bool = False
+    intermediate_graph_dir: str = "data/processed"
 
     # Entity resolution
     resolution_threshold: float = 0.85

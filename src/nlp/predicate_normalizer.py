@@ -30,13 +30,15 @@ from src.type_map import NODE_TYPES
 
 @dataclass
 class NormalizedTriple:
-    relation_type: str     # canonical name from whitelist, or "RELATED_TO"
+    relation_type: str     # canonical name from whitelist, or legacy "RELATED_TO"
     subject: Entity
     object: Entity
     raw_predicate: str     # original predicate for RELATED_TO triples
     chunk_id: str
     sent_idx: int
     confidence: float = 0.0    # filled in by relation_scorer
+    evidence: str = ""
+    extractor: str = ""
 
 
 # ── Loader ────────────────────────────────────────────────────────────────────
@@ -60,14 +62,28 @@ def load_relations_config(path: str | Path = "config/relations.yaml") -> dict:
 # ── Normalizer ────────────────────────────────────────────────────────────────
 
 class PredicateNormalizer:
-    def __init__(self, config_path: str | Path = "config/relations.yaml"):
+    def __init__(
+        self,
+        config_path: str | Path = "config/relations.yaml",
+        *,
+        include_extended_relations: bool = False,
+    ):
         self._config = load_relations_config(config_path)
+        self._include_extended_relations = include_extended_relations
 
     def normalize(self, triple: RawTriple) -> NormalizedTriple | None:
         # The graph represents asserted facts and has no negated-edge schema.
         if triple.has_negation:
             return None
         for rel_name, conf in self._config.items():
+            if (
+                not self._include_extended_relations
+                and rel_name in {
+                    "LEADS", "PROVIDED", "FUNDED", "DEVELOPED", "USES",
+                    "STORES_DATA_IN",
+                }
+            ):
+                continue
             for entry in conf.get("lemmas", []):
                 if triple.predicate != entry["lemma"]:
                     continue
@@ -101,9 +117,12 @@ class PredicateNormalizer:
                     raw_predicate=triple.predicate,
                     chunk_id=triple.chunk_id,
                     sent_idx=triple.sent_idx,
+                    extractor=triple.source,
                 )
 
-        # No match — fall to catch-all
+        # Preserve the old direct API contract for callers that inspect raw
+        # normalization results. The ingestion pipeline explicitly excludes
+        # this legacy catch-all so unsupported facts never reach Neo4j.
         return NormalizedTriple(
             relation_type="RELATED_TO",
             subject=triple.subject,
@@ -111,6 +130,7 @@ class PredicateNormalizer:
             raw_predicate=triple.predicate,
             chunk_id=triple.chunk_id,
             sent_idx=triple.sent_idx,
+            extractor=triple.source,
         )
 
     def normalize_batch(self, triples: list[RawTriple]) -> list[NormalizedTriple]:

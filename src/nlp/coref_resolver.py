@@ -39,7 +39,7 @@ PRONOUNS_ORG = frozenset({"it", "its", "itself"})
 DEF_NP_ORG = frozenset({
     "the company", "the firm", "the organization", "the group",
     "the bank", "the agency", "the institution", "the corporation",
-    "the startup", "the venture", "the business",
+    "the startup", "the venture", "the business", "the institute",
 })
 DEF_NP_PERSON = frozenset({
     "the man", "the woman", "the person", "the official",

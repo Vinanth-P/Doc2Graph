@@ -1,0 +1,70 @@
+{
+  "entities": [
+    {
+      "id": "existing:Elon Musk",
+      "name": "Elon Musk",
+      "type": "PERSON",
+      "aliases": [
+        "Elon Musk"
+      ],
+      "initials_key": "EM",
+      "mentions": [
+        {
+          "id": "4a7c01294648c2906c61e121a42b46cbf0e4c395365bc0b350ca782be91523ab:0:0:9",
+          "text": "Elon Musk",
+          "start": 0,
+          "end": 9,
+          "sentence": "Elon Musk founded Tesla.",
+          "source": "gazetteer",
+          "chunk_id": "4a7c01294648c2906c61e121a42b46cbf0e4c395365bc0b350ca782be91523ab:0"
+        }
+      ]
+    },
+    {
+      "id": "existing:Tesla",
+      "name": "Tesla",
+      "type": "ORG",
+      "aliases": [
+        "Tesla"
+      ],
+      "initials_key": "T",
+      "mentions": [
+        {
+          "id": "4a7c01294648c2906c61e121a42b46cbf0e4c395365bc0b350ca782be91523ab:0:18:23",
+          "text": "Tesla",
+          "start": 18,
+          "end": 23,
+          "sentence": "Elon Musk founded Tesla.",
+          "source": "gazetteer",
+          "chunk_id": "4a7c01294648c2906c61e121a42b46cbf0e4c395365bc0b350ca782be91523ab:0"
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "relation_type": "FOUNDED",
+      "source_id": "existing:Elon Musk",
+      "target_id": "existing:Tesla",
+      "chunk_ids": [
+        "4a7c01294648c2906c61e121a42b46cbf0e4c395365bc0b350ca782be91523ab:0"
+      ],
+      "extractors": [
+        "svo"
+      ],
+      "confidence": 0.9130027331430179,
+      "raw_predicate": "found",
+      "evidence": "Elon Musk founded Tesla.",
+      "source_type": "PERSON",
+      "target_type": "ORG"
+    }
+  ],
+  "entity_to_chunks": {
+    "existing:Elon Musk": [
+      "4a7c01294648c2906c61e121a42b46cbf0e4c395365bc0b350ca782be91523ab:0"
+    ],
+    "existing:Tesla": [
+      "4a7c01294648c2906c61e121a42b46cbf0e4c395365bc0b350ca782be91523ab:0"
+    ]
+  }
+}

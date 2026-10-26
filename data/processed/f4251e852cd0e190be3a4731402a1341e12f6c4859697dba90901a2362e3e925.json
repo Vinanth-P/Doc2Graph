@@ -1,0 +1,533 @@
+{
+  "entities": [
+    {
+      "id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:0:76:122",
+      "name": "Artificial Intelligence Research Institute",
+      "type": "ORG",
+      "aliases": [
+        "AIRI",
+        "the Artificial Intelligence Research Institute"
+      ],
+      "initials_key": "AIRI",
+      "mentions": [
+        {
+          "id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:0:124:128",
+          "text": "AIRI",
+          "start": 124,
+          "end": 128,
+          "sentence": "AI Research Collaboration Report\nOn 15 March 2025, Dr. Ananya Sharma joined the Artificial Intelligence Research Institute (AIRI) in\nBengaluru as a senior researcher.",
+          "source": "regex",
+          "chunk_id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:0"
+        },
+        {
+          "id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:0:76:122",
+          "text": "the Artificial Intelligence Research Institute",
+          "start": 76,
+          "end": 122,
+          "sentence": "AI Research Collaboration Report\nOn 15 March 2025, Dr. Ananya Sharma joined the Artificial Intelligence Research Institute (AIRI) in\nBengaluru as a senior researcher.",
+          "source": "spacy",
+          "chunk_id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:0"
+        },
+        {
+          "id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:1:0:4",
+          "text": "AIRI",
+          "start": 0,
+          "end": 4,
+          "sentence": "AIRI was founded by Professor Rahul Mehta in 2018 and focuses on\nnatural language processing, computer vision, and robotics.",
+          "source": "regex",
+          "chunk_id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:1"
+        },
+        {
+          "id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:6:34:38",
+          "text": "AIRI",
+          "start": 34,
+          "end": 38,
+          "sentence": "Professor Rahul Mehta represented\nAIRI during the partnership negotiations.",
+          "source": "regex",
+          "chunk_id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:6"
+        },
+        {
+          "id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:8:0:4",
+          "text": "AIRI",
+          "start": 0,
+          "end": 4,
+          "sentence": "AIRI funded the initial phase of the project with ₹50 lakh.",
+          "source": "regex",
+          "chunk_id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:8"
+        }
+      ]
+    },
+    {
+      "id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:0:55:68",
+      "name": "Ananya Sharma",
+      "type": "PERSON",
+      "aliases": [
+        "Ananya Sharma"
+      ],
+      "initials_key": "AS",
+      "mentions": [
+        {
+          "id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:0:55:68",
+          "text": "Ananya Sharma",
+          "start": 55,
+          "end": 68,
+          "sentence": "AI Research Collaboration Report\nOn 15 March 2025, Dr. Ananya Sharma joined the Artificial Intelligence Research Institute (AIRI) in\nBengaluru as a senior researcher.",
+          "source": "pattern",
+          "chunk_id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:0"
+        },
+        {
+          "id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:2:0:13",
+          "text": "Ananya Sharma",
+          "start": 0,
+          "end": 13,
+          "sentence": "Ananya Sharma previously worked at TechNova Solutions, a technology company headquartered in\nMumbai.",
+          "source": "pattern",
+          "chunk_id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:2"
+        },
+        {
+          "id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:14:0:13",
+          "text": "Ananya Sharma",
+          "start": 0,
+          "end": 13,
+          "sentence": "Ananya Sharma will lead the next phase of the project.",
+          "source": "pattern",
+          "chunk_id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:14"
+        }
+      ]
+    },
+    {
+      "id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:0:0:32",
+      "name": "AI Research Collaboration Report",
+      "type": "ORG",
+      "aliases": [
+        "AI Research Collaboration Report"
+      ],
+      "initials_key": "ARCR",
+      "mentions": [
+        {
+          "id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:0:0:32",
+          "text": "AI Research Collaboration Report",
+          "start": 0,
+          "end": 32,
+          "sentence": "AI Research Collaboration Report\nOn 15 March 2025, Dr. Ananya Sharma joined the Artificial Intelligence Research Institute (AIRI) in\nBengaluru as a senior researcher.",
+          "source": "spacy",
+          "chunk_id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:0"
+        }
+      ]
+    },
+    {
+      "id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:0:133:142",
+      "name": "Bengaluru",
+      "type": "GPE",
+      "aliases": [
+        "Bengaluru"
+      ],
+      "initials_key": "B",
+      "mentions": [
+        {
+          "id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:0:133:142",
+          "text": "Bengaluru",
+          "start": 133,
+          "end": 142,
+          "sentence": "AI Research Collaboration Report\nOn 15 March 2025, Dr. Ananya Sharma joined the Artificial Intelligence Research Institute (AIRI) in\nBengaluru as a senior researcher.",
+          "source": "spacy",
+          "chunk_id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:0"
+        },
+        {
+          "id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:5:99:108",
+          "text": "Bengaluru",
+          "start": 99,
+          "end": 108,
+          "sentence": "In June 2024, TechNova Solutions partnered with the Indian Institute of Science (IISc), located in\nBengaluru, to develop better information extraction systems.",
+          "source": "spacy",
+          "chunk_id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:5"
+        }
+      ]
+    },
+    {
+      "id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:15:36:47",
+      "name": "Rahul Mehta",
+      "type": "PERSON",
+      "aliases": [
+        "Rahul\nMehta",
+        "Rahul Mehta"
+      ],
+      "initials_key": "RM",
+      "mentions": [
+        {
+          "id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:1:30:41",
+          "text": "Rahul Mehta",
+          "start": 30,
+          "end": 41,
+          "sentence": "AIRI was founded by Professor Rahul Mehta in 2018 and focuses on\nnatural language processing, computer vision, and robotics.",
+          "source": "spacy",
+          "chunk_id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:1"
+        },
+        {
+          "id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:6:10:21",
+          "text": "Rahul Mehta",
+          "start": 10,
+          "end": 21,
+          "sentence": "Professor Rahul Mehta represented\nAIRI during the partnership negotiations.",
+          "source": "spacy",
+          "chunk_id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:6"
+        },
+        {
+          "id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:15:36:47",
+          "text": "Rahul\nMehta",
+          "start": 36,
+          "end": 47,
+          "sentence": "She will work with Vikram Patel and Rahul\nMehta to evaluate the system on scientific papers and business reports.",
+          "source": "pattern",
+          "chunk_id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:15"
+        }
+      ]
+    },
+    {
+      "id": "b92ef58e6cb32dd4dca1798985eb5aea9bca4b154014d398b36efd8ac5578254:2:35:53",
+      "name": "TechNova Solutions",
+      "type": "ORG",
+      "aliases": [
+        "TechNova Solutions"
+      ],
+      "initials_key": "TS",
+      "mentions": [
+        {
+          "id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:2:35:53",
+          "text": "TechNova Solutions",
+          "start": 35,
+          "end": 53,
+          "sentence": "Ananya Sharma previously worked at TechNova Solutions, a technology company headquartered in\nMumbai.",
+          "source": "spacy",
+          "chunk_id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:2"
+        },
+        {
+          "id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:4:35:53",
+          "text": "TechNova Solutions",
+          "start": 35,
+          "end": 53,
+          "sentence": "Vikram Patel leads\nthe NLP team at TechNova Solutions.",
+          "source": "spacy",
+          "chunk_id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:4"
+        },
+        {
+          "id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:5:14:32",
+          "text": "TechNova Solutions",
+          "start": 14,
+          "end": 32,
+          "sentence": "In June 2024, TechNova Solutions partnered with the Indian Institute of Science (IISc), located in\nBengaluru, to develop better information extraction systems.",
+          "source": "spacy",
+          "chunk_id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:5"
+        },
+        {
+          "id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:9:50:68",
+          "text": "TechNova Solutions",
+          "start": 50,
+          "end": 68,
+          "sentence": "IISc provided the computing infrastructure,\nwhile TechNova Solutions contributed its document-processing software.",
+          "source": "spacy",
+          "chunk_id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:9"
+        }
+      ]
+    },
+    {
+      "id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:2:93:99",
+      "name": "Mumbai",
+      "type": "GPE",
+      "aliases": [
+        "Mumbai"
+      ],
+      "initials_key": "M",
+      "mentions": [
+        {
+          "id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:2:93:99",
+          "text": "Mumbai",
+          "start": 93,
+          "end": 99,
+          "sentence": "Ananya Sharma previously worked at TechNova Solutions, a technology company headquartered in\nMumbai.",
+          "source": "spacy",
+          "chunk_id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:2"
+        }
+      ]
+    },
+    {
+      "id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:3:33:45",
+      "name": "Vikram Patel",
+      "type": "PERSON",
+      "aliases": [
+        "Vikram Patel"
+      ],
+      "initials_key": "VP",
+      "mentions": [
+        {
+          "id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:3:33:45",
+          "text": "Vikram Patel",
+          "start": 33,
+          "end": 45,
+          "sentence": "There, she collaborated with Dr. Vikram Patel on a project called DocSense, which\nautomatically extracts entities and relationships from unstructured documents.",
+          "source": "pattern",
+          "chunk_id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:3"
+        },
+        {
+          "id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:4:0:12",
+          "text": "Vikram Patel",
+          "start": 0,
+          "end": 12,
+          "sentence": "Vikram Patel leads\nthe NLP team at TechNova Solutions.",
+          "source": "pattern",
+          "chunk_id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:4"
+        },
+        {
+          "id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:15:19:31",
+          "text": "Vikram Patel",
+          "start": 19,
+          "end": 31,
+          "sentence": "She will work with Vikram Patel and Rahul\nMehta to evaluate the system on scientific papers and business reports.",
+          "source": "pattern",
+          "chunk_id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:15"
+        }
+      ]
+    },
+    {
+      "id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:11:4:12",
+      "name": "DocSense",
+      "type": "ORG",
+      "aliases": [
+        "DocSense"
+      ],
+      "initials_key": "D",
+      "mentions": [
+        {
+          "id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:3:66:74",
+          "text": "DocSense",
+          "start": 66,
+          "end": 74,
+          "sentence": "There, she collaborated with Dr. Vikram Patel on a project called DocSense, which\nautomatically extracts entities and relationships from unstructured documents.",
+          "source": "spacy",
+          "chunk_id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:3"
+        },
+        {
+          "id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:11:4:12",
+          "text": "DocSense",
+          "start": 4,
+          "end": 12,
+          "sentence": "The DocSense project uses named entity recognition to identify people, organizations, and locations.",
+          "source": "spacy",
+          "chunk_id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:11"
+        }
+      ]
+    },
+    {
+      "id": "5c17da57bd044dd684152d7805a56c5d7355762b7c3423c489763e801e9356f0:33:13:16",
+      "name": "NLP",
+      "type": "ORG",
+      "aliases": [
+        "NLP"
+      ],
+      "initials_key": "NLP",
+      "mentions": [
+        {
+          "id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:4:23:26",
+          "text": "NLP",
+          "start": 23,
+          "end": 26,
+          "sentence": "Vikram Patel leads\nthe NLP team at TechNova Solutions.",
+          "source": "regex",
+          "chunk_id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:4"
+        }
+      ]
+    },
+    {
+      "id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:5:81:85",
+      "name": "IISc",
+      "type": "ORG",
+      "aliases": [
+        "IISc"
+      ],
+      "initials_key": "I",
+      "mentions": [
+        {
+          "id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:5:81:85",
+          "text": "IISc",
+          "start": 81,
+          "end": 85,
+          "sentence": "In June 2024, TechNova Solutions partnered with the Indian Institute of Science (IISc), located in\nBengaluru, to develop better information extraction systems.",
+          "source": "regex",
+          "chunk_id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:5"
+        },
+        {
+          "id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:9:0:4",
+          "text": "IISc",
+          "start": 0,
+          "end": 4,
+          "sentence": "IISc provided the computing infrastructure,\nwhile TechNova Solutions contributed its document-processing software.",
+          "source": "regex",
+          "chunk_id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:9"
+        }
+      ]
+    },
+    {
+      "id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:5:48:79",
+      "name": "Indian Institute Of Science",
+      "type": "ORG",
+      "aliases": [
+        "the Indian Institute of Science"
+      ],
+      "initials_key": "IIOS",
+      "mentions": [
+        {
+          "id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:5:48:79",
+          "text": "the Indian Institute of Science",
+          "start": 48,
+          "end": 79,
+          "sentence": "In June 2024, TechNova Solutions partnered with the Indian Institute of Science (IISc), located in\nBengaluru, to develop better information extraction systems.",
+          "source": "spacy",
+          "chunk_id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:5"
+        }
+      ]
+    },
+    {
+      "id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:13:44:49",
+      "name": "Neo4j",
+      "type": "PRODUCT",
+      "aliases": [
+        "Neo4j"
+      ],
+      "initials_key": "N",
+      "mentions": [
+        {
+          "id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:13:44:49",
+          "text": "Neo4j",
+          "start": 44,
+          "end": 49,
+          "sentence": "These extracted relationships are stored in Neo4j, where researchers can query the\nresulting knowledge graph.",
+          "source": "regex",
+          "chunk_id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:13"
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "relation_type": "FOUNDED",
+      "source_id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:15:36:47",
+      "target_id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:0:76:122",
+      "chunk_ids": [
+        "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:1"
+      ],
+      "extractors": [
+        "svo"
+      ],
+      "confidence": 0.8011931284440705,
+      "raw_predicate": "found",
+      "evidence": "AIRI was founded by Professor Rahul Mehta in 2018 and focuses on\nnatural language processing, computer vision, and robotics.",
+      "source_type": "PERSON",
+      "target_type": "ORG"
+    },
+    {
+      "relation_type": "MEMBER_OF",
+      "source_id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:0:55:68",
+      "target_id": "b92ef58e6cb32dd4dca1798985eb5aea9bca4b154014d398b36efd8ac5578254:2:35:53",
+      "chunk_ids": [
+        "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:2"
+      ],
+      "extractors": [
+        "prep"
+      ],
+      "confidence": 0.8152101867314266,
+      "raw_predicate": "work",
+      "evidence": "Ananya Sharma previously worked at TechNova Solutions, a technology company headquartered in\nMumbai.",
+      "source_type": "PERSON",
+      "target_type": "ORG"
+    },
+    {
+      "relation_type": "LEADS",
+      "source_id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:3:33:45",
+      "target_id": "5c17da57bd044dd684152d7805a56c5d7355762b7c3423c489763e801e9356f0:33:13:16",
+      "chunk_ids": [
+        "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:4"
+      ],
+      "extractors": [
+        "svo"
+      ],
+      "confidence": 0.9130027331430179,
+      "raw_predicate": "lead",
+      "evidence": "Vikram Patel leads\nthe NLP team at TechNova Solutions.",
+      "source_type": "PERSON",
+      "target_type": "ORG"
+    },
+    {
+      "relation_type": "DEVELOPED",
+      "source_id": "b92ef58e6cb32dd4dca1798985eb5aea9bca4b154014d398b36efd8ac5578254:2:35:53",
+      "target_id": "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:5:48:79",
+      "chunk_ids": [
+        "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:5"
+      ],
+      "extractors": [
+        "prep"
+      ],
+      "confidence": 0.9038527208047256,
+      "raw_predicate": "develop",
+      "evidence": "In June 2024, TechNova Solutions partnered with the Indian Institute of Science (IISc), located in\nBengaluru, to develop better information extraction systems.",
+      "source_type": "ORG",
+      "target_type": "ORG"
+    }
+  ],
+  "entity_to_chunks": {
+    "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:0:76:122": [
+      "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:0",
+      "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:0",
+      "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:1",
+      "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:6",
+      "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:8"
+    ],
+    "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:0:55:68": [
+      "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:0",
+      "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:2",
+      "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:14"
+    ],
+    "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:0:0:32": [
+      "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:0"
+    ],
+    "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:0:133:142": [
+      "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:0",
+      "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:5"
+    ],
+    "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:15:36:47": [
+      "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:1",
+      "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:6",
+      "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:15"
+    ],
+    "b92ef58e6cb32dd4dca1798985eb5aea9bca4b154014d398b36efd8ac5578254:2:35:53": [
+      "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:2",
+      "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:4",
+      "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:5",
+      "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:9"
+    ],
+    "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:2:93:99": [
+      "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:2"
+    ],
+    "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:3:33:45": [
+      "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:3",
+      "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:4",
+      "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:15"
+    ],
+    "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:11:4:12": [
+      "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:3",
+      "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:11"
+    ],
+    "5c17da57bd044dd684152d7805a56c5d7355762b7c3423c489763e801e9356f0:33:13:16": [
+      "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:4"
+    ],
+    "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:5:81:85": [
+      "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:5",
+      "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:9"
+    ],
+    "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:5:48:79": [
+      "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:5"
+    ],
+    "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:13:44:49": [
+      "f4251e852cd0e190be3a4731402a1341e12f6c4859697dba90901a2362e3e925:13"
+    ]
+  }
+}

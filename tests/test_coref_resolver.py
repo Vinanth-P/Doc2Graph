@@ -86,6 +86,20 @@ def test_coref_definite_np():
     assert res["c:1:the company"] == "c:0:0:5"
 
 
+def test_coref_definite_institute():
+    chunks = [
+        SentenceChunk("c:0", "d1", 0, "AIRI opened a laboratory.", 0, 27),
+        SentenceChunk("c:1", "d1", 1, "The institute hired researchers.", 28, 61),
+    ]
+    airi = Entity(
+        "c:0:0:4", "AIRI", "AIRI", "ORG", 0, 4, "spacy", "c:0"
+    )
+    result = RuleBasedCorefResolver().resolve(
+        chunks, {"c:0": [airi], "c:1": []}
+    )
+    assert result["c:1:the institute"] == airi.entity_id
+
+
 def test_coref_alias():
     chunks = [
         SentenceChunk(
@@ -118,4 +132,3 @@ def test_coref_alias():
 
     # Shorter alias mapped to full entity
     assert res.get("c:1:0:4") == "c:0:0:9"
-

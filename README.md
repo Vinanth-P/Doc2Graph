@@ -3,7 +3,7 @@
 
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![Neo4j 5.26](https://img.shields.io/badge/Neo4j-5.26-green.svg)](https://neo4j.com/)
-[![Tests](https://img.shields.io/badge/pytest-74%20passed-brightgreen.svg)]()
+[![Tests](https://img.shields.io/badge/pytest-77%20passed-brightgreen.svg)]()
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.111-teal.svg)](https://fastapi.tiangolo.com/)
 
 > **Classical NLP & ML Architecture:**
@@ -112,6 +112,13 @@ Or process an individual document:
 python scripts/ingest_sample.py --input data/raw/sample_business_news.txt --mode accurate
 ```
 
+Each successful ingestion also writes the resolved, pre-Neo4j graph payload to
+`data/processed/<sha256>.json`. The JSON contains canonical entities, mention
+offsets and source text, relationship evidence, confidence, and stable source
+and target IDs. Unsupported predicates are omitted rather than emitted as
+generic `RELATED_TO` edges. Set `debug_pipeline: true` in `config.yaml` to
+enable stage-level pipeline logging.
+
 ### Benchmark & Model Training
 Evaluate NER quality and train the Logistic Regression scorers on annotated gold sets using 5-fold cross-validation:
 ```bash
@@ -126,7 +133,7 @@ python scripts/benchmark.py --eval data/eval/ --train
 
 ## 🧪 Testing
 
-Run the pytest suite (73 default tests and one optional Neo4j integration test):
+Run the pytest suite (77 tests, plus one optional Neo4j integration test):
 ```bash
 python -m pytest tests/
 ```
@@ -143,8 +150,8 @@ coreference, and correct evidence IDs across sentence windows. Negated
 statements are excluded from asserted graph facts. Cross-document merges retain
 aliases and source mentions.
 
-Local validation: 74 Python tests (including the Neo4j check) and three frontend
-tests pass; NER F1 improved from 0.945 to 1.000 on the existing
+Local validation: 77 Python tests pass (the optional Neo4j test is skipped when
+Neo4j is unavailable) and three frontend tests pass; NER F1 improved from 0.945 to 1.000 on the existing
 10-example dataset; all 15 full-text relation regression examples match exactly.
 The relation scorer's five-fold cross-validation F1 is 0.88 on 20 labeled feature
 rows. These are small development datasets, not a general-domain accuracy claim.
@@ -217,4 +224,3 @@ Doc2Graph/
 │   └── pipeline.py                # Sequential pipeline orchestrator with file lock
 └── tests/                         # Python and frontend regression tests
 ```
-

@@ -1,0 +1,116 @@
+{
+  "entities": [
+    {
+      "id": "b54f6f44eea2a9e5935e6ebc9cd3ec986718f16f7a5e45bf60c05af9bb2ada23:0:23:32",
+      "name": "Microsoft",
+      "type": "ORG",
+      "aliases": [
+        "Microsoft"
+      ],
+      "initials_key": "M",
+      "mentions": [
+        {
+          "id": "b54f6f44eea2a9e5935e6ebc9cd3ec986718f16f7a5e45bf60c05af9bb2ada23:0:23:32",
+          "text": "Microsoft",
+          "start": 23,
+          "end": 32,
+          "sentence": "Google did not acquire Microsoft.",
+          "source": "gazetteer",
+          "chunk_id": "b54f6f44eea2a9e5935e6ebc9cd3ec986718f16f7a5e45bf60c05af9bb2ada23:0"
+        }
+      ]
+    },
+    {
+      "id": "b54f6f44eea2a9e5935e6ebc9cd3ec986718f16f7a5e45bf60c05af9bb2ada23:0:0:6",
+      "name": "Google",
+      "type": "ORG",
+      "aliases": [
+        "Google"
+      ],
+      "initials_key": "G",
+      "mentions": [
+        {
+          "id": "b54f6f44eea2a9e5935e6ebc9cd3ec986718f16f7a5e45bf60c05af9bb2ada23:0:0:6",
+          "text": "Google",
+          "start": 0,
+          "end": 6,
+          "sentence": "Google did not acquire Microsoft.",
+          "source": "gazetteer",
+          "chunk_id": "b54f6f44eea2a9e5935e6ebc9cd3ec986718f16f7a5e45bf60c05af9bb2ada23:0"
+        }
+      ]
+    },
+    {
+      "id": "b54f6f44eea2a9e5935e6ebc9cd3ec986718f16f7a5e45bf60c05af9bb2ada23:1:0:9",
+      "name": "Elon Musk",
+      "type": "PERSON",
+      "aliases": [
+        "Elon Musk"
+      ],
+      "initials_key": "EM",
+      "mentions": [
+        {
+          "id": "b54f6f44eea2a9e5935e6ebc9cd3ec986718f16f7a5e45bf60c05af9bb2ada23:1:0:9",
+          "text": "Elon Musk",
+          "start": 0,
+          "end": 9,
+          "sentence": "Elon Musk founded Tesla.",
+          "source": "gazetteer",
+          "chunk_id": "b54f6f44eea2a9e5935e6ebc9cd3ec986718f16f7a5e45bf60c05af9bb2ada23:1"
+        }
+      ]
+    },
+    {
+      "id": "b54f6f44eea2a9e5935e6ebc9cd3ec986718f16f7a5e45bf60c05af9bb2ada23:1:18:23",
+      "name": "Tesla",
+      "type": "ORG",
+      "aliases": [
+        "Tesla"
+      ],
+      "initials_key": "T",
+      "mentions": [
+        {
+          "id": "b54f6f44eea2a9e5935e6ebc9cd3ec986718f16f7a5e45bf60c05af9bb2ada23:1:18:23",
+          "text": "Tesla",
+          "start": 18,
+          "end": 23,
+          "sentence": "Elon Musk founded Tesla.",
+          "source": "gazetteer",
+          "chunk_id": "b54f6f44eea2a9e5935e6ebc9cd3ec986718f16f7a5e45bf60c05af9bb2ada23:1"
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "relation_type": "FOUNDED",
+      "source_id": "b54f6f44eea2a9e5935e6ebc9cd3ec986718f16f7a5e45bf60c05af9bb2ada23:1:0:9",
+      "target_id": "b54f6f44eea2a9e5935e6ebc9cd3ec986718f16f7a5e45bf60c05af9bb2ada23:1:18:23",
+      "chunk_ids": [
+        "b54f6f44eea2a9e5935e6ebc9cd3ec986718f16f7a5e45bf60c05af9bb2ada23:1"
+      ],
+      "extractors": [
+        "svo"
+      ],
+      "confidence": 0.81,
+      "raw_predicate": "found",
+      "evidence": "Elon Musk founded Tesla.",
+      "source_type": "PERSON",
+      "target_type": "ORG"
+    }
+  ],
+  "entity_to_chunks": {
+    "b54f6f44eea2a9e5935e6ebc9cd3ec986718f16f7a5e45bf60c05af9bb2ada23:0:23:32": [
+      "b54f6f44eea2a9e5935e6ebc9cd3ec986718f16f7a5e45bf60c05af9bb2ada23:0"
+    ],
+    "b54f6f44eea2a9e5935e6ebc9cd3ec986718f16f7a5e45bf60c05af9bb2ada23:0:0:6": [
+      "b54f6f44eea2a9e5935e6ebc9cd3ec986718f16f7a5e45bf60c05af9bb2ada23:0"
+    ],
+    "b54f6f44eea2a9e5935e6ebc9cd3ec986718f16f7a5e45bf60c05af9bb2ada23:1:0:9": [
+      "b54f6f44eea2a9e5935e6ebc9cd3ec986718f16f7a5e45bf60c05af9bb2ada23:1"
+    ],
+    "b54f6f44eea2a9e5935e6ebc9cd3ec986718f16f7a5e45bf60c05af9bb2ada23:1:18:23": [
+      "b54f6f44eea2a9e5935e6ebc9cd3ec986718f16f7a5e45bf60c05af9bb2ada23:1"
+    ]
+  }
+}

@@ -75,3 +75,20 @@ def test_build_resolved_edges():
     assert edge.target_id == "org_tesla"
     assert edge.chunk_ids == ["c:0"]
     assert edge.confidence == 0.95
+
+
+def test_edge_serialization_preserves_predicate_and_evidence():
+    edge = ResolvedEdge(
+        relation_type="FOUNDED",
+        source_id="person",
+        target_id="org",
+        chunk_ids=["doc:0"],
+        extractors=["svo"],
+        confidence=0.9,
+        raw_predicate="found",
+        evidence="Ananya Sharma founded AIRI.",
+    )
+    data = edge.to_dict()
+    assert data["relation_type"] == "FOUNDED"
+    assert data["raw_predicate"] == "found"
+    assert data["evidence"] == "Ananya Sharma founded AIRI."

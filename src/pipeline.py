@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import logging
+import json
 from pathlib import Path
 
 import spacy
@@ -25,6 +26,38 @@ from src.graph.graph_builder import (
 from src.graph.neo4j_client import get_driver, create_driver
 
 logger = logging.getLogger(__name__)
+
+
+def _write_intermediate_graph(
+    path: Path,
+    entities,
+    entity_to_chunks: dict[str, list[str]],
+    edges,
+    mentions_by_id: dict[str, list[dict]],
+) -> None:
+    """Persist the graph payload before Neo4j so NLP and storage can be separated."""
+    entity_by_id = {entity.canonical_id: entity for entity in entities}
+    relationships = []
+    for edge in edges:
+        relationship = edge.to_dict()
+        source = entity_by_id.get(edge.source_id)
+        target = entity_by_id.get(edge.target_id)
+        relationship["source_type"] = source.type if source else None
+        relationship["target_type"] = target.type if target else None
+        relationships.append(relationship)
+    payload = {
+        "entities": [
+            {
+                **entity.to_dict(),
+                "mentions": mentions_by_id.get(entity.canonical_id, []),
+            }
+            for entity in entities
+        ],
+        "relationships": relationships,
+        "entity_to_chunks": entity_to_chunks,
+    }
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
 
 def _get_nlp() -> spacy.Language:
     # Share the tokenizer and parser used for preprocessing.
@@ -80,10 +113,12 @@ def run_pipeline(
         coref = RuleBasedCorefResolver()
         coref_map = coref.resolve(chunks, entities_by_chunk)
         entity_by_id = {e.entity_id: e for e in all_entities}
+        if getattr(settings, "debug_pipeline", False):
+            logger.debug("[%s] coreference links: %d", job_id, len(coref_map))
 
         # ── Phase 2c: Relation Extraction ─────────────────────────────────
         extractor = DepPatternExtractor()
-        normalizer = PredicateNormalizer()
+        normalizer = PredicateNormalizer(include_extended_relations=True)
         scorer = RelationScorer()
 
         windows = build_windows(
@@ -129,9 +164,21 @@ def run_pipeline(
             nt = normalizer.normalize(triple)
             if nt is not None:
                 nt.confidence = scorer.score(triple)
+                nt.evidence = next(
+                    (chunk.text for chunk in chunks if chunk.chunk_id == nt.chunk_id),
+                    "",
+                )
                 normalized.append(nt)
 
-        logger.info("[%s] %d triples extracted", job_id, len(normalized))
+        # RELATED_TO is retained only for backwards-compatible direct
+        # normalizer callers. It is not an asserted relation in the graph.
+        normalized = [t for t in normalized if t.relation_type != "RELATED_TO"]
+        if getattr(settings, "debug_pipeline", False):
+            logger.debug(
+                "[%s] raw triples=%d, supported triples=%d",
+                job_id, len(deduped_triples), len(normalized),
+            )
+        logger.info("[%s] %d supported triples extracted", job_id, len(normalized))
 
         # ── Phase 3: Entity Resolution ────────────────────────────────────
         resolver = EntityResolver(threshold=settings.resolution_threshold)
@@ -139,6 +186,18 @@ def run_pipeline(
 
         # ── Phase 4: Graph Write ──────────────────────────────────────────
         resolved_entities, _ = build_resolved_entities(all_entities, id_map)
+        mentions_by_id: dict[str, list[dict]] = {}
+        for ent in all_entities:
+            canonical_id = id_map.get(ent.entity_id, ent.entity_id)
+            mentions_by_id.setdefault(canonical_id, []).append({
+                "id": ent.entity_id,
+                "text": ent.text,
+                "start": ent.start_char,
+                "end": ent.end_char,
+                "sentence": ent.sentence,
+                "source": ent.source,
+                "chunk_id": ent.chunk_id,
+            })
 
         # Cross-document resolution + graph write run in a new event loop
         async def _write():
@@ -169,6 +228,22 @@ def run_pipeline(
                     # and mentions for entities that already exist in the graph.
                     final_entities, entity_to_chunks = build_resolved_entities(all_entities, full_id_map)
                     final_edges = build_resolved_edges(normalized, full_id_map)
+                    valid_ids = {entity.canonical_id for entity in final_entities}
+                    final_edges = [
+                        edge for edge in final_edges
+                        if edge.source_id in valid_ids and edge.target_id in valid_ids
+                    ]
+                    final_mentions: dict[str, list[dict]] = {}
+                    for old_id, mentions in mentions_by_id.items():
+                        final_mentions.setdefault(full_id_map.get(old_id, old_id), []).extend(mentions)
+                    _write_intermediate_graph(
+                        Path(getattr(settings, "intermediate_graph_dir", "data/processed"))
+                        / f"{preprocessed.doc_id}.json",
+                        final_entities,
+                        entity_to_chunks,
+                        final_edges,
+                        final_mentions,
+                    )
 
                     await builder.write_entities(session, final_entities)
                     await builder.write_mentions(session, entity_to_chunks)

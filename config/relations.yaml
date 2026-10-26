@@ -43,7 +43,6 @@ canonical_relations:
   INVESTED_IN:
     lemmas:
       - {lemma: "invest",  requires_prep: ["in"], lemma_swap: false}
-      - {lemma: "fund",    requires_prep: null,   lemma_swap: false}
       - {lemma: "finance", requires_prep: null,   lemma_swap: false}
     entity_type_pairs: [[ORG, ORG], [PERSON, ORG]]
 
@@ -52,3 +51,34 @@ canonical_relations:
       - {lemma: "partner",     requires_prep: ["with"], lemma_swap: false}
       - {lemma: "collaborate", requires_prep: ["with"], lemma_swap: false}
     entity_type_pairs: [[ORG, ORG]]
+
+  LEADS:
+    lemmas:
+      - {lemma: "lead", requires_prep: null, lemma_swap: false}
+    entity_type_pairs: [[PERSON, ORG], [PERSON, PRODUCT], [ORG, ORG]]
+
+  PROVIDED:
+    lemmas:
+      - {lemma: "provide", requires_prep: null, lemma_swap: false}
+    entity_type_pairs: [[ORG, ORG], [ORG, PRODUCT], [ORG, GPE]]
+
+  FUNDED:
+    lemmas:
+      - {lemma: "fund", requires_prep: null, lemma_swap: false}
+    entity_type_pairs: [[ORG, ORG], [ORG, PRODUCT], [PERSON, ORG]]
+
+  DEVELOPED:
+    lemmas:
+      - {lemma: "develop", requires_prep: null, lemma_swap: false}
+    entity_type_pairs: [[PERSON, PRODUCT], [ORG, PRODUCT], [ORG, ORG]]
+
+  USES:
+    lemmas:
+      - {lemma: "use", requires_prep: null, lemma_swap: false}
+    entity_type_pairs: [[PERSON, ORG], [ORG, ORG], [ORG, PRODUCT]]
+
+  STORES_DATA_IN:
+    lemmas:
+      - {lemma: "store", requires_prep: ["in"], lemma_swap: false}
+      - {lemma: "extract", requires_prep: ["in"], lemma_swap: false}
+    entity_type_pairs: [[ORG, ORG], [ORG, PRODUCT], [PRODUCT, ORG]]
