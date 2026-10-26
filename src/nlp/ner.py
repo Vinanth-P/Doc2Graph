@@ -66,6 +66,12 @@ _NON_PERSON_STARTS = frozenset({
     "august", "september", "october", "november", "december",
 })
 _GENERIC_ACRONYMS = frozenset({"AI"})
+_KNOWN_TECH_PRODUCTS = frozenset({"postgresql", "mongodb", "neo4j"})
+_ACRONYM_DEFINITION = re.compile(
+    r"\b(?:[A-Z][A-Za-z]+|of|the|and)(?:\s+(?:[A-Z][A-Za-z]+|of|the|and)){1,8}\s*"
+    r"\(([A-Z]{2,}[a-z]?)\)"
+)
+_GPE_NAME_SUFFIXES = re.compile(r"\b(?:river|lake|mountain|sea)\b", re.IGNORECASE)
 
 
 def _canonical_name(text: str) -> str:
@@ -113,6 +119,31 @@ def regex_entities(text: str, chunk_id: str) -> list[Entity]:
             type="PRODUCT" if any(char.isdigit() for char in match.group()) else "ORG",
             start_char=match.start(),
             end_char=match.end(),
+            source="regex",
+            chunk_id=chunk_id,
+        ))
+    for match in re.finditer(r"\b[A-Z][A-Za-z]*[A-Z][A-Za-z]*\b", text):
+        if match.group().casefold() not in _KNOWN_TECH_PRODUCTS:
+            continue
+        entities.append(Entity(
+            entity_id=f"{chunk_id}:{match.start()}:{match.end()}",
+            text=match.group(),
+            canonical_name=_canonical_name(match.group()),
+            type="PRODUCT",
+            start_char=match.start(),
+            end_char=match.end(),
+            source="regex",
+            chunk_id=chunk_id,
+        ))
+    for match in _ACRONYM_DEFINITION.finditer(text):
+        full_name = match.group(0)[:match.group(0).rfind("(")].strip()
+        entities.append(Entity(
+            entity_id=f"{chunk_id}:{match.start()}:{match.start() + len(full_name)}",
+            text=full_name,
+            canonical_name=_canonical_name(full_name),
+            type="ORG",
+            start_char=match.start(),
+            end_char=match.start() + len(full_name),
             source="regex",
             chunk_id=chunk_id,
         ))
@@ -230,6 +261,7 @@ class NERRunner:
             if (
                 len(words) == 2
                 and not _ORG_SUFFIXES.search(match.group())
+                and not _GPE_NAME_SUFFIXES.search(match.group())
                 and words[0].casefold() not in _NON_PERSON_STARTS
                 and (
                     any(word.casefold() in known_person_tokens for word in words)
@@ -252,6 +284,8 @@ class NERRunner:
         for entity in spacy_ents:
             if entity.type in {"PRODUCT", "ORG"} and _ORG_SUFFIXES.search(entity.text):
                 entity.type = "ORG"
+            if entity.text.casefold().endswith(" river"):
+                entity.type = "GPE"
 
         merged = self._merge({
             "regex":     regex_ents,

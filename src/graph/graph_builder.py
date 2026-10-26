@@ -81,8 +81,9 @@ class GraphBuilder:
     CANONICAL_TYPES = [
         "MEMBER_OF", "EMPLOYED_BY", "ACQUIRED",
         "LOCATED_IN", "FOUNDED", "INVESTED_IN", "PARTNER_WITH",
-        "RELATED_TO", "LEADS", "PROVIDED", "FUNDED", "DEVELOPED",
-        "USES", "STORES_DATA_IN",
+        "COLLABORATED_WITH", "RELATED_TO", "LEADS", "PROVIDED",
+        "SUPPLIED", "MONITORS", "FUNDED", "DEVELOPED", "USES",
+        "STORES_DATA_IN",
     ]
 
     async def clear_document(self, session: AsyncSession, doc_id: str) -> None:

@@ -63,8 +63,11 @@ def compute_initials_key(name: str) -> str:
     ):
         return words[0].upper()
     tokens = re.sub(r"[^\w\s]", " ", name).split()
+    expanded_tokens = []
+    for token in tokens:
+        expanded_tokens.extend(re.findall(r"[A-Z]?[a-z]+|[A-Z]+(?=[A-Z]|$)", token))
     return "".join(
-        t[0].upper() for t in tokens
+        t[0].upper() for t in expanded_tokens
         if t and t[0].isalpha() and t.casefold() not in {"a", "an", "the", "of", "and"}
     )
 

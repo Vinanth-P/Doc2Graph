@@ -27,7 +27,6 @@ canonical_relations:
       - {lemma: "locate",      requires_prep: ["in", "at"], lemma_swap: false}
       - {lemma: "base",        requires_prep: ["in", "at"], lemma_swap: false}
       - {lemma: "headquarter", requires_prep: ["in", "at"], lemma_swap: false}
-      - {lemma: "join",        requires_prep: ["in", "at"], lemma_swap: false}
     entity_type_pairs: [[ORG, GPE], [PERSON, GPE]]
 
   FOUNDED:
@@ -50,8 +49,12 @@ canonical_relations:
   PARTNER_WITH:
     lemmas:
       - {lemma: "partner",     requires_prep: ["with"], lemma_swap: false}
-      - {lemma: "collaborate", requires_prep: ["with"], lemma_swap: false}
     entity_type_pairs: [[ORG, ORG]]
+
+  COLLABORATED_WITH:
+    lemmas:
+      - {lemma: "collaborate", requires_prep: ["with"], lemma_swap: false}
+    entity_type_pairs: [[PERSON, PERSON], [ORG, ORG]]
 
   LEADS:
     lemmas:
@@ -62,6 +65,16 @@ canonical_relations:
     lemmas:
       - {lemma: "provide", requires_prep: null, lemma_swap: false}
     entity_type_pairs: [[ORG, ORG], [ORG, PRODUCT], [ORG, GPE]]
+
+  SUPPLIED:
+    lemmas:
+      - {lemma: "supply", requires_prep: null, lemma_swap: false}
+    entity_type_pairs: [[ORG, PRODUCT], [ORG, ORG]]
+
+  MONITORS:
+    lemmas:
+      - {lemma: "monitor", requires_prep: null, lemma_swap: false}
+    entity_type_pairs: [[ORG, GPE], [ORG, PRODUCT]]
 
   FUNDED:
     lemmas:
@@ -81,5 +94,7 @@ canonical_relations:
   STORES_DATA_IN:
     lemmas:
       - {lemma: "store", requires_prep: ["in"], lemma_swap: false}
+      - {lemma: "store", requires_prep: ["in"], lemma_swap: false}
+      - {lemma: "store", requires_prep: null, lemma_swap: false}
       - {lemma: "extract", requires_prep: ["in"], lemma_swap: false}
     entity_type_pairs: [[ORG, ORG], [ORG, PRODUCT], [PRODUCT, ORG]]

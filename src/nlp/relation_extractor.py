@@ -64,6 +64,21 @@ def _token_to_entity(
     clean_text = token.text.rstrip(".,;:!?\"')}]")
     t_start, t_end = token.idx, token.idx + len(clean_text)
 
+    exact_matches = [
+        ent for ent in span_map.values()
+        if ent.text.rstrip(".,;:!?\"')}]").casefold() == clean_text.casefold()
+    ]
+    if not exact_matches and entity_by_id:
+        exact_matches = [
+            ent for ent in entity_by_id.values()
+            if ent.text.rstrip(".,;:!?\"')}]").casefold() == clean_text.casefold()
+        ]
+    if exact_matches:
+        ent = min(exact_matches, key=lambda candidate: abs(candidate.start_char - t_start))
+        if coref_map and entity_by_id and ent.entity_id in coref_map:
+            return entity_by_id.get(coref_map[ent.entity_id], ent)
+        return ent
+
     for (s, e), ent in span_map.items():
         if (s == token.idx and e == token.idx + len(token.text)) or (s == t_start and e == t_end):
             if coref_map and entity_by_id and ent.entity_id in coref_map:
@@ -216,20 +231,49 @@ class DepPatternExtractor:
             obj_ent = _token_to_entity(
                 obj_tok, span_map, chunk_id, coref_map, entity_by_id
             )
+            prep = next(
+                (child for child in token.children
+                 if child.dep_ == "prep" and child.text.lower() == "in"),
+                None,
+            )
+            if token.lemma_ == "store" and prep is not None:
+                storage_obj = next(
+                    (child for child in prep.children if child.dep_ == "pobj"),
+                    None,
+                )
+                storage_ent = (
+                    _token_to_entity(
+                        storage_obj, span_map, chunk_id, coref_map, entity_by_id
+                    )
+                    if storage_obj is not None else None
+                )
+                if storage_ent is not None:
+                    obj_ent = storage_ent
             if obj_ent is None and token.lemma_ in {
-                "provide", "store", "use", "develop"
+                "provide", "supply", "store", "use", "develop", "lead"
             }:
                 obj_ent = _noun_phrase_product(obj_tok, chunk_id)
+            if obj_ent is None and token.lemma_ in {"monitor"}:
+                obj_ent = _token_to_entity(
+                    obj_tok, span_map, chunk_id, coref_map, entity_by_id
+                )
+            if (
+                token.lemma_ == "store"
+                and subj_ent is not None
+                and obj_ent is not None
+                and subj_ent.entity_id == obj_ent.entity_id
+            ):
+                continue
             if subj_ent is None or obj_ent is None:
                 continue
-            prep = next(
+            prep_text = prep.text if prep is not None else next(
                 (c.text for c in token.children if c.dep_ == "prep"), None
             )
             triples.append(RawTriple(
                 subject=subj_ent,
                 predicate=token.lemma_,
                 object=obj_ent,
-                prep=prep,
+                prep=prep_text,
                 source="svo",
                 sent_idx=sent_idx,
                 chunk_id=chunk_id,
@@ -349,6 +393,32 @@ class DepPatternExtractor:
                     subject_ent_override = max(
                         preceding, key=lambda entity: entity.end_char
                     )
+            if (
+                governor.lemma_ in {"join", "partner"}
+                and token.text.lower() in {"in", "at"}
+                and pobj is not None
+            ):
+                verb_subject = next(
+                    (child for child in governor.children
+                     if child.dep_ in {"nsubj", "nsubjpass"}),
+                    None,
+                )
+                verb_object = next(
+                    (child for child in governor.children
+                     if child.dep_ in {"dobj", "attr", "oprd"}),
+                    None,
+                )
+                joined_entity = _token_to_entity(
+                    verb_object, span_map, chunk_id, coref_map, entity_by_id
+                ) if verb_object is not None else None
+                if joined_entity is not None:
+                    subject_ent_override = joined_entity
+                    predicate = "locate"
+                else:
+                    predicate = governor.lemma_.lower()
+            else:
+                predicate = governor.lemma_.lower()
+
             if subject_ent_override is not None:
                 head_ent = subject_ent_override
             elif subject_token is None:
@@ -375,7 +445,6 @@ class DepPatternExtractor:
                             break
             obj_ent  = _token_to_entity(pobj, span_map, chunk_id, coref_map, entity_by_id)
             if head_ent and obj_ent:
-                predicate = governor.lemma_.lower()
                 triples.append(RawTriple(
                     subject=head_ent,
                     predicate=predicate,
