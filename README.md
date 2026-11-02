@@ -116,7 +116,7 @@ Each successful ingestion also writes the resolved, pre-Neo4j graph payload to
 `data/processed/<sha256>.json`. The JSON contains canonical entities, mention
 offsets and source text, relationship evidence, confidence, and stable source
 and target IDs. Unsupported predicates are omitted rather than emitted as
-generic `RELATED_TO` edges. Set `debug_pipeline: true` in `config.yaml` to
+generic `RELATED_TO` edges. Set `debug_pipeline: true` in `config/config.yaml` to
 enable stage-level pipeline logging.
 
 ### Benchmark & Model Training
@@ -133,15 +133,18 @@ python scripts/benchmark.py --eval data/eval/ --train
 
 ## 🧪 Testing
 
-Run the pytest suite (77 tests, plus one optional Neo4j integration test):
+Run the unified test suite (both frontend D3.js and backend pytest tests):
 ```bash
-python -m pytest tests/
+npm test
+# or: make test
 ```
 
-For the real Neo4j document-isolation check, run with
-`DOC2GRAPH_NEO4J_TESTS=1` in the environment. It creates fixture nodes in a
-transaction and always rolls them back. Run the three frontend state tests with
-`node --test tests/test_document_view.cjs`.
+Or run backend tests directly via pytest:
+```bash
+pytest
+```
+
+For the real Neo4j document-isolation check, run with `DOC2GRAPH_NEO4J_TESTS=1` in the environment. It creates fixture nodes in a transaction and always rolls them back. Frontend state tests can also be run directly with `node --test tests/test_document_view.cjs`.
 
 Recent model improvements include stable, versioned one-hot features for the
 retrained relation scorer, multiple gazetteer matches per sentence, organization
@@ -186,8 +189,8 @@ Test coverage includes:
 
 ```
 Doc2Graph/
-├── config.yaml                    # Non-secret pipeline configuration
 ├── config/
+│   ├── config.yaml                # Non-secret pipeline & model configuration
 │   └── relations.yaml             # Canonical relation whitelist
 ├── data/
 │   ├── eval/                      # Evaluation gold sets (NER, relations, resolution)

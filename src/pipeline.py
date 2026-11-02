@@ -8,6 +8,7 @@ from pathlib import Path
 import spacy
 
 from src import pipeline_lock
+from src.api.schemas import ResolvedEntityPayload, ResolvedEdgePayload
 from src.config import get_settings
 from src.ingestion.loader import load_document
 from src.ingestion.pdf_cleaner import clean_pdf_text
@@ -240,12 +241,6 @@ def run_pipeline(
             try:
                 builder = GraphBuilder()
                 async with driver.session() as session:
-                    clear_document = getattr(builder, "clear_document", None)
-                    if clear_document is not None:
-                        await clear_document(session, preprocessed.doc_id)
-                    await builder.write_document(session, filename, preprocessed.doc_id)
-                    await builder.write_chunks(session, chunks)
-
                     # Cross-doc resolution: check existing nodes before creating new ones
                     cross_doc_map: dict[str, str] = {}
                     for ent in resolved_entities:
@@ -269,21 +264,55 @@ def run_pipeline(
                         edge for edge in final_edges
                         if edge.source_id in valid_ids and edge.target_id in valid_ids
                     ]
+                    # Boundary validation: enforce strict Pydantic schemas before storage
+                    validated_entities = []
+                    for ent in final_entities:
+                        ResolvedEntityPayload(**ent.to_dict())
+                        validated_entities.append(ent)
+
+                    validated_edges = []
+                    for edge in final_edges:
+                        ResolvedEdgePayload(**edge.to_dict())
+                        validated_edges.append(edge)
+
                     final_mentions: dict[str, list[dict]] = {}
                     for old_id, mentions in mentions_by_id.items():
                         final_mentions.setdefault(full_id_map.get(old_id, old_id), []).extend(mentions)
                     _write_intermediate_graph(
                         Path(getattr(settings, "intermediate_graph_dir", "data/processed"))
                         / f"{preprocessed.doc_id}.json",
-                        final_entities,
+                        validated_entities,
                         entity_to_chunks,
-                        final_edges,
+                        validated_edges,
                         final_mentions,
                     )
 
-                    await builder.write_entities(session, final_entities)
-                    await builder.write_mentions(session, entity_to_chunks)
-                    await builder.write_edges(session, final_edges)
+                    # Wrap all graph writes in an explicit atomic transaction
+                    from neo4j import AsyncSession
+                    if isinstance(session, AsyncSession):
+                        tx = await session.begin_transaction()
+                        try:
+                            clear_document = getattr(builder, "clear_document", None)
+                            if clear_document is not None:
+                                await clear_document(tx, preprocessed.doc_id)
+                            await builder.write_document(tx, filename, preprocessed.doc_id)
+                            await builder.write_chunks(tx, chunks)
+                            await builder.write_entities(tx, validated_entities)
+                            await builder.write_mentions(tx, entity_to_chunks)
+                            await builder.write_edges(tx, validated_edges)
+                            await tx.commit()
+                        except Exception:
+                            await tx.rollback()
+                            raise
+                    else:
+                        clear_document = getattr(builder, "clear_document", None)
+                        if clear_document is not None:
+                            await clear_document(session, preprocessed.doc_id)
+                        await builder.write_document(session, filename, preprocessed.doc_id)
+                        await builder.write_chunks(session, chunks)
+                        await builder.write_entities(session, validated_entities)
+                        await builder.write_mentions(session, entity_to_chunks)
+                        await builder.write_edges(session, validated_edges)
 
                 return len(resolved_entities) - len(cross_doc_map), len(final_edges)
             finally:

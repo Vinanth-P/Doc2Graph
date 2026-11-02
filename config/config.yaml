@@ -1,0 +1,14 @@
+# Doc2Graph Pipeline & Model Configuration (Non-secret)
+pipeline_mode: accurate
+max_upload_mb: 50
+window_size: 3
+window_stride: 2
+resolution_threshold: 0.85
+debug_pipeline: false
+intermediate_graph_dir: data/processed
+
+# Canonical Model & Whitelist Paths
+relation_scorer_model_path: models/relation_scorer.joblib
+entity_resolver_model_path: models/entity_resolver.joblib
+relations_config_path: config/relations.yaml
+

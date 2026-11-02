@@ -1,7 +1,8 @@
-"""Configuration — pydantic-settings v2 with YAML overlay."""
+"""Configuration — pydantic-settings v2 with YAML overlay and canonical model paths."""
 from __future__ import annotations
 
 import os
+from pathlib import Path
 from typing import Literal
 
 import yaml
@@ -10,7 +11,11 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
-    model_config = SettingsConfigDict(env_file=".env", extra="ignore")
+    model_config = SettingsConfigDict(
+        env_file=".env",
+        env_file_encoding="utf-8",
+        extra="ignore",
+    )
 
     # Neo4j
     neo4j_uri: str = "bolt://localhost:7687"
@@ -25,6 +30,11 @@ class Settings(BaseSettings):
     debug_pipeline: bool = False
     intermediate_graph_dir: str = "data/processed"
 
+    # Canonical Model & Whitelist Paths
+    relation_scorer_model_path: str = "models/relation_scorer.joblib"
+    entity_resolver_model_path: str = "models/entity_resolver.joblib"
+    relations_config_path: str = "config/relations.yaml"
+
     # Entity resolution
     resolution_threshold: float = 0.85
 
@@ -33,14 +43,23 @@ class Settings(BaseSettings):
 
     @model_validator(mode="after")
     def _merge_yaml(self) -> "Settings":
-        path = os.environ.get("CONFIG_YAML", "config.yaml")
-        if os.path.exists(path):
-            with open(path) as f:
+        # Resolve YAML path: check env var, then config/config.yaml, then legacy config.yaml
+        path_str = os.environ.get("CONFIG_YAML")
+        if not path_str:
+            if os.path.exists("config/config.yaml"):
+                path_str = "config/config.yaml"
+            elif os.path.exists("config.yaml"):
+                path_str = "config.yaml"
+
+        if path_str and os.path.exists(path_str):
+            with open(path_str, "r", encoding="utf-8") as f:
                 overrides: dict = yaml.safe_load(f) or {}
             _SECRETS = {"neo4j_password", "api_key"}
             for k, v in overrides.items():
                 if k in self.model_fields and k not in _SECRETS:
-                    setattr(self, k, v)
+                    # Let explicit environment variables take precedence over YAML values
+                    if k.upper() not in os.environ:
+                        setattr(self, k, v)
         return self
 
 

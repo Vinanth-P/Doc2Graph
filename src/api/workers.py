@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import asyncio
+from datetime import datetime, timezone
 import logging
 import traceback
 from concurrent.futures import ThreadPoolExecutor
@@ -34,19 +35,21 @@ async def dispatch_pipeline(
             ftype,
             job_id,
         )
+        now_iso = datetime.now(timezone.utc).isoformat()
         await job_store.update_job(
             job_id,
             status=job_store.JobStatus.DONE,
-            finished_at="datetime('now')",
+            finished_at=now_iso,
             result=result,
         )
         logger.info("[%s] Pipeline completed: %s", job_id, result)
     except Exception as exc:
         tb = traceback.format_exc()
         logger.error("[%s] Pipeline failed: %s\n%s", job_id, exc, tb)
+        now_iso = datetime.now(timezone.utc).isoformat()
         await job_store.update_job(
             job_id,
             status=job_store.JobStatus.FAILED,
-            finished_at="datetime('now')",
+            finished_at=now_iso,
             error=str(exc),
         )

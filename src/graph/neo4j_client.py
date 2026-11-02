@@ -3,10 +3,11 @@ from __future__ import annotations
 
 import asyncio
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable, TypeVar
 
-from neo4j import AsyncGraphDatabase, AsyncDriver, AsyncSession
+from neo4j import AsyncGraphDatabase, AsyncDriver, AsyncSession, AsyncTransaction
 
+T = TypeVar("T")
 
 _driver_by_loop: dict[asyncio.AbstractEventLoop | None, AsyncDriver] = {}
 
@@ -53,7 +54,7 @@ async def close_all_drivers() -> None:
 
 async def run_schema(driver: AsyncDriver, cypher_path: str = "scripts/setup_neo4j.cypher") -> None:
     """Execute all statements in setup_neo4j.cypher (idempotent — uses IF NOT EXISTS)."""
-    cypher = Path(cypher_path).read_text()
+    cypher = Path(cypher_path).read_text(encoding="utf-8")
     async with driver.session() as session:
         for stmt in cypher.split(";"):
             stmt = stmt.strip()
@@ -61,10 +62,25 @@ async def run_schema(driver: AsyncDriver, cypher_path: str = "scripts/setup_neo4
                 await session.run(stmt)
 
 
-async def batched_run(
+async def execute_write_transaction(
     session: AsyncSession,
+    work_func: Callable[[AsyncTransaction], Any],
+) -> Any:
+    """Execute work_func within an explicit managed atomic transaction.
+
+    If work_func or any internal query raises an exception, the transaction
+    rolls back cleanly, preventing partial or corrupt imports from persisting in Neo4j.
+    """
+    async with session.begin_transaction() as tx:
+        result = await work_func(tx)
+        await tx.commit()
+        return result
+
+
+async def batched_run(
+    session: AsyncSession | AsyncTransaction,
     query: str,
     params: dict[str, Any],
 ) -> None:
-    """Run a parameterized Cypher query."""
+    """Run a parameterized Cypher query against a session or transaction."""
     await session.run(query, **params)

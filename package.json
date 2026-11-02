@@ -1,0 +1,20 @@
+{
+  "name": "doc2graph",
+  "version": "1.0.0",
+  "description": "Document Knowledge Graph Builder — Classical ML Edition",
+  "private": true,
+  "scripts": {
+    "test:frontend": "node --test tests/test_document_view.cjs",
+    "test:backend": "pytest",
+    "test": "node --test tests/test_document_view.cjs && pytest"
+  },
+  "keywords": [
+    "knowledge-graph",
+    "nlp",
+    "d3",
+    "neo4j"
+  ],
+  "author": "",
+  "license": "MIT"
+}
+

@@ -6,14 +6,15 @@ Key design decisions (from v5/v6 plan):
   - evidence_count derived from size(r.chunk_ids), never stored as a separate counter
   - Chunk IDs are deterministic: "<doc_hash>:<sent_idx>"
   - mention_count is NOT stored — computed from MENTIONED_IN traversal on query
+  - Atomic transactions with UNWIND batching guarantee all-or-nothing document ingestion
 """
 from __future__ import annotations
 
-import uuid
 from collections import defaultdict
 from dataclasses import dataclass, field
+from typing import Any
 
-from neo4j import AsyncSession
+from neo4j import AsyncSession, AsyncTransaction
 
 from src.type_map import TYPE_TO_LABEL
 from src.nlp.ner import Entity
@@ -86,7 +87,31 @@ class GraphBuilder:
         "STORES_DATA_IN",
     ]
 
-    async def clear_document(self, session: AsyncSession, doc_id: str) -> None:
+    async def write_document_graph_atomic(
+        self,
+        session: AsyncSession,
+        doc_id: str,
+        filename: str,
+        chunks: list[SentenceChunk],
+        entities: list[ResolvedEntity],
+        entity_to_chunks: dict[str, list[str]],
+        edges: list[ResolvedEdge],
+    ) -> None:
+        """Write the complete document graph within a single atomic transaction.
+
+        If any query fails, the entire transaction rolls back cleanly so that no partial
+        or corrupt imports persist in Neo4j.
+        """
+        async with session.begin_transaction() as tx:
+            await self.clear_document(tx, doc_id)
+            await self.write_document(tx, filename, doc_id)
+            await self.write_chunks(tx, chunks)
+            await self.write_entities(tx, entities)
+            await self.write_mentions(tx, entity_to_chunks)
+            await self.write_edges(tx, edges)
+            await tx.commit()
+
+    async def clear_document(self, session: AsyncSession | AsyncTransaction | Any, doc_id: str) -> None:
         """Remove evidence owned by a document before replacing its graph."""
         await session.run(
             """
@@ -116,7 +141,7 @@ class GraphBuilder:
             doc_id=doc_id,
         )
 
-    async def write_document(self, session: AsyncSession, filename: str, doc_id: str) -> None:
+    async def write_document(self, session: AsyncSession | AsyncTransaction | Any, filename: str, doc_id: str) -> None:
         await session.run(
             """
             MERGE (d:Document {id: $id})
@@ -125,7 +150,7 @@ class GraphBuilder:
             id=doc_id, filename=filename,
         )
 
-    async def write_chunks(self, session: AsyncSession, chunks: list[SentenceChunk]) -> None:
+    async def write_chunks(self, session: AsyncSession | AsyncTransaction | Any, chunks: list[SentenceChunk]) -> None:
         chunk_dicts = [
             {
                 "id": c.chunk_id,
@@ -152,7 +177,7 @@ class GraphBuilder:
         )
 
     async def write_entities(
-        self, session: AsyncSession, entities: list[ResolvedEntity]
+        self, session: AsyncSession | AsyncTransaction | Any, entities: list[ResolvedEntity]
     ) -> None:
         """MERGE entity on :Entity {id}, then SET secondary type label.
         Groups by type so each query interpolates the correct label from the whitelist.
@@ -183,7 +208,7 @@ class GraphBuilder:
 
     async def write_mentions(
         self,
-        session: AsyncSession,
+        session: AsyncSession | AsyncTransaction | Any,
         entity_to_chunks: dict[str, list[str]],
     ) -> None:
         """Write MENTIONED_IN edges from Entity to Chunk nodes."""
@@ -204,7 +229,7 @@ class GraphBuilder:
             )
 
     async def write_edges(
-        self, session: AsyncSession, edges: list[ResolvedEdge]
+        self, session: AsyncSession | AsyncTransaction | Any, edges: list[ResolvedEdge]
     ) -> None:
         """Idempotent edge write — union chunk_ids, max confidence, derive count."""
         for rel_type in self.CANONICAL_TYPES:

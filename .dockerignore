@@ -1,16 +1,46 @@
-models/
-data/raw/
-data/processed/
-data/jobs.sqlite
+# Version Control
+.git/
+.gitignore
+
+# Environment & Secrets
 .env
+.env.*
+
+# Python Bytecode & Caches
 __pycache__/
 *.pyc
 *.pyo
-.git/
+*.pyd
 .pytest_cache/
 *.egg-info/
 dist/
 build/
+
+# Virtual Environments
 .venv/
 venv/
+
+# Notebooks & Exploratory Artifacts
 notebooks/
+notebooks/exploration.ipynb
+
+# Tests
+tests/
+
+# Test data & uploads
+testdata.pdf
+doc2graph_test_data_02.txt
+
+# Runtime Databases, Locks & Backups
+data/*.sqlite*
+data/jobs.sqlite
+data/jobs.sqlite*
+data/.pipeline.lock
+data/backups/
+data/processed/
+
+# Dead / Legacy Model Artifacts
+models/*.v1.joblib
+
+# Frontend tooling
+node_modules/
