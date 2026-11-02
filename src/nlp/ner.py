@@ -65,13 +65,25 @@ _NON_PERSON_STARTS = frozenset({
     "january", "february", "march", "april", "may", "june", "july",
     "august", "september", "october", "november", "december",
 })
-_GENERIC_ACRONYMS = frozenset({"AI"})
+_GENERIC_ACRONYMS = frozenset({
+    "AI", "CEO", "CTO", "CFO", "COO", "CIO", "CMO", "VP", "SVP", "EVP",
+    "US", "USA", "UK", "EU", "UN", "PDF", "IT", "HR", "PR", "IP",
+    "Q1", "Q2", "Q3", "Q4", "FY", "ID", "AM", "PM", "OK", "TV", "PC",
+    "API", "UI", "UX", "HTML", "URL", "HTTP", "HTTPS", "SQL", "LLM",
+    "ML", "NLP", "CPU", "GPU", "RAM", "ROM", "OS", "SaaS", "B2B", "B2C",
+})
 _KNOWN_TECH_PRODUCTS = frozenset({"postgresql", "mongodb", "neo4j"})
 _ACRONYM_DEFINITION = re.compile(
     r"\b(?:[A-Z][A-Za-z]+|of|the|and)(?:\s+(?:[A-Z][A-Za-z]+|of|the|and)){1,8}\s*"
     r"\(([A-Z]{2,}[a-z]?)\)"
 )
 _GPE_NAME_SUFFIXES = re.compile(r"\b(?:river|lake|mountain|sea)\b", re.IGNORECASE)
+
+_ACRONYM_REGEX = re.compile(r"\b(?:[A-Z]{2,}[a-z]?|[A-Z][a-z]+\d+[A-Za-z]*)\b")
+_CAMEL_PRODUCT_REGEX = re.compile(r"\b[A-Z][A-Za-z]*[A-Z][A-Za-z]*\b")
+_TITLE_PAIR_REGEX = re.compile(r"\b[A-Z][a-z]+(?:\s+[A-Z][a-z]+)+\b")
+_TOKEN_WORD_REGEX = re.compile(r"\w+(?:[&.'-]\w+)*")
+_LETTERS_REGEX = re.compile(r"[A-Za-z]+")
 
 
 def _canonical_name(text: str) -> str:
@@ -104,25 +116,25 @@ def regex_entities(text: str, chunk_id: str) -> list[Entity]:
                 source="regex",
                 chunk_id=chunk_id,
             ))
-    for match in re.finditer(
-        r"\b(?:[A-Z]{2,}[a-z]?|[A-Z][a-z]+\d+[A-Za-z]*)\b", text
-    ):
+    for match in _ACRONYM_REGEX.finditer(text):
+        token_str = match.group()
         if (
-            match.group().casefold() in _NON_PERSON_STARTS
-            or match.group() in _GENERIC_ACRONYMS
+            token_str.casefold() in _NON_PERSON_STARTS
+            or token_str.upper() in _GENERIC_ACRONYMS
+            or token_str in _GENERIC_ACRONYMS
         ):
             continue
         entities.append(Entity(
             entity_id=f"{chunk_id}:{match.start()}:{match.end()}",
-            text=match.group(),
-            canonical_name=_canonical_name(match.group()),
-            type="PRODUCT" if any(char.isdigit() for char in match.group()) else "ORG",
+            text=token_str,
+            canonical_name=_canonical_name(token_str),
+            type="PRODUCT" if any(char.isdigit() for char in token_str) else "ORG",
             start_char=match.start(),
             end_char=match.end(),
             source="regex",
             chunk_id=chunk_id,
         ))
-    for match in re.finditer(r"\b[A-Z][A-Za-z]*[A-Z][A-Za-z]*\b", text):
+    for match in _CAMEL_PRODUCT_REGEX.finditer(text):
         if match.group().casefold() not in _KNOWN_TECH_PRODUCTS:
             continue
         entities.append(Entity(
@@ -159,6 +171,8 @@ class GazetteerMatcher:
         from rapidfuzz import process as rf_process
         self._rf = rf_process
         self._entries: dict[str, list[str]] = {}   # type → list of names
+        self._by_length: dict[str, dict[int, list[str]]] = {}
+        self._exact: dict[str, tuple[str, str]] = {}
         base = Path(gazetteer_dir)
         if not base.is_absolute() and not base.exists():
             alt = Path(__file__).resolve().parents[2] / base
@@ -174,39 +188,67 @@ class GazetteerMatcher:
             if fpath.exists():
                 names = [ln.strip() for ln in fpath.read_text().splitlines() if ln.strip()]
                 self._entries[etype] = names
+                by_len: dict[int, list[str]] = {}
+                for name in names:
+                    cf = name.casefold()
+                    canon = " ".join(name.strip().split()).title()
+                    if cf not in self._exact:
+                        self._exact[cf] = (etype, canon)
+                    length = len(_TOKEN_WORD_REGEX.findall(name))
+                    if length:
+                        by_len.setdefault(length, []).append(name)
+                self._by_length[etype] = by_len
 
     def match(self, text: str, chunk_id: str, threshold: int = 90) -> list[Entity]:
         from rapidfuzz.fuzz import ratio
 
-        # Compare dictionary names with actual token spans, not the entire
-        # sentence. This finds multiple/repeated names and preserves offsets
-        # even for case differences or a fuzzy spelling match.
-        tokens = list(re.finditer(r"\w+(?:[&.'-]\w+)*", text))
+        tokens = list(_TOKEN_WORD_REGEX.finditer(text))
         entities: list[Entity] = []
-        for etype, names in self._entries.items():
-            if not names:
-                continue
-            by_length: dict[int, list[str]] = {}
-            for name in names:
-                length = len(re.findall(r"\w+(?:[&.'-]\w+)*", name))
-                if length:
-                    by_length.setdefault(length, []).append(name)
+        matched_spans: set[tuple[int, int]] = set()
+
+        for etype, by_length in self._by_length.items():
             for length, candidates in by_length.items():
                 for index in range(len(tokens) - length + 1):
                     start, end = tokens[index].start(), tokens[index + length - 1].end()
+                    span = (start, end)
                     surface = text[start:end]
+                    surface_cf = surface.casefold()
+
+                    if surface_cf in self._exact:
+                        exact_type, exact_canon = self._exact[surface_cf]
+                        if exact_type == etype and span not in matched_spans:
+                            matched_spans.add(span)
+                            entities.append(Entity(
+                                entity_id=f"{chunk_id}:{start}:{end}",
+                                text=surface,
+                                canonical_name=exact_canon,
+                                type=etype,
+                                start_char=start,
+                                end_char=end,
+                                source="gazetteer",
+                                chunk_id=chunk_id,
+                            ))
+                            continue
+
+                    if span in matched_spans:
+                        continue
+
                     result = self._rf.extractOne(
                         surface, candidates, scorer=ratio, processor=str.casefold,
                         score_cutoff=threshold,
                     )
                     if result:
                         matched, _, _ = result
+                        matched_spans.add(span)
                         entities.append(Entity(
                             entity_id=f"{chunk_id}:{start}:{end}",
                             text=surface,
                             canonical_name=" ".join(matched.strip().split()).title(),
-                            type=etype, start_char=start, end_char=end,
-                            source="gazetteer", chunk_id=chunk_id,
+                            type=etype,
+                            start_char=start,
+                            end_char=end,
+                            source="gazetteer",
+                            chunk_id=chunk_id,
                         ))
         return entities
 
@@ -251,22 +293,17 @@ class NERRunner:
             token.casefold()
             for entity in spacy_ents
             if entity.type == "PERSON"
-            for token in re.findall(r"[A-Za-z]+", entity.text)
+            for token in _LETTERS_REGEX.findall(entity.text)
         }
         pattern_ents: list[Entity] = []
-        for match in re.finditer(
-            r"\b[A-Z][a-z]+(?:\s+[A-Z][a-z]+)+\b", raw_text
-        ):
-            words = re.findall(r"[A-Za-z]+", match.group())
+        for match in _TITLE_PAIR_REGEX.finditer(raw_text):
+            words = _LETTERS_REGEX.findall(match.group())
             if (
                 len(words) == 2
                 and not _ORG_SUFFIXES.search(match.group())
                 and not _GPE_NAME_SUFFIXES.search(match.group())
                 and words[0].casefold() not in _NON_PERSON_STARTS
-                and (
-                    any(word.casefold() in known_person_tokens for word in words)
-                    or all(word[0].isupper() for word in words)
-                )
+                and any(word.casefold() in known_person_tokens for word in words)
             ):
                 pattern_ents.append(Entity(
                     entity_id=f"{chunk_id}:{match.start()}:{match.end()}",

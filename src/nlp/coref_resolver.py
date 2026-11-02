@@ -49,6 +49,12 @@ DEF_NP_PERSON = frozenset({
 
 ALIAS_THRESHOLD = 0.88   # Jaro-Winkler score above which two names are aliases
 
+_PHRASES = PRONOUNS_PERSON | PRONOUNS_ORG | DEF_NP_PERSON | DEF_NP_ORG
+_COREF_PATTERN = re.compile(
+    r"\b(?:" + "|".join(re.escape(p) for p in sorted(_PHRASES, key=len, reverse=True)) + r")\b",
+    re.IGNORECASE,
+)
+
 
 # ── Resolver ──────────────────────────────────────────────────────────────────
 
@@ -80,11 +86,9 @@ class RuleBasedCorefResolver:
 
             # Process mentions in reading order. A later object must not become
             # the antecedent of an earlier pronoun ("He hired Alice").
-            phrases = PRONOUNS_PERSON | PRONOUNS_ORG | DEF_NP_PERSON | DEF_NP_ORG
-            pattern = r"\b(?:" + "|".join(re.escape(p) for p in sorted(phrases, key=len, reverse=True)) + r")\b"
             events = [(e.end_char, 0, e) for e in ents]
             events += [
-                (m.start(), 1, m) for m in re.finditer(pattern, chunk.text, re.IGNORECASE)
+                (m.start(), 1, m) for m in _COREF_PATTERN.finditer(chunk.text)
                 if not any(e.start_char <= m.start() < e.end_char for e in ents)
             ]
             for _, kind, mention in sorted(events, key=lambda event: (event[0], event[1])):
@@ -103,24 +107,51 @@ class RuleBasedCorefResolver:
 
             all_entities.extend(ents)
 
-            # Tier 4: alias detection — link short forms to the known full name
-            for ent in ents:
-                for known in all_entities:
-                    if ent.entity_id == known.entity_id:
+        # Tier 4: alias detection across entire document (forward and backward)
+        # Link shorter surface forms or token subsets to the longest canonical name.
+        entities_by_type: dict[str, list[Entity]] = {}
+        for ent in all_entities:
+            entities_by_type.setdefault(ent.type, []).append(ent)
+
+        for etype, type_ents in entities_by_type.items():
+            sorted_ents = sorted(type_ents, key=lambda e: (len(e.canonical_name), len(e.text)), reverse=True)
+            for i, target_ent in enumerate(sorted_ents):
+                for source_ent in sorted_ents[i + 1:]:
+                    if source_ent.entity_id == target_ent.entity_id:
                         continue
-                    if ent.type != known.type:
+                    if source_ent.entity_id in resolution:
                         continue
-                    if self._is_alias(ent.canonical_name, known.canonical_name):
-                        # Map shorter alias to the longer canonical name's entity
-                        if len(ent.canonical_name) < len(known.canonical_name):
-                            resolution[ent.entity_id] = known.entity_id
+                    if self._is_alias(source_ent.canonical_name, target_ent.canonical_name):
+                        resolution[source_ent.entity_id] = target_ent.entity_id
+
+        # Flatten transitive chains: A -> B -> C becomes A -> C and B -> C
+        for k in list(resolution.keys()):
+            target = resolution[k]
+            visited = {k}
+            while target and target in resolution and target not in visited:
+                visited.add(target)
+                target = resolution[target]
+            resolution[k] = target
 
         return resolution
 
     @staticmethod
     def _is_alias(a: str, b: str) -> bool:
-        """True if one name is contained in the other or their JW similarity is high."""
-        al, bl = a.lower(), b.lower()
-        if al in bl or bl in al:
+        """True if one name is an alias of the other via token containment or high JW similarity."""
+        al, bl = a.lower().strip(), b.lower().strip()
+        if not al or not bl:
+            return False
+        if al == bl:
             return True
-        return JaroWinkler.similarity(a, b) >= ALIAS_THRESHOLD
+        a_tokens = set(al.split())
+        b_tokens = set(bl.split())
+        if a_tokens and b_tokens and (a_tokens.issubset(b_tokens) or b_tokens.issubset(a_tokens)):
+            return True
+        if len(al) >= 2 and len(bl) >= 2:
+            a_initials = "".join(tok[0] for tok in al.split() if tok)
+            b_initials = "".join(tok[0] for tok in bl.split() if tok)
+            if al == b_initials or bl == a_initials:
+                return True
+        if al[0] == bl[0] and min(len(al), len(bl)) >= 4 and JaroWinkler.similarity(al, bl) >= ALIAS_THRESHOLD:
+            return True
+        return False

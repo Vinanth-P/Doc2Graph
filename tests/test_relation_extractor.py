@@ -164,3 +164,85 @@ def test_supported_verb_can_extract_noun_phrase_product(nlp):
     assert provided
     assert provided[0].object.type == "PRODUCT"
     assert provided[0].object.text == "the computing infrastructure"
+
+
+def test_svo_coordination(nlp):
+    extractor = DepPatternExtractor()
+    text = "Alice and Bob founded Acme Corp."
+    doc = nlp(text)
+    alice = _make_entity("Alice", 0, 5, "PERSON")
+    bob = _make_entity("Bob", 10, 13, "PERSON")
+    acme = _make_entity("Acme Corp", 22, 31, "ORG")
+
+    triples = extractor.extract(
+        doc=doc,
+        entities=[alice, bob, acme],
+        center_chunk_id="c:0",
+        center_sent_idx=0,
+    )
+
+    found_triples = [t for t in triples if t.predicate == "found"]
+    subjects = {t.subject.text for t in found_triples}
+    assert "Alice" in subjects
+    assert "Bob" in subjects
+    for t in found_triples:
+        assert t.object.text == "Acme Corp"
+
+
+def test_nominal_preposition(nlp):
+    extractor = DepPatternExtractor()
+    text = "Musk, founder of Tesla, unveiled Model 3."
+    doc = nlp(text)
+    musk = _make_entity("Musk", 0, 4, "PERSON")
+    tesla = _make_entity("Tesla", 17, 22, "ORG")
+
+    triples = extractor.extract(
+        doc=doc,
+        entities=[musk, tesla],
+        center_chunk_id="c:0",
+        center_sent_idx=0,
+    )
+
+    nominal_triples = [t for t in triples if t.source == "nominal"]
+    assert nominal_triples
+    assert nominal_triples[0].subject.text == "Musk"
+    assert nominal_triples[0].object.text == "Tesla"
+    assert nominal_triples[0].predicate == "founder"
+
+
+def test_negation_scope_relative_clause(nlp):
+    extractor = DepPatternExtractor()
+    text = "Elon Musk, who was not born in the US, founded Tesla."
+    doc = nlp(text)
+    musk = _make_entity("Elon Musk", 0, 9, "PERSON")
+    tesla = _make_entity("Tesla", 47, 52, "ORG")
+
+    triples = extractor.extract(
+        doc=doc,
+        entities=[musk, tesla],
+        center_chunk_id="c:0",
+        center_sent_idx=0,
+    )
+
+    found_triples = [t for t in triples if t.predicate == "found"]
+    assert found_triples
+    assert found_triples[0].has_negation is False
+
+
+def test_negation_scope_direct(nlp):
+    extractor = DepPatternExtractor()
+    text = "Elon Musk never founded Apple."
+    doc = nlp(text)
+    musk = _make_entity("Elon Musk", 0, 9, "PERSON")
+    apple = _make_entity("Apple", 25, 30, "ORG")
+
+    triples = extractor.extract(
+        doc=doc,
+        entities=[musk, apple],
+        center_chunk_id="c:0",
+        center_sent_idx=0,
+    )
+
+    found_triples = [t for t in triples if t.predicate == "found"]
+    assert found_triples
+    assert found_triples[0].has_negation is True

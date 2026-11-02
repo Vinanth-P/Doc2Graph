@@ -60,37 +60,21 @@ def _token_to_entity(
     entity_by_id: dict[str, Entity] | None = None,
 ) -> Optional[Entity]:
     """Try to find an NER entity covering this token (or its head noun phrase or via coreference)."""
-    # 1. Direct or stripped span match
     clean_text = token.text.rstrip(".,;:!?\"')}]")
     t_start, t_end = token.idx, token.idx + len(clean_text)
 
-    exact_matches = [
-        ent for ent in span_map.values()
-        if ent.text.rstrip(".,;:!?\"')}]").casefold() == clean_text.casefold()
-    ]
-    if not exact_matches and entity_by_id:
-        exact_matches = [
-            ent for ent in entity_by_id.values()
-            if ent.text.rstrip(".,;:!?\"')}]").casefold() == clean_text.casefold()
-        ]
-    if exact_matches:
-        ent = min(exact_matches, key=lambda candidate: abs(candidate.start_char - t_start))
-        if coref_map and entity_by_id and ent.entity_id in coref_map:
-            return entity_by_id.get(coref_map[ent.entity_id], ent)
-        return ent
-
+    # 1. Exact or overlapping character span in span_map (current sentence / chunk)
     for (s, e), ent in span_map.items():
         if (s == token.idx and e == token.idx + len(token.text)) or (s == t_start and e == t_end):
             if coref_map and entity_by_id and ent.entity_id in coref_map:
                 return entity_by_id.get(coref_map[ent.entity_id], ent)
             return ent
-        # Overlapping span
         if not (e <= t_start or s >= t_end):
             if coref_map and entity_by_id and ent.entity_id in coref_map:
                 return entity_by_id.get(coref_map[ent.entity_id], ent)
             return ent
 
-    # Try noun chunks
+    # 2. Try noun chunks overlapping with span_map
     for chunk in token.doc.noun_chunks:
         if chunk.start <= token.i < chunk.end:
             for (s, e), ent in span_map.items():
@@ -99,7 +83,18 @@ def _token_to_entity(
                         return entity_by_id.get(coref_map[ent.entity_id], ent)
                     return ent
 
-    # Coreference resolution for pronouns and definite NPs
+    # 3. Exact string match within current chunk's span_map only
+    exact_matches = [
+        ent for ent in span_map.values()
+        if ent.text.rstrip(".,;:!?\"')}]").casefold() == clean_text.casefold()
+    ]
+    if exact_matches:
+        ent = min(exact_matches, key=lambda candidate: abs(candidate.start_char - t_start))
+        if coref_map and entity_by_id and ent.entity_id in coref_map:
+            return entity_by_id.get(coref_map[ent.entity_id], ent)
+        return ent
+
+    # 4. Coreference resolution for pronouns and definite NPs
     if coref_map and entity_by_id:
         tok_low = clean_text.lower()
         position_key = f"{chunk_id}:ref:{token.idx}"
@@ -130,7 +125,13 @@ def _dep_distance(a: Token, b: Token) -> int:
 
 
 def _has_negation(token: Token) -> bool:
-    return any(c.dep_ == "neg" for c in token.subtree)
+    """Check direct negation on the token or its auxiliary children."""
+    if any(c.dep_ == "neg" for c in token.children):
+        return True
+    for c in token.children:
+        if c.dep_ in ("aux", "auxpass") and any(gc.dep_ == "neg" for gc in c.children):
+            return True
+    return False
 
 
 def _noun_phrase_product(token: Token, chunk_id: str) -> Optional[Entity]:
@@ -227,59 +228,69 @@ class DepPatternExtractor:
                 subj_tok, obj_tok = actor, subj_tok
             if subj_tok is None or obj_tok is None:
                 continue
-            subj_ent = _token_to_entity(subj_tok, span_map, chunk_id, coref_map, entity_by_id)
-            obj_ent = _token_to_entity(
-                obj_tok, span_map, chunk_id, coref_map, entity_by_id
-            )
+
             prep = next(
                 (child for child in token.children
                  if child.dep_ == "prep" and child.text.lower() == "in"),
                 None,
             )
-            if token.lemma_ == "store" and prep is not None:
-                storage_obj = next(
-                    (child for child in prep.children if child.dep_ == "pobj"),
-                    None,
-                )
-                storage_ent = (
-                    _token_to_entity(
-                        storage_obj, span_map, chunk_id, coref_map, entity_by_id
-                    )
-                    if storage_obj is not None else None
-                )
-                if storage_ent is not None:
-                    obj_ent = storage_ent
-            if obj_ent is None and token.lemma_ in {
-                "provide", "supply", "store", "use", "develop", "lead"
-            }:
-                obj_ent = _noun_phrase_product(obj_tok, chunk_id)
-            if obj_ent is None and token.lemma_ in {"monitor"}:
-                obj_ent = _token_to_entity(
-                    obj_tok, span_map, chunk_id, coref_map, entity_by_id
-                )
-            if (
-                token.lemma_ == "store"
-                and subj_ent is not None
-                and obj_ent is not None
-                and subj_ent.entity_id == obj_ent.entity_id
-            ):
-                continue
-            if subj_ent is None or obj_ent is None:
-                continue
             prep_text = prep.text if prep is not None else next(
                 (c.text for c in token.children if c.dep_ == "prep"), None
             )
-            triples.append(RawTriple(
-                subject=subj_ent,
-                predicate=token.lemma_,
-                object=obj_ent,
-                prep=prep_text,
-                source="svo",
-                sent_idx=sent_idx,
-                chunk_id=chunk_id,
-                dep_distance=_dep_distance(subj_tok, obj_tok),
-                has_negation=_has_negation(token),
-            ))
+
+            # Expand coordination across subjects and objects (Cartesian product)
+            subj_tokens = [subj_tok, *subj_tok.conjuncts]
+            obj_tokens = [obj_tok, *obj_tok.conjuncts]
+
+            for s_tok in subj_tokens:
+                subj_ent = _token_to_entity(s_tok, span_map, chunk_id, coref_map, entity_by_id)
+                if subj_ent is None:
+                    continue
+
+                for o_tok in obj_tokens:
+                    obj_ent = _token_to_entity(o_tok, span_map, chunk_id, coref_map, entity_by_id)
+                    if token.lemma_ == "store" and prep is not None:
+                        storage_obj = next(
+                            (child for child in prep.children if child.dep_ == "pobj"),
+                            None,
+                        )
+                        storage_ent = (
+                            _token_to_entity(
+                                storage_obj, span_map, chunk_id, coref_map, entity_by_id
+                            )
+                            if storage_obj is not None else None
+                        )
+                        if storage_ent is not None:
+                            obj_ent = storage_ent
+                    if obj_ent is None and token.lemma_ in {
+                        "provide", "supply", "store", "use", "develop", "lead"
+                    }:
+                        obj_ent = _noun_phrase_product(o_tok, chunk_id)
+                    if obj_ent is None and token.lemma_ in {"monitor"}:
+                        obj_ent = _token_to_entity(
+                            o_tok, span_map, chunk_id, coref_map, entity_by_id
+                        )
+                    if (
+                        token.lemma_ == "store"
+                        and subj_ent is not None
+                        and obj_ent is not None
+                        and subj_ent.entity_id == obj_ent.entity_id
+                    ):
+                        continue
+                    if obj_ent is None:
+                        continue
+
+                    triples.append(RawTriple(
+                        subject=subj_ent,
+                        predicate=token.lemma_,
+                        object=obj_ent,
+                        prep=prep_text,
+                        source="svo",
+                        sent_idx=sent_idx,
+                        chunk_id=chunk_id,
+                        dep_distance=_dep_distance(s_tok, o_tok),
+                        has_negation=_has_negation(token),
+                    ))
         return triples
 
     def _appositive(
@@ -466,17 +477,30 @@ class DepPatternExtractor:
         """Nominal: 'Tesla founder Musk' or 'Musk, founder of Tesla'."""
         triples = []
         for token in sent:
+            if token.pos_ not in {"NOUN", "PROPN"}:
+                continue
             if token.lemma_.lower() not in ROLE_NOUNS:
                 continue
-            # Possessive or nmod child = the entity being described
+            # Possessive, compound, nmod, or preposition child
             org_tok = next(
                 (c for c in token.children if c.dep_ in {"compound", "nmod", "poss", "prep"}),
                 None,
             )
-            # The head noun phrase = the person
-            person_tok = token.head
+            # When child is a preposition, e.g. "founder of Tesla", step down to its pobj child
+            if org_tok is not None and org_tok.dep_ == "prep":
+                pobj = next((gc for gc in org_tok.children if gc.dep_ == "pobj"), None)
+                if pobj is not None:
+                    org_tok = pobj
             if org_tok is None:
                 continue
+
+            # The head noun phrase = the person
+            person_tok = token.head
+            if person_tok.pos_ in ("AUX", "VERB"):
+                subj = next((c for c in person_tok.children if c.dep_ in ("nsubj", "nsubjpass")), None)
+                if subj is not None:
+                    person_tok = subj
+
             org_ent    = _token_to_entity(org_tok, span_map, chunk_id, coref_map, entity_by_id)
             person_ent = _token_to_entity(person_tok, span_map, chunk_id, coref_map, entity_by_id)
             if org_ent and person_ent:

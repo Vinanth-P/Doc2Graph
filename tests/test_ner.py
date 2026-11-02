@@ -51,3 +51,23 @@ def test_gazetteer_finds_multiple_repeated_and_lowercase_names(tmp_path):
     assert len({e.entity_id for e in entities}) == 4
     assert all(text[e.start_char:e.end_char] == e.text for e in entities)
 
+
+
+def test_generic_acronyms_not_forced_org():
+    text = "The CEO sent the PDF to HR in the US during Q3."
+    ents = regex_entities(text, chunk_id="chunk_test")
+    org_texts = {e.text for e in ents if e.type == "ORG"}
+    assert "CEO" not in org_texts
+    assert "PDF" not in org_texts
+    assert "HR" not in org_texts
+    assert "US" not in org_texts
+    assert "Q3" not in org_texts
+
+
+def test_title_pair_not_falsely_labeled_person(nlp):
+    runner = NERRunner()
+    text = "Chief Executive officers met in Austin."
+    doc = nlp(text)
+    entities = runner.run(doc, chunk_id="chunk_test", raw_text=text)
+    person_texts = {e.text for e in entities if e.type == "PERSON"}
+    assert "Chief Executive" not in person_texts

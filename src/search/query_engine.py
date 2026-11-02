@@ -60,16 +60,17 @@ class QueryEngine:
         self, source_id: str, target_id: str, max_hops: int = 5
     ) -> list[dict]:
         """Find the shortest path between two entities."""
+        safe_hops = max(1, min(int(max_hops), 10))
         async with self._driver.session() as s:
             result = await s.run(
-                """
+                f"""
                 MATCH p = shortestPath(
-                    (a:Entity {id: $src})-[*1..$max_hops]-(b:Entity {id: $tgt})
+                    (a:Entity {{id: $src}})-[*1..{safe_hops}]-(b:Entity {{id: $tgt}})
                 )
                 UNWIND nodes(p) AS n
                 RETURN n.id AS id, n.name AS name, n.type AS type
                 """,
-                src=source_id, tgt=target_id, max_hops=max_hops,
+                src=source_id, tgt=target_id,
             )
             return [r.data() async for r in result]
 
@@ -78,18 +79,25 @@ class QueryEngine:
         async with self._driver.session() as s:
             result = await s.run(
                 """
-                OPTIONAL MATCH (e:Entity)
-                WHERE $doc_id IS NULL OR EXISTS {
-                    MATCH (e)-[:MENTIONED_IN]->(:Chunk {doc_id: $doc_id})
+                CALL () {
+                    MATCH (e:Entity)
+                    WHERE $doc_id IS NULL OR EXISTS {
+                        MATCH (e)-[:MENTIONED_IN]->(:Chunk {doc_id: $doc_id})
+                    }
+                    RETURN count(e) AS entity_count
                 }
-                WITH count(e) AS entity_count
-                OPTIONAL MATCH (:Entity)-[r]->(:Entity)
-                WHERE $doc_id IS NULL OR any(cid IN coalesce(r.chunk_ids, [])
-                    WHERE cid STARTS WITH $doc_id + ':')
-                WITH entity_count, count(r) AS edge_count
-                OPTIONAL MATCH (d:Document)
-                WHERE $doc_id IS NULL OR d.id = $doc_id
-                RETURN entity_count, edge_count, count(d) AS doc_count
+                CALL () {
+                    MATCH (:Entity)-[r]->(:Entity)
+                    WHERE $doc_id IS NULL OR any(cid IN coalesce(r.chunk_ids, [])
+                        WHERE cid STARTS WITH $doc_id + ':')
+                    RETURN count(r) AS edge_count
+                }
+                CALL () {
+                    MATCH (d:Document)
+                    WHERE $doc_id IS NULL OR d.id = $doc_id
+                    RETURN count(d) AS doc_count
+                }
+                RETURN entity_count, edge_count, doc_count
                 """,
                 doc_id=doc_id,
             )

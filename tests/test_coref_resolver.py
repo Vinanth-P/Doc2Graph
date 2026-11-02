@@ -132,3 +132,25 @@ def test_coref_alias():
 
     # Shorter alias mapped to full entity
     assert res.get("c:1:0:4") == "c:0:0:9"
+
+
+def test_coref_alias_backward_resolution():
+    # Verify that a shorter mention in an earlier chunk resolves to the longer name appearing later
+    chunks = [
+        SentenceChunk("c:0", "d1", 0, "Musk visited the facility.", 0, 26),
+        SentenceChunk("c:1", "d1", 1, "Elon Musk inspected the line.", 27, 56),
+    ]
+    short_ent = Entity("c:0:0:4", "Musk", "Musk", "PERSON", 0, 4, "spacy", "c:0")
+    full_ent = Entity("c:1:0:9", "Elon Musk", "Elon Musk", "PERSON", 0, 9, "spacy", "c:1")
+
+    res = RuleBasedCorefResolver().resolve(chunks, {"c:0": [short_ent], "c:1": [full_ent]})
+    assert res.get("c:0:0:4") == "c:1:0:9"
+
+
+def test_coref_is_alias_no_loose_substring():
+    assert RuleBasedCorefResolver._is_alias("Apple", "Snapple") is False
+    assert RuleBasedCorefResolver._is_alias("Dan", "Jordan") is False
+    assert RuleBasedCorefResolver._is_alias("Rob", "Problem") is False
+    assert RuleBasedCorefResolver._is_alias("Musk", "Elon Musk") is True
+    assert RuleBasedCorefResolver._is_alias("Tesla", "Tesla Inc") is True
+    assert RuleBasedCorefResolver._is_alias("WHO", "World Health Organization") is True
