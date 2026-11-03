@@ -20,6 +20,17 @@
   let uploadVersion = 0;
   let graphRequest = 0;
 
+  function escapeHtml(value) {
+    return String(value ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;"}[c]));
+  }
+
+  function showCanvasState(title, message, upload = false) {
+    document.getElementById("canvasState").style.display = "block";
+    document.getElementById("canvasStateTitle").textContent = title;
+    document.getElementById("canvasStateMessage").textContent = message;
+    document.getElementById("emptyUpload").style.display = upload ? "inline-block" : "none";
+  }
+
   // ── Initialization ──────────────────────────────────────────────────────────
 
   function init() {
@@ -57,6 +68,7 @@
       .on("zoom", (event) => g.attr("transform", event.transform));
     svg.call(zoomBehavior);
 
+    document.getElementById("emptyUpload").addEventListener("click", () => document.getElementById("fileInput").click());
     setupControls();
     setupUpload();
     setupSearch();
@@ -68,7 +80,13 @@
       const w = container.clientWidth;
       const h = container.clientHeight;
       svg.attr("width", w).attr("height", h);
-      if (simulation) simulation.force("center", d3.forceCenter(w / 2, h / 2)).restart();
+      if (simulation) {
+        simulation
+          .force("center", d3.forceCenter(w / 2, h / 2))
+          .force("x", d3.forceX(w / 2).strength(0.035))
+          .force("y", d3.forceY(h / 2).strength(0.035))
+          .alpha(0.3).restart();
+      }
     });
   }
 
@@ -82,6 +100,7 @@
     activeFilter = "ALL";
     document.querySelectorAll("#typeFilters .type-tag").forEach((button) => {
       button.classList.toggle("active", button.dataset.type === "ALL");
+      button.setAttribute("aria-pressed", String(button.dataset.type === "ALL"));
     });
     renderGraph(currentData);
     document.getElementById("searchResults").style.display = "none";
@@ -139,16 +158,19 @@
     const docId = activeDocId;
     const request = ++graphRequest;
     if (!docId) return;
+    showCanvasState("Loading your graph...", "Bringing your document's connections into view.");
     try {
       let url = `/api/graph/visualization?limit=150&doc_id=${encodeURIComponent(docId)}`;
       if (centerEntityId) url += `&entity_id=${encodeURIComponent(centerEntityId)}`;
       const res = await fetch(url);
-      if (!res.ok) return;
+      if (!res.ok) throw new Error("Graph request failed");
       const data = await res.json();
       if (docId !== activeDocId || request !== graphRequest) return;
       currentData = data;
       renderGraph(data);
     } catch (e) {
+      if (docId !== activeDocId || request !== graphRequest) return;
+      showCanvasState("We couldn't load this graph.", "Check your connection, then select Refresh graph to try again.");
       console.warn("Could not load visualization data", e);
     }
   }
@@ -170,6 +192,18 @@
         nodeIds.has(typeof l.target === "object" ? l.target.id : l.target)
     );
 
+    document.getElementById("canvasState").style.display = filteredNodes.length ? "none" : "block";
+    if (!filteredNodes.length) {
+      showCanvasState(
+        activeDocId ? "No entities to show yet." : "Every document has a bigger picture.",
+        activeDocId ? "Try another entity type, or upload a document with people, organizations and places." : "Upload a document to discover the people, organizations and ideas that connect it.",
+        !activeDocId
+      );
+    }
+    document.getElementById("graphSummary").textContent = activeDocId
+      ? `${filteredNodes.length} entities / ${filteredLinks.length} connections in view`
+      : "Ready to explore";
+
     // D3 links need object references
     const linksCopy = filteredLinks.map((d) => Object.assign({}, d));
     const nodesCopy = filteredNodes.map((d) => Object.assign({}, d));
@@ -187,6 +221,9 @@
       )
       .force("charge", d3.forceManyBody().strength(-280))
       .force("center", d3.forceCenter(width / 2, height / 2))
+      // Gently pull disconnected groups together without shortening their links.
+      .force("x", d3.forceX(width / 2).strength(0.035))
+      .force("y", d3.forceY(height / 2).strength(0.035))
       .force("collision", d3.forceCollide().radius(25));
 
     // Links
@@ -214,6 +251,9 @@
       .selectAll("circle")
       .data(nodesCopy, (d) => d.id)
       .join("circle")
+      .attr("tabindex", 0)
+      .attr("role", "button")
+      .attr("aria-label", d => `${d.name}, ${d.type}. Inspect entity`)
       .attr("r", (d) => (d.id === selectedNode ? 14 : 10))
       .attr("fill", (d) => TYPE_COLORS[d.type] || DEFAULT_COLOR)
       .attr("stroke", "#FFFFFF")
@@ -238,16 +278,19 @@
     node
       .on("mouseover", (event, d) => {
         tooltip.style.display = "block";
-        tooltip.style.left = event.pageX + 12 + "px";
-        tooltip.style.top = event.pageY - 12 + "px";
-        tooltip.innerHTML = `<strong>${d.name}</strong><br><span style="color:${TYPE_COLORS[d.type] || '#94A3B8'}">${d.type}</span>`;
+        tooltip.style.left = event.clientX + 12 + "px";
+        tooltip.style.top = event.clientY - 12 + "px";
+        tooltip.innerHTML = `<strong>${escapeHtml(d.name)}</strong><br><span style="color:${TYPE_COLORS[d.type] || '#94A3B8'}">${escapeHtml(d.type)}</span>`;
       })
       .on("mousemove", (event) => {
-        tooltip.style.left = event.pageX + 12 + "px";
-        tooltip.style.top = event.pageY - 12 + "px";
+        tooltip.style.left = event.clientX + 12 + "px";
+        tooltip.style.top = event.clientY - 12 + "px";
       })
       .on("mouseout", () => {
         tooltip.style.display = "none";
+      })
+      .on("keydown", (event, d) => {
+        if (event.key === "Enter" || event.key === " ") { event.preventDefault(); selectNode(d); }
       })
       .on("click", (event, d) => {
         event.stopPropagation();
@@ -313,6 +356,7 @@
 
     // Fetch relations
     const list = document.getElementById("outgoingRels");
+    document.getElementById("detailAliases").textContent = "";
     list.innerHTML = "<li>Loading relations...</li>";
     try {
       const res = await fetch(`/api/graph/entities/${encodeURIComponent(d.id)}?doc_id=${encodeURIComponent(docId)}`);
@@ -330,7 +374,7 @@
         } else {
           outgoing.forEach((rel) => {
             const li = document.createElement("li");
-            li.innerHTML = `<strong>${rel.type}</strong> → ${rel.target_name || rel.target_id} <span style="color:#94A3B8">(${(rel.confidence * 100).toFixed(0)}%)</span>`;
+            li.innerHTML = `<strong>${escapeHtml(rel.type)}</strong> → ${escapeHtml(rel.target_name || rel.target_id)} <span style="color:#94A3B8">(${(rel.confidence * 100).toFixed(0)}%)</span>`;
             list.appendChild(li);
           });
         }
@@ -374,7 +418,8 @@
     const buttons = document.querySelectorAll("#typeFilters .type-tag");
     buttons.forEach((btn) => {
       btn.addEventListener("click", () => {
-        buttons.forEach((b) => b.classList.remove("active"));
+        buttons.forEach((b) => { b.classList.remove("active"); b.setAttribute("aria-pressed", "false"); });
+        btn.setAttribute("aria-pressed", "true");
         btn.classList.add("active");
         activeFilter = btn.dataset.type;
         renderGraph(currentData);
@@ -403,9 +448,10 @@
             resultsContainer.innerHTML = "<div class='search-result-item'>No entities found</div>";
           } else {
             results.forEach((r) => {
-              const item = document.createElement("div");
+              const item = document.createElement("button");
+              item.type = "button";
               item.className = "search-result-item";
-              item.innerHTML = `<span>${r.name}</span> <span class="badge" style="background:${TYPE_COLORS[r.type] || DEFAULT_COLOR}">${r.type}</span>`;
+              item.innerHTML = `<span>${escapeHtml(r.name)}</span> <span class="badge" style="background:${TYPE_COLORS[r.type] || DEFAULT_COLOR}">${escapeHtml(r.type)}</span>`;
               item.addEventListener("click", () => {
                 resultsContainer.style.display = "none";
                 selectNode(r);
@@ -434,7 +480,7 @@
 
     browseBtn.addEventListener("click", () => fileInput.click());
     dropZone.addEventListener("click", (e) => {
-      if (e.target !== browseBtn) fileInput.click();
+      if (e.target !== browseBtn && e.target !== fileInput) fileInput.click();
     });
 
     dropZone.addEventListener("dragover", (e) => {
@@ -450,12 +496,14 @@
 
     fileInput.addEventListener("change", () => {
       if (fileInput.files.length) uploadFile(fileInput.files[0]);
+      fileInput.value = "";
     });
   }
 
   async function uploadFile(file) {
     const version = ++uploadVersion;
     setDocument(null);
+    showCanvasState("Connecting the dots...", "Your document is being processed. The graph will appear here when it's ready.");
     document.getElementById("activeDocumentName").textContent = `Processing: ${file.name}`;
     const statusBox = document.getElementById("jobStatus");
     const fileNameEl = document.getElementById("jobFileName");
@@ -496,6 +544,7 @@
         if (version !== uploadVersion) { clearInterval(timer); return; }
         try {
           const pollRes = await fetch(`/api/jobs/${jobId}`);
+          if (!pollRes.ok) throw new Error("Unable to check processing status");
           if (pollRes.ok) {
             const job = await pollRes.json();
             if (version !== uploadVersion) { clearInterval(timer); return; }
@@ -514,10 +563,16 @@
               badgeEl.className = "badge failed";
               msgEl.textContent = `Failed: ${job.error || "Unknown error"}`;
               document.getElementById("activeDocumentName").textContent = "Upload failed. No document is displayed.";
+      showCanvasState("This document couldn't be processed.", "Check the upload message for details, then choose another file.", true);
             }
           }
         } catch (e) {
           clearInterval(timer);
+          if (version !== uploadVersion) return;
+          badgeEl.textContent = "connection lost";
+          badgeEl.className = "badge failed";
+          msgEl.textContent = "Could not check processing status. Reload the page to reconnect.";
+          showCanvasState("Connection interrupted", "Reload the page to check whether your document has finished processing.");
         }
       }, 1500);
     } catch (err) {
@@ -527,6 +582,7 @@
       progressEl.style.width = "100%";
       msgEl.textContent = `Error: ${err.message}`;
       document.getElementById("activeDocumentName").textContent = "Upload failed. No document is displayed.";
+      showCanvasState("This document couldn't be processed.", "Check the upload message for details, then choose another file.", true);
     }
   }
 

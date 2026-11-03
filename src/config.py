@@ -37,6 +37,7 @@ class Settings(BaseSettings):
 
     # Entity resolution
     resolution_threshold: float = 0.85
+    min_related_confidence: float = 0.60
 
     # Auth (empty = disabled)
     api_key: str = ""

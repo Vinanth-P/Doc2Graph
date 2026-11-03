@@ -102,7 +102,7 @@ class GraphBuilder:
         If any query fails, the entire transaction rolls back cleanly so that no partial
         or corrupt imports persist in Neo4j.
         """
-        async with session.begin_transaction() as tx:
+        async with await session.begin_transaction() as tx:
             await self.clear_document(tx, doc_id)
             await self.write_document(tx, filename, doc_id)
             await self.write_chunks(tx, chunks)
@@ -118,7 +118,22 @@ class GraphBuilder:
             MATCH (a:Entity)-[r]->(b:Entity)
             WHERE any(cid IN coalesce(r.chunk_ids, [])
                 WHERE cid STARTS WITH $doc_id + ':')
-            DELETE r
+            WITH r, [cid IN r.chunk_ids
+                WHERE NOT (cid STARTS WITH $doc_id + ':')] AS remaining
+            SET r.chunk_ids = remaining, r.evidence_count = size(remaining)
+            FOREACH (_ IN CASE WHEN size(remaining) = 0 THEN [1] ELSE [] END |
+                DELETE r)
+            """,
+            doc_id=doc_id,
+        )
+        await session.run(
+            """
+            MATCH (entity:Entity)-[:MENTIONED_IN]->(c:Chunk {doc_id: $doc_id})
+            WHERE NOT EXISTS {
+                MATCH (entity)-[:MENTIONED_IN]->(other:Chunk)
+                WHERE other.doc_id <> $doc_id
+            }
+            DETACH DELETE entity
             """,
             doc_id=doc_id,
         )
@@ -128,13 +143,6 @@ class GraphBuilder:
             DETACH DELETE c
             """,
             doc_id=doc_id,
-        )
-        await session.run(
-            """
-            MATCH (entity:Entity)
-            WHERE NOT (entity)-[:MENTIONED_IN]->()
-            DETACH DELETE entity
-            """
         )
         await session.run(
             "MATCH (d:Document {id: $doc_id}) DETACH DELETE d",
@@ -274,7 +282,8 @@ def build_resolved_entities(
 
     for ent in entities:
         cid = id_map.get(ent.entity_id, ent.entity_id)
-        entity_to_chunks[cid].append(ent.chunk_id)
+        if ent.chunk_id not in entity_to_chunks[cid]:
+            entity_to_chunks[cid].append(ent.chunk_id)
 
         if cid not in canonical:
             canonical[cid] = ResolvedEntity(
@@ -327,6 +336,7 @@ def build_resolved_edges(
                 e.extractors.append(t.extractor)
             if t.confidence >= e.confidence and t.evidence:
                 e.evidence = t.evidence
+                e.raw_predicate = t.raw_predicate
         else:
             edge_map[key] = ResolvedEdge(
                 relation_type=t.relation_type,

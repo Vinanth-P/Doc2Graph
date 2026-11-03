@@ -10,21 +10,49 @@ from pathlib import Path
 from src.ingestion.text_validation import validate_text
 
 
+# Minimum ratio of printable ASCII/Latin characters required to consider
+# pdfplumber's extraction trustworthy. Below this threshold the page is
+# treated as symbol-encoded or scanned and re-extracted via OCR.
+_MIN_LATIN_RATIO = 0.60
+
+
+def _latin_ratio(text: str) -> float:
+    """Return the fraction of characters that are printable Latin/ASCII."""
+    if not text:
+        return 0.0
+    latin = sum(
+        1 for c in text
+        if "\x20" <= c <= "\x7e"           # basic ASCII printable
+        or "\xa0" <= c <= "\xff"            # Latin-1 supplement
+        or c in ("\n", "\r", "\t")
+    )
+    return latin / len(text)
+
+
 def load_pdf(content: bytes) -> str:
-    """Extract text from a PDF byte string using pdfplumber (layout-aware)."""
+    """Extract text from a PDF byte string using pdfplumber (layout-aware).
+
+    For each page, pdfplumber's extracted text is accepted only when the
+    fraction of printable Latin characters is above ``_MIN_LATIN_RATIO``.
+    Pages that fall below the threshold (symbol-encoded fonts, scanned pages,
+    or purely graphical pages) fall back to Tesseract OCR so that garbled
+    glyph sequences are never passed to the NLP pipeline.
+    """
     import pdfplumber
 
     text_parts: list[str] = []
     with pdfplumber.open(io.BytesIO(content)) as pdf:
         for page in pdf.pages:
-            page_text = page.extract_text()
-            if page_text:
+            page_text = page.extract_text() or ""
+            if page_text and _latin_ratio(page_text) >= _MIN_LATIN_RATIO:
                 text_parts.append(page_text)
             else:
-                # Scanned page — fall back to OCR
+                # Scanned page or symbol-encoded font — fall back to OCR
                 from src.ingestion.ocr import ocr_page_image
                 img = page.to_image(resolution=300).original
-                text_parts.append(ocr_page_image(img))
+                ocr_text = ocr_page_image(img)
+                if ocr_text.strip():
+                    text_parts.append(ocr_text)
     return "\n\n".join(text_parts)
 
 

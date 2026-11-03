@@ -89,6 +89,14 @@ async def test_shared_entities_do_not_leak_other_documents():
                 assert {n["id"] for n in await engine.search_entities("QuasarBeta", doc_id=b)} == {only_b}
                 assert await engine.get_visualization_data(doc_id=prefix + "-missing") == {"nodes": [], "links": []}
                 assert await engine.get_graph_stats(doc_id=prefix + "-missing") == {"entity_count": 0, "edge_count": 0, "doc_count": 0}
+                # Reimport cleanup must retain evidence owned by document B.
+                from src.graph.graph_builder import GraphBuilder
+                await GraphBuilder().clear_document(tx, a)
+                remaining = await engine.get_visualization_data(doc_id=b)
+                assert {n["id"] for n in remaining["nodes"]} == {person, org, only_b}
+                assert len(remaining["links"]) == 2
+                shared = next(e for e in remaining["links"] if e["type"] == "EMPLOYED_BY")
+                assert shared["evidence_count"] == 1
             finally:
                 await tx.rollback()
     finally:

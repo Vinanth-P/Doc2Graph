@@ -129,8 +129,8 @@ def preprocess(
             doc_id=doc_id,
             sent_idx=idx,
             text=sent_text,
-            start_char=sent.start_char,
-            end_char=sent.end_char,
+            start_char=sent.start_char + len(sent.text) - len(sent.text.lstrip()),
+            end_char=sent.end_char - (len(sent.text) - len(sent.text.rstrip())),
         ))
 
     return PreprocessedDoc(
@@ -150,10 +150,14 @@ def build_windows(
     """Slide a window over sentence chunks.
 
     Returns a list of (window_chunks, center_chunk) tuples.
-    Triples extracted from a window are attributed to the center chunk's ID.
+    The extractor attributes triples to their actual source chunk in the window.
     Stride 2 means each sentence is covered by ~1.5 windows on average,
     vs stride 1 which would cover each sentence ~window_size times.
     """
+    if window_size < 1 or stride < 1:
+        raise ValueError("window_size and stride must be positive")
+    if stride > window_size:
+        raise ValueError("stride must not exceed window_size (sentences would be skipped)")
     windows = []
     i = 0
     while i < len(chunks):

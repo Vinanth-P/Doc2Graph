@@ -9,4 +9,56 @@ Amazon
 NVIDIA
 Meta
 Anthropic
-
+Sequoia Capital
+Andreessen Horowitz
+a16z
+Benchmark
+Accel
+SoftBank
+SoftBank Vision Fund
+Y Combinator
+Tiger Global
+Founders Fund
+Khosla Ventures
+Lightspeed Venture Partners
+Bessemer Venture Partners
+General Catalyst
+Greylock Partners
+Kleiner Perkins
+Coatue
+IVP
+Index Ventures
+Thrive Capital
+Insight Partners
+Blackstone
+BlackRock
+KKR
+Carlyle Group
+Apollo Global Management
+Goldman Sachs
+Morgan Stanley
+JPMorgan Chase
+Citigroup
+Bank of America
+Berkshire Hathaway
+Stripe
+Databricks
+Scale AI
+Mistral AI
+Perplexity
+Cohere
+ByteDance
+Uber
+Airbnb
+Salesforce
+Oracle
+Adobe
+Intel
+AMD
+Qualcomm
+Broadcom
+Arm
+TSMC
+Samsung
+Snowflake
+Palantir

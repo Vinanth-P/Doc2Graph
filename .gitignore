@@ -60,6 +60,9 @@ models/*.v1.joblib
 testdata.pdf
 doc2graph_test_data_02.txt
 *.log
+PROJECT_EVALUATION_SUMMARY.md
+project_evaluation_summary*
+*project_evaluation*
 
 # Node / Frontend testing
 node_modules/

@@ -143,18 +143,23 @@ def test_feature_encoding_is_independent_of_encounter_order():
 
 
 @pytest.fixture
-def pipeline_capture(monkeypatch, nlp):
+def pipeline_capture(monkeypatch, nlp, tmp_path):
     import src.pipeline as pipeline
     from src.graph.entity_resolver import EntityResolver
-    builder = SimpleNamespace(**{name: AsyncMock() for name in (
-        "write_document", "write_chunks", "write_entities", "write_mentions", "write_edges")})
+    builder = pipeline.GraphBuilder()
+    for name in ("clear_document", "write_document", "write_chunks",
+                 "write_entities", "write_mentions", "write_edges"):
+        monkeypatch.setattr(builder, name, AsyncMock())
     driver = MagicMock()
-    driver.session.return_value.__aenter__ = AsyncMock(return_value=MagicMock())
+    session = MagicMock()
+    session.begin_transaction = AsyncMock(return_value=AsyncMock())
+    driver.session.return_value.__aenter__ = AsyncMock(return_value=session)
     driver.session.return_value.__aexit__ = AsyncMock(return_value=None)
     driver.close = AsyncMock()
     monkeypatch.setattr(pipeline, "_get_nlp", lambda: nlp)
     monkeypatch.setattr(pipeline, "get_settings", lambda: SimpleNamespace(
         window_size=3, window_stride=2, resolution_threshold=0.85,
+        intermediate_graph_dir=str(tmp_path),
         neo4j_uri="unused", neo4j_user="unused", neo4j_password="unused"))
     monkeypatch.setattr(pipeline.pipeline_lock, "acquire", lambda: None)
     monkeypatch.setattr(pipeline.pipeline_lock, "release", lambda: None)

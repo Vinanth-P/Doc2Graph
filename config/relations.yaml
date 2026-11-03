@@ -4,22 +4,31 @@ canonical_relations:
     lemmas:
       - {lemma: "join",   requires_prep: null,          lemma_swap: false}
       - {lemma: "belong", requires_prep: ["to"],         lemma_swap: false}
+      - {lemma: "member", requires_prep: ["of"],        lemma_swap: false}
+      - {lemma: "serve",  requires_prep: ["on", "at", "as"], lemma_swap: false}
     entity_type_pairs: [[PERSON, ORG]]
 
   EMPLOYED_BY:
     lemmas:
-      - {lemma: "hire",    requires_prep: null, lemma_swap: true}
-      - {lemma: "employ",  requires_prep: null, lemma_swap: true}
-      - {lemma: "appoint", requires_prep: null, lemma_swap: true}
-      - {lemma: "work",    requires_prep: ["for", "at"], lemma_swap: false}
+      - {lemma: "hire",      requires_prep: null, lemma_swap: true}
+      - {lemma: "employ",    requires_prep: null, lemma_swap: true}
+      - {lemma: "appoint",   requires_prep: null, lemma_swap: true}
+      - {lemma: "name",      requires_prep: ["as", "to"], lemma_swap: true}
+      - {lemma: "work",      requires_prep: ["for", "at"], lemma_swap: false}
+      - {lemma: "executive", requires_prep: ["at", "of"], lemma_swap: false}
+      - {lemma: "officer",   requires_prep: ["at", "of"], lemma_swap: false}
+      - {lemma: "manager",   requires_prep: ["at", "of"], lemma_swap: false}
     entity_type_pairs: [[PERSON, ORG]]
 
   ACQUIRED:
     lemmas:
-      - {lemma: "acquire",  requires_prep: null, lemma_swap: false}
-      - {lemma: "buy",      requires_prep: null, lemma_swap: false}
-      - {lemma: "purchase", requires_prep: null, lemma_swap: false}
-    # "merge" excluded — bidirectional/ambiguous
+      - {lemma: "acquire",     requires_prep: null, lemma_swap: false}
+      - {lemma: "buy",         requires_prep: null, lemma_swap: false}
+      - {lemma: "purchase",    requires_prep: null, lemma_swap: false}
+      - {lemma: "take",        requires_prep: ["over"], lemma_swap: false}
+      - {lemma: "absorb",      requires_prep: null, lemma_swap: false}
+      - {lemma: "acquisition", requires_prep: ["of"], lemma_swap: false}
+      - {lemma: "merge",       requires_prep: ["with"], lemma_swap: false}
     entity_type_pairs: [[ORG, ORG]]
 
   LOCATED_IN:
@@ -27,6 +36,9 @@ canonical_relations:
       - {lemma: "locate",      requires_prep: ["in", "at"], lemma_swap: false}
       - {lemma: "base",        requires_prep: ["in", "at"], lemma_swap: false}
       - {lemma: "headquarter", requires_prep: ["in", "at"], lemma_swap: false}
+      - {lemma: "operate",     requires_prep: ["in", "out of"], lemma_swap: false}
+      - {lemma: "incorporate", requires_prep: ["in"], lemma_swap: false}
+      - {lemma: "expand",      requires_prep: ["to", "into"], lemma_swap: false}
     entity_type_pairs: [[ORG, GPE], [PERSON, GPE]]
 
   FOUNDED:
@@ -36,65 +48,108 @@ canonical_relations:
         lemma_swap: false
         # Disambiguate "found" (find past tense) vs "found" (establish):
         # predicate_normalizer.py checks that the direct object is typed ORG.
-        # "Musk found a bug" → reject (dobj not ORG)
-        # "Musk founded Tesla" → accept (dobj=Tesla, ORG)
-    entity_type_pairs: [[PERSON, ORG]]
+        # "Musk found a bug" -> reject (dobj not ORG)
+        # "Musk founded Tesla" -> accept (dobj=Tesla, ORG)
+      - {lemma: "co-found",    requires_prep: null, lemma_swap: false}
+      - {lemma: "cofound",     requires_prep: null, lemma_swap: false}
+      - {lemma: "co",          requires_prep: null, lemma_swap: false}
+      - {lemma: "establish",   requires_prep: null, lemma_swap: false}
+      - {lemma: "start",       requires_prep: null, lemma_swap: false}
+      - {lemma: "launch",      requires_prep: null, lemma_swap: false}
+      - {lemma: "create",      requires_prep: null, lemma_swap: false}
+      - {lemma: "founder",     requires_prep: null, lemma_swap: false}
+      - {lemma: "co-founder",  requires_prep: null, lemma_swap: false}
+    entity_type_pairs: [[PERSON, ORG], [ORG, ORG]]
 
   INVESTED_IN:
     lemmas:
-      - {lemma: "invest",  requires_prep: ["in"], lemma_swap: false}
-      - {lemma: "finance", requires_prep: null,   lemma_swap: false}
+      - {lemma: "invest",      requires_prep: ["in"], lemma_swap: false}
+      - {lemma: "finance",     requires_prep: null,   lemma_swap: false}
+      - {lemma: "back",        requires_prep: null,   lemma_swap: false}
+      - {lemma: "fund",        requires_prep: null,   lemma_swap: false}
+      - {lemma: "seed",        requires_prep: null,   lemma_swap: false}
+      - {lemma: "sponsor",     requires_prep: null,   lemma_swap: false}
+      - {lemma: "investor",    requires_prep: null,   lemma_swap: false}
+      - {lemma: "pour",        requires_prep: ["into"], lemma_swap: false}
     entity_type_pairs: [[ORG, ORG], [PERSON, ORG]]
 
   PARTNER_WITH:
     lemmas:
       - {lemma: "partner",     requires_prep: ["with"], lemma_swap: false}
-    entity_type_pairs: [[ORG, ORG]]
+      - {lemma: "partnership", requires_prep: ["with"], lemma_swap: false}
+      - {lemma: "team",        requires_prep: ["with", "up with"], lemma_swap: false}
+      - {lemma: "ally",        requires_prep: ["with"], lemma_swap: false}
+      - {lemma: "collaborate", requires_prep: ["with"], lemma_swap: false}
+    entity_type_pairs: [[ORG, ORG], [PERSON, ORG]]
 
   COLLABORATED_WITH:
     lemmas:
       - {lemma: "collaborate", requires_prep: ["with"], lemma_swap: false}
+      - {lemma: "work",        requires_prep: ["with"], lemma_swap: false}
     entity_type_pairs: [[PERSON, PERSON], [ORG, ORG]]
 
   LEADS:
     lemmas:
-      - {lemma: "lead", requires_prep: null, lemma_swap: false}
+      - {lemma: "lead",        requires_prep: null, lemma_swap: false}
+      - {lemma: "head",        requires_prep: null, lemma_swap: false}
+      - {lemma: "direct",      requires_prep: null, lemma_swap: false}
+      - {lemma: "manage",      requires_prep: null, lemma_swap: false}
+      - {lemma: "helm",        requires_prep: null, lemma_swap: false}
+      - {lemma: "run",         requires_prep: null, lemma_swap: false}
+      - {lemma: "oversee",     requires_prep: null, lemma_swap: false}
+      - {lemma: "ceo",         requires_prep: null, lemma_swap: false}
+      - {lemma: "president",   requires_prep: null, lemma_swap: false}
+      - {lemma: "director",    requires_prep: null, lemma_swap: false}
+      - {lemma: "chairman",    requires_prep: null, lemma_swap: false}
+      - {lemma: "chairwoman",  requires_prep: null, lemma_swap: false}
+      - {lemma: "chairperson", requires_prep: null, lemma_swap: false}
+      - {lemma: "chief",       requires_prep: null, lemma_swap: false}
     entity_type_pairs: [[PERSON, ORG], [PERSON, PRODUCT], [ORG, ORG]]
 
   PROVIDED:
     lemmas:
       - {lemma: "provide", requires_prep: null, lemma_swap: false}
+      - {lemma: "deliver", requires_prep: null, lemma_swap: false}
+      - {lemma: "offer",   requires_prep: null, lemma_swap: false}
     entity_type_pairs: [[ORG, ORG], [ORG, PRODUCT], [ORG, GPE]]
 
   SUPPLIED:
     lemmas:
       - {lemma: "supply", requires_prep: null, lemma_swap: false}
+      - {lemma: "vendor", requires_prep: null, lemma_swap: false}
     entity_type_pairs: [[ORG, PRODUCT], [ORG, ORG]]
 
   MONITORS:
     lemmas:
       - {lemma: "monitor", requires_prep: null, lemma_swap: false}
-    entity_type_pairs: [[ORG, GPE], [ORG, PRODUCT]]
+      - {lemma: "audit",   requires_prep: null, lemma_swap: false}
+      - {lemma: "track",   requires_prep: null, lemma_swap: false}
+    entity_type_pairs: [[ORG, GPE], [ORG, PRODUCT], [ORG, ORG]]
 
   FUNDED:
     lemmas:
-      - {lemma: "fund", requires_prep: null, lemma_swap: false}
+      - {lemma: "fund",   requires_prep: null, lemma_swap: false}
+      - {lemma: "grant",  requires_prep: null, lemma_swap: false}
     entity_type_pairs: [[ORG, ORG], [ORG, PRODUCT], [PERSON, ORG]]
 
   DEVELOPED:
     lemmas:
-      - {lemma: "develop", requires_prep: null, lemma_swap: false}
+      - {lemma: "develop",  requires_prep: null, lemma_swap: false}
+      - {lemma: "build",    requires_prep: null, lemma_swap: false}
+      - {lemma: "engineer", requires_prep: null, lemma_swap: false}
+      - {lemma: "design",   requires_prep: null, lemma_swap: false}
     entity_type_pairs: [[PERSON, PRODUCT], [ORG, PRODUCT], [ORG, ORG]]
 
   USES:
     lemmas:
-      - {lemma: "use", requires_prep: null, lemma_swap: false}
+      - {lemma: "use",       requires_prep: null, lemma_swap: false}
+      - {lemma: "adopt",     requires_prep: null, lemma_swap: false}
+      - {lemma: "deploy",    requires_prep: null, lemma_swap: false}
+      - {lemma: "integrate", requires_prep: null, lemma_swap: false}
     entity_type_pairs: [[PERSON, ORG], [ORG, ORG], [ORG, PRODUCT]]
 
   STORES_DATA_IN:
     lemmas:
-      - {lemma: "store", requires_prep: ["in"], lemma_swap: false}
-      - {lemma: "store", requires_prep: ["in"], lemma_swap: false}
-      - {lemma: "store", requires_prep: null, lemma_swap: false}
+      - {lemma: "store",   requires_prep: ["in"], lemma_swap: false}
       - {lemma: "extract", requires_prep: ["in"], lemma_swap: false}
     entity_type_pairs: [[ORG, ORG], [ORG, PRODUCT], [PRODUCT, ORG]]

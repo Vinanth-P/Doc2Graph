@@ -1,5 +1,6 @@
 """Pipeline orchestrator — runs all stages sequentially with file lock."""
 from __future__ import annotations
+import asyncio
 
 import logging
 import json
@@ -24,7 +25,7 @@ from src.graph.graph_builder import (
     build_resolved_entities,
     build_resolved_edges,
 )
-from src.graph.neo4j_client import get_driver, create_driver
+from src.graph.neo4j_client import create_driver
 
 logger = logging.getLogger(__name__)
 
@@ -84,23 +85,23 @@ def _get_nlp() -> spacy.Language:
     return get_nlp()
 
 
-def run_pipeline(
+def run_pipeline_nlp(
     raw_bytes: bytes,
     filename: str,
     ftype: str,
     job_id: str | None = None,
 ) -> dict:
     """
-    Execute the full ingestion pipeline synchronously.
+    Execute the CPU-bound NLP phases of the pipeline synchronously.
 
     Acquires the pipeline file lock before running. Designed to be called
     from a background thread (via asyncio.run_in_executor) to avoid blocking
     the event loop.
 
-    Returns a summary dict with entity/edge counts.
+    Returns a dict of NLP results consumed by run_pipeline_write().
+    The async Neo4j write phase MUST run on the FastAPI event loop to avoid
+    'Future attached to a different loop' errors from the async neo4j driver.
     """
-    import asyncio
-
     settings = get_settings()
 
     pipeline_lock.acquire()
@@ -118,14 +119,11 @@ def run_pipeline(
         # ── Phase 2a: NER ─────────────────────────────────────────────────
         nlp = _get_nlp()
         ner = NERRunner()
-        all_entities = []
         entities_by_chunk: dict[str, list] = {}
 
-        for chunk in chunks:
-            doc = nlp(chunk.text)
+        for chunk, doc in zip(chunks, nlp.pipe(c.text for c in chunks)):
             chunk_entities = ner.run(doc, chunk.chunk_id, chunk.text)
             entities_by_chunk[chunk.chunk_id] = chunk_entities
-            all_entities.extend(chunk_entities)
 
         entities_by_chunk = _remove_document_title_entities(chunks, entities_by_chunk)
         all_entities = [
@@ -143,8 +141,9 @@ def run_pipeline(
 
         # ── Phase 2c: Relation Extraction ─────────────────────────────────
         extractor = DepPatternExtractor()
-        normalizer = PredicateNormalizer(include_extended_relations=True)
-        scorer = RelationScorer()
+        relations_path = getattr(settings, "relations_config_path", "config/relations.yaml")
+        normalizer = PredicateNormalizer(relations_path, include_extended_relations=True)
+        scorer = RelationScorer(relations_path)
 
         windows = build_windows(
             chunks,
@@ -153,9 +152,8 @@ def run_pipeline(
         )
 
         raw_triples = []
-        for window_chunks, center_chunk in windows:
-            window_text = " ".join(c.text for c in window_chunks)
-            window_doc = nlp(window_text)
+        window_docs = nlp.pipe(" ".join(c.text for c in window) for window, _ in windows)
+        for (window_chunks, center_chunk), window_doc in zip(windows, window_docs):
 
             # Collect entities across the window
             window_entities = []
@@ -194,19 +192,21 @@ def run_pipeline(
 
         # Score and normalize
         normalized = []
+        chunk_text = {chunk.chunk_id: chunk.text for chunk in chunks}
         for triple in deduped_triples:
             nt = normalizer.normalize(triple)
             if nt is not None:
                 nt.confidence = scorer.score(triple)
-                nt.evidence = next(
-                    (chunk.text for chunk in chunks if chunk.chunk_id == nt.chunk_id),
-                    "",
-                )
+                nt.evidence = chunk_text.get(nt.chunk_id, "")
                 normalized.append(nt)
 
-        # RELATED_TO is retained only for backwards-compatible direct
-        # normalizer callers. It is not an asserted relation in the graph.
-        normalized = [t for t in normalized if t.relation_type != "RELATED_TO"]
+        # Retain canonical relations, plus high-confidence RELATED_TO edges
+        # (>= min_related_confidence, default 0.60) so novel phrasing connects nodes.
+        min_related_conf = getattr(settings, "min_related_confidence", 0.60)
+        normalized = [
+            t for t in normalized
+            if t.relation_type != "RELATED_TO" or t.confidence >= min_related_conf
+        ]
         if getattr(settings, "debug_pipeline", False):
             logger.debug(
                 "[%s] raw triples=%d, supported triples=%d",
@@ -218,7 +218,7 @@ def run_pipeline(
         resolver = EntityResolver(threshold=settings.resolution_threshold)
         id_map = resolver.resolve_within_doc(all_entities)
 
-        # ── Phase 4: Graph Write ──────────────────────────────────────────
+        # Build resolved entities and mentions map for graph write
         resolved_entities, _ = build_resolved_entities(all_entities, id_map)
         mentions_by_id: dict[str, list[dict]] = {}
         for ent in all_entities:
@@ -233,101 +233,123 @@ def run_pipeline(
                 "chunk_id": ent.chunk_id,
             })
 
-        # Cross-document resolution + graph write run in a new event loop
-        async def _write():
-            driver = create_driver(
-                settings.neo4j_uri, settings.neo4j_user, settings.neo4j_password
-            )
-            try:
-                builder = GraphBuilder()
-                async with driver.session() as session:
-                    # Cross-doc resolution: check existing nodes before creating new ones
-                    cross_doc_map: dict[str, str] = {}
-                    for ent in resolved_entities:
-                        existing_id = await resolver.resolve_against_graph(ent, session)
-                        if existing_id:
-                            cross_doc_map[ent.canonical_id] = existing_id
-
-                    # Update id_map with cross-doc merges
-                    full_id_map = {**id_map}
-                    for old_id, new_id in cross_doc_map.items():
-                        for k, v in full_id_map.items():
-                            if v == old_id:
-                                full_id_map[k] = new_id
-
-                    # Rebuild all payloads with the same IDs, including aliases
-                    # and mentions for entities that already exist in the graph.
-                    final_entities, entity_to_chunks = build_resolved_entities(all_entities, full_id_map)
-                    final_edges = build_resolved_edges(normalized, full_id_map)
-                    valid_ids = {entity.canonical_id for entity in final_entities}
-                    final_edges = [
-                        edge for edge in final_edges
-                        if edge.source_id in valid_ids and edge.target_id in valid_ids
-                    ]
-                    # Boundary validation: enforce strict Pydantic schemas before storage
-                    validated_entities = []
-                    for ent in final_entities:
-                        ResolvedEntityPayload(**ent.to_dict())
-                        validated_entities.append(ent)
-
-                    validated_edges = []
-                    for edge in final_edges:
-                        ResolvedEdgePayload(**edge.to_dict())
-                        validated_edges.append(edge)
-
-                    final_mentions: dict[str, list[dict]] = {}
-                    for old_id, mentions in mentions_by_id.items():
-                        final_mentions.setdefault(full_id_map.get(old_id, old_id), []).extend(mentions)
-                    _write_intermediate_graph(
-                        Path(getattr(settings, "intermediate_graph_dir", "data/processed"))
-                        / f"{preprocessed.doc_id}.json",
-                        validated_entities,
-                        entity_to_chunks,
-                        validated_edges,
-                        final_mentions,
-                    )
-
-                    # Wrap all graph writes in an explicit atomic transaction
-                    from neo4j import AsyncSession
-                    if isinstance(session, AsyncSession):
-                        tx = await session.begin_transaction()
-                        try:
-                            clear_document = getattr(builder, "clear_document", None)
-                            if clear_document is not None:
-                                await clear_document(tx, preprocessed.doc_id)
-                            await builder.write_document(tx, filename, preprocessed.doc_id)
-                            await builder.write_chunks(tx, chunks)
-                            await builder.write_entities(tx, validated_entities)
-                            await builder.write_mentions(tx, entity_to_chunks)
-                            await builder.write_edges(tx, validated_edges)
-                            await tx.commit()
-                        except Exception:
-                            await tx.rollback()
-                            raise
-                    else:
-                        clear_document = getattr(builder, "clear_document", None)
-                        if clear_document is not None:
-                            await clear_document(session, preprocessed.doc_id)
-                        await builder.write_document(session, filename, preprocessed.doc_id)
-                        await builder.write_chunks(session, chunks)
-                        await builder.write_entities(session, validated_entities)
-                        await builder.write_mentions(session, entity_to_chunks)
-                        await builder.write_edges(session, validated_edges)
-
-                return len(resolved_entities) - len(cross_doc_map), len(final_edges)
-            finally:
-                await driver.close()
-
-        n_entities, n_edges = asyncio.run(_write())
-        logger.info("[%s] Written %d entities, %d edges", job_id, n_entities, n_edges)
-
         return {
-            "doc_id": preprocessed.doc_id,
-            "sentences": len(chunks),
-            "entities": len(resolved_entities),
-            "new_entities": n_entities,
-            "edges": n_edges,
+            "preprocessed": preprocessed,
+            "chunks": chunks,
+            "filename": filename,
+            "all_entities": all_entities,
+            "id_map": id_map,
+            "resolved_entities": resolved_entities,
+            "normalized": normalized,
+            "mentions_by_id": mentions_by_id,
+            "resolver": resolver,
         }
 
     finally:
         pipeline_lock.release()
+
+
+async def run_pipeline_write(nlp_result: dict, job_id: str | None = None) -> dict:
+    """
+    Execute the async Neo4j write phase using results from run_pipeline_nlp.
+
+    Must be awaited from the FastAPI event loop so the async neo4j driver is
+    bound to the correct loop (avoids 'Future attached to a different loop').
+    """
+    settings = get_settings()
+
+    preprocessed = nlp_result["preprocessed"]
+    chunks = nlp_result["chunks"]
+    filename = nlp_result["filename"]
+    all_entities = nlp_result["all_entities"]
+    id_map = nlp_result["id_map"]
+    resolved_entities = nlp_result["resolved_entities"]
+    normalized = nlp_result["normalized"]
+    mentions_by_id = nlp_result["mentions_by_id"]
+    resolver = nlp_result["resolver"]
+
+    driver = create_driver(
+        settings.neo4j_uri, settings.neo4j_user, settings.neo4j_password
+    )
+    try:
+        builder = GraphBuilder()
+        async with driver.session() as session:
+            # Cross-doc resolution: check existing nodes before creating new ones
+            cross_doc_map: dict[str, str] = {}
+            for ent in resolved_entities:
+                existing_id = await resolver.resolve_against_graph(ent, session)
+                if existing_id:
+                    cross_doc_map[ent.canonical_id] = existing_id
+
+            # Update id_map with cross-doc merges
+            full_id_map = {
+                mention_id: cross_doc_map.get(canonical_id, canonical_id)
+                for mention_id, canonical_id in id_map.items()
+            }
+
+            # Rebuild all payloads with the same IDs, including aliases
+            # and mentions for entities that already exist in the graph.
+            final_entities, entity_to_chunks = build_resolved_entities(all_entities, full_id_map)
+            final_edges = build_resolved_edges(normalized, full_id_map)
+            valid_ids = {entity.canonical_id for entity in final_entities}
+            final_edges = [
+                edge for edge in final_edges
+                if edge.source_id in valid_ids and edge.target_id in valid_ids
+            ]
+            # Boundary validation: enforce strict Pydantic schemas before storage
+            validated_entities = []
+            for ent in final_entities:
+                ResolvedEntityPayload(**ent.to_dict())
+                validated_entities.append(ent)
+
+            validated_edges = []
+            for edge in final_edges:
+                ResolvedEdgePayload(**edge.to_dict())
+                validated_edges.append(edge)
+
+            final_mentions: dict[str, list[dict]] = {}
+            for old_id, mentions in mentions_by_id.items():
+                final_mentions.setdefault(full_id_map.get(old_id, old_id), []).extend(mentions)
+            _write_intermediate_graph(
+                Path(getattr(settings, "intermediate_graph_dir", "data/processed"))
+                / f"{preprocessed.doc_id}.json",
+                validated_entities,
+                entity_to_chunks,
+                validated_edges,
+                final_mentions,
+            )
+
+            await builder.write_document_graph_atomic(
+                session, preprocessed.doc_id, filename, chunks,
+                validated_entities, entity_to_chunks, validated_edges,
+            )
+
+            n_new = len(resolved_entities) - len(cross_doc_map)
+            n_edges = len(final_edges)
+
+        logger.info("[%s] Written %d entities, %d edges", job_id, n_new, n_edges)
+        return {
+            "doc_id": preprocessed.doc_id,
+            "sentences": len(chunks),
+            "entities": len(resolved_entities),
+            "new_entities": n_new,
+            "edges": n_edges,
+        }
+    finally:
+        await driver.close()
+
+
+def run_pipeline(
+    raw_bytes: bytes,
+    filename: str,
+    ftype: str,
+    job_id: str | None = None,
+) -> dict:
+    """
+    Synchronous full pipeline entry point (runs NLP and then writes to Neo4j).
+
+    For background execution in FastAPI, prefer calling run_pipeline_nlp in a thread
+    and awaiting run_pipeline_write on the main event loop to avoid loop conflicts.
+    """
+    nlp_result = run_pipeline_nlp(raw_bytes, filename, ftype, job_id=job_id)
+    return asyncio.run(run_pipeline_write(nlp_result, job_id=job_id))

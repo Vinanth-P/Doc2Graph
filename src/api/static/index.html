@@ -13,10 +13,10 @@
     <!-- Header -->
     <header class="app-header">
       <div class="brand">
-        <span class="logo">🧠</span>
+        <span class="logo" aria-hidden="true">D<span>&#8599;</span></span>
         <div>
           <h1>Doc2Graph</h1>
-          <span class="subtitle">Document Knowledge Graph Builder — Classical ML</span>
+          <span class="subtitle">DOCUMENT INTELLIGENCE</span>
         </div>
       </div>
       <div class="stats-bar" id="statsBar">
@@ -25,7 +25,7 @@
         <div class="stat-pill"><span class="stat-num" id="statDocs">0</span> Documents</div>
       </div>
       <div class="header-actions">
-        <button class="btn btn-secondary" id="btnRefresh" title="Refresh Graph">🔄 Refresh</button>
+        <button class="btn btn-secondary" id="btnRefresh" title="Refresh Graph">&#8635; Refresh graph</button>
       </div>
     </header>
 
@@ -35,8 +35,9 @@
       <aside class="sidebar">
         <!-- Document Upload -->
         <section class="card upload-card">
-          <p class="file-hint" id="activeDocumentName" role="status">Upload a document to view its graph.</p>
-          <h2>📄 Ingest Document</h2>
+          <div class="section-kicker">01 / SOURCE</div>
+          <h2>Start with a document</h2>
+          <p class="section-description">Turn your documents into connected knowledge.</p>
           <div class="drop-zone" id="dropZone">
             <input type="file" id="fileInput" accept=".pdf,.docx,.txt" style="display:none">
             <div class="drop-prompt">
@@ -45,11 +46,11 @@
                 <polyline points="17 8 12 3 7 8"/>
                 <line x1="12" y1="3" x2="12" y2="15"/>
               </svg>
-              <p>Drag & drop <strong>PDF, DOCX, TXT</strong> or <button type="button" class="link-btn" id="browseBtn">browse</button></p>
-              <span class="file-hint">English only · Max 50 MB</span>
+              <p>Drop a document here<br>or <button type="button" class="link-btn" id="browseBtn">browse files</button></p>
+              <span class="file-hint">PDF, DOCX or TXT &middot; English &middot; Up to 50 MB</span>
             </div>
           </div>
-          <div class="job-status" id="jobStatus" style="display: none;">
+          <div class="job-status" id="jobStatus" role="status" aria-live="polite" style="display: none;">
             <div class="job-header">
               <span id="jobFileName" class="file-name">document.pdf</span>
               <span id="jobBadge" class="badge">pending</span>
@@ -63,23 +64,23 @@
 
         <!-- Search & Filter -->
         <section class="card search-card">
-          <h2>🔍 Search & Filter</h2>
+          <div class="section-kicker">02 / EXPLORE</div><h2>Find a connection</h2>
           <div class="search-box">
-            <input type="text" id="searchInput" placeholder="Search entities (e.g. Tesla, Musk)...">
+            <input type="text" id="searchInput" aria-label="Search entities" placeholder="Search people, companies...">
             <button class="btn btn-primary" id="btnSearch">Search</button>
           </div>
           <div class="search-results" id="searchResults" style="display: none;"></div>
 
           <div class="filter-group">
-            <label class="filter-label">Filter by Type:</label>
+            <label class="filter-label">ENTITY TYPES</label>
             <div class="type-tags" id="typeFilters">
-              <button class="type-tag active" data-type="ALL">All</button>
-              <button class="type-tag" data-type="PERSON" style="--c: #4F46E5;">Person</button>
-              <button class="type-tag" data-type="ORG" style="--c: #0284C7;">Org</button>
-              <button class="type-tag" data-type="GPE" style="--c: #059669;">Location</button>
-              <button class="type-tag" data-type="PRODUCT" style="--c: #D97706;">Product</button>
-              <button class="type-tag" data-type="EVENT" style="--c: #DC2626;">Event</button>
-              <button class="type-tag" data-type="LAW" style="--c: #7C3AED;">Law</button>
+              <button class="type-tag active" aria-pressed="true" data-type="ALL">All</button>
+              <button class="type-tag" aria-pressed="false" data-type="PERSON" style="--c: #4F46E5;">Person</button>
+              <button class="type-tag" aria-pressed="false" data-type="ORG" style="--c: #0284C7;">Org</button>
+              <button class="type-tag" aria-pressed="false" data-type="GPE" style="--c: #059669;">Location</button>
+              <button class="type-tag" aria-pressed="false" data-type="PRODUCT" style="--c: #D97706;">Product</button>
+              <button class="type-tag" aria-pressed="false" data-type="EVENT" style="--c: #DC2626;">Event</button>
+              <button class="type-tag" aria-pressed="false" data-type="LAW" style="--c: #7C3AED;">Law</button>
             </div>
           </div>
         </section>
@@ -87,8 +88,8 @@
         <!-- Entity Inspector Drawer -->
         <section class="card details-card" id="entityDetails" style="display: none;">
           <div class="details-header">
-            <h2>📌 Entity Details</h2>
-            <button class="close-btn" id="btnCloseDetails">&times;</button>
+            <h2>Entity inspector</h2>
+            <button class="close-btn" id="btnCloseDetails" aria-label="Close entity inspector">&times;</button>
           </div>
           <div class="entity-info">
             <h3 id="detailName">—</h3>
@@ -105,21 +106,29 @@
 
       <!-- Graph Viewport -->
       <main class="graph-canvas-container">
-        <svg id="graphSvg"></svg>
+        <div class="canvas-heading"><div><div class="section-kicker">YOUR KNOWLEDGE, CONNECTED</div><h2>Knowledge graph</h2><p id="activeDocumentName" role="status">Upload a document to view its graph.</p></div><span class="view-badge">Interactive view</span></div>
+        <svg id="graphSvg" aria-label="Document knowledge graph"></svg>
+        <div class="canvas-state" id="canvasState" role="status" aria-live="polite">
+          <div class="empty-symbol" aria-hidden="true">&#8984;</div>
+          <h3 id="canvasStateTitle">Every document has a bigger picture.</h3>
+          <p id="canvasStateMessage">Upload a document to discover the people, organizations and ideas that connect it.</p>
+          <button class="btn btn-primary" id="emptyUpload">Choose a document <span aria-hidden="true">&#8599;</span></button>
+        </div>
+        <div class="canvas-footer"><span class="status-dot"></span><span id="graphSummary">Ready to explore</span><span class="canvas-help">Drag to move &middot; Scroll to zoom &middot; Select to inspect</span></div>
         <!-- Overlay Controls -->
         <div class="canvas-controls">
-          <button id="zoomIn" title="Zoom in">+</button>
-          <button id="zoomOut" title="Zoom out">−</button>
-          <button id="zoomReset" title="Reset view">⛶</button>
+          <button id="zoomIn" title="Zoom in" aria-label="Zoom in">+</button>
+          <button id="zoomOut" title="Zoom out" aria-label="Zoom out">−</button>
+          <button id="zoomReset" title="Reset view" aria-label="Reset view">⛶</button>
         </div>
         <!-- Legend -->
         <div class="graph-legend">
-          <span class="legend-item"><span class="legend-dot" style="background:#4F46E5;"></span> PERSON</span>
-          <span class="legend-item"><span class="legend-dot" style="background:#0284C7;"></span> ORG</span>
-          <span class="legend-item"><span class="legend-dot" style="background:#059669;"></span> GPE</span>
-          <span class="legend-item"><span class="legend-dot" style="background:#D97706;"></span> PRODUCT</span>
-          <span class="legend-item"><span class="legend-dot" style="background:#DC2626;"></span> EVENT</span>
-          <span class="legend-item"><span class="legend-dot" style="background:#7C3AED;"></span> LAW</span>
+          <span class="legend-item"><span class="legend-dot" style="background:#4F46E5;"></span> People</span>
+          <span class="legend-item"><span class="legend-dot" style="background:#0284C7;"></span> Organizations</span>
+          <span class="legend-item"><span class="legend-dot" style="background:#059669;"></span> Locations</span>
+          <span class="legend-item"><span class="legend-dot" style="background:#D97706;"></span> Products</span>
+          <span class="legend-item"><span class="legend-dot" style="background:#DC2626;"></span> Events</span>
+          <span class="legend-item"><span class="legend-dot" style="background:#7C3AED;"></span> Laws</span>
         </div>
         <!-- Tooltip -->
         <div class="graph-tooltip" id="tooltip" style="display: none;"></div>
