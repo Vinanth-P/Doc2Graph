@@ -1,0 +1,1291 @@
+{
+  "stats": {
+    "total_fp": 880,
+    "unmatched_endpoints_fp": 731,
+    "both_matched_fp": 149,
+    "fp_by_label": {
+      "OWNS": 266,
+      "SUBSIDIARY_OF": 151,
+      "FOUNDED": 59,
+      "EMPLOYED_BY": 82,
+      "MEMBER_OF": 369
+    },
+    "fp_matched_by_label": {
+      "SUBSIDIARY_OF": 31,
+      "OWNS": 41,
+      "FOUNDED": 9,
+      "MEMBER_OF": 61,
+      "EMPLOYED_BY": 7
+    },
+    "tp_by_label": {
+      "EMPLOYED_BY": 6,
+      "MEMBER_OF": 27,
+      "OWNS": 8,
+      "FOUNDED": 3,
+      "SUBSIDIARY_OF": 3
+    },
+    "fn_by_label": {
+      "MEMBER_OF": 268,
+      "OWNS": 145,
+      "SUBSIDIARY_OF": 85,
+      "FOUNDED": 38,
+      "EMPLOYED_BY": 77
+    }
+  },
+  "sampled_fps": [
+    {
+      "doc_idx": 3,
+      "title": "Ramey Idriss",
+      "fact": [
+        "unmatched:69e61c21ce3a59ce58253a0b1e48742071c707e88a68fc2e61fc278151cc4330:2:140:157",
+        "OWNS",
+        "unmatched:69e61c21ce3a59ce58253a0b1e48742071c707e88a68fc2e61fc278151cc4330:2:0:6"
+      ],
+      "unmatched_s": true,
+      "unmatched_t": true,
+      "evidence": "Idriss was a musician in dance orchestras on radio and recordings and in films , and also wrote television scripts and special material for the Ritz Brothers , Eddie Cantor , Jimmy Durante and Marion Hutton ."
+    },
+    {
+      "doc_idx": 4,
+      "title": "ELAM (Latin American School of Medicine) Cuba",
+      "fact": [
+        "4",
+        "SUBSIDIARY_OF",
+        "1"
+      ],
+      "unmatched_s": false,
+      "unmatched_t": false,
+      "evidence": "Escuela Latinoamericana de Medicina ( ELAM ) , formerly Escuela Latinoamericana de Ciencias M\u00e9dicas ( in Spanish ; in English : Latin American School of Medicine ( LASM ) , formerly Latin American School of Medical Sciences ) , is a major international medical school in Cuba and a prominent part of the Cuban healthcare system . Established in 1999 and operated by the Cuban government , ELAM has been described as possibly being the largest medical school in the world by enrollment with approximately 19,550 students from 110 countries reported as enrolled in 2013 ."
+    },
+    {
+      "doc_idx": 6,
+      "title": "Soccer Academy",
+      "fact": [
+        "1",
+        "OWNS",
+        "unmatched:08309b391cd65ba6efc2f7b6d70c9470d8e5d6e4fa00335299e292ac24897856:0:0:18"
+      ],
+      "unmatched_s": false,
+      "unmatched_t": true,
+      "evidence": "The Soccer Academy is a children \u2019s television show produced by Capistrano Films . The Soccer Academy \" qualifies as children - friendly programming from an instructional and educational perspective , and has been issued the IE certificate by the United States for the shows educational value to children . The parent company , Capistrano Films , has offices located in both Los Angeles , California and Detroit , Michigan ."
+    },
+    {
+      "doc_idx": 6,
+      "title": "Soccer Academy",
+      "fact": [
+        "1",
+        "OWNS",
+        "unmatched:08309b391cd65ba6efc2f7b6d70c9470d8e5d6e4fa00335299e292ac24897856:5:142:144"
+      ],
+      "unmatched_s": false,
+      "unmatched_t": true,
+      "evidence": "The Soccer Academy is a children \u2019s television show produced by Capistrano Films . The Soccer Academy \" qualifies as children - friendly programming from an instructional and educational perspective , and has been issued the IE certificate by the United States for the shows educational value to children . The parent company , Capistrano Films , has offices located in both Los Angeles , California and Detroit , Michigan ."
+    },
+    {
+      "doc_idx": 6,
+      "title": "Soccer Academy",
+      "fact": [
+        "unmatched:08309b391cd65ba6efc2f7b6d70c9470d8e5d6e4fa00335299e292ac24897856:0:0:18",
+        "OWNS",
+        "1"
+      ],
+      "unmatched_s": true,
+      "unmatched_t": false,
+      "evidence": "The Soccer Academy is a children \u2019s television show produced by Capistrano Films . The Soccer Academy \" qualifies as children - friendly programming from an instructional and educational perspective , and has been issued the IE certificate by the United States for the shows educational value to children . The parent company , Capistrano Films , has offices located in both Los Angeles , California and Detroit , Michigan ."
+    },
+    {
+      "doc_idx": 6,
+      "title": "Soccer Academy",
+      "fact": [
+        "unmatched:08309b391cd65ba6efc2f7b6d70c9470d8e5d6e4fa00335299e292ac24897856:0:0:18",
+        "SUBSIDIARY_OF",
+        "1"
+      ],
+      "unmatched_s": true,
+      "unmatched_t": false,
+      "evidence": "The Soccer Academy is a children \u2019s television show produced by Capistrano Films . The Soccer Academy \" qualifies as children - friendly programming from an instructional and educational perspective , and has been issued the IE certificate by the United States for the shows educational value to children . The parent company , Capistrano Films , has offices located in both Los Angeles , California and Detroit , Michigan ."
+    },
+    {
+      "doc_idx": 7,
+      "title": "ROKETSAN",
+      "fact": [
+        "0",
+        "OWNS",
+        "unmatched:5906a58605653369650f13639f9022d443054b48ea8c8de212834ad757fc5811:5:53:59"
+      ],
+      "unmatched_s": false,
+      "unmatched_t": true,
+      "evidence": "Roketsan is best known for its vast range of unguided rockets as well as laser and infrared guided missiles such as Cirit and UMTAS . The company also produces subsystems for Stinger and Rapier missiles and provides technology and engineering solutions for other integrated civilian and military platforms . Roketsan is the only Turkish company to have obtained CMMI/ DEV 3 ( Capability Maturity Model Integration \u2013 for Development ) approval for all its design and development processes ."
+    },
+    {
+      "doc_idx": 7,
+      "title": "ROKETSAN",
+      "fact": [
+        "0",
+        "OWNS",
+        "unmatched:5906a58605653369650f13639f9022d443054b48ea8c8de212834ad757fc5811:7:54:58"
+      ],
+      "unmatched_s": false,
+      "unmatched_t": true,
+      "evidence": "Roketsan is best known for its vast range of unguided rockets as well as laser and infrared guided missiles such as Cirit and UMTAS . Roketsan is the only Turkish company to have obtained CMMI/ DEV 3 ( Capability Maturity Model Integration \u2013 for Development ) approval for all its design and development processes ."
+    },
+    {
+      "doc_idx": 7,
+      "title": "ROKETSAN",
+      "fact": [
+        "0",
+        "OWNS",
+        "unmatched:5906a58605653369650f13639f9022d443054b48ea8c8de212834ad757fc5811:7:60:63"
+      ],
+      "unmatched_s": false,
+      "unmatched_t": true,
+      "evidence": "Roketsan is best known for its vast range of unguided rockets as well as laser and infrared guided missiles such as Cirit and UMTAS . Roketsan is the only Turkish company to have obtained CMMI/ DEV 3 ( Capability Maturity Model Integration \u2013 for Development ) approval for all its design and development processes ."
+    },
+    {
+      "doc_idx": 7,
+      "title": "ROKETSAN",
+      "fact": [
+        "0",
+        "SUBSIDIARY_OF",
+        "unmatched:5906a58605653369650f13639f9022d443054b48ea8c8de212834ad757fc5811:7:54:58"
+      ],
+      "unmatched_s": false,
+      "unmatched_t": true,
+      "evidence": "Roketsan is best known for its vast range of unguided rockets as well as laser and infrared guided missiles such as Cirit and UMTAS . Roketsan is the only Turkish company to have obtained CMMI/ DEV 3 ( Capability Maturity Model Integration \u2013 for Development ) approval for all its design and development processes ."
+    },
+    {
+      "doc_idx": 7,
+      "title": "ROKETSAN",
+      "fact": [
+        "unmatched:5906a58605653369650f13639f9022d443054b48ea8c8de212834ad757fc5811:2:42:47",
+        "OWNS",
+        "0"
+      ],
+      "unmatched_s": true,
+      "unmatched_t": false,
+      "evidence": "Roketsan is a major Turkish weapons manufacturer and defense contractor based in the central Anatolian province of Ankara . Roketsan 's current share holders include TSKGV(Turkish Armed Forces Foundation )"
+    },
+    {
+      "doc_idx": 7,
+      "title": "ROKETSAN",
+      "fact": [
+        "unmatched:5906a58605653369650f13639f9022d443054b48ea8c8de212834ad757fc5811:2:56:79",
+        "OWNS",
+        "0"
+      ],
+      "unmatched_s": true,
+      "unmatched_t": false,
+      "evidence": "Roketsan is a major Turkish weapons manufacturer and defense contractor based in the central Anatolian province of Ankara . Roketsan 's current share holders include TSKGV(Turkish Armed Forces Foundation )"
+    },
+    {
+      "doc_idx": 7,
+      "title": "ROKETSAN",
+      "fact": [
+        "unmatched:5906a58605653369650f13639f9022d443054b48ea8c8de212834ad757fc5811:3:13:20",
+        "FOUNDED",
+        "0"
+      ],
+      "unmatched_s": true,
+      "unmatched_t": false,
+      "evidence": "Roketsan 's current share holders include TSKGV(Turkish Armed Forces Foundation ) ( 55.5 % ) , Aselsan ( 15 % ) , MKEK ( 15 % ) , Vak\u0131flar Bankas\u0131 ( 10 % ) , Havelsan ( 4.5 % ) . Roketsan is best known for its vast range of unguided rockets as well as laser and infrared guided missiles such as Cirit and UMTAS ."
+    },
+    {
+      "doc_idx": 7,
+      "title": "ROKETSAN",
+      "fact": [
+        "unmatched:5906a58605653369650f13639f9022d443054b48ea8c8de212834ad757fc5811:3:48:64",
+        "EMPLOYED_BY",
+        "12"
+      ],
+      "unmatched_s": true,
+      "unmatched_t": false,
+      "evidence": "( 55.5 % ) , Aselsan ( 15 % ) , MKEK ( 15 % ) , Vak\u0131flar Bankas\u0131 ( 10 % ) , Havelsan ( 4.5 % ) ."
+    },
+    {
+      "doc_idx": 7,
+      "title": "ROKETSAN",
+      "fact": [
+        "unmatched:5906a58605653369650f13639f9022d443054b48ea8c8de212834ad757fc5811:3:48:64",
+        "FOUNDED",
+        "0"
+      ],
+      "unmatched_s": true,
+      "unmatched_t": false,
+      "evidence": "Roketsan 's current share holders include TSKGV(Turkish Armed Forces Foundation ) ( 55.5 % ) , Aselsan ( 15 % ) , MKEK ( 15 % ) , Vak\u0131flar Bankas\u0131 ( 10 % ) , Havelsan ( 4.5 % ) . Roketsan is best known for its vast range of unguided rockets as well as laser and infrared guided missiles such as Cirit and UMTAS ."
+    },
+    {
+      "doc_idx": 7,
+      "title": "ROKETSAN",
+      "fact": [
+        "unmatched:5906a58605653369650f13639f9022d443054b48ea8c8de212834ad757fc5811:3:48:64",
+        "MEMBER_OF",
+        "0"
+      ],
+      "unmatched_s": true,
+      "unmatched_t": false,
+      "evidence": "Roketsan 's current share holders include TSKGV(Turkish Armed Forces Foundation ) ( 55.5 % ) , Aselsan ( 15 % ) , MKEK ( 15 % ) , Vak\u0131flar Bankas\u0131 ( 10 % ) , Havelsan ( 4.5 % ) . Roketsan is best known for its vast range of unguided rockets as well as laser and infrared guided missiles such as Cirit and UMTAS ."
+    },
+    {
+      "doc_idx": 7,
+      "title": "ROKETSAN",
+      "fact": [
+        "unmatched:5906a58605653369650f13639f9022d443054b48ea8c8de212834ad757fc5811:3:48:64",
+        "MEMBER_OF",
+        "12"
+      ],
+      "unmatched_s": true,
+      "unmatched_t": false,
+      "evidence": "( 55.5 % ) , Aselsan ( 15 % ) , MKEK ( 15 % ) , Vak\u0131flar Bankas\u0131 ( 10 % ) , Havelsan ( 4.5 % ) ."
+    },
+    {
+      "doc_idx": 7,
+      "title": "ROKETSAN",
+      "fact": [
+        "unmatched:5906a58605653369650f13639f9022d443054b48ea8c8de212834ad757fc5811:3:76:84",
+        "EMPLOYED_BY",
+        "12"
+      ],
+      "unmatched_s": true,
+      "unmatched_t": false,
+      "evidence": "( 55.5 % ) , Aselsan ( 15 % ) , MKEK ( 15 % ) , Vak\u0131flar Bankas\u0131 ( 10 % ) , Havelsan ( 4.5 % ) ."
+    },
+    {
+      "doc_idx": 7,
+      "title": "ROKETSAN",
+      "fact": [
+        "unmatched:5906a58605653369650f13639f9022d443054b48ea8c8de212834ad757fc5811:3:76:84",
+        "FOUNDED",
+        "0"
+      ],
+      "unmatched_s": true,
+      "unmatched_t": false,
+      "evidence": "Roketsan 's current share holders include TSKGV(Turkish Armed Forces Foundation ) ( 55.5 % ) , Aselsan ( 15 % ) , MKEK ( 15 % ) , Vak\u0131flar Bankas\u0131 ( 10 % ) , Havelsan ( 4.5 % ) . Roketsan is best known for its vast range of unguided rockets as well as laser and infrared guided missiles such as Cirit and UMTAS ."
+    },
+    {
+      "doc_idx": 7,
+      "title": "ROKETSAN",
+      "fact": [
+        "unmatched:5906a58605653369650f13639f9022d443054b48ea8c8de212834ad757fc5811:3:76:84",
+        "MEMBER_OF",
+        "12"
+      ],
+      "unmatched_s": true,
+      "unmatched_t": false,
+      "evidence": "( 55.5 % ) , Aselsan ( 15 % ) , MKEK ( 15 % ) , Vak\u0131flar Bankas\u0131 ( 10 % ) , Havelsan ( 4.5 % ) ."
+    },
+    {
+      "doc_idx": 7,
+      "title": "ROKETSAN",
+      "fact": [
+        "unmatched:5906a58605653369650f13639f9022d443054b48ea8c8de212834ad757fc5811:5:41:48",
+        "FOUNDED",
+        "0"
+      ],
+      "unmatched_s": true,
+      "unmatched_t": false,
+      "evidence": "Roketsan is best known for its vast range of unguided rockets as well as laser and infrared guided missiles such as Cirit and UMTAS . The company also produces subsystems for Stinger and Rapier missiles and provides technology and engineering solutions for other integrated civilian and military platforms . Roketsan is the only Turkish company to have obtained CMMI/ DEV 3 ( Capability Maturity Model Integration \u2013 for Development ) approval for all its design and development processes ."
+    },
+    {
+      "doc_idx": 7,
+      "title": "ROKETSAN",
+      "fact": [
+        "unmatched:5906a58605653369650f13639f9022d443054b48ea8c8de212834ad757fc5811:5:53:59",
+        "OWNS",
+        "0"
+      ],
+      "unmatched_s": true,
+      "unmatched_t": false,
+      "evidence": "Roketsan is best known for its vast range of unguided rockets as well as laser and infrared guided missiles such as Cirit and UMTAS . The company also produces subsystems for Stinger and Rapier missiles and provides technology and engineering solutions for other integrated civilian and military platforms . Roketsan is the only Turkish company to have obtained CMMI/ DEV 3 ( Capability Maturity Model Integration \u2013 for Development ) approval for all its design and development processes ."
+    },
+    {
+      "doc_idx": 7,
+      "title": "ROKETSAN",
+      "fact": [
+        "unmatched:5906a58605653369650f13639f9022d443054b48ea8c8de212834ad757fc5811:6:44:52",
+        "FOUNDED",
+        "0"
+      ],
+      "unmatched_s": true,
+      "unmatched_t": false,
+      "evidence": "Roketsan is best known for its vast range of unguided rockets as well as laser and infrared guided missiles such as Cirit and UMTAS . In 2013 Turkey approved the construction by Roketsan of its first satellite launching center , initially for low earth orbit satellites . Roketsan is the only Turkish company to have obtained CMMI/ DEV 3 ( Capability Maturity Model Integration \u2013 for Development ) approval for all its design and development processes ."
+    },
+    {
+      "doc_idx": 7,
+      "title": "ROKETSAN",
+      "fact": [
+        "unmatched:5906a58605653369650f13639f9022d443054b48ea8c8de212834ad757fc5811:7:54:58",
+        "OWNS",
+        "0"
+      ],
+      "unmatched_s": true,
+      "unmatched_t": false,
+      "evidence": "Roketsan is best known for its vast range of unguided rockets as well as laser and infrared guided missiles such as Cirit and UMTAS . Roketsan is the only Turkish company to have obtained CMMI/ DEV 3 ( Capability Maturity Model Integration \u2013 for Development ) approval for all its design and development processes ."
+    },
+    {
+      "doc_idx": 7,
+      "title": "ROKETSAN",
+      "fact": [
+        "unmatched:5906a58605653369650f13639f9022d443054b48ea8c8de212834ad757fc5811:7:60:63",
+        "OWNS",
+        "0"
+      ],
+      "unmatched_s": true,
+      "unmatched_t": false,
+      "evidence": "Roketsan is best known for its vast range of unguided rockets as well as laser and infrared guided missiles such as Cirit and UMTAS . Roketsan is the only Turkish company to have obtained CMMI/ DEV 3 ( Capability Maturity Model Integration \u2013 for Development ) approval for all its design and development processes ."
+    },
+    {
+      "doc_idx": 11,
+      "title": "Mola di Bari",
+      "fact": [
+        "unmatched:dfb8a5a9b3c1153d926fb2a6831f83fcb7210610d2d3a7f2f0dc12e2d35a4e80:2:127:140",
+        "MEMBER_OF",
+        "unmatched:dfb8a5a9b3c1153d926fb2a6831f83fcb7210610d2d3a7f2f0dc12e2d35a4e80:2:105:119"
+      ],
+      "unmatched_s": true,
+      "unmatched_t": true,
+      "evidence": "Mola 's city center is its main piazza , Piazza XX Settembre near the port and it also boasts a church ( Chiesa Matrice , i.e. Mother Church ) dating back to the 13thcentury ."
+    },
+    {
+      "doc_idx": 12,
+      "title": "Westmere, New York",
+      "fact": [
+        "unmatched:d1d4ee2935be80c0ee414025347d83d7d2f2733fb42460295478639b0158a38d:1:188:196",
+        "MEMBER_OF",
+        "unmatched:d1d4ee2935be80c0ee414025347d83d7d2f2733fb42460295478639b0158a38d:1:52:55"
+      ],
+      "unmatched_s": true,
+      "unmatched_t": true,
+      "evidence": "Since the 1970 Census a census - designated place ( CDP ) has been established with the name of Westmere for tabulating the population of what the census has defined as the boundaries for Westmere . Crossgates Mall , the Capital District 's largest shopping mall , is in Westmere 's northeastern corner ."
+    },
+    {
+      "doc_idx": 15,
+      "title": "Eivind Bolle",
+      "fact": [
+        "0",
+        "MEMBER_OF",
+        "unmatched:f14807c9f609fe4c0245c4359041293df7dd134785e320c2455037c277744805:0:79:95"
+      ],
+      "unmatched_s": false,
+      "unmatched_t": true,
+      "evidence": "Eivind Bolle ( 13 October 1923 \u2013 10 June 2012 ) was a Norwegian politician for the Labour Party ."
+    },
+    {
+      "doc_idx": 16,
+      "title": "Henrik Angell",
+      "fact": [
+        "0",
+        "MEMBER_OF",
+        "unmatched:b58b78e6da5577272bd55bc743c68000b970bc5caf2d7c34b9e6baccf2c2e9ef:7:27:58"
+      ],
+      "unmatched_s": false,
+      "unmatched_t": true,
+      "evidence": "Henrik August Angell ( 22 August 1861 \u2013 26 January 1922 ) was a Norwegian military officer , sportsman , and writer . Henrik Angell was born at Luster in Sogn og Fjordane and grew up in Bergen , Norway . He was commander leader of the S\u00f8nderm\u00f8r Infantry Regiment until 1914 and of the Smaalenene Infantry Regiment until 1918 ."
+    },
+    {
+      "doc_idx": 16,
+      "title": "Henrik Angell",
+      "fact": [
+        "0",
+        "MEMBER_OF",
+        "unmatched:b58b78e6da5577272bd55bc743c68000b970bc5caf2d7c34b9e6baccf2c2e9ef:7:77:109"
+      ],
+      "unmatched_s": false,
+      "unmatched_t": true,
+      "evidence": "Henrik August Angell ( 22 August 1861 \u2013 26 January 1922 ) was a Norwegian military officer , sportsman , and writer . Henrik Angell was born at Luster in Sogn og Fjordane and grew up in Bergen , Norway . He was commander leader of the S\u00f8nderm\u00f8r Infantry Regiment until 1914 and of the Smaalenene Infantry Regiment until 1918 ."
+    },
+    {
+      "doc_idx": 17,
+      "title": "Carey Business School",
+      "fact": [
+        "0",
+        "OWNS",
+        "7"
+      ],
+      "unmatched_s": false,
+      "unmatched_t": false,
+      "evidence": "The Carey Business School is accredited by the Association to Advance Collegiate Schools of Business ( AACSB ) . James Carey ( 1751 - 1834 ) , the namesake of the Carey Business School , is a relative to Johns Hopkins ( founder of Johns Hopkins University and Hospital ) , a co - founder of the Gilman School , and ancestor to several founding trustees of the university and hospital ."
+    },
+    {
+      "doc_idx": 17,
+      "title": "Carey Business School",
+      "fact": [
+        "0",
+        "OWNS",
+        "unmatched:a9bd946b4dfc74723ee85a3836e34d3d79adc7b4c9e4b127b70302e7351f131b:3:178:195"
+      ],
+      "unmatched_s": false,
+      "unmatched_t": true,
+      "evidence": "The Carey Business School is accredited by the Association to Advance Collegiate Schools of Business ( AACSB ) . James Carey ( 1751 - 1834 ) , the namesake of the Carey Business School , is a relative to Johns Hopkins ( founder of Johns Hopkins University and Hospital ) , a co - founder of the Gilman School , and ancestor to several founding trustees of the university and hospital ."
+    },
+    {
+      "doc_idx": 17,
+      "title": "Carey Business School",
+      "fact": [
+        "0",
+        "SUBSIDIARY_OF",
+        "7"
+      ],
+      "unmatched_s": false,
+      "unmatched_t": false,
+      "evidence": "The Carey Business School is accredited by the Association to Advance Collegiate Schools of Business ( AACSB ) . James Carey ( 1751 - 1834 ) , the namesake of the Carey Business School , is a relative to Johns Hopkins ( founder of Johns Hopkins University and Hospital ) , a co - founder of the Gilman School , and ancestor to several founding trustees of the university and hospital ."
+    },
+    {
+      "doc_idx": 17,
+      "title": "Carey Business School",
+      "fact": [
+        "0",
+        "SUBSIDIARY_OF",
+        "unmatched:a9bd946b4dfc74723ee85a3836e34d3d79adc7b4c9e4b127b70302e7351f131b:3:118:155"
+      ],
+      "unmatched_s": false,
+      "unmatched_t": true,
+      "evidence": "The Johns Hopkins Carey Business School , also referred to as Carey Business School or JHUCarey or simply Carey , is the business school of the Johns Hopkins University in Baltimore , Maryland . James Carey ( 1751 - 1834 ) , the namesake of the Carey Business School , is a relative to Johns Hopkins ( founder of Johns Hopkins University and Hospital ) , a co - founder of the Gilman School , and ancestor to several founding trustees of the university and hospital ."
+    },
+    {
+      "doc_idx": 17,
+      "title": "Carey Business School",
+      "fact": [
+        "7",
+        "OWNS",
+        "0"
+      ],
+      "unmatched_s": false,
+      "unmatched_t": false,
+      "evidence": "The Carey Business School is accredited by the Association to Advance Collegiate Schools of Business ( AACSB ) . James Carey ( 1751 - 1834 ) , the namesake of the Carey Business School , is a relative to Johns Hopkins ( founder of Johns Hopkins University and Hospital ) , a co - founder of the Gilman School , and ancestor to several founding trustees of the university and hospital ."
+    },
+    {
+      "doc_idx": 17,
+      "title": "Carey Business School",
+      "fact": [
+        "8",
+        "FOUNDED",
+        "0"
+      ],
+      "unmatched_s": false,
+      "unmatched_t": false,
+      "evidence": "The Carey Business School is accredited by the Association to Advance Collegiate Schools of Business ( AACSB ) . James Carey ( 1751 - 1834 ) , the namesake of the Carey Business School , is a relative to Johns Hopkins ( founder of Johns Hopkins University and Hospital ) , a co - founder of the Gilman School , and ancestor to several founding trustees of the university and hospital ."
+    },
+    {
+      "doc_idx": 17,
+      "title": "Carey Business School",
+      "fact": [
+        "8",
+        "FOUNDED",
+        "unmatched:a9bd946b4dfc74723ee85a3836e34d3d79adc7b4c9e4b127b70302e7351f131b:3:178:195"
+      ],
+      "unmatched_s": false,
+      "unmatched_t": true,
+      "evidence": "James Carey ( 1751 - 1834 ) , the namesake of the Carey Business School , is a relative to Johns Hopkins ( founder of Johns Hopkins University and Hospital ) , a co - founder of the Gilman School , and ancestor to several founding trustees of the university and hospital ."
+    },
+    {
+      "doc_idx": 17,
+      "title": "Carey Business School",
+      "fact": [
+        "unmatched:a9bd946b4dfc74723ee85a3836e34d3d79adc7b4c9e4b127b70302e7351f131b:0:106:111",
+        "FOUNDED",
+        "0"
+      ],
+      "unmatched_s": true,
+      "unmatched_t": false,
+      "evidence": "The Johns Hopkins Carey Business School , also referred to as Carey Business School or JHUCarey or simply Carey , is the business school of the Johns Hopkins University in Baltimore , Maryland . The Carey Business School is accredited by the Association to Advance Collegiate Schools of Business ( AACSB ) ."
+    },
+    {
+      "doc_idx": 17,
+      "title": "Carey Business School",
+      "fact": [
+        "unmatched:a9bd946b4dfc74723ee85a3836e34d3d79adc7b4c9e4b127b70302e7351f131b:3:118:155",
+        "OWNS",
+        "0"
+      ],
+      "unmatched_s": true,
+      "unmatched_t": false,
+      "evidence": "The Johns Hopkins Carey Business School , also referred to as Carey Business School or JHUCarey or simply Carey , is the business school of the Johns Hopkins University in Baltimore , Maryland . James Carey ( 1751 - 1834 ) , the namesake of the Carey Business School , is a relative to Johns Hopkins ( founder of Johns Hopkins University and Hospital ) , a co - founder of the Gilman School , and ancestor to several founding trustees of the university and hospital ."
+    },
+    {
+      "doc_idx": 17,
+      "title": "Carey Business School",
+      "fact": [
+        "unmatched:a9bd946b4dfc74723ee85a3836e34d3d79adc7b4c9e4b127b70302e7351f131b:3:178:195",
+        "OWNS",
+        "0"
+      ],
+      "unmatched_s": true,
+      "unmatched_t": false,
+      "evidence": "The Carey Business School is accredited by the Association to Advance Collegiate Schools of Business ( AACSB ) . James Carey ( 1751 - 1834 ) , the namesake of the Carey Business School , is a relative to Johns Hopkins ( founder of Johns Hopkins University and Hospital ) , a co - founder of the Gilman School , and ancestor to several founding trustees of the university and hospital ."
+    },
+    {
+      "doc_idx": 19,
+      "title": "Railroad Revival Tour",
+      "fact": [
+        "13",
+        "MEMBER_OF",
+        "12"
+      ],
+      "unmatched_s": false,
+      "unmatched_t": false,
+      "evidence": "The inaugural tour in 2011 included performances by Mumford & Sons , Edward Sharpe and the Magnetic Zeros , and Old Crow Medicine Show . In 2011 , Railroad Revival Tour bands Mumford & Sons , Edward Sharpe and the Magnetic Zeros , and Old Crow Medicine Show together closed their shows at every stop with \" This Train . \""
+    },
+    {
+      "doc_idx": 19,
+      "title": "Railroad Revival Tour",
+      "fact": [
+        "27",
+        "MEMBER_OF",
+        "26"
+      ],
+      "unmatched_s": false,
+      "unmatched_t": false,
+      "evidence": "The 2012 tour was slated to include performances by Willie Nelson , Band of Horses , Jamey Johnson , and John Reilly and Friends ."
+    },
+    {
+      "doc_idx": 19,
+      "title": "Railroad Revival Tour",
+      "fact": [
+        "28",
+        "MEMBER_OF",
+        "26"
+      ],
+      "unmatched_s": false,
+      "unmatched_t": false,
+      "evidence": "The 2012 tour was slated to include performances by Willie Nelson , Band of Horses , Jamey Johnson , and John Reilly and Friends ."
+    },
+    {
+      "doc_idx": 24,
+      "title": "Pittsburgh Catholic",
+      "fact": [
+        "13",
+        "MEMBER_OF",
+        "unmatched:d90495099dcfc5168826836d0461b2ec49b81dac1038ff13673b5658b03d6779:10:0:23"
+      ],
+      "unmatched_s": false,
+      "unmatched_t": true,
+      "evidence": "According to the Pittsburgh Business Times Book of Lists , the Pittsburgh Catholic is the largest weekly publication in western Pennsylvania and the second - largest newspaper in western Pennsylvania . The Pittsburgh Catholic is a member of the Catholic Press Association . Its general manager , Robert P. Lockwood , was nominated as finalist for the association 's annual St. Francis de Sales Award ."
+    },
+    {
+      "doc_idx": 24,
+      "title": "Pittsburgh Catholic",
+      "fact": [
+        "13",
+        "MEMBER_OF",
+        "unmatched:d90495099dcfc5168826836d0461b2ec49b81dac1038ff13673b5658b03d6779:10:39:69"
+      ],
+      "unmatched_s": false,
+      "unmatched_t": true,
+      "evidence": "The Pittsburgh Catholic is a member of the Catholic Press Association . Its general manager , Robert P. Lockwood , was nominated as finalist for the association 's annual St. Francis de Sales Award ."
+    },
+    {
+      "doc_idx": 24,
+      "title": "Pittsburgh Catholic",
+      "fact": [
+        "9",
+        "MEMBER_OF",
+        "unmatched:d90495099dcfc5168826836d0461b2ec49b81dac1038ff13673b5658b03d6779:6:11:31"
+      ],
+      "unmatched_s": false,
+      "unmatched_t": true,
+      "evidence": "The former Bishop of Pittsburgh , Donald Wuerl , was generally seen as a conservative bishop ."
+    },
+    {
+      "doc_idx": 24,
+      "title": "Pittsburgh Catholic",
+      "fact": [
+        "unmatched:d90495099dcfc5168826836d0461b2ec49b81dac1038ff13673b5658b03d6779:0:61:87",
+        "OWNS",
+        "unmatched:d90495099dcfc5168826836d0461b2ec49b81dac1038ff13673b5658b03d6779:10:0:23"
+      ],
+      "unmatched_s": true,
+      "unmatched_t": true,
+      "evidence": "The Pittsburgh Catholic is the weekly Catholic newspaper for the Roman Catholic Diocese of Pittsburgh , published for lay people and priests . As a result , the Pittsburgh Catholic is a conservative publication as well ."
+    },
+    {
+      "doc_idx": 24,
+      "title": "Pittsburgh Catholic",
+      "fact": [
+        "unmatched:d90495099dcfc5168826836d0461b2ec49b81dac1038ff13673b5658b03d6779:10:0:23",
+        "SUBSIDIARY_OF",
+        "unmatched:d90495099dcfc5168826836d0461b2ec49b81dac1038ff13673b5658b03d6779:0:61:87"
+      ],
+      "unmatched_s": true,
+      "unmatched_t": true,
+      "evidence": "The Pittsburgh Catholic is the weekly Catholic newspaper for the Roman Catholic Diocese of Pittsburgh , published for lay people and priests . As a result , the Pittsburgh Catholic is a conservative publication as well ."
+    },
+    {
+      "doc_idx": 24,
+      "title": "Pittsburgh Catholic",
+      "fact": [
+        "unmatched:d90495099dcfc5168826836d0461b2ec49b81dac1038ff13673b5658b03d6779:10:0:23",
+        "SUBSIDIARY_OF",
+        "unmatched:d90495099dcfc5168826836d0461b2ec49b81dac1038ff13673b5658b03d6779:10:39:69"
+      ],
+      "unmatched_s": true,
+      "unmatched_t": true,
+      "evidence": "According to the Pittsburgh Business Times Book of Lists , the Pittsburgh Catholic is the largest weekly publication in western Pennsylvania and the second - largest newspaper in western Pennsylvania . The Pittsburgh Catholic is a member of the Catholic Press Association ."
+    },
+    {
+      "doc_idx": 24,
+      "title": "Pittsburgh Catholic",
+      "fact": [
+        "unmatched:d90495099dcfc5168826836d0461b2ec49b81dac1038ff13673b5658b03d6779:10:39:69",
+        "OWNS",
+        "unmatched:d90495099dcfc5168826836d0461b2ec49b81dac1038ff13673b5658b03d6779:10:0:23"
+      ],
+      "unmatched_s": true,
+      "unmatched_t": true,
+      "evidence": "According to the Pittsburgh Business Times Book of Lists , the Pittsburgh Catholic is the largest weekly publication in western Pennsylvania and the second - largest newspaper in western Pennsylvania . The Pittsburgh Catholic is a member of the Catholic Press Association ."
+    }
+  ],
+  "sampled_fns": [
+    {
+      "doc_idx": 3,
+      "title": "Ramey Idriss",
+      "fact": [
+        "0",
+        "MEMBER_OF",
+        "9"
+      ],
+      "recovered_by_oracle": false
+    },
+    {
+      "doc_idx": 5,
+      "title": "Song of Freedom",
+      "fact": [
+        "16",
+        "MEMBER_OF",
+        "14"
+      ],
+      "recovered_by_oracle": false
+    },
+    {
+      "doc_idx": 6,
+      "title": "Soccer Academy",
+      "fact": [
+        "1",
+        "OWNS",
+        "0"
+      ],
+      "recovered_by_oracle": false
+    },
+    {
+      "doc_idx": 8,
+      "title": "The Sacramento Bee",
+      "fact": [
+        "0",
+        "SUBSIDIARY_OF",
+        "11"
+      ],
+      "recovered_by_oracle": false
+    },
+    {
+      "doc_idx": 8,
+      "title": "The Sacramento Bee",
+      "fact": [
+        "11",
+        "OWNS",
+        "0"
+      ],
+      "recovered_by_oracle": false
+    },
+    {
+      "doc_idx": 8,
+      "title": "The Sacramento Bee",
+      "fact": [
+        "11",
+        "OWNS",
+        "17"
+      ],
+      "recovered_by_oracle": false
+    },
+    {
+      "doc_idx": 8,
+      "title": "The Sacramento Bee",
+      "fact": [
+        "11",
+        "OWNS",
+        "18"
+      ],
+      "recovered_by_oracle": false
+    },
+    {
+      "doc_idx": 8,
+      "title": "The Sacramento Bee",
+      "fact": [
+        "13",
+        "FOUNDED",
+        "11"
+      ],
+      "recovered_by_oracle": false
+    },
+    {
+      "doc_idx": 13,
+      "title": "Edward Rowan Finnegan",
+      "fact": [
+        "0",
+        "MEMBER_OF",
+        "19"
+      ],
+      "recovered_by_oracle": true
+    },
+    {
+      "doc_idx": 13,
+      "title": "Edward Rowan Finnegan",
+      "fact": [
+        "20",
+        "MEMBER_OF",
+        "14"
+      ],
+      "recovered_by_oracle": false
+    },
+    {
+      "doc_idx": 13,
+      "title": "Edward Rowan Finnegan",
+      "fact": [
+        "20",
+        "MEMBER_OF",
+        "19"
+      ],
+      "recovered_by_oracle": true
+    },
+    {
+      "doc_idx": 15,
+      "title": "Eivind Bolle",
+      "fact": [
+        "17",
+        "MEMBER_OF",
+        "4"
+      ],
+      "recovered_by_oracle": false
+    },
+    {
+      "doc_idx": 15,
+      "title": "Eivind Bolle",
+      "fact": [
+        "18",
+        "MEMBER_OF",
+        "4"
+      ],
+      "recovered_by_oracle": false
+    },
+    {
+      "doc_idx": 15,
+      "title": "Eivind Bolle",
+      "fact": [
+        "19",
+        "MEMBER_OF",
+        "4"
+      ],
+      "recovered_by_oracle": false
+    },
+    {
+      "doc_idx": 16,
+      "title": "Henrik Angell",
+      "fact": [
+        "0",
+        "MEMBER_OF",
+        "22"
+      ],
+      "recovered_by_oracle": false
+    },
+    {
+      "doc_idx": 16,
+      "title": "Henrik Angell",
+      "fact": [
+        "0",
+        "MEMBER_OF",
+        "26"
+      ],
+      "recovered_by_oracle": true
+    },
+    {
+      "doc_idx": 16,
+      "title": "Henrik Angell",
+      "fact": [
+        "8",
+        "MEMBER_OF",
+        "4"
+      ],
+      "recovered_by_oracle": false
+    },
+    {
+      "doc_idx": 17,
+      "title": "Carey Business School",
+      "fact": [
+        "0",
+        "SUBSIDIARY_OF",
+        "1"
+      ],
+      "recovered_by_oracle": true
+    },
+    {
+      "doc_idx": 24,
+      "title": "Pittsburgh Catholic",
+      "fact": [
+        "0",
+        "MEMBER_OF",
+        "12"
+      ],
+      "recovered_by_oracle": false
+    },
+    {
+      "doc_idx": 24,
+      "title": "Pittsburgh Catholic",
+      "fact": [
+        "5",
+        "FOUNDED",
+        "0"
+      ],
+      "recovered_by_oracle": false
+    },
+    {
+      "doc_idx": 24,
+      "title": "Pittsburgh Catholic",
+      "fact": [
+        "9",
+        "EMPLOYED_BY",
+        "2"
+      ],
+      "recovered_by_oracle": false
+    },
+    {
+      "doc_idx": 27,
+      "title": "Nexus Q",
+      "fact": [
+        "1",
+        "OWNS",
+        "0"
+      ],
+      "recovered_by_oracle": false
+    },
+    {
+      "doc_idx": 27,
+      "title": "Nexus Q",
+      "fact": [
+        "1",
+        "OWNS",
+        "18"
+      ],
+      "recovered_by_oracle": false
+    },
+    {
+      "doc_idx": 27,
+      "title": "Nexus Q",
+      "fact": [
+        "1",
+        "OWNS",
+        "6"
+      ],
+      "recovered_by_oracle": false
+    },
+    {
+      "doc_idx": 27,
+      "title": "Nexus Q",
+      "fact": [
+        "1",
+        "OWNS",
+        "7"
+      ],
+      "recovered_by_oracle": false
+    },
+    {
+      "doc_idx": 27,
+      "title": "Nexus Q",
+      "fact": [
+        "1",
+        "OWNS",
+        "8"
+      ],
+      "recovered_by_oracle": false
+    },
+    {
+      "doc_idx": 27,
+      "title": "Nexus Q",
+      "fact": [
+        "13",
+        "EMPLOYED_BY",
+        "12"
+      ],
+      "recovered_by_oracle": false
+    },
+    {
+      "doc_idx": 27,
+      "title": "Nexus Q",
+      "fact": [
+        "7",
+        "SUBSIDIARY_OF",
+        "1"
+      ],
+      "recovered_by_oracle": false
+    },
+    {
+      "doc_idx": 27,
+      "title": "Nexus Q",
+      "fact": [
+        "8",
+        "SUBSIDIARY_OF",
+        "1"
+      ],
+      "recovered_by_oracle": false
+    },
+    {
+      "doc_idx": 34,
+      "title": "The Yorkshire Post",
+      "fact": [
+        "0",
+        "SUBSIDIARY_OF",
+        "7"
+      ],
+      "recovered_by_oracle": false
+    },
+    {
+      "doc_idx": 34,
+      "title": "The Yorkshire Post",
+      "fact": [
+        "6",
+        "SUBSIDIARY_OF",
+        "7"
+      ],
+      "recovered_by_oracle": false
+    },
+    {
+      "doc_idx": 34,
+      "title": "The Yorkshire Post",
+      "fact": [
+        "7",
+        "OWNS",
+        "0"
+      ],
+      "recovered_by_oracle": false
+    },
+    {
+      "doc_idx": 34,
+      "title": "The Yorkshire Post",
+      "fact": [
+        "7",
+        "OWNS",
+        "6"
+      ],
+      "recovered_by_oracle": false
+    },
+    {
+      "doc_idx": 37,
+      "title": "Bj\u00f6rn von der Esch",
+      "fact": [
+        "0",
+        "MEMBER_OF",
+        "19"
+      ],
+      "recovered_by_oracle": true
+    },
+    {
+      "doc_idx": 37,
+      "title": "Bj\u00f6rn von der Esch",
+      "fact": [
+        "0",
+        "MEMBER_OF",
+        "22"
+      ],
+      "recovered_by_oracle": false
+    },
+    {
+      "doc_idx": 37,
+      "title": "Bj\u00f6rn von der Esch",
+      "fact": [
+        "14",
+        "MEMBER_OF",
+        "11"
+      ],
+      "recovered_by_oracle": true
+    },
+    {
+      "doc_idx": 37,
+      "title": "Bj\u00f6rn von der Esch",
+      "fact": [
+        "18",
+        "MEMBER_OF",
+        "15"
+      ],
+      "recovered_by_oracle": false
+    },
+    {
+      "doc_idx": 37,
+      "title": "Bj\u00f6rn von der Esch",
+      "fact": [
+        "18",
+        "MEMBER_OF",
+        "21"
+      ],
+      "recovered_by_oracle": false
+    },
+    {
+      "doc_idx": 37,
+      "title": "Bj\u00f6rn von der Esch",
+      "fact": [
+        "3",
+        "MEMBER_OF",
+        "15"
+      ],
+      "recovered_by_oracle": false
+    },
+    {
+      "doc_idx": 39,
+      "title": "Martin Ulrich",
+      "fact": [
+        "0",
+        "MEMBER_OF",
+        "11"
+      ],
+      "recovered_by_oracle": true
+    },
+    {
+      "doc_idx": 39,
+      "title": "Martin Ulrich",
+      "fact": [
+        "0",
+        "MEMBER_OF",
+        "14"
+      ],
+      "recovered_by_oracle": true
+    },
+    {
+      "doc_idx": 39,
+      "title": "Martin Ulrich",
+      "fact": [
+        "0",
+        "MEMBER_OF",
+        "15"
+      ],
+      "recovered_by_oracle": false
+    },
+    {
+      "doc_idx": 39,
+      "title": "Martin Ulrich",
+      "fact": [
+        "0",
+        "MEMBER_OF",
+        "18"
+      ],
+      "recovered_by_oracle": false
+    },
+    {
+      "doc_idx": 39,
+      "title": "Martin Ulrich",
+      "fact": [
+        "0",
+        "MEMBER_OF",
+        "20"
+      ],
+      "recovered_by_oracle": true
+    },
+    {
+      "doc_idx": 39,
+      "title": "Martin Ulrich",
+      "fact": [
+        "0",
+        "MEMBER_OF",
+        "3"
+      ],
+      "recovered_by_oracle": true
+    },
+    {
+      "doc_idx": 39,
+      "title": "Martin Ulrich",
+      "fact": [
+        "0",
+        "MEMBER_OF",
+        "6"
+      ],
+      "recovered_by_oracle": true
+    },
+    {
+      "doc_idx": 42,
+      "title": "United States Naval Forces Germany",
+      "fact": [
+        "0",
+        "SUBSIDIARY_OF",
+        "1"
+      ],
+      "recovered_by_oracle": true
+    },
+    {
+      "doc_idx": 43,
+      "title": "Cry for Help",
+      "fact": [
+        "21",
+        "MEMBER_OF",
+        "22"
+      ],
+      "recovered_by_oracle": false
+    },
+    {
+      "doc_idx": 43,
+      "title": "Cry for Help",
+      "fact": [
+        "4",
+        "MEMBER_OF",
+        "19"
+      ],
+      "recovered_by_oracle": false
+    },
+    {
+      "doc_idx": 46,
+      "title": "List of Square Enix video games",
+      "fact": [
+        "0",
+        "OWNS",
+        "11"
+      ],
+      "recovered_by_oracle": true
+    }
+  ],
+  "sampled_tps": [
+    {
+      "doc_idx": 25,
+      "title": "Toufique Imrose Khalidi",
+      "fact": [
+        "0",
+        "EMPLOYED_BY",
+        "4"
+      ],
+      "evidence": ""
+    },
+    {
+      "doc_idx": 43,
+      "title": "Cry for Help",
+      "fact": [
+        "4",
+        "MEMBER_OF",
+        "18"
+      ],
+      "evidence": ""
+    },
+    {
+      "doc_idx": 46,
+      "title": "List of Square Enix video games",
+      "fact": [
+        "11",
+        "OWNS",
+        "13"
+      ],
+      "evidence": ""
+    },
+    {
+      "doc_idx": 47,
+      "title": "Velocifero",
+      "fact": [
+        "15",
+        "MEMBER_OF",
+        "2"
+      ],
+      "evidence": ""
+    },
+    {
+      "doc_idx": 93,
+      "title": "Il regalo pi\u00f9 grande",
+      "fact": [
+        "15",
+        "MEMBER_OF",
+        "14"
+      ],
+      "evidence": ""
+    },
+    {
+      "doc_idx": 93,
+      "title": "Il regalo pi\u00f9 grande",
+      "fact": [
+        "9",
+        "MEMBER_OF",
+        "11"
+      ],
+      "evidence": ""
+    },
+    {
+      "doc_idx": 132,
+      "title": "Bombtrack",
+      "fact": [
+        "3",
+        "MEMBER_OF",
+        "2"
+      ],
+      "evidence": ""
+    },
+    {
+      "doc_idx": 133,
+      "title": "Christine Razanamahasoa",
+      "fact": [
+        "11",
+        "MEMBER_OF",
+        "18"
+      ],
+      "evidence": ""
+    },
+    {
+      "doc_idx": 147,
+      "title": "Rob James (singer)",
+      "fact": [
+        "10",
+        "MEMBER_OF",
+        "6"
+      ],
+      "evidence": ""
+    },
+    {
+      "doc_idx": 148,
+      "title": "Joy Division discography",
+      "fact": [
+        "10",
+        "MEMBER_OF",
+        "1"
+      ],
+      "evidence": ""
+    },
+    {
+      "doc_idx": 148,
+      "title": "Joy Division discography",
+      "fact": [
+        "11",
+        "MEMBER_OF",
+        "1"
+      ],
+      "evidence": ""
+    },
+    {
+      "doc_idx": 148,
+      "title": "Joy Division discography",
+      "fact": [
+        "12",
+        "MEMBER_OF",
+        "1"
+      ],
+      "evidence": ""
+    },
+    {
+      "doc_idx": 148,
+      "title": "Joy Division discography",
+      "fact": [
+        "8",
+        "MEMBER_OF",
+        "1"
+      ],
+      "evidence": ""
+    },
+    {
+      "doc_idx": 153,
+      "title": "Rachel Proctor",
+      "fact": [
+        "22",
+        "FOUNDED",
+        "21"
+      ],
+      "evidence": ""
+    },
+    {
+      "doc_idx": 153,
+      "title": "Rachel Proctor",
+      "fact": [
+        "22",
+        "OWNS",
+        "21"
+      ],
+      "evidence": ""
+    }
+  ]
+}

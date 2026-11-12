@@ -1,0 +1,135 @@
+{
+  "metadata": {
+    "training": "all gold and production candidates, no class balancing or negative sampling",
+    "train_documents": 3052,
+    "excluded_training_titles": [
+      "Lark Force"
+    ],
+    "train_sha256": "c40a137a1c57f3e2daaf5ebf511eaa1518f9305ffaa3052d46271921a91826f2",
+    "dev_sha256": "051ee1d057204a5d08ef5502beacdadf191245b5eaf0e29ec2c607cf002c016f",
+    "calibration": "even dev indices, precision >= .5, >= 5 TP, maximum recall",
+    "validation": "odd dev indices; previously observed development data, not fresh holdout"
+  },
+  "thresholds": {
+    "FOUNDED": 1.01,
+    "EMPLOYED_BY": 1.01,
+    "MEMBER_OF": 0.24604670103505755,
+    "OWNS": 1.01,
+    "SUBSIDIARY_OF": 1.01
+  },
+  "training_pairs": 158223,
+  "rejected_documents": {
+    "train": [
+      {
+        "title": "Eug\u00e8ne Olivier",
+        "error": "Document language 'fr' is not supported. English only."
+      }
+    ],
+    "dev": []
+  },
+  "calibration": {
+    "overall": {
+      "tp": 9,
+      "fp": 9,
+      "fn": 271,
+      "precision": 0.5,
+      "recall": 0.03214285714285714,
+      "f1": 0.060402684563758385
+    },
+    "per_label": {
+      "FOUNDED": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 21,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "EMPLOYED_BY": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 36,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "MEMBER_OF": {
+        "tp": 9,
+        "fp": 9,
+        "fn": 115,
+        "precision": 0.5,
+        "recall": 0.07258064516129033,
+        "f1": 0.1267605633802817
+      },
+      "OWNS": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 59,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "SUBSIDIARY_OF": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 40,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      }
+    }
+  },
+  "validation": {
+    "overall": {
+      "tp": 1,
+      "fp": 8,
+      "fn": 332,
+      "precision": 0.1111111111111111,
+      "recall": 0.003003003003003003,
+      "f1": 0.005847953216374269
+    },
+    "per_label": {
+      "FOUNDED": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 17,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "EMPLOYED_BY": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 41,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "MEMBER_OF": {
+        "tp": 1,
+        "fp": 8,
+        "fn": 143,
+        "precision": 0.1111111111111111,
+        "recall": 0.006944444444444444,
+        "f1": 0.013071895424836602
+      },
+      "OWNS": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 86,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "SUBSIDIARY_OF": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 45,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      }
+    }
+  },
+  "artifact_sha256": "8c588a681ed5f4127ebc568c4859413a850562f395658d46ec2ac7f23171a446"
+}

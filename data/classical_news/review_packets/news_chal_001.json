@@ -1,0 +1,83 @@
+{
+  "schema_version": "2.classical_news.1",
+  "document_id": "news:chal:001",
+  "title": "Negation: Bill Gates Not Employed",
+  "group_key": "group:chal_negation",
+  "split": "challenge",
+  "content_hash": "b5414320386a3cd723902ca600488de46df2029716e0f614664f04a122d5bfef",
+  "text": "Bill Gates does not work for Microsoft anymore. Gates retired to pursue charitable projects in Seattle. Microsoft is based in Redmond.",
+  "mentions": [
+    {
+      "id": "m0",
+      "document_id": "news:chal:001",
+      "text": "Bill Gates",
+      "type": "PERSON",
+      "start": 0,
+      "end": 10,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m1",
+      "document_id": "news:chal:001",
+      "text": "Microsoft",
+      "type": "ORGANIZATION",
+      "start": 29,
+      "end": 38,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m2",
+      "document_id": "news:chal:001",
+      "text": "Seattle",
+      "type": "LOCATION",
+      "start": 95,
+      "end": 102,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m3",
+      "document_id": "news:chal:001",
+      "text": "Microsoft",
+      "type": "ORGANIZATION",
+      "start": 104,
+      "end": 113,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m4",
+      "document_id": "news:chal:001",
+      "text": "Redmond",
+      "type": "LOCATION",
+      "start": 126,
+      "end": 133,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    }
+  ],
+  "relation_annotations": [
+    {
+      "subject_id": "m3",
+      "relation": "BASED_IN",
+      "object_id": "m4",
+      "label_status": "positive",
+      "evidence_text": "Microsoft is based in Redmond.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    }
+  ]
+}

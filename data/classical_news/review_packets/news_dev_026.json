@@ -1,0 +1,139 @@
+{
+  "schema_version": "2.classical_news.1",
+  "document_id": "news:dev:026",
+  "title": "AstraZeneca Cambridge",
+  "group_key": "group:az_pharma",
+  "split": "dev",
+  "content_hash": "0ad7960d9bc9d09e2804d36a5313cda8fa61df9b78a90e6153aaa7482d4f89eb",
+  "text": "AstraZeneca is headquartered in Cambridge, England. Pascal Soriot works for AstraZeneca. Soriot lives in Sydney.",
+  "mentions": [
+    {
+      "id": "m0",
+      "document_id": "news:dev:026",
+      "text": "AstraZeneca",
+      "type": "ORGANIZATION",
+      "start": 0,
+      "end": 11,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m1",
+      "document_id": "news:dev:026",
+      "text": "Cambridge",
+      "type": "LOCATION",
+      "start": 32,
+      "end": 41,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m2",
+      "document_id": "news:dev:026",
+      "text": "England",
+      "type": "LOCATION",
+      "start": 43,
+      "end": 50,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m3",
+      "document_id": "news:dev:026",
+      "text": "Pascal Soriot",
+      "type": "PERSON",
+      "start": 52,
+      "end": 65,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m4",
+      "document_id": "news:dev:026",
+      "text": "AstraZeneca",
+      "type": "ORGANIZATION",
+      "start": 76,
+      "end": 87,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m5",
+      "document_id": "news:dev:026",
+      "text": "Sydney",
+      "type": "LOCATION",
+      "start": 105,
+      "end": 111,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    }
+  ],
+  "relation_annotations": [
+    {
+      "subject_id": "m0",
+      "relation": "BASED_IN",
+      "object_id": "m1",
+      "label_status": "positive",
+      "evidence_text": "AstraZeneca is headquartered in Cambridge, England.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m0",
+      "relation": "BASED_IN",
+      "object_id": "m2",
+      "label_status": "positive",
+      "evidence_text": "AstraZeneca is headquartered in Cambridge, England.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m3",
+      "relation": "WORKS_FOR",
+      "object_id": "m4",
+      "label_status": "positive",
+      "evidence_text": "Pascal Soriot works for AstraZeneca.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m1",
+      "relation": "LOCATED_IN",
+      "object_id": "m2",
+      "label_status": "positive",
+      "evidence_text": "AstraZeneca is headquartered in Cambridge, England.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    }
+  ]
+}

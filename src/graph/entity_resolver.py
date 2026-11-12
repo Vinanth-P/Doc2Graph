@@ -229,6 +229,8 @@ class EntityResolver:
         return None
 
     def _score(self, a: Entity, b: Entity) -> float:
+        if a.type == b.type and a.canonical_name.casefold() == b.canonical_name.casefold():
+            return 1.0
         if _is_person_name_conflict(a, b):
             return 0.0
         abbreviation = _abbreviation_score(a.canonical_name, b.canonical_name)

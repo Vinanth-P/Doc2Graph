@@ -1,0 +1,139 @@
+{
+  "schema_version": "2.classical_news.1",
+  "document_id": "news:test:027",
+  "title": "Unilever London",
+  "group_key": "group:unilever_cpg",
+  "split": "locked_test",
+  "content_hash": "97f21adda6b5af18152cbe7a9fd1fbc62d60515befdc564a489db299aa4a0e2c",
+  "text": "Unilever is headquartered in London, England. Hein Schumacher works for Unilever. Schumacher lives in Amsterdam.",
+  "mentions": [
+    {
+      "id": "m0",
+      "document_id": "news:test:027",
+      "text": "Unilever",
+      "type": "ORGANIZATION",
+      "start": 0,
+      "end": 8,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m1",
+      "document_id": "news:test:027",
+      "text": "London",
+      "type": "LOCATION",
+      "start": 29,
+      "end": 35,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m2",
+      "document_id": "news:test:027",
+      "text": "England",
+      "type": "LOCATION",
+      "start": 37,
+      "end": 44,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m3",
+      "document_id": "news:test:027",
+      "text": "Hein Schumacher",
+      "type": "PERSON",
+      "start": 46,
+      "end": 61,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m4",
+      "document_id": "news:test:027",
+      "text": "Unilever",
+      "type": "ORGANIZATION",
+      "start": 72,
+      "end": 80,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m5",
+      "document_id": "news:test:027",
+      "text": "Amsterdam",
+      "type": "LOCATION",
+      "start": 102,
+      "end": 111,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    }
+  ],
+  "relation_annotations": [
+    {
+      "subject_id": "m0",
+      "relation": "BASED_IN",
+      "object_id": "m1",
+      "label_status": "positive",
+      "evidence_text": "Unilever is headquartered in London, England.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m0",
+      "relation": "BASED_IN",
+      "object_id": "m2",
+      "label_status": "positive",
+      "evidence_text": "Unilever is headquartered in London, England.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m3",
+      "relation": "WORKS_FOR",
+      "object_id": "m4",
+      "label_status": "positive",
+      "evidence_text": "Hein Schumacher works for Unilever.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m1",
+      "relation": "LOCATED_IN",
+      "object_id": "m2",
+      "label_status": "positive",
+      "evidence_text": "Unilever is headquartered in London, England.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    }
+  ]
+}

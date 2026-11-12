@@ -1,0 +1,165 @@
+{
+  "schema_version": "2.classical_news.1",
+  "document_id": "news:test:016",
+  "title": "Tata Sons Mumbai",
+  "group_key": "group:tata_india",
+  "split": "locked_test",
+  "content_hash": "b692ef73c23ca65fab55211c717d0b5b0fe346ac752c14ab93d80f68c3490771",
+  "text": "Tata Sons is headquartered in Mumbai, India. Natarajan Chandrasekaran works for Tata. Mumbai is located in India.",
+  "mentions": [
+    {
+      "id": "m0",
+      "document_id": "news:test:016",
+      "text": "Tata Sons",
+      "type": "ORGANIZATION",
+      "start": 0,
+      "end": 9,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m1",
+      "document_id": "news:test:016",
+      "text": "Mumbai",
+      "type": "LOCATION",
+      "start": 30,
+      "end": 36,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m2",
+      "document_id": "news:test:016",
+      "text": "India",
+      "type": "LOCATION",
+      "start": 38,
+      "end": 43,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m3",
+      "document_id": "news:test:016",
+      "text": "Natarajan Chandrasekaran",
+      "type": "PERSON",
+      "start": 45,
+      "end": 69,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m4",
+      "document_id": "news:test:016",
+      "text": "Tata",
+      "type": "ORGANIZATION",
+      "start": 80,
+      "end": 84,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m5",
+      "document_id": "news:test:016",
+      "text": "Mumbai",
+      "type": "LOCATION",
+      "start": 86,
+      "end": 92,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m6",
+      "document_id": "news:test:016",
+      "text": "India",
+      "type": "LOCATION",
+      "start": 107,
+      "end": 112,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    }
+  ],
+  "relation_annotations": [
+    {
+      "subject_id": "m0",
+      "relation": "BASED_IN",
+      "object_id": "m1",
+      "label_status": "positive",
+      "evidence_text": "Tata Sons is headquartered in Mumbai, India.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m0",
+      "relation": "BASED_IN",
+      "object_id": "m2",
+      "label_status": "positive",
+      "evidence_text": "Tata Sons is headquartered in Mumbai, India.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m3",
+      "relation": "WORKS_FOR",
+      "object_id": "m4",
+      "label_status": "positive",
+      "evidence_text": "Natarajan Chandrasekaran works for Tata.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m1",
+      "relation": "LOCATED_IN",
+      "object_id": "m2",
+      "label_status": "positive",
+      "evidence_text": "Tata Sons is headquartered in Mumbai, India.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m5",
+      "relation": "LOCATED_IN",
+      "object_id": "m6",
+      "label_status": "positive",
+      "evidence_text": "Mumbai is located in India.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    }
+  ]
+}

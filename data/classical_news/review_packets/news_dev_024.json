@@ -1,0 +1,165 @@
+{
+  "schema_version": "2.classical_news.1",
+  "document_id": "news:dev:024",
+  "title": "Roche Basel Switzerland",
+  "group_key": "group:roche_pharma",
+  "split": "dev",
+  "content_hash": "54cd37c1f93434afd1883903d8c19e8d0087eb9fd5f79e665e3452a0203033e7",
+  "text": "Roche is headquartered in Basel, Switzerland. Thomas Schinecker works for Roche. Basel is located in Switzerland.",
+  "mentions": [
+    {
+      "id": "m0",
+      "document_id": "news:dev:024",
+      "text": "Roche",
+      "type": "ORGANIZATION",
+      "start": 0,
+      "end": 5,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m1",
+      "document_id": "news:dev:024",
+      "text": "Basel",
+      "type": "LOCATION",
+      "start": 26,
+      "end": 31,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m2",
+      "document_id": "news:dev:024",
+      "text": "Switzerland",
+      "type": "LOCATION",
+      "start": 33,
+      "end": 44,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m3",
+      "document_id": "news:dev:024",
+      "text": "Thomas Schinecker",
+      "type": "PERSON",
+      "start": 46,
+      "end": 63,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m4",
+      "document_id": "news:dev:024",
+      "text": "Roche",
+      "type": "ORGANIZATION",
+      "start": 74,
+      "end": 79,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m5",
+      "document_id": "news:dev:024",
+      "text": "Basel",
+      "type": "LOCATION",
+      "start": 81,
+      "end": 86,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m6",
+      "document_id": "news:dev:024",
+      "text": "Switzerland",
+      "type": "LOCATION",
+      "start": 101,
+      "end": 112,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    }
+  ],
+  "relation_annotations": [
+    {
+      "subject_id": "m0",
+      "relation": "BASED_IN",
+      "object_id": "m1",
+      "label_status": "positive",
+      "evidence_text": "Roche is headquartered in Basel, Switzerland.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m0",
+      "relation": "BASED_IN",
+      "object_id": "m2",
+      "label_status": "positive",
+      "evidence_text": "Roche is headquartered in Basel, Switzerland.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m3",
+      "relation": "WORKS_FOR",
+      "object_id": "m4",
+      "label_status": "positive",
+      "evidence_text": "Thomas Schinecker works for Roche.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m1",
+      "relation": "LOCATED_IN",
+      "object_id": "m2",
+      "label_status": "positive",
+      "evidence_text": "Roche is headquartered in Basel, Switzerland.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m5",
+      "relation": "LOCATED_IN",
+      "object_id": "m6",
+      "label_status": "positive",
+      "evidence_text": "Basel is located in Switzerland.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    }
+  ]
+}

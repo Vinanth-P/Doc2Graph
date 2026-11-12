@@ -1,0 +1,124 @@
+{
+  "schema_version": "2.classical_news.1",
+  "document_id": "news:chal:009",
+  "title": "Multiple Organizations Disambiguation",
+  "group_key": "group:chal_disambig",
+  "split": "challenge",
+  "content_hash": "498167cecc50858b421be42f74f1e450d8934830eae4898d0f0d1b99302dac37",
+  "text": "Eric Schmidt worked for Google after leaving Novell in Silicon Valley. Schmidt lives in Atherton, California.",
+  "mentions": [
+    {
+      "id": "m0",
+      "document_id": "news:chal:009",
+      "text": "Eric Schmidt",
+      "type": "PERSON",
+      "start": 0,
+      "end": 12,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m1",
+      "document_id": "news:chal:009",
+      "text": "Google",
+      "type": "ORGANIZATION",
+      "start": 24,
+      "end": 30,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m2",
+      "document_id": "news:chal:009",
+      "text": "Novell",
+      "type": "ORGANIZATION",
+      "start": 45,
+      "end": 51,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m3",
+      "document_id": "news:chal:009",
+      "text": "Silicon Valley",
+      "type": "LOCATION",
+      "start": 55,
+      "end": 69,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m4",
+      "document_id": "news:chal:009",
+      "text": "Atherton",
+      "type": "LOCATION",
+      "start": 88,
+      "end": 96,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m5",
+      "document_id": "news:chal:009",
+      "text": "California",
+      "type": "LOCATION",
+      "start": 98,
+      "end": 108,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    }
+  ],
+  "relation_annotations": [
+    {
+      "subject_id": "m0",
+      "relation": "WORKS_FOR",
+      "object_id": "m1",
+      "label_status": "positive",
+      "evidence_text": "Eric Schmidt worked for Google after leaving Novell in Silicon Valley.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m0",
+      "relation": "WORKS_FOR",
+      "object_id": "m2",
+      "label_status": "positive",
+      "evidence_text": "Eric Schmidt worked for Google after leaving Novell in Silicon Valley.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m4",
+      "relation": "LOCATED_IN",
+      "object_id": "m5",
+      "label_status": "positive",
+      "evidence_text": "Schmidt lives in Atherton, California.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    }
+  ]
+}

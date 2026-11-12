@@ -1,0 +1,139 @@
+{
+  "schema_version": "2.classical_news.1",
+  "document_id": "news:dev:022",
+  "title": "Spotify Stockholm",
+  "group_key": "group:spotify_audio",
+  "split": "dev",
+  "content_hash": "a6a3b1c6cb8b698b75eb1aa68a7e885e791f801bd21954bc073a58d25c4ed8a4",
+  "text": "Spotify is headquartered in Stockholm, Sweden. Daniel Ek works for Spotify. Ek lives in Stockholm.",
+  "mentions": [
+    {
+      "id": "m0",
+      "document_id": "news:dev:022",
+      "text": "Spotify",
+      "type": "ORGANIZATION",
+      "start": 0,
+      "end": 7,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m1",
+      "document_id": "news:dev:022",
+      "text": "Stockholm",
+      "type": "LOCATION",
+      "start": 28,
+      "end": 37,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m2",
+      "document_id": "news:dev:022",
+      "text": "Sweden",
+      "type": "LOCATION",
+      "start": 39,
+      "end": 45,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m3",
+      "document_id": "news:dev:022",
+      "text": "Daniel Ek",
+      "type": "PERSON",
+      "start": 47,
+      "end": 56,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m4",
+      "document_id": "news:dev:022",
+      "text": "Spotify",
+      "type": "ORGANIZATION",
+      "start": 67,
+      "end": 74,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m5",
+      "document_id": "news:dev:022",
+      "text": "Stockholm",
+      "type": "LOCATION",
+      "start": 88,
+      "end": 97,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    }
+  ],
+  "relation_annotations": [
+    {
+      "subject_id": "m0",
+      "relation": "BASED_IN",
+      "object_id": "m1",
+      "label_status": "positive",
+      "evidence_text": "Spotify is headquartered in Stockholm, Sweden.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m0",
+      "relation": "BASED_IN",
+      "object_id": "m2",
+      "label_status": "positive",
+      "evidence_text": "Spotify is headquartered in Stockholm, Sweden.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m3",
+      "relation": "WORKS_FOR",
+      "object_id": "m4",
+      "label_status": "positive",
+      "evidence_text": "Daniel Ek works for Spotify.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m1",
+      "relation": "LOCATED_IN",
+      "object_id": "m2",
+      "label_status": "positive",
+      "evidence_text": "Spotify is headquartered in Stockholm, Sweden.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    }
+  ]
+}

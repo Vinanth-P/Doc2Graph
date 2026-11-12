@@ -1,0 +1,187 @@
+{
+  "schema_version": "2.classical_news.1",
+  "document_id": "news:dev:007",
+  "title": "Jeff Bezos and Amazon Relocation",
+  "group_key": "group:amazon_corp",
+  "split": "dev",
+  "content_hash": "f642bfa86535b37b185bb5e26782aa81d845a40f2f955d2c5df45db87ba2acbd",
+  "text": "Jeff Bezos founded Amazon in Seattle. Bezos lived in Seattle before announcing a move to Miami. Amazon is based in Seattle, Washington.",
+  "mentions": [
+    {
+      "id": "m0",
+      "document_id": "news:dev:007",
+      "text": "Jeff Bezos",
+      "type": "PERSON",
+      "start": 0,
+      "end": 10,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m1",
+      "document_id": "news:dev:007",
+      "text": "Amazon",
+      "type": "ORGANIZATION",
+      "start": 19,
+      "end": 25,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m2",
+      "document_id": "news:dev:007",
+      "text": "Seattle",
+      "type": "LOCATION",
+      "start": 29,
+      "end": 36,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m3",
+      "document_id": "news:dev:007",
+      "text": "Bezos",
+      "type": "PERSON",
+      "start": 5,
+      "end": 10,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m4",
+      "document_id": "news:dev:007",
+      "text": "Seattle",
+      "type": "LOCATION",
+      "start": 29,
+      "end": 36,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m5",
+      "document_id": "news:dev:007",
+      "text": "Miami",
+      "type": "LOCATION",
+      "start": 89,
+      "end": 94,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m6",
+      "document_id": "news:dev:007",
+      "text": "Amazon",
+      "type": "ORGANIZATION",
+      "start": 19,
+      "end": 25,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m7",
+      "document_id": "news:dev:007",
+      "text": "Seattle",
+      "type": "LOCATION",
+      "start": 29,
+      "end": 36,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m8",
+      "document_id": "news:dev:007",
+      "text": "Washington",
+      "type": "LOCATION",
+      "start": 124,
+      "end": 134,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    }
+  ],
+  "relation_annotations": [
+    {
+      "subject_id": "m0",
+      "relation": "WORKS_FOR",
+      "object_id": "m1",
+      "label_status": "positive",
+      "evidence_text": "Jeff Bezos founded Amazon in Seattle.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "annotator_verified_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m3",
+      "relation": "LIVES_IN",
+      "object_id": "m4",
+      "label_status": "positive",
+      "evidence_text": "Bezos lived in Seattle before announcing a move to Miami.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "annotator_verified_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m3",
+      "relation": "LIVES_IN",
+      "object_id": "m5",
+      "label_status": "positive",
+      "evidence_text": "Bezos lived in Seattle before announcing a move to Miami.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "annotator_verified_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m6",
+      "relation": "BASED_IN",
+      "object_id": "m7",
+      "label_status": "positive",
+      "evidence_text": "Amazon is based in Seattle, Washington.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "annotator_verified_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m7",
+      "relation": "LOCATED_IN",
+      "object_id": "m8",
+      "label_status": "positive",
+      "evidence_text": "Amazon is based in Seattle, Washington.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "annotator_verified_pilot",
+        "review_status": "human_verified_gold"
+      }
+    }
+  ]
+}

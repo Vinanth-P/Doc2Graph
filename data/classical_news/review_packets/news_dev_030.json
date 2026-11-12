@@ -1,0 +1,139 @@
+{
+  "schema_version": "2.classical_news.1",
+  "document_id": "news:dev:030",
+  "title": "TotalEnergies Paris",
+  "group_key": "group:total_energy",
+  "split": "dev",
+  "content_hash": "c5abc3e35637385629e3686a015e8d053e24b527e7715d25dcb56e77dd6ede56",
+  "text": "TotalEnergies is headquartered in Paris, France. Patrick Pouyanne works for TotalEnergies. Pouyanne lives in Paris.",
+  "mentions": [
+    {
+      "id": "m0",
+      "document_id": "news:dev:030",
+      "text": "TotalEnergies",
+      "type": "ORGANIZATION",
+      "start": 0,
+      "end": 13,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m1",
+      "document_id": "news:dev:030",
+      "text": "Paris",
+      "type": "LOCATION",
+      "start": 34,
+      "end": 39,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m2",
+      "document_id": "news:dev:030",
+      "text": "France",
+      "type": "LOCATION",
+      "start": 41,
+      "end": 47,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m3",
+      "document_id": "news:dev:030",
+      "text": "Patrick Pouyanne",
+      "type": "PERSON",
+      "start": 49,
+      "end": 65,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m4",
+      "document_id": "news:dev:030",
+      "text": "TotalEnergies",
+      "type": "ORGANIZATION",
+      "start": 76,
+      "end": 89,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m5",
+      "document_id": "news:dev:030",
+      "text": "Paris",
+      "type": "LOCATION",
+      "start": 109,
+      "end": 114,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    }
+  ],
+  "relation_annotations": [
+    {
+      "subject_id": "m0",
+      "relation": "BASED_IN",
+      "object_id": "m1",
+      "label_status": "positive",
+      "evidence_text": "TotalEnergies is headquartered in Paris, France.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m0",
+      "relation": "BASED_IN",
+      "object_id": "m2",
+      "label_status": "positive",
+      "evidence_text": "TotalEnergies is headquartered in Paris, France.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m3",
+      "relation": "WORKS_FOR",
+      "object_id": "m4",
+      "label_status": "positive",
+      "evidence_text": "Patrick Pouyanne works for TotalEnergies.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m1",
+      "relation": "LOCATED_IN",
+      "object_id": "m2",
+      "label_status": "positive",
+      "evidence_text": "TotalEnergies is headquartered in Paris, France.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    }
+  ]
+}

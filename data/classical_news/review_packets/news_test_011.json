@@ -1,0 +1,165 @@
+{
+  "schema_version": "2.classical_news.1",
+  "document_id": "news:test:011",
+  "title": "Honda Motor Tokyo",
+  "group_key": "group:honda_auto",
+  "split": "locked_test",
+  "content_hash": "e38d7b1cc009670a3023cc5f69fcbcd05e0eee7bc4f38a3313de1248236dbcce",
+  "text": "Honda is based in Tokyo, Japan. Toshihiro Mibe works for Honda. Tokyo is located in Japan.",
+  "mentions": [
+    {
+      "id": "m0",
+      "document_id": "news:test:011",
+      "text": "Honda",
+      "type": "ORGANIZATION",
+      "start": 0,
+      "end": 5,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m1",
+      "document_id": "news:test:011",
+      "text": "Tokyo",
+      "type": "LOCATION",
+      "start": 18,
+      "end": 23,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m2",
+      "document_id": "news:test:011",
+      "text": "Japan",
+      "type": "LOCATION",
+      "start": 25,
+      "end": 30,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m3",
+      "document_id": "news:test:011",
+      "text": "Toshihiro Mibe",
+      "type": "PERSON",
+      "start": 32,
+      "end": 46,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m4",
+      "document_id": "news:test:011",
+      "text": "Honda",
+      "type": "ORGANIZATION",
+      "start": 57,
+      "end": 62,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m5",
+      "document_id": "news:test:011",
+      "text": "Tokyo",
+      "type": "LOCATION",
+      "start": 64,
+      "end": 69,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m6",
+      "document_id": "news:test:011",
+      "text": "Japan",
+      "type": "LOCATION",
+      "start": 84,
+      "end": 89,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    }
+  ],
+  "relation_annotations": [
+    {
+      "subject_id": "m0",
+      "relation": "BASED_IN",
+      "object_id": "m1",
+      "label_status": "positive",
+      "evidence_text": "Honda is based in Tokyo, Japan.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m0",
+      "relation": "BASED_IN",
+      "object_id": "m2",
+      "label_status": "positive",
+      "evidence_text": "Honda is based in Tokyo, Japan.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m3",
+      "relation": "WORKS_FOR",
+      "object_id": "m4",
+      "label_status": "positive",
+      "evidence_text": "Toshihiro Mibe works for Honda.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m1",
+      "relation": "LOCATED_IN",
+      "object_id": "m2",
+      "label_status": "positive",
+      "evidence_text": "Honda is based in Tokyo, Japan.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m5",
+      "relation": "LOCATED_IN",
+      "object_id": "m6",
+      "label_status": "positive",
+      "evidence_text": "Tokyo is located in Japan.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    }
+  ]
+}

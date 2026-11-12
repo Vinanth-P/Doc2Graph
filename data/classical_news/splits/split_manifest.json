@@ -1,0 +1,73 @@
+{
+  "schema_version": "2.classical_news_manifest.1",
+  "splits": {
+    "dev": {
+      "count": 30,
+      "file": "data\\classical_news\\splits\\dev.jsonl",
+      "combined_content_sha256": "6523d50aa99a34561502c5ca5c8e205c2374510ee8fae196fdffb7f1cb3ee66f",
+      "entity_mention_count": 198,
+      "entity_type_counts": {
+        "ORGANIZATION": 56,
+        "LOCATION": 97,
+        "PERSON": 45
+      },
+      "relation_type_counts": {
+        "BASED_IN": 35,
+        "LIVES_IN": 17,
+        "LOCATED_IN": 31,
+        "WORKS_FOR": 30
+      },
+      "label_status_counts": {
+        "positive": 110,
+        "explicit_negative": 2,
+        "unknown": 1
+      }
+    },
+    "locked_test": {
+      "count": 30,
+      "file": "data\\classical_news\\splits\\locked_test.jsonl",
+      "combined_content_sha256": "da754d2af7e55bb0b42551a93b4abd6c5a5445cb7d4178ae0e63a3bafb5dafaf",
+      "entity_mention_count": 184,
+      "entity_type_counts": {
+        "ORGANIZATION": 59,
+        "LOCATION": 95,
+        "PERSON": 30
+      },
+      "relation_type_counts": {
+        "BASED_IN": 49,
+        "WORKS_FOR": 30,
+        "LOCATED_IN": 35
+      },
+      "label_status_counts": {
+        "positive": 114
+      }
+    },
+    "challenge": {
+      "count": 15,
+      "file": "data\\classical_news\\splits\\challenge.jsonl",
+      "combined_content_sha256": "0d604e40c093795e709e7303ae99ac6258d56a2a59e5249ce9e11e24ab657b9c",
+      "entity_mention_count": 84,
+      "entity_type_counts": {
+        "PERSON": 14,
+        "ORGANIZATION": 24,
+        "LOCATION": 46
+      },
+      "relation_type_counts": {
+        "BASED_IN": 13,
+        "LIVES_IN": 9,
+        "LOCATED_IN": 11,
+        "WORKS_FOR": 9
+      },
+      "label_status_counts": {
+        "positive": 36,
+        "explicit_negative": 6
+      }
+    }
+  },
+  "totals": {
+    "total_documents": 75,
+    "dev_documents": 30,
+    "locked_test_documents": 30,
+    "challenge_documents": 15
+  }
+}

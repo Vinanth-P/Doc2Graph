@@ -1,0 +1,135 @@
+{
+  "schema_version": "2.classical_news.1",
+  "document_id": "news:dev:017",
+  "title": "SpaceX Hawthorne and Starbase",
+  "group_key": "group:spacex_aero",
+  "split": "dev",
+  "content_hash": "db538aaea9fe6e20aa7316c9df193dbe53ab3a778bf8e6c116cedcc7c5ede35c",
+  "text": "SpaceX was founded in Hawthorne, California. Hawthorne is in California. Gwynne Shotwell works for SpaceX.",
+  "mentions": [
+    {
+      "id": "m0",
+      "document_id": "news:dev:017",
+      "text": "SpaceX",
+      "type": "ORGANIZATION",
+      "start": 0,
+      "end": 6,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m1",
+      "document_id": "news:dev:017",
+      "text": "Hawthorne",
+      "type": "LOCATION",
+      "start": 22,
+      "end": 31,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m2",
+      "document_id": "news:dev:017",
+      "text": "California",
+      "type": "LOCATION",
+      "start": 33,
+      "end": 43,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m3",
+      "document_id": "news:dev:017",
+      "text": "Hawthorne",
+      "type": "LOCATION",
+      "start": 45,
+      "end": 54,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m4",
+      "document_id": "news:dev:017",
+      "text": "California",
+      "type": "LOCATION",
+      "start": 61,
+      "end": 71,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m5",
+      "document_id": "news:dev:017",
+      "text": "Gwynne Shotwell",
+      "type": "PERSON",
+      "start": 73,
+      "end": 88,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m6",
+      "document_id": "news:dev:017",
+      "text": "SpaceX",
+      "type": "ORGANIZATION",
+      "start": 99,
+      "end": 105,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    }
+  ],
+  "relation_annotations": [
+    {
+      "subject_id": "m5",
+      "relation": "WORKS_FOR",
+      "object_id": "m6",
+      "label_status": "positive",
+      "evidence_text": "Gwynne Shotwell works for SpaceX.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m1",
+      "relation": "LOCATED_IN",
+      "object_id": "m2",
+      "label_status": "positive",
+      "evidence_text": "SpaceX was founded in Hawthorne, California.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m3",
+      "relation": "LOCATED_IN",
+      "object_id": "m4",
+      "label_status": "positive",
+      "evidence_text": "Hawthorne is in California.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    }
+  ]
+}

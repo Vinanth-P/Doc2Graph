@@ -1,6 +1,7 @@
 """Pydantic v2 request/response schemas & pipeline/graph validation boundaries."""
 from __future__ import annotations
 
+import json
 from typing import Any, Optional
 from pydantic import BaseModel, Field, field_validator
 
@@ -35,6 +36,22 @@ class RelationResponse(BaseModel):
     target_name: str
     confidence: float
     evidence_count: int
+    polarity: str = "unknown"
+    modality: str = "unknown"
+    lifecycle: str = "unknown"
+    time_qualifiers: Any = {}
+    claim_id: str = ""
+    deal_key: str = "default"
+
+    @field_validator("time_qualifiers", mode="before")
+    @classmethod
+    def parse_time_qualifiers(cls, v: Any) -> Any:
+        if isinstance(v, str):
+            try:
+                return json.loads(v)
+            except Exception:
+                return v
+        return v
 
 
 class EntityDetailResponse(BaseModel):
@@ -104,6 +121,26 @@ class ResolvedEdgePayload(BaseModel):
     confidence: float = Field(..., ge=0.0, le=1.0)
     raw_predicate: str = ""
     evidence: str = ""
+    polarity: str = "unknown"
+    modality: str = "unknown"
+    lifecycle: str = "unknown"
+    time_qualifiers: dict = Field(default_factory=dict)
+    claim_id: str = ""
+
+    @field_validator("time_qualifiers", mode="before")
+    @classmethod
+    def parse_time_qualifiers(cls, v: Any) -> dict:
+        if v is None:
+            return {}
+        if isinstance(v, str):
+            try:
+                parsed = json.loads(v)
+                return parsed if isinstance(parsed, dict) else {}
+            except Exception:
+                return {}
+        if isinstance(v, dict):
+            return v
+        return {}
 
     @field_validator("relation_type")
     @classmethod

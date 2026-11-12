@@ -45,6 +45,20 @@ def load_pdf(content: bytes) -> str:
         for page in pdf.pages:
             page_text = page.extract_text() or ""
             if page_text and _latin_ratio(page_text) >= _MIN_LATIN_RATIO:
+                # Keep table cells delimited instead of concatenating their
+                # labels into names such as "Acquirer Acme Ltd". The cleaner
+                # already excludes tables from narrative relation extraction.
+                tables = page.find_tables()
+                if tables:
+                    boxes = [table.bbox for table in tables]
+                    narrative = page.filter(lambda obj: not any(
+                        x0 <= obj.get("x0", -1) < x1 and top <= obj.get("top", -1) < bottom
+                        for x0, top, x1, bottom in boxes))
+                    page_text = narrative.extract_text() or ""
+                    table_text = "\n".join(
+                        "| " + " | ".join((cell or "").replace("\n", " ") for cell in row) + " |"
+                        for table in tables for row in table.extract())
+                    page_text = table_text + "\n" + page_text
                 text_parts.append(page_text)
             else:
                 # Scanned page or symbol-encoded font — fall back to OCR
@@ -53,7 +67,8 @@ def load_pdf(content: bytes) -> str:
                 ocr_text = ocr_page_image(img)
                 if ocr_text.strip():
                     text_parts.append(ocr_text)
-    return "\n\n".join(text_parts)
+    # Keep page boundaries for repeated header/footer detection.
+    return "\x0c".join(text_parts)
 
 
 def load_docx(content: bytes) -> str:

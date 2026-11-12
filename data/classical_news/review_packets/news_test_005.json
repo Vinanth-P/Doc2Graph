@@ -1,0 +1,139 @@
+{
+  "schema_version": "2.classical_news.1",
+  "document_id": "news:test:005",
+  "title": "Bank of America Charlotte",
+  "group_key": "group:bofa_bank",
+  "split": "locked_test",
+  "content_hash": "e79d25664eb0409f9801ffda59af0a4c885f27e1fe70945abaf5ea647d753686",
+  "text": "Brian Moynihan works for Bank of America. Bank of America is headquartered in Charlotte, North Carolina. Moynihan lives in Boston.",
+  "mentions": [
+    {
+      "id": "m0",
+      "document_id": "news:test:005",
+      "text": "Brian Moynihan",
+      "type": "PERSON",
+      "start": 0,
+      "end": 14,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m1",
+      "document_id": "news:test:005",
+      "text": "Bank of America",
+      "type": "ORGANIZATION",
+      "start": 25,
+      "end": 40,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m2",
+      "document_id": "news:test:005",
+      "text": "Bank of America",
+      "type": "ORGANIZATION",
+      "start": 42,
+      "end": 57,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m3",
+      "document_id": "news:test:005",
+      "text": "Charlotte",
+      "type": "LOCATION",
+      "start": 78,
+      "end": 87,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m4",
+      "document_id": "news:test:005",
+      "text": "North Carolina",
+      "type": "LOCATION",
+      "start": 89,
+      "end": 103,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m5",
+      "document_id": "news:test:005",
+      "text": "Boston",
+      "type": "LOCATION",
+      "start": 123,
+      "end": 129,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    }
+  ],
+  "relation_annotations": [
+    {
+      "subject_id": "m2",
+      "relation": "BASED_IN",
+      "object_id": "m3",
+      "label_status": "positive",
+      "evidence_text": "Bank of America is headquartered in Charlotte, North Carolina.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m2",
+      "relation": "BASED_IN",
+      "object_id": "m4",
+      "label_status": "positive",
+      "evidence_text": "Bank of America is headquartered in Charlotte, North Carolina.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m0",
+      "relation": "WORKS_FOR",
+      "object_id": "m1",
+      "label_status": "positive",
+      "evidence_text": "Brian Moynihan works for Bank of America.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m3",
+      "relation": "LOCATED_IN",
+      "object_id": "m4",
+      "label_status": "positive",
+      "evidence_text": "Bank of America is headquartered in Charlotte, North Carolina.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    }
+  ]
+}

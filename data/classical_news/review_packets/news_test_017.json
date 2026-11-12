@@ -1,0 +1,98 @@
+{
+  "schema_version": "2.classical_news.1",
+  "document_id": "news:test:017",
+  "title": "Reliance Industries Mumbai",
+  "group_key": "group:reliance_india",
+  "split": "locked_test",
+  "content_hash": "585df74c94b6e9d40a650c3848f2bda7cbf7cc16556daad3fc46422fa1fd06b4",
+  "text": "Mukesh Ambani works for Reliance Industries. Ambani lives in Mumbai. Reliance Industries is based in Mumbai.",
+  "mentions": [
+    {
+      "id": "m0",
+      "document_id": "news:test:017",
+      "text": "Mukesh Ambani",
+      "type": "PERSON",
+      "start": 0,
+      "end": 13,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m1",
+      "document_id": "news:test:017",
+      "text": "Reliance Industries",
+      "type": "ORGANIZATION",
+      "start": 24,
+      "end": 43,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m2",
+      "document_id": "news:test:017",
+      "text": "Mumbai",
+      "type": "LOCATION",
+      "start": 61,
+      "end": 67,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m3",
+      "document_id": "news:test:017",
+      "text": "Reliance Industries",
+      "type": "ORGANIZATION",
+      "start": 69,
+      "end": 88,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m4",
+      "document_id": "news:test:017",
+      "text": "Mumbai",
+      "type": "LOCATION",
+      "start": 101,
+      "end": 107,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    }
+  ],
+  "relation_annotations": [
+    {
+      "subject_id": "m3",
+      "relation": "BASED_IN",
+      "object_id": "m4",
+      "label_status": "positive",
+      "evidence_text": "Reliance Industries is based in Mumbai.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m0",
+      "relation": "WORKS_FOR",
+      "object_id": "m1",
+      "label_status": "positive",
+      "evidence_text": "Mukesh Ambani works for Reliance Industries.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    }
+  ]
+}

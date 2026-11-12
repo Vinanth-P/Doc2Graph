@@ -1,0 +1,150 @@
+{
+  "schema_version": "2.classical_news.1",
+  "document_id": "news:dev:009",
+  "title": "Sundar Pichai at Alphabet and Google",
+  "group_key": "group:google_corp",
+  "split": "dev",
+  "content_hash": "1a740450e012aba7de04bfcbeb7b020a677760dc518a2a6a981b5e5c2b02fafc",
+  "text": "Sundar Pichai leads Google as chief executive officer. Google is based in Mountain View, California. Pichai lives in Los Altos Hills.",
+  "mentions": [
+    {
+      "id": "m0",
+      "document_id": "news:dev:009",
+      "text": "Sundar Pichai",
+      "type": "PERSON",
+      "start": 0,
+      "end": 13,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m1",
+      "document_id": "news:dev:009",
+      "text": "Google",
+      "type": "ORGANIZATION",
+      "start": 20,
+      "end": 26,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m2",
+      "document_id": "news:dev:009",
+      "text": "Google",
+      "type": "ORGANIZATION",
+      "start": 20,
+      "end": 26,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m3",
+      "document_id": "news:dev:009",
+      "text": "Mountain View",
+      "type": "LOCATION",
+      "start": 74,
+      "end": 87,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m4",
+      "document_id": "news:dev:009",
+      "text": "California",
+      "type": "LOCATION",
+      "start": 89,
+      "end": 99,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m5",
+      "document_id": "news:dev:009",
+      "text": "Pichai",
+      "type": "PERSON",
+      "start": 7,
+      "end": 13,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m6",
+      "document_id": "news:dev:009",
+      "text": "Los Altos Hills",
+      "type": "LOCATION",
+      "start": 117,
+      "end": 132,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    }
+  ],
+  "relation_annotations": [
+    {
+      "subject_id": "m0",
+      "relation": "WORKS_FOR",
+      "object_id": "m1",
+      "label_status": "positive",
+      "evidence_text": "Sundar Pichai leads Google as chief executive officer.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "annotator_verified_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m2",
+      "relation": "BASED_IN",
+      "object_id": "m3",
+      "label_status": "positive",
+      "evidence_text": "Google is based in Mountain View, California.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "annotator_verified_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m3",
+      "relation": "LOCATED_IN",
+      "object_id": "m4",
+      "label_status": "positive",
+      "evidence_text": "Google is based in Mountain View, California.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "annotator_verified_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m5",
+      "relation": "LIVES_IN",
+      "object_id": "m6",
+      "label_status": "positive",
+      "evidence_text": "Pichai lives in Los Altos Hills.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "annotator_verified_pilot",
+        "review_status": "human_verified_gold"
+      }
+    }
+  ]
+}

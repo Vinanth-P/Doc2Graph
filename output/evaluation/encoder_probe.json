@@ -1,0 +1,132 @@
+{
+  "repo": "jackboyla/glirel-large-v0",
+  "revision": "40a523e12a8432d6da364cf2a195a28755ff04d3",
+  "predictions": [
+    {
+      "head_pos": [
+        0,
+        1
+      ],
+      "tail_pos": [
+        2,
+        3
+      ],
+      "head_text": [
+        "Alice"
+      ],
+      "tail_text": [
+        "Acme"
+      ],
+      "label": "founder",
+      "score": 0.8137921094894409
+    },
+    {
+      "head_pos": [
+        0,
+        1
+      ],
+      "tail_pos": [
+        4,
+        5
+      ],
+      "head_text": [
+        "Alice"
+      ],
+      "tail_text": [
+        "Bob"
+      ],
+      "label": "founder",
+      "score": 0.7011796832084656
+    },
+    {
+      "head_pos": [
+        2,
+        3
+      ],
+      "tail_pos": [
+        0,
+        1
+      ],
+      "head_text": [
+        "Acme"
+      ],
+      "tail_text": [
+        "Alice"
+      ],
+      "label": "founder",
+      "score": 0.8023245334625244
+    },
+    {
+      "head_pos": [
+        2,
+        3
+      ],
+      "tail_pos": [
+        4,
+        5
+      ],
+      "head_text": [
+        "Acme"
+      ],
+      "tail_text": [
+        "Bob"
+      ],
+      "label": "founder",
+      "score": 0.7711389660835266
+    },
+    {
+      "head_pos": [
+        4,
+        5
+      ],
+      "tail_pos": [
+        0,
+        1
+      ],
+      "head_text": [
+        "Bob"
+      ],
+      "tail_text": [
+        "Alice"
+      ],
+      "label": "founder",
+      "score": 0.7512483596801758
+    },
+    {
+      "head_pos": [
+        4,
+        5
+      ],
+      "tail_pos": [
+        2,
+        3
+      ],
+      "head_text": [
+        "Bob"
+      ],
+      "tail_text": [
+        "Acme"
+      ],
+      "label": "founder",
+      "score": 0.8112331032752991
+    },
+    {
+      "head_pos": [
+        7,
+        8
+      ],
+      "tail_pos": [
+        0,
+        1
+      ],
+      "head_text": [
+        "Globex"
+      ],
+      "tail_text": [
+        "Alice"
+      ],
+      "label": "founder",
+      "score": 0.5624384880065918
+    }
+  ]
+}

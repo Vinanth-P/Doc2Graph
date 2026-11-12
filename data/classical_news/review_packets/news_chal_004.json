@@ -1,0 +1,124 @@
+{
+  "schema_version": "2.classical_news.1",
+  "document_id": "news:chal:004",
+  "title": "Distractor: Official Diplomatic Visits",
+  "group_key": "group:chal_distractor",
+  "split": "challenge",
+  "content_hash": "99bca8e4b7274f63f05164224f698cf219963b26b93794216e2ad7711aded203",
+  "text": "Emmanuel Macron visited Washington for three days of bilateral talks. Macron lives in Paris, France. France is located in Europe.",
+  "mentions": [
+    {
+      "id": "m0",
+      "document_id": "news:chal:004",
+      "text": "Emmanuel Macron",
+      "type": "PERSON",
+      "start": 0,
+      "end": 15,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m1",
+      "document_id": "news:chal:004",
+      "text": "Washington",
+      "type": "LOCATION",
+      "start": 24,
+      "end": 34,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m2",
+      "document_id": "news:chal:004",
+      "text": "Paris",
+      "type": "LOCATION",
+      "start": 86,
+      "end": 91,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m3",
+      "document_id": "news:chal:004",
+      "text": "France",
+      "type": "LOCATION",
+      "start": 93,
+      "end": 99,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m4",
+      "document_id": "news:chal:004",
+      "text": "France",
+      "type": "LOCATION",
+      "start": 101,
+      "end": 107,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m5",
+      "document_id": "news:chal:004",
+      "text": "Europe",
+      "type": "LOCATION",
+      "start": 122,
+      "end": 128,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    }
+  ],
+  "relation_annotations": [
+    {
+      "subject_id": "m0",
+      "relation": "LIVES_IN",
+      "object_id": "m1",
+      "label_status": "explicit_negative",
+      "evidence_text": "Emmanuel Macron visited Washington for three days of bilateral talks.",
+      "confidence": 0.0,
+      "polarity": "negated",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m2",
+      "relation": "LOCATED_IN",
+      "object_id": "m3",
+      "label_status": "positive",
+      "evidence_text": "Macron lives in Paris, France.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m4",
+      "relation": "LOCATED_IN",
+      "object_id": "m5",
+      "label_status": "positive",
+      "evidence_text": "France is located in Europe.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    }
+  ]
+}

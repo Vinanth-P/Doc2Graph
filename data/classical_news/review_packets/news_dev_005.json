@@ -1,0 +1,135 @@
+{
+  "schema_version": "2.classical_news.1",
+  "document_id": "news:dev:005",
+  "title": "Bill Gates Foundation and Seattle",
+  "group_key": "group:microsoft_execs",
+  "split": "dev",
+  "content_hash": "ee5961355a62d45f6f6ee1692f3680e307284fdd763abb57f9712c47cf72b757",
+  "text": "Bill Gates stepped down from Microsoft to focus on philanthropy. Gates lives in Medina, Washington. Medina is located near Seattle.",
+  "mentions": [
+    {
+      "id": "m0",
+      "document_id": "news:dev:005",
+      "text": "Bill Gates",
+      "type": "PERSON",
+      "start": 0,
+      "end": 10,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m1",
+      "document_id": "news:dev:005",
+      "text": "Microsoft",
+      "type": "ORGANIZATION",
+      "start": 29,
+      "end": 38,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m2",
+      "document_id": "news:dev:005",
+      "text": "Gates",
+      "type": "PERSON",
+      "start": 5,
+      "end": 10,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m3",
+      "document_id": "news:dev:005",
+      "text": "Medina",
+      "type": "LOCATION",
+      "start": 80,
+      "end": 86,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m4",
+      "document_id": "news:dev:005",
+      "text": "Washington",
+      "type": "LOCATION",
+      "start": 88,
+      "end": 98,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m5",
+      "document_id": "news:dev:005",
+      "text": "Medina",
+      "type": "LOCATION",
+      "start": 80,
+      "end": 86,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m6",
+      "document_id": "news:dev:005",
+      "text": "Seattle",
+      "type": "LOCATION",
+      "start": 123,
+      "end": 130,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    }
+  ],
+  "relation_annotations": [
+    {
+      "subject_id": "m0",
+      "relation": "WORKS_FOR",
+      "object_id": "m1",
+      "label_status": "positive",
+      "evidence_text": "Bill Gates stepped down from Microsoft to focus on philanthropy.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "annotator_verified_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m2",
+      "relation": "LIVES_IN",
+      "object_id": "m3",
+      "label_status": "positive",
+      "evidence_text": "Gates lives in Medina, Washington.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "annotator_verified_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m3",
+      "relation": "LOCATED_IN",
+      "object_id": "m4",
+      "label_status": "positive",
+      "evidence_text": "Gates lives in Medina, Washington.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "annotator_verified_pilot",
+        "review_status": "human_verified_gold"
+      }
+    }
+  ]
+}

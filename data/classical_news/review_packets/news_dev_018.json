@@ -1,0 +1,139 @@
+{
+  "schema_version": "2.classical_news.1",
+  "document_id": "news:dev:018",
+  "title": "Nvidia Santa Clara",
+  "group_key": "group:nvidia_semis",
+  "split": "dev",
+  "content_hash": "bf2010f13dc6902be3320038ce03a4e709bff2c15bc20ea01a4345738f653f48",
+  "text": "Jensen Huang leads Nvidia as founder and CEO. Huang lives in Los Altos. Nvidia is based in Santa Clara, California.",
+  "mentions": [
+    {
+      "id": "m0",
+      "document_id": "news:dev:018",
+      "text": "Jensen Huang",
+      "type": "PERSON",
+      "start": 0,
+      "end": 12,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m1",
+      "document_id": "news:dev:018",
+      "text": "Nvidia",
+      "type": "ORGANIZATION",
+      "start": 19,
+      "end": 25,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m2",
+      "document_id": "news:dev:018",
+      "text": "Los Altos",
+      "type": "LOCATION",
+      "start": 61,
+      "end": 70,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m3",
+      "document_id": "news:dev:018",
+      "text": "Nvidia",
+      "type": "ORGANIZATION",
+      "start": 72,
+      "end": 78,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m4",
+      "document_id": "news:dev:018",
+      "text": "Santa Clara",
+      "type": "LOCATION",
+      "start": 91,
+      "end": 102,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m5",
+      "document_id": "news:dev:018",
+      "text": "California",
+      "type": "LOCATION",
+      "start": 104,
+      "end": 114,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    }
+  ],
+  "relation_annotations": [
+    {
+      "subject_id": "m3",
+      "relation": "BASED_IN",
+      "object_id": "m4",
+      "label_status": "positive",
+      "evidence_text": "Nvidia is based in Santa Clara, California.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m3",
+      "relation": "BASED_IN",
+      "object_id": "m5",
+      "label_status": "positive",
+      "evidence_text": "Nvidia is based in Santa Clara, California.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m0",
+      "relation": "WORKS_FOR",
+      "object_id": "m1",
+      "label_status": "positive",
+      "evidence_text": "Jensen Huang leads Nvidia as founder and CEO.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m4",
+      "relation": "LOCATED_IN",
+      "object_id": "m5",
+      "label_status": "positive",
+      "evidence_text": "Nvidia is based in Santa Clara, California.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    }
+  ]
+}

@@ -1,0 +1,165 @@
+{
+  "schema_version": "2.classical_news.1",
+  "document_id": "news:test:013",
+  "title": "Nintendo Kyoto",
+  "group_key": "group:nintendo_corp",
+  "split": "locked_test",
+  "content_hash": "a865b7f03a41a53dddde241708f9928a12ba9c541f15120c1726514108064583",
+  "text": "Nintendo is based in Kyoto, Japan. Shuntaro Furukawa works for Nintendo. Kyoto is located in Japan.",
+  "mentions": [
+    {
+      "id": "m0",
+      "document_id": "news:test:013",
+      "text": "Nintendo",
+      "type": "ORGANIZATION",
+      "start": 0,
+      "end": 8,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m1",
+      "document_id": "news:test:013",
+      "text": "Kyoto",
+      "type": "LOCATION",
+      "start": 21,
+      "end": 26,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m2",
+      "document_id": "news:test:013",
+      "text": "Japan",
+      "type": "LOCATION",
+      "start": 28,
+      "end": 33,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m3",
+      "document_id": "news:test:013",
+      "text": "Shuntaro Furukawa",
+      "type": "PERSON",
+      "start": 35,
+      "end": 52,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m4",
+      "document_id": "news:test:013",
+      "text": "Nintendo",
+      "type": "ORGANIZATION",
+      "start": 63,
+      "end": 71,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m5",
+      "document_id": "news:test:013",
+      "text": "Kyoto",
+      "type": "LOCATION",
+      "start": 73,
+      "end": 78,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m6",
+      "document_id": "news:test:013",
+      "text": "Japan",
+      "type": "LOCATION",
+      "start": 93,
+      "end": 98,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    }
+  ],
+  "relation_annotations": [
+    {
+      "subject_id": "m0",
+      "relation": "BASED_IN",
+      "object_id": "m1",
+      "label_status": "positive",
+      "evidence_text": "Nintendo is based in Kyoto, Japan.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m0",
+      "relation": "BASED_IN",
+      "object_id": "m2",
+      "label_status": "positive",
+      "evidence_text": "Nintendo is based in Kyoto, Japan.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m3",
+      "relation": "WORKS_FOR",
+      "object_id": "m4",
+      "label_status": "positive",
+      "evidence_text": "Shuntaro Furukawa works for Nintendo.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m1",
+      "relation": "LOCATED_IN",
+      "object_id": "m2",
+      "label_status": "positive",
+      "evidence_text": "Nintendo is based in Kyoto, Japan.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m5",
+      "relation": "LOCATED_IN",
+      "object_id": "m6",
+      "label_status": "positive",
+      "evidence_text": "Kyoto is located in Japan.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    }
+  ]
+}

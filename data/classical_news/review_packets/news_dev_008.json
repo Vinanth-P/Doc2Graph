@@ -1,0 +1,120 @@
+{
+  "schema_version": "2.classical_news.1",
+  "document_id": "news:dev:008",
+  "title": "Andy Jassy Amazon Leadership",
+  "group_key": "group:amazon_corp",
+  "split": "dev",
+  "content_hash": "7e1d2c38f3f6582e7d035c08371467cde0a249af72decaa762d5fbadba0bcb8f",
+  "text": "Andy Jassy was named CEO of Amazon succeeding Bezos. Jassy lives in Seattle. Amazon operates logistics facilities across Washington.",
+  "mentions": [
+    {
+      "id": "m0",
+      "document_id": "news:dev:008",
+      "text": "Andy Jassy",
+      "type": "PERSON",
+      "start": 0,
+      "end": 10,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m1",
+      "document_id": "news:dev:008",
+      "text": "Amazon",
+      "type": "ORGANIZATION",
+      "start": 28,
+      "end": 34,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m2",
+      "document_id": "news:dev:008",
+      "text": "Bezos",
+      "type": "PERSON",
+      "start": 46,
+      "end": 51,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m3",
+      "document_id": "news:dev:008",
+      "text": "Jassy",
+      "type": "PERSON",
+      "start": 5,
+      "end": 10,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m4",
+      "document_id": "news:dev:008",
+      "text": "Seattle",
+      "type": "LOCATION",
+      "start": 68,
+      "end": 75,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m5",
+      "document_id": "news:dev:008",
+      "text": "Amazon",
+      "type": "ORGANIZATION",
+      "start": 28,
+      "end": 34,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m6",
+      "document_id": "news:dev:008",
+      "text": "Washington",
+      "type": "LOCATION",
+      "start": 121,
+      "end": 131,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    }
+  ],
+  "relation_annotations": [
+    {
+      "subject_id": "m0",
+      "relation": "WORKS_FOR",
+      "object_id": "m1",
+      "label_status": "positive",
+      "evidence_text": "Andy Jassy was named CEO of Amazon succeeding Bezos.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "annotator_verified_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m3",
+      "relation": "LIVES_IN",
+      "object_id": "m4",
+      "label_status": "positive",
+      "evidence_text": "Jassy lives in Seattle.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "annotator_verified_pilot",
+        "review_status": "human_verified_gold"
+      }
+    }
+  ]
+}

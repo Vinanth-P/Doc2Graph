@@ -1,0 +1,165 @@
+{
+  "schema_version": "2.classical_news.1",
+  "document_id": "news:test:025",
+  "title": "Nestle Vevey Switzerland",
+  "group_key": "group:nestle_food",
+  "split": "locked_test",
+  "content_hash": "7c6ef2ec79afaaf36ae54daae57c37e3fa3dd62f379d45ee8b777f4bdbd516c0",
+  "text": "Nestle is headquartered in Vevey, Switzerland. Mark Schneider works for Nestle as chief executive. Vevey is in Switzerland.",
+  "mentions": [
+    {
+      "id": "m0",
+      "document_id": "news:test:025",
+      "text": "Nestle",
+      "type": "ORGANIZATION",
+      "start": 0,
+      "end": 6,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m1",
+      "document_id": "news:test:025",
+      "text": "Vevey",
+      "type": "LOCATION",
+      "start": 27,
+      "end": 32,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m2",
+      "document_id": "news:test:025",
+      "text": "Switzerland",
+      "type": "LOCATION",
+      "start": 34,
+      "end": 45,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m3",
+      "document_id": "news:test:025",
+      "text": "Mark Schneider",
+      "type": "PERSON",
+      "start": 47,
+      "end": 61,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m4",
+      "document_id": "news:test:025",
+      "text": "Nestle",
+      "type": "ORGANIZATION",
+      "start": 72,
+      "end": 78,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m5",
+      "document_id": "news:test:025",
+      "text": "Vevey",
+      "type": "LOCATION",
+      "start": 99,
+      "end": 104,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m6",
+      "document_id": "news:test:025",
+      "text": "Switzerland",
+      "type": "LOCATION",
+      "start": 111,
+      "end": 122,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    }
+  ],
+  "relation_annotations": [
+    {
+      "subject_id": "m0",
+      "relation": "BASED_IN",
+      "object_id": "m1",
+      "label_status": "positive",
+      "evidence_text": "Nestle is headquartered in Vevey, Switzerland.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m0",
+      "relation": "BASED_IN",
+      "object_id": "m2",
+      "label_status": "positive",
+      "evidence_text": "Nestle is headquartered in Vevey, Switzerland.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m3",
+      "relation": "WORKS_FOR",
+      "object_id": "m4",
+      "label_status": "positive",
+      "evidence_text": "Mark Schneider works for Nestle as chief executive.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m1",
+      "relation": "LOCATED_IN",
+      "object_id": "m2",
+      "label_status": "positive",
+      "evidence_text": "Nestle is headquartered in Vevey, Switzerland.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m5",
+      "relation": "LOCATED_IN",
+      "object_id": "m6",
+      "label_status": "positive",
+      "evidence_text": "Vevey is in Switzerland.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    }
+  ]
+}

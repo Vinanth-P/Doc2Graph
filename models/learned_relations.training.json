@@ -1,0 +1,84 @@
+{
+  "metadata": {
+    "train_sha256": "c40a137a1c57f3e2daaf5ebf511eaa1518f9305ffaa3052d46271921a91826f2",
+    "dev_sha256": "051ee1d057204a5d08ef5502beacdadf191245b5eaf0e29ec2c607cf002c016f",
+    "train_documents": 3052,
+    "dev_documents": 500,
+    "excluded_training_titles": [
+      "Lark Force"
+    ],
+    "seed": 20261110,
+    "negative_sampling": "max(20, 8 * positive_pairs) per document",
+    "feature_description": "identity-masked entity-pair context word TF-IDF 1-3 grams",
+    "threshold_selection": "per-label dev F1, at least 3 TP, threshold >= .05"
+  },
+  "training_pairs": 32204,
+  "dev_pairs": 10661,
+  "train_gold": {
+    "SUBSIDIARY_OF": 230,
+    "MEMBER_OF": 1299,
+    "EMPLOYED_BY": 421,
+    "FOUNDED": 204,
+    "OWNS": 389
+  },
+  "train_candidate_coverage": {
+    "SUBSIDIARY_OF": 192,
+    "MEMBER_OF": 965,
+    "EMPLOYED_BY": 403,
+    "FOUNDED": 149,
+    "OWNS": 207
+  },
+  "dev_gold": {
+    "MEMBER_OF": 268,
+    "OWNS": 145,
+    "FOUNDED": 38,
+    "SUBSIDIARY_OF": 85,
+    "EMPLOYED_BY": 77
+  },
+  "dev_candidate_coverage": {
+    "MEMBER_OF": 202,
+    "FOUNDED": 31,
+    "SUBSIDIARY_OF": 63,
+    "EMPLOYED_BY": 71,
+    "OWNS": 60
+  },
+  "dev_gold_entity_metrics": {
+    "FOUNDED": {
+      "tp": 11,
+      "fp": 25,
+      "fn": 27,
+      "threshold": 0.575153958230398
+    },
+    "EMPLOYED_BY": {
+      "tp": 30,
+      "fp": 48,
+      "fn": 47,
+      "threshold": 0.7320112006750176
+    },
+    "MEMBER_OF": {
+      "tp": 95,
+      "fp": 228,
+      "fn": 173,
+      "threshold": 0.6075722180981061
+    },
+    "OWNS": {
+      "tp": 33,
+      "fp": 173,
+      "fn": 112,
+      "threshold": 0.22108474538023254
+    },
+    "SUBSIDIARY_OF": {
+      "tp": 22,
+      "fp": 113,
+      "fn": 63,
+      "threshold": 0.28939467969863847
+    }
+  },
+  "totals": {
+    "tp": 191,
+    "fp": 587,
+    "fn": 422
+  },
+  "elapsed_seconds": 16.8,
+  "artifact_sha256": "76ab8b2dc4888ca49e91f0c55f46a60c79c0a2fcb0417658e3c94cd12e169bf5"
+}

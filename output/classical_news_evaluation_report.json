@@ -1,0 +1,1802 @@
+{
+  "schema_version": "2.classical_news_evaluation.1",
+  "timestamp": "2026-11-11T21:55:51Z",
+  "backend": "classical_news",
+  "runtime_bridge": {
+    "version": "4.5.8",
+    "non_dl_verified": true,
+    "models": {
+      "ner": "english.all.3class.distsim.crf.ser.gz",
+      "parser": "englishPCFG.ser.gz",
+      "pos": "english-left3words-distsim.tagger",
+      "relation": "roth_relation_model_pipelineNER.ser"
+    }
+  },
+  "feasibility_gates": {
+    "entity_micro_f1": {
+      "target": 0.85,
+      "actual": 0.9309,
+      "passed": true
+    },
+    "relation_precision": {
+      "target": 0.8,
+      "actual": 0.8049,
+      "passed": true
+    },
+    "relation_recall": {
+      "target": 0.5,
+      "actual": 0.2895,
+      "passed": false
+    },
+    "relation_micro_f1": {
+      "target": 0.6,
+      "actual": 0.4258,
+      "passed": false
+    },
+    "unhandled_exceptions": {
+      "target": 0,
+      "actual": 0,
+      "passed": true
+    }
+  },
+  "overall_gates_passed": false,
+  "recommendation": "KEEP_DEFAULT_RULES",
+  "release_decision": "KEEP_DEFAULT_RULES",
+  "splits": {
+    "dev": {
+      "split_name": "dev",
+      "document_count": 30,
+      "elapsed_seconds": 4.57,
+      "unhandled_exceptions": 0,
+      "entity_extraction": {
+        "total_gold": 175,
+        "total_pred": 196,
+        "micro": {
+          "precision": 0.7602,
+          "recall": 0.8514,
+          "f1": 0.8032
+        },
+        "by_type": {
+          "PERSON": {
+            "precision": 0.5926,
+            "recall": 0.7273,
+            "f1": 0.6531,
+            "support": 44
+          },
+          "ORGANIZATION": {
+            "precision": 0.7143,
+            "recall": 0.6977,
+            "f1": 0.7059,
+            "support": 43
+          },
+          "LOCATION": {
+            "precision": 0.87,
+            "recall": 0.9886,
+            "f1": 0.9255,
+            "support": 88
+          }
+        }
+      },
+      "relation_extraction_strict": {
+        "micro": {
+          "precision": 0.48,
+          "recall": 0.1101,
+          "f1": 0.1791
+        },
+        "by_relation": {
+          "WORKS_FOR": {
+            "precision": 0.5556,
+            "recall": 0.1667,
+            "f1": 0.2564,
+            "support": 30
+          },
+          "LIVES_IN": {
+            "precision": 0.1111,
+            "recall": 0.0667,
+            "f1": 0.0833,
+            "support": 15
+          },
+          "BASED_IN": {
+            "precision": 0.6667,
+            "recall": 0.0571,
+            "f1": 0.1053,
+            "support": 35
+          },
+          "LOCATED_IN": {
+            "precision": 1.0,
+            "recall": 0.1379,
+            "f1": 0.2424,
+            "support": 30
+          }
+        },
+        "counts": {
+          "tp": 12,
+          "fp": 13,
+          "fn": 97
+        }
+      },
+      "relation_extraction_relaxed": {
+        "micro": {
+          "precision": 0.84,
+          "recall": 0.2,
+          "f1": 0.3231
+        },
+        "by_relation": {
+          "WORKS_FOR": {
+            "precision": 1.0,
+            "recall": 0.3,
+            "f1": 0.4615,
+            "support": 30
+          },
+          "LIVES_IN": {
+            "precision": 0.5556,
+            "recall": 0.3333,
+            "f1": 0.4167,
+            "support": 15
+          },
+          "BASED_IN": {
+            "precision": 1.0,
+            "recall": 0.0857,
+            "f1": 0.1579,
+            "support": 35
+          },
+          "LOCATED_IN": {
+            "precision": 1.0,
+            "recall": 0.16,
+            "f1": 0.2759,
+            "support": 30
+          }
+        },
+        "counts": {
+          "tp": 21,
+          "fp": 4,
+          "fn": 84
+        }
+      },
+      "challenge_metrics": {
+        "negation_false_positives": 0,
+        "distractor_false_positives": 0
+      },
+      "documents": [
+        {
+          "document_id": "news:dev:016",
+          "gold_entities_count": 7,
+          "pred_entities_count": 7,
+          "entity_tp": 6,
+          "entity_fp": 1,
+          "entity_fn": 1,
+          "gold_relations_count": 5,
+          "pred_relations_count": 1,
+          "claims_extracted": [
+            {
+              "subject": "news:dev:016:EntityMention-6",
+              "rel": "LIVES_IN",
+              "object": "news:dev:016:EntityMention-7",
+              "score": 0.2922443515385542
+            },
+            {
+              "subject": "news:dev:016:EntityMention-6",
+              "rel": "LIVES_IN",
+              "object": "news:dev:016:EntityMention-7",
+              "score": 0.3233587571569822
+            }
+          ]
+        },
+        {
+          "document_id": "news:dev:017",
+          "gold_entities_count": 7,
+          "pred_entities_count": 6,
+          "entity_tp": 5,
+          "entity_fp": 1,
+          "entity_fn": 2,
+          "gold_relations_count": 3,
+          "pred_relations_count": 0,
+          "claims_extracted": []
+        },
+        {
+          "document_id": "news:dev:018",
+          "gold_entities_count": 6,
+          "pred_entities_count": 7,
+          "entity_tp": 6,
+          "entity_fp": 1,
+          "entity_fn": 0,
+          "gold_relations_count": 4,
+          "pred_relations_count": 3,
+          "claims_extracted": [
+            {
+              "subject": "news:dev:018:EntityMention-16",
+              "rel": "LIVES_IN",
+              "object": "news:dev:018:EntityMention-17",
+              "score": 0.3092503898525018
+            },
+            {
+              "subject": "news:dev:018:EntityMention-18",
+              "rel": "BASED_IN",
+              "object": "news:dev:018:EntityMention-19",
+              "score": 0.5144579056984031
+            },
+            {
+              "subject": "news:dev:018:EntityMention-19",
+              "rel": "LOCATED_IN",
+              "object": "news:dev:018:EntityMention-20",
+              "score": 0.9575251949149033
+            }
+          ]
+        },
+        {
+          "document_id": "news:dev:019",
+          "gold_entities_count": 6,
+          "pred_entities_count": 5,
+          "entity_tp": 4,
+          "entity_fp": 1,
+          "entity_fn": 2,
+          "gold_relations_count": 4,
+          "pred_relations_count": 1,
+          "claims_extracted": [
+            {
+              "subject": "news:dev:019:EntityMention-21",
+              "rel": "LOCATED_IN",
+              "object": "news:dev:019:EntityMention-22",
+              "score": 0.9628439213553761
+            }
+          ]
+        },
+        {
+          "document_id": "news:dev:020",
+          "gold_entities_count": 4,
+          "pred_entities_count": 4,
+          "entity_tp": 3,
+          "entity_fp": 1,
+          "entity_fn": 1,
+          "gold_relations_count": 1,
+          "pred_relations_count": 0,
+          "claims_extracted": []
+        },
+        {
+          "document_id": "news:dev:021",
+          "gold_entities_count": 6,
+          "pred_entities_count": 7,
+          "entity_tp": 6,
+          "entity_fp": 1,
+          "entity_fn": 0,
+          "gold_relations_count": 4,
+          "pred_relations_count": 4,
+          "claims_extracted": [
+            {
+              "subject": "news:dev:021:EntityMention-30",
+              "rel": "BASED_IN",
+              "object": "news:dev:021:EntityMention-31",
+              "score": 0.5144579056984031
+            },
+            {
+              "subject": "news:dev:021:EntityMention-31",
+              "rel": "LOCATED_IN",
+              "object": "news:dev:021:EntityMention-32",
+              "score": 0.9575251949149033
+            },
+            {
+              "subject": "news:dev:021:EntityMention-33",
+              "rel": "WORKS_FOR",
+              "object": "news:dev:021:EntityMention-34",
+              "score": 0.262829962815225
+            },
+            {
+              "subject": "news:dev:021:EntityMention-35",
+              "rel": "LIVES_IN",
+              "object": "news:dev:021:EntityMention-36",
+              "score": 0.3092503898525018
+            }
+          ]
+        },
+        {
+          "document_id": "news:dev:022",
+          "gold_entities_count": 6,
+          "pred_entities_count": 5,
+          "entity_tp": 4,
+          "entity_fp": 1,
+          "entity_fn": 2,
+          "gold_relations_count": 4,
+          "pred_relations_count": 0,
+          "claims_extracted": []
+        },
+        {
+          "document_id": "news:dev:023",
+          "gold_entities_count": 7,
+          "pred_entities_count": 7,
+          "entity_tp": 7,
+          "entity_fp": 0,
+          "entity_fn": 0,
+          "gold_relations_count": 5,
+          "pred_relations_count": 0,
+          "claims_extracted": []
+        },
+        {
+          "document_id": "news:dev:024",
+          "gold_entities_count": 7,
+          "pred_entities_count": 7,
+          "entity_tp": 5,
+          "entity_fp": 2,
+          "entity_fn": 2,
+          "gold_relations_count": 5,
+          "pred_relations_count": 0,
+          "claims_extracted": []
+        },
+        {
+          "document_id": "news:dev:025",
+          "gold_entities_count": 6,
+          "pred_entities_count": 7,
+          "entity_tp": 6,
+          "entity_fp": 1,
+          "entity_fn": 0,
+          "gold_relations_count": 4,
+          "pred_relations_count": 2,
+          "claims_extracted": [
+            {
+              "subject": "news:dev:025:EntityMention-59",
+              "rel": "WORKS_FOR",
+              "object": "news:dev:025:EntityMention-60",
+              "score": 0.262829962815225
+            },
+            {
+              "subject": "news:dev:025:EntityMention-61",
+              "rel": "LIVES_IN",
+              "object": "news:dev:025:EntityMention-62",
+              "score": 0.2775011165797076
+            }
+          ]
+        },
+        {
+          "document_id": "news:dev:026",
+          "gold_entities_count": 6,
+          "pred_entities_count": 7,
+          "entity_tp": 6,
+          "entity_fp": 1,
+          "entity_fn": 0,
+          "gold_relations_count": 4,
+          "pred_relations_count": 2,
+          "claims_extracted": [
+            {
+              "subject": "news:dev:026:EntityMention-66",
+              "rel": "WORKS_FOR",
+              "object": "news:dev:026:EntityMention-67",
+              "score": 0.262829962815225
+            },
+            {
+              "subject": "news:dev:026:EntityMention-68",
+              "rel": "LIVES_IN",
+              "object": "news:dev:026:EntityMention-69",
+              "score": 0.2760570453024766
+            }
+          ]
+        },
+        {
+          "document_id": "news:dev:027",
+          "gold_entities_count": 6,
+          "pred_entities_count": 7,
+          "entity_tp": 6,
+          "entity_fp": 1,
+          "entity_fn": 0,
+          "gold_relations_count": 4,
+          "pred_relations_count": 1,
+          "claims_extracted": [
+            {
+              "subject": "news:dev:027:EntityMention-73",
+              "rel": "WORKS_FOR",
+              "object": "news:dev:027:EntityMention-74",
+              "score": 0.3019972484798144
+            },
+            {
+              "subject": "news:dev:027:EntityMention-73",
+              "rel": "WORKS_FOR",
+              "object": "news:dev:027:EntityMention-74",
+              "score": 0.3029222368495963
+            }
+          ]
+        },
+        {
+          "document_id": "news:dev:028",
+          "gold_entities_count": 7,
+          "pred_entities_count": 6,
+          "entity_tp": 6,
+          "entity_fp": 0,
+          "entity_fn": 1,
+          "gold_relations_count": 5,
+          "pred_relations_count": 0,
+          "claims_extracted": []
+        },
+        {
+          "document_id": "news:dev:029",
+          "gold_entities_count": 5,
+          "pred_entities_count": 6,
+          "entity_tp": 5,
+          "entity_fp": 1,
+          "entity_fn": 0,
+          "gold_relations_count": 2,
+          "pred_relations_count": 1,
+          "claims_extracted": [
+            {
+              "subject": "news:dev:029:EntityMention-85",
+              "rel": "WORKS_FOR",
+              "object": "news:dev:029:EntityMention-86",
+              "score": 0.262829962815225
+            }
+          ]
+        },
+        {
+          "document_id": "news:dev:030",
+          "gold_entities_count": 6,
+          "pred_entities_count": 5,
+          "entity_tp": 4,
+          "entity_fp": 1,
+          "entity_fn": 2,
+          "gold_relations_count": 4,
+          "pred_relations_count": 0,
+          "claims_extracted": []
+        },
+        {
+          "document_id": "news:dev:001",
+          "gold_entities_count": 5,
+          "pred_entities_count": 8,
+          "entity_tp": 5,
+          "entity_fp": 3,
+          "entity_fn": 0,
+          "gold_relations_count": 4,
+          "pred_relations_count": 1,
+          "claims_extracted": [
+            {
+              "subject": "news:dev:001:EntityMention-100",
+              "rel": "LIVES_IN",
+              "object": "news:dev:001:EntityMention-101",
+              "score": 0.3092503898525018
+            }
+          ]
+        },
+        {
+          "document_id": "news:dev:002",
+          "gold_entities_count": 6,
+          "pred_entities_count": 6,
+          "entity_tp": 5,
+          "entity_fp": 1,
+          "entity_fn": 1,
+          "gold_relations_count": 2,
+          "pred_relations_count": 0,
+          "claims_extracted": []
+        },
+        {
+          "document_id": "news:dev:003",
+          "gold_entities_count": 5,
+          "pred_entities_count": 6,
+          "entity_tp": 4,
+          "entity_fp": 2,
+          "entity_fn": 1,
+          "gold_relations_count": 3,
+          "pred_relations_count": 1,
+          "claims_extracted": [
+            {
+              "subject": "news:dev:003:EntityMention-110",
+              "rel": "LIVES_IN",
+              "object": "news:dev:003:EntityMention-111",
+              "score": 0.246359681470691
+            }
+          ]
+        },
+        {
+          "document_id": "news:dev:004",
+          "gold_entities_count": 7,
+          "pred_entities_count": 8,
+          "entity_tp": 6,
+          "entity_fp": 2,
+          "entity_fn": 1,
+          "gold_relations_count": 4,
+          "pred_relations_count": 1,
+          "claims_extracted": [
+            {
+              "subject": "news:dev:004:EntityMention-116",
+              "rel": "LIVES_IN",
+              "object": "news:dev:004:EntityMention-117",
+              "score": 0.353284827589772
+            },
+            {
+              "subject": "news:dev:004:EntityMention-116",
+              "rel": "LIVES_IN",
+              "object": "news:dev:004:EntityMention-117",
+              "score": 0.3828549685265529
+            }
+          ]
+        },
+        {
+          "document_id": "news:dev:005",
+          "gold_entities_count": 6,
+          "pred_entities_count": 6,
+          "entity_tp": 5,
+          "entity_fp": 1,
+          "entity_fn": 1,
+          "gold_relations_count": 3,
+          "pred_relations_count": 0,
+          "claims_extracted": []
+        },
+        {
+          "document_id": "news:dev:006",
+          "gold_entities_count": 5,
+          "pred_entities_count": 6,
+          "entity_tp": 4,
+          "entity_fp": 2,
+          "entity_fn": 1,
+          "gold_relations_count": 2,
+          "pred_relations_count": 0,
+          "claims_extracted": []
+        },
+        {
+          "document_id": "news:dev:007",
+          "gold_entities_count": 6,
+          "pred_entities_count": 9,
+          "entity_tp": 5,
+          "entity_fp": 4,
+          "entity_fn": 1,
+          "gold_relations_count": 5,
+          "pred_relations_count": 0,
+          "claims_extracted": []
+        },
+        {
+          "document_id": "news:dev:008",
+          "gold_entities_count": 6,
+          "pred_entities_count": 7,
+          "entity_tp": 4,
+          "entity_fp": 3,
+          "entity_fn": 2,
+          "gold_relations_count": 2,
+          "pred_relations_count": 0,
+          "claims_extracted": []
+        },
+        {
+          "document_id": "news:dev:009",
+          "gold_entities_count": 6,
+          "pred_entities_count": 7,
+          "entity_tp": 5,
+          "entity_fp": 2,
+          "entity_fn": 1,
+          "gold_relations_count": 4,
+          "pred_relations_count": 2,
+          "claims_extracted": [
+            {
+              "subject": "news:dev:009:EntityMention-152",
+              "rel": "BASED_IN",
+              "object": "news:dev:009:EntityMention-153",
+              "score": 0.5144579056984031
+            },
+            {
+              "subject": "news:dev:009:EntityMention-153",
+              "rel": "LOCATED_IN",
+              "object": "news:dev:009:EntityMention-154",
+              "score": 0.9575251949149033
+            }
+          ]
+        },
+        {
+          "document_id": "news:dev:010",
+          "gold_entities_count": 7,
+          "pred_entities_count": 6,
+          "entity_tp": 6,
+          "entity_fp": 0,
+          "entity_fn": 1,
+          "gold_relations_count": 4,
+          "pred_relations_count": 0,
+          "claims_extracted": []
+        },
+        {
+          "document_id": "news:dev:011",
+          "gold_entities_count": 5,
+          "pred_entities_count": 7,
+          "entity_tp": 4,
+          "entity_fp": 3,
+          "entity_fn": 1,
+          "gold_relations_count": 4,
+          "pred_relations_count": 2,
+          "claims_extracted": [
+            {
+              "subject": "news:dev:011:EntityMention-166",
+              "rel": "WORKS_FOR",
+              "object": "news:dev:011:EntityMention-167",
+              "score": 0.262829962815225
+            },
+            {
+              "subject": "news:dev:011:EntityMention-168",
+              "rel": "LIVES_IN",
+              "object": "news:dev:011:EntityMention-169",
+              "score": 0.27540961661970526
+            }
+          ]
+        },
+        {
+          "document_id": "news:dev:012",
+          "gold_entities_count": 6,
+          "pred_entities_count": 7,
+          "entity_tp": 5,
+          "entity_fp": 2,
+          "entity_fn": 1,
+          "gold_relations_count": 4,
+          "pred_relations_count": 1,
+          "claims_extracted": [
+            {
+              "subject": "news:dev:012:EntityMention-173",
+              "rel": "WORKS_FOR",
+              "object": "news:dev:012:EntityMention-174",
+              "score": 0.35624118432150637
+            },
+            {
+              "subject": "news:dev:012:EntityMention-173",
+              "rel": "WORKS_FOR",
+              "object": "news:dev:012:EntityMention-174",
+              "score": 0.35766658175118593
+            }
+          ]
+        },
+        {
+          "document_id": "news:dev:013",
+          "gold_entities_count": 4,
+          "pred_entities_count": 6,
+          "entity_tp": 4,
+          "entity_fp": 2,
+          "entity_fn": 0,
+          "gold_relations_count": 3,
+          "pred_relations_count": 1,
+          "claims_extracted": [
+            {
+              "subject": "news:dev:013:EntityMention-179",
+              "rel": "WORKS_FOR",
+              "object": "news:dev:013:EntityMention-180",
+              "score": 0.262829962815225
+            }
+          ]
+        },
+        {
+          "document_id": "news:dev:014",
+          "gold_entities_count": 4,
+          "pred_entities_count": 7,
+          "entity_tp": 4,
+          "entity_fp": 3,
+          "entity_fn": 0,
+          "gold_relations_count": 3,
+          "pred_relations_count": 1,
+          "claims_extracted": [
+            {
+              "subject": "news:dev:014:EntityMention-186",
+              "rel": "WORKS_FOR",
+              "object": "news:dev:014:EntityMention-187",
+              "score": 0.2618423315861979
+            }
+          ]
+        },
+        {
+          "document_id": "news:dev:015",
+          "gold_entities_count": 5,
+          "pred_entities_count": 7,
+          "entity_tp": 4,
+          "entity_fp": 3,
+          "entity_fn": 1,
+          "gold_relations_count": 4,
+          "pred_relations_count": 0,
+          "claims_extracted": []
+        }
+      ]
+    },
+    "locked_test": {
+      "split_name": "locked_test",
+      "document_count": 30,
+      "elapsed_seconds": 2.0,
+      "unhandled_exceptions": 0,
+      "entity_extraction": {
+        "total_gold": 184,
+        "total_pred": 192,
+        "micro": {
+          "precision": 0.9115,
+          "recall": 0.9511,
+          "f1": 0.9309
+        },
+        "by_type": {
+          "PERSON": {
+            "precision": 0.6744,
+            "recall": 0.9667,
+            "f1": 0.7945,
+            "support": 30
+          },
+          "ORGANIZATION": {
+            "precision": 1.0,
+            "recall": 0.8814,
+            "f1": 0.9369,
+            "support": 59
+          },
+          "LOCATION": {
+            "precision": 0.9691,
+            "recall": 0.9895,
+            "f1": 0.9792,
+            "support": 95
+          }
+        }
+      },
+      "relation_extraction_strict": {
+        "micro": {
+          "precision": 0.8049,
+          "recall": 0.2895,
+          "f1": 0.4258
+        },
+        "by_relation": {
+          "WORKS_FOR": {
+            "precision": 1.0,
+            "recall": 0.8333,
+            "f1": 0.9091,
+            "support": 30
+          },
+          "LIVES_IN": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 0
+          },
+          "BASED_IN": {
+            "precision": 1.0,
+            "recall": 0.0816,
+            "f1": 0.1509,
+            "support": 49
+          },
+          "LOCATED_IN": {
+            "precision": 1.0,
+            "recall": 0.1143,
+            "f1": 0.2051,
+            "support": 35
+          }
+        },
+        "counts": {
+          "tp": 33,
+          "fp": 8,
+          "fn": 81
+        }
+      },
+      "relation_extraction_relaxed": {
+        "micro": {
+          "precision": 0.8049,
+          "recall": 0.3267,
+          "f1": 0.4648
+        },
+        "by_relation": {
+          "WORKS_FOR": {
+            "precision": 1.0,
+            "recall": 0.8333,
+            "f1": 0.9091,
+            "support": 30
+          },
+          "LIVES_IN": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 0
+          },
+          "BASED_IN": {
+            "precision": 1.0,
+            "recall": 0.0816,
+            "f1": 0.1509,
+            "support": 49
+          },
+          "LOCATED_IN": {
+            "precision": 1.0,
+            "recall": 0.1818,
+            "f1": 0.3077,
+            "support": 35
+          }
+        },
+        "counts": {
+          "tp": 33,
+          "fp": 8,
+          "fn": 68
+        }
+      },
+      "challenge_metrics": {
+        "negation_false_positives": 0,
+        "distractor_false_positives": 0
+      },
+      "documents": [
+        {
+          "document_id": "news:test:001",
+          "gold_entities_count": 5,
+          "pred_entities_count": 6,
+          "entity_tp": 5,
+          "entity_fp": 1,
+          "entity_fn": 0,
+          "gold_relations_count": 2,
+          "pred_relations_count": 1,
+          "claims_extracted": [
+            {
+              "subject": "news:test:001:EntityMention-199",
+              "rel": "WORKS_FOR",
+              "object": "news:test:001:EntityMention-200",
+              "score": 0.262829962815225
+            }
+          ]
+        },
+        {
+          "document_id": "news:test:002",
+          "gold_entities_count": 5,
+          "pred_entities_count": 6,
+          "entity_tp": 5,
+          "entity_fp": 1,
+          "entity_fn": 0,
+          "gold_relations_count": 2,
+          "pred_relations_count": 2,
+          "claims_extracted": [
+            {
+              "subject": "news:test:002:EntityMention-205",
+              "rel": "WORKS_FOR",
+              "object": "news:test:002:EntityMention-206",
+              "score": 0.258672503023386
+            },
+            {
+              "subject": "news:test:002:EntityMention-207",
+              "rel": "LIVES_IN",
+              "object": "news:test:002:EntityMention-208",
+              "score": 0.280499269366888
+            },
+            {
+              "subject": "news:test:002:EntityMention-207",
+              "rel": "LIVES_IN",
+              "object": "news:test:002:EntityMention-208",
+              "score": 0.2715114406961751
+            }
+          ]
+        },
+        {
+          "document_id": "news:test:003",
+          "gold_entities_count": 5,
+          "pred_entities_count": 5,
+          "entity_tp": 5,
+          "entity_fp": 0,
+          "entity_fn": 0,
+          "gold_relations_count": 2,
+          "pred_relations_count": 0,
+          "claims_extracted": []
+        },
+        {
+          "document_id": "news:test:004",
+          "gold_entities_count": 5,
+          "pred_entities_count": 6,
+          "entity_tp": 5,
+          "entity_fp": 1,
+          "entity_fn": 0,
+          "gold_relations_count": 2,
+          "pred_relations_count": 2,
+          "claims_extracted": [
+            {
+              "subject": "news:test:004:EntityMention-214",
+              "rel": "WORKS_FOR",
+              "object": "news:test:004:EntityMention-215",
+              "score": 0.2624627893313944
+            },
+            {
+              "subject": "news:test:004:EntityMention-218",
+              "rel": "BASED_IN",
+              "object": "news:test:004:EntityMention-219",
+              "score": 0.5712904019212369
+            }
+          ]
+        },
+        {
+          "document_id": "news:test:005",
+          "gold_entities_count": 6,
+          "pred_entities_count": 7,
+          "entity_tp": 6,
+          "entity_fp": 1,
+          "entity_fn": 0,
+          "gold_relations_count": 4,
+          "pred_relations_count": 2,
+          "claims_extracted": [
+            {
+              "subject": "news:test:005:EntityMention-220",
+              "rel": "WORKS_FOR",
+              "object": "news:test:005:EntityMention-221",
+              "score": 0.6359163544462705
+            },
+            {
+              "subject": "news:test:005:EntityMention-225",
+              "rel": "LIVES_IN",
+              "object": "news:test:005:EntityMention-226",
+              "score": 0.2658620076412769
+            }
+          ]
+        },
+        {
+          "document_id": "news:test:006",
+          "gold_entities_count": 6,
+          "pred_entities_count": 7,
+          "entity_tp": 6,
+          "entity_fp": 1,
+          "entity_fn": 0,
+          "gold_relations_count": 4,
+          "pred_relations_count": 3,
+          "claims_extracted": [
+            {
+              "subject": "news:test:006:EntityMention-227",
+              "rel": "BASED_IN",
+              "object": "news:test:006:EntityMention-228",
+              "score": 0.5961873199240548
+            },
+            {
+              "subject": "news:test:006:EntityMention-228",
+              "rel": "LOCATED_IN",
+              "object": "news:test:006:EntityMention-229",
+              "score": 0.9387858903428206
+            },
+            {
+              "subject": "news:test:006:EntityMention-230",
+              "rel": "WORKS_FOR",
+              "object": "news:test:006:EntityMention-231",
+              "score": 0.26094628916032275
+            }
+          ]
+        },
+        {
+          "document_id": "news:test:007",
+          "gold_entities_count": 5,
+          "pred_entities_count": 6,
+          "entity_tp": 5,
+          "entity_fp": 1,
+          "entity_fn": 0,
+          "gold_relations_count": 2,
+          "pred_relations_count": 1,
+          "claims_extracted": [
+            {
+              "subject": "news:test:007:EntityMention-234",
+              "rel": "WORKS_FOR",
+              "object": "news:test:007:EntityMention-235",
+              "score": 0.262829962815225
+            }
+          ]
+        },
+        {
+          "document_id": "news:test:008",
+          "gold_entities_count": 6,
+          "pred_entities_count": 7,
+          "entity_tp": 6,
+          "entity_fp": 1,
+          "entity_fn": 0,
+          "gold_relations_count": 3,
+          "pred_relations_count": 2,
+          "claims_extracted": [
+            {
+              "subject": "news:test:008:EntityMention-240",
+              "rel": "WORKS_FOR",
+              "object": "news:test:008:EntityMention-241",
+              "score": 0.26094628916032275
+            },
+            {
+              "subject": "news:test:008:EntityMention-242",
+              "rel": "LIVES_IN",
+              "object": "news:test:008:EntityMention-243",
+              "score": 0.2735851266875205
+            }
+          ]
+        },
+        {
+          "document_id": "news:test:009",
+          "gold_entities_count": 5,
+          "pred_entities_count": 6,
+          "entity_tp": 5,
+          "entity_fp": 1,
+          "entity_fn": 0,
+          "gold_relations_count": 2,
+          "pred_relations_count": 1,
+          "claims_extracted": [
+            {
+              "subject": "news:test:009:EntityMention-247",
+              "rel": "WORKS_FOR",
+              "object": "news:test:009:EntityMention-248",
+              "score": 0.49609054753024084
+            },
+            {
+              "subject": "news:test:009:EntityMention-247",
+              "rel": "WORKS_FOR",
+              "object": "news:test:009:EntityMention-248",
+              "score": 0.29963814326518684
+            }
+          ]
+        },
+        {
+          "document_id": "news:test:010",
+          "gold_entities_count": 7,
+          "pred_entities_count": 7,
+          "entity_tp": 7,
+          "entity_fp": 0,
+          "entity_fn": 0,
+          "gold_relations_count": 5,
+          "pred_relations_count": 2,
+          "claims_extracted": [
+            {
+              "subject": "news:test:010:EntityMention-254",
+              "rel": "LOCATED_IN",
+              "object": "news:test:010:EntityMention-255",
+              "score": 0.8519536914109855
+            },
+            {
+              "subject": "news:test:010:EntityMention-256",
+              "rel": "WORKS_FOR",
+              "object": "news:test:010:EntityMention-257",
+              "score": 0.262829962815225
+            }
+          ]
+        },
+        {
+          "document_id": "news:test:011",
+          "gold_entities_count": 7,
+          "pred_entities_count": 7,
+          "entity_tp": 7,
+          "entity_fp": 0,
+          "entity_fn": 0,
+          "gold_relations_count": 5,
+          "pred_relations_count": 1,
+          "claims_extracted": [
+            {
+              "subject": "news:test:011:EntityMention-263",
+              "rel": "WORKS_FOR",
+              "object": "news:test:011:EntityMention-264",
+              "score": 0.262829962815225
+            }
+          ]
+        },
+        {
+          "document_id": "news:test:012",
+          "gold_entities_count": 6,
+          "pred_entities_count": 7,
+          "entity_tp": 6,
+          "entity_fp": 1,
+          "entity_fn": 0,
+          "gold_relations_count": 4,
+          "pred_relations_count": 1,
+          "claims_extracted": [
+            {
+              "subject": "news:test:012:EntityMention-270",
+              "rel": "WORKS_FOR",
+              "object": "news:test:012:EntityMention-271",
+              "score": 0.262829962815225
+            }
+          ]
+        },
+        {
+          "document_id": "news:test:013",
+          "gold_entities_count": 7,
+          "pred_entities_count": 7,
+          "entity_tp": 7,
+          "entity_fp": 0,
+          "entity_fn": 0,
+          "gold_relations_count": 5,
+          "pred_relations_count": 1,
+          "claims_extracted": [
+            {
+              "subject": "news:test:013:EntityMention-277",
+              "rel": "WORKS_FOR",
+              "object": "news:test:013:EntityMention-278",
+              "score": 0.262829962815225
+            }
+          ]
+        },
+        {
+          "document_id": "news:test:014",
+          "gold_entities_count": 7,
+          "pred_entities_count": 7,
+          "entity_tp": 7,
+          "entity_fp": 0,
+          "entity_fn": 0,
+          "gold_relations_count": 5,
+          "pred_relations_count": 1,
+          "claims_extracted": [
+            {
+              "subject": "news:test:014:EntityMention-284",
+              "rel": "WORKS_FOR",
+              "object": "news:test:014:EntityMention-285",
+              "score": 0.2597422866429985
+            }
+          ]
+        },
+        {
+          "document_id": "news:test:015",
+          "gold_entities_count": 7,
+          "pred_entities_count": 7,
+          "entity_tp": 7,
+          "entity_fp": 0,
+          "entity_fn": 0,
+          "gold_relations_count": 5,
+          "pred_relations_count": 1,
+          "claims_extracted": [
+            {
+              "subject": "news:test:015:EntityMention-291",
+              "rel": "WORKS_FOR",
+              "object": "news:test:015:EntityMention-292",
+              "score": 0.262829962815225
+            }
+          ]
+        },
+        {
+          "document_id": "news:test:016",
+          "gold_entities_count": 7,
+          "pred_entities_count": 6,
+          "entity_tp": 6,
+          "entity_fp": 0,
+          "entity_fn": 1,
+          "gold_relations_count": 5,
+          "pred_relations_count": 0,
+          "claims_extracted": []
+        },
+        {
+          "document_id": "news:test:017",
+          "gold_entities_count": 5,
+          "pred_entities_count": 6,
+          "entity_tp": 5,
+          "entity_fp": 1,
+          "entity_fn": 0,
+          "gold_relations_count": 2,
+          "pred_relations_count": 3,
+          "claims_extracted": [
+            {
+              "subject": "news:test:017:EntityMention-301",
+              "rel": "WORKS_FOR",
+              "object": "news:test:017:EntityMention-302",
+              "score": 0.267377408429346
+            },
+            {
+              "subject": "news:test:017:EntityMention-301",
+              "rel": "WORKS_FOR",
+              "object": "news:test:017:EntityMention-302",
+              "score": 0.29248057216595624
+            },
+            {
+              "subject": "news:test:017:EntityMention-303",
+              "rel": "LIVES_IN",
+              "object": "news:test:017:EntityMention-304",
+              "score": 0.2775011165797076
+            },
+            {
+              "subject": "news:test:017:EntityMention-305",
+              "rel": "BASED_IN",
+              "object": "news:test:017:EntityMention-306",
+              "score": 0.4849350046767543
+            }
+          ]
+        },
+        {
+          "document_id": "news:test:018",
+          "gold_entities_count": 7,
+          "pred_entities_count": 6,
+          "entity_tp": 6,
+          "entity_fp": 0,
+          "entity_fn": 1,
+          "gold_relations_count": 5,
+          "pred_relations_count": 1,
+          "claims_extracted": [
+            {
+              "subject": "news:test:018:EntityMention-310",
+              "rel": "WORKS_FOR",
+              "object": "news:test:018:EntityMention-311",
+              "score": 0.30507794470989547
+            }
+          ]
+        },
+        {
+          "document_id": "news:test:019",
+          "gold_entities_count": 5,
+          "pred_entities_count": 6,
+          "entity_tp": 5,
+          "entity_fp": 1,
+          "entity_fn": 0,
+          "gold_relations_count": 2,
+          "pred_relations_count": 2,
+          "claims_extracted": [
+            {
+              "subject": "news:test:019:EntityMention-315",
+              "rel": "WORKS_FOR",
+              "object": "news:test:019:EntityMention-316",
+              "score": 0.262829962815225
+            },
+            {
+              "subject": "news:test:019:EntityMention-317",
+              "rel": "LIVES_IN",
+              "object": "news:test:019:EntityMention-318",
+              "score": 0.2775011165797076
+            }
+          ]
+        },
+        {
+          "document_id": "news:test:020",
+          "gold_entities_count": 7,
+          "pred_entities_count": 7,
+          "entity_tp": 7,
+          "entity_fp": 0,
+          "entity_fn": 0,
+          "gold_relations_count": 5,
+          "pred_relations_count": 2,
+          "claims_extracted": [
+            {
+              "subject": "news:test:020:EntityMention-319",
+              "rel": "BASED_IN",
+              "object": "news:test:020:EntityMention-320",
+              "score": 0.47647709769597246
+            },
+            {
+              "subject": "news:test:020:EntityMention-322",
+              "rel": "WORKS_FOR",
+              "object": "news:test:020:EntityMention-323",
+              "score": 0.262829962815225
+            }
+          ]
+        },
+        {
+          "document_id": "news:test:021",
+          "gold_entities_count": 5,
+          "pred_entities_count": 4,
+          "entity_tp": 2,
+          "entity_fp": 2,
+          "entity_fn": 3,
+          "gold_relations_count": 2,
+          "pred_relations_count": 0,
+          "claims_extracted": []
+        },
+        {
+          "document_id": "news:test:022",
+          "gold_entities_count": 7,
+          "pred_entities_count": 7,
+          "entity_tp": 7,
+          "entity_fp": 0,
+          "entity_fn": 0,
+          "gold_relations_count": 5,
+          "pred_relations_count": 2,
+          "claims_extracted": [
+            {
+              "subject": "news:test:022:EntityMention-331",
+              "rel": "LOCATED_IN",
+              "object": "news:test:022:EntityMention-332",
+              "score": 0.7855646797218594
+            },
+            {
+              "subject": "news:test:022:EntityMention-333",
+              "rel": "WORKS_FOR",
+              "object": "news:test:022:EntityMention-334",
+              "score": 0.262829962815225
+            }
+          ]
+        },
+        {
+          "document_id": "news:test:023",
+          "gold_entities_count": 6,
+          "pred_entities_count": 7,
+          "entity_tp": 6,
+          "entity_fp": 1,
+          "entity_fn": 0,
+          "gold_relations_count": 4,
+          "pred_relations_count": 3,
+          "claims_extracted": [
+            {
+              "subject": "news:test:023:EntityMention-338",
+              "rel": "LOCATED_IN",
+              "object": "news:test:023:EntityMention-339",
+              "score": 0.7855646797218594
+            },
+            {
+              "subject": "news:test:023:EntityMention-340",
+              "rel": "WORKS_FOR",
+              "object": "news:test:023:EntityMention-341",
+              "score": 0.262829962815225
+            },
+            {
+              "subject": "news:test:023:EntityMention-342",
+              "rel": "LIVES_IN",
+              "object": "news:test:023:EntityMention-343",
+              "score": 0.27700016032698244
+            }
+          ]
+        },
+        {
+          "document_id": "news:test:024",
+          "gold_entities_count": 7,
+          "pred_entities_count": 7,
+          "entity_tp": 7,
+          "entity_fp": 0,
+          "entity_fn": 0,
+          "gold_relations_count": 5,
+          "pred_relations_count": 1,
+          "claims_extracted": [
+            {
+              "subject": "news:test:024:EntityMention-347",
+              "rel": "WORKS_FOR",
+              "object": "news:test:024:EntityMention-348",
+              "score": 0.262829962815225
+            }
+          ]
+        },
+        {
+          "document_id": "news:test:025",
+          "gold_entities_count": 7,
+          "pred_entities_count": 7,
+          "entity_tp": 7,
+          "entity_fp": 0,
+          "entity_fn": 0,
+          "gold_relations_count": 5,
+          "pred_relations_count": 1,
+          "claims_extracted": [
+            {
+              "subject": "news:test:025:EntityMention-354",
+              "rel": "WORKS_FOR",
+              "object": "news:test:025:EntityMention-355",
+              "score": 0.2627557424038929
+            }
+          ]
+        },
+        {
+          "document_id": "news:test:026",
+          "gold_entities_count": 6,
+          "pred_entities_count": 7,
+          "entity_tp": 6,
+          "entity_fp": 1,
+          "entity_fn": 0,
+          "gold_relations_count": 4,
+          "pred_relations_count": 1,
+          "claims_extracted": [
+            {
+              "subject": "news:test:026:EntityMention-361",
+              "rel": "WORKS_FOR",
+              "object": "news:test:026:EntityMention-362",
+              "score": 0.3023239783373975
+            },
+            {
+              "subject": "news:test:026:EntityMention-361",
+              "rel": "WORKS_FOR",
+              "object": "news:test:026:EntityMention-362",
+              "score": 0.3185026387527367
+            }
+          ]
+        },
+        {
+          "document_id": "news:test:027",
+          "gold_entities_count": 6,
+          "pred_entities_count": 7,
+          "entity_tp": 6,
+          "entity_fp": 1,
+          "entity_fn": 0,
+          "gold_relations_count": 4,
+          "pred_relations_count": 2,
+          "claims_extracted": [
+            {
+              "subject": "news:test:027:EntityMention-368",
+              "rel": "WORKS_FOR",
+              "object": "news:test:027:EntityMention-369",
+              "score": 0.262829962815225
+            },
+            {
+              "subject": "news:test:027:EntityMention-370",
+              "rel": "LIVES_IN",
+              "object": "news:test:027:EntityMention-371",
+              "score": 0.2775011165797076
+            }
+          ]
+        },
+        {
+          "document_id": "news:test:028",
+          "gold_entities_count": 7,
+          "pred_entities_count": 7,
+          "entity_tp": 7,
+          "entity_fp": 0,
+          "entity_fn": 0,
+          "gold_relations_count": 5,
+          "pred_relations_count": 1,
+          "claims_extracted": [
+            {
+              "subject": "news:test:028:EntityMention-375",
+              "rel": "WORKS_FOR",
+              "object": "news:test:028:EntityMention-376",
+              "score": 0.3023239783373975
+            },
+            {
+              "subject": "news:test:028:EntityMention-375",
+              "rel": "WORKS_FOR",
+              "object": "news:test:028:EntityMention-376",
+              "score": 0.3185026387527367
+            }
+          ]
+        },
+        {
+          "document_id": "news:test:029",
+          "gold_entities_count": 7,
+          "pred_entities_count": 5,
+          "entity_tp": 5,
+          "entity_fp": 0,
+          "entity_fn": 2,
+          "gold_relations_count": 5,
+          "pred_relations_count": 0,
+          "claims_extracted": []
+        },
+        {
+          "document_id": "news:test:030",
+          "gold_entities_count": 6,
+          "pred_entities_count": 5,
+          "entity_tp": 4,
+          "entity_fp": 1,
+          "entity_fn": 2,
+          "gold_relations_count": 4,
+          "pred_relations_count": 1,
+          "claims_extracted": [
+            {
+              "subject": "news:test:030:EntityMention-387",
+              "rel": "LIVES_IN",
+              "object": "news:test:030:EntityMention-388",
+              "score": 0.2775011165797076
+            }
+          ]
+        }
+      ]
+    },
+    "challenge": {
+      "split_name": "challenge",
+      "document_count": 15,
+      "elapsed_seconds": 1.06,
+      "unhandled_exceptions": 0,
+      "entity_extraction": {
+        "total_gold": 84,
+        "total_pred": 90,
+        "micro": {
+          "precision": 0.9,
+          "recall": 0.9643,
+          "f1": 0.931
+        },
+        "by_type": {
+          "PERSON": {
+            "precision": 0.6667,
+            "recall": 1.0,
+            "f1": 0.8,
+            "support": 14
+          },
+          "ORGANIZATION": {
+            "precision": 0.9565,
+            "recall": 0.9167,
+            "f1": 0.9362,
+            "support": 24
+          },
+          "LOCATION": {
+            "precision": 0.9783,
+            "recall": 0.9783,
+            "f1": 0.9783,
+            "support": 46
+          }
+        }
+      },
+      "relation_extraction_strict": {
+        "micro": {
+          "precision": 0.3077,
+          "recall": 0.1111,
+          "f1": 0.1633
+        },
+        "by_relation": {
+          "WORKS_FOR": {
+            "precision": 0.6667,
+            "recall": 0.25,
+            "f1": 0.3636,
+            "support": 8
+          },
+          "LIVES_IN": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 4
+          },
+          "BASED_IN": {
+            "precision": 1.0,
+            "recall": 0.0769,
+            "f1": 0.1429,
+            "support": 13
+          },
+          "LOCATED_IN": {
+            "precision": 1.0,
+            "recall": 0.0909,
+            "f1": 0.1667,
+            "support": 11
+          }
+        },
+        "counts": {
+          "tp": 4,
+          "fp": 9,
+          "fn": 32
+        }
+      },
+      "relation_extraction_relaxed": {
+        "micro": {
+          "precision": 0.3077,
+          "recall": 0.1111,
+          "f1": 0.1633
+        },
+        "by_relation": {
+          "WORKS_FOR": {
+            "precision": 0.6667,
+            "recall": 0.25,
+            "f1": 0.3636,
+            "support": 8
+          },
+          "LIVES_IN": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 4
+          },
+          "BASED_IN": {
+            "precision": 1.0,
+            "recall": 0.0769,
+            "f1": 0.1429,
+            "support": 13
+          },
+          "LOCATED_IN": {
+            "precision": 1.0,
+            "recall": 0.0909,
+            "f1": 0.1667,
+            "support": 11
+          }
+        },
+        "counts": {
+          "tp": 4,
+          "fp": 9,
+          "fn": 32
+        }
+      },
+      "challenge_metrics": {
+        "negation_false_positives": 1,
+        "distractor_false_positives": 0
+      },
+      "documents": [
+        {
+          "document_id": "news:chal:001",
+          "gold_entities_count": 5,
+          "pred_entities_count": 5,
+          "entity_tp": 5,
+          "entity_fp": 0,
+          "entity_fn": 0,
+          "gold_relations_count": 1,
+          "pred_relations_count": 0,
+          "claims_extracted": []
+        },
+        {
+          "document_id": "news:chal:002",
+          "gold_entities_count": 6,
+          "pred_entities_count": 6,
+          "entity_tp": 6,
+          "entity_fp": 0,
+          "entity_fn": 0,
+          "gold_relations_count": 1,
+          "pred_relations_count": 1,
+          "claims_extracted": [
+            {
+              "subject": "news:chal:002:EntityMention-394",
+              "rel": "LIVES_IN",
+              "object": "news:chal:002:EntityMention-395",
+              "score": 0.43148459198628614
+            }
+          ]
+        },
+        {
+          "document_id": "news:chal:003",
+          "gold_entities_count": 6,
+          "pred_entities_count": 6,
+          "entity_tp": 4,
+          "entity_fp": 2,
+          "entity_fn": 2,
+          "gold_relations_count": 1,
+          "pred_relations_count": 0,
+          "claims_extracted": []
+        },
+        {
+          "document_id": "news:chal:004",
+          "gold_entities_count": 6,
+          "pred_entities_count": 7,
+          "entity_tp": 6,
+          "entity_fp": 1,
+          "entity_fn": 0,
+          "gold_relations_count": 2,
+          "pred_relations_count": 0,
+          "claims_extracted": []
+        },
+        {
+          "document_id": "news:chal:005",
+          "gold_entities_count": 5,
+          "pred_entities_count": 6,
+          "entity_tp": 5,
+          "entity_fp": 1,
+          "entity_fn": 0,
+          "gold_relations_count": 1,
+          "pred_relations_count": 1,
+          "claims_extracted": [
+            {
+              "subject": "news:chal:005:EntityMention-415",
+              "rel": "WORKS_FOR",
+              "object": "news:chal:005:EntityMention-416",
+              "score": 0.262829962815225
+            }
+          ]
+        },
+        {
+          "document_id": "news:chal:006",
+          "gold_entities_count": 5,
+          "pred_entities_count": 5,
+          "entity_tp": 5,
+          "entity_fp": 0,
+          "entity_fn": 0,
+          "gold_relations_count": 2,
+          "pred_relations_count": 2,
+          "claims_extracted": [
+            {
+              "subject": "news:chal:006:EntityMention-422",
+              "rel": "LIVES_IN",
+              "object": "news:chal:006:EntityMention-421",
+              "score": 0.24429384418058625
+            },
+            {
+              "subject": "news:chal:006:EntityMention-422",
+              "rel": "LIVES_IN",
+              "object": "news:chal:006:EntityMention-423",
+              "score": 0.3725754692957498
+            }
+          ]
+        },
+        {
+          "document_id": "news:chal:007",
+          "gold_entities_count": 6,
+          "pred_entities_count": 6,
+          "entity_tp": 5,
+          "entity_fp": 1,
+          "entity_fn": 1,
+          "gold_relations_count": 5,
+          "pred_relations_count": 0,
+          "claims_extracted": []
+        },
+        {
+          "document_id": "news:chal:008",
+          "gold_entities_count": 6,
+          "pred_entities_count": 7,
+          "entity_tp": 6,
+          "entity_fp": 1,
+          "entity_fn": 0,
+          "gold_relations_count": 4,
+          "pred_relations_count": 2,
+          "claims_extracted": [
+            {
+              "subject": "news:chal:008:EntityMention-433",
+              "rel": "WORKS_FOR",
+              "object": "news:chal:008:EntityMention-434",
+              "score": 0.262829962815225
+            },
+            {
+              "subject": "news:chal:008:EntityMention-435",
+              "rel": "LIVES_IN",
+              "object": "news:chal:008:EntityMention-436",
+              "score": 0.3092503898525018
+            }
+          ]
+        },
+        {
+          "document_id": "news:chal:009",
+          "gold_entities_count": 6,
+          "pred_entities_count": 7,
+          "entity_tp": 6,
+          "entity_fp": 1,
+          "entity_fn": 0,
+          "gold_relations_count": 3,
+          "pred_relations_count": 1,
+          "claims_extracted": [
+            {
+              "subject": "news:chal:009:EntityMention-441",
+              "rel": "LIVES_IN",
+              "object": "news:chal:009:EntityMention-442",
+              "score": 0.27723202831968863
+            }
+          ]
+        },
+        {
+          "document_id": "news:chal:010",
+          "gold_entities_count": 6,
+          "pred_entities_count": 6,
+          "entity_tp": 6,
+          "entity_fp": 0,
+          "entity_fn": 0,
+          "gold_relations_count": 3,
+          "pred_relations_count": 1,
+          "claims_extracted": [
+            {
+              "subject": "news:chal:010:EntityMention-444",
+              "rel": "WORKS_FOR",
+              "object": "news:chal:010:EntityMention-445",
+              "score": 0.28005164197961196
+            }
+          ]
+        },
+        {
+          "document_id": "news:chal:011",
+          "gold_entities_count": 6,
+          "pred_entities_count": 6,
+          "entity_tp": 6,
+          "entity_fp": 0,
+          "entity_fn": 0,
+          "gold_relations_count": 2,
+          "pred_relations_count": 1,
+          "claims_extracted": [
+            {
+              "subject": "news:chal:011:EntityMention-453",
+              "rel": "LIVES_IN",
+              "object": "news:chal:011:EntityMention-454",
+              "score": 0.3481523679724509
+            }
+          ]
+        },
+        {
+          "document_id": "news:chal:012",
+          "gold_entities_count": 4,
+          "pred_entities_count": 4,
+          "entity_tp": 4,
+          "entity_fp": 0,
+          "entity_fn": 0,
+          "gold_relations_count": 1,
+          "pred_relations_count": 0,
+          "claims_extracted": []
+        },
+        {
+          "document_id": "news:chal:013",
+          "gold_entities_count": 6,
+          "pred_entities_count": 6,
+          "entity_tp": 6,
+          "entity_fp": 0,
+          "entity_fn": 0,
+          "gold_relations_count": 3,
+          "pred_relations_count": 0,
+          "claims_extracted": []
+        },
+        {
+          "document_id": "news:chal:014",
+          "gold_entities_count": 6,
+          "pred_entities_count": 6,
+          "entity_tp": 6,
+          "entity_fp": 0,
+          "entity_fn": 0,
+          "gold_relations_count": 6,
+          "pred_relations_count": 1,
+          "claims_extracted": [
+            {
+              "subject": "news:chal:014:EntityMention-468",
+              "rel": "LOCATED_IN",
+              "object": "news:chal:014:EntityMention-469",
+              "score": 0.9575251949149033
+            }
+          ]
+        },
+        {
+          "document_id": "news:chal:015",
+          "gold_entities_count": 5,
+          "pred_entities_count": 7,
+          "entity_tp": 5,
+          "entity_fp": 2,
+          "entity_fn": 0,
+          "gold_relations_count": 1,
+          "pred_relations_count": 3,
+          "claims_extracted": [
+            {
+              "subject": "news:chal:015:EntityMention-472",
+              "rel": "LIVES_IN",
+              "object": "news:chal:015:EntityMention-473",
+              "score": 0.3163848325828431
+            },
+            {
+              "subject": "news:chal:015:EntityMention-475",
+              "rel": "LIVES_IN",
+              "object": "news:chal:015:EntityMention-476",
+              "score": 0.3092503898525018
+            },
+            {
+              "subject": "news:chal:015:EntityMention-477",
+              "rel": "BASED_IN",
+              "object": "news:chal:015:EntityMention-478",
+              "score": 0.5279282922919435
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

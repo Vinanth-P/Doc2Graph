@@ -1,0 +1,82 @@
+{
+  "dev": {
+    "docs": 30,
+    "positive_labels": {
+      "BASED_IN": 35,
+      "LIVES_IN": 15,
+      "LOCATED_IN": 30,
+      "WORKS_FOR": 30
+    },
+    "duplicate_span_docs": [
+      "news:dev:001",
+      "news:dev:002",
+      "news:dev:003",
+      "news:dev:004",
+      "news:dev:005",
+      "news:dev:006",
+      "news:dev:007",
+      "news:dev:008",
+      "news:dev:009",
+      "news:dev:011",
+      "news:dev:012",
+      "news:dev:013",
+      "news:dev:014",
+      "news:dev:015"
+    ],
+    "provenance": {
+      "{'reviewer_id': 'curated_pilot', 'review_status': 'human_verified_gold'}": 58,
+      "{'reviewer_id': 'annotator_verified_pilot', 'review_status': 'human_verified_gold'}": 55
+    }
+  },
+  "locked_test": {
+    "docs": 30,
+    "positive_labels": {
+      "BASED_IN": 49,
+      "WORKS_FOR": 30,
+      "LOCATED_IN": 35
+    },
+    "duplicate_span_docs": [],
+    "provenance": {
+      "{'reviewer_id': 'curated_pilot', 'review_status': 'human_verified_gold'}": 114
+    },
+    "first_document": {
+      "id": "news:test:001",
+      "text": "JPMorgan is headquartered in New York. Jamie Dimon works for JPMorgan as chairman and CEO. Dimon lives in New York.",
+      "mentions": [
+        [
+          "JPMorgan",
+          "ORGANIZATION"
+        ],
+        [
+          "New York",
+          "LOCATION"
+        ],
+        [
+          "Jamie Dimon",
+          "PERSON"
+        ],
+        [
+          "JPMorgan",
+          "ORGANIZATION"
+        ],
+        [
+          "New York",
+          "LOCATION"
+        ]
+      ]
+    }
+  },
+  "challenge": {
+    "docs": 15,
+    "positive_labels": {
+      "BASED_IN": 13,
+      "LOCATED_IN": 11,
+      "WORKS_FOR": 8,
+      "LIVES_IN": 4
+    },
+    "duplicate_span_docs": [],
+    "provenance": {
+      "{'reviewer_id': 'curated_pilot', 'review_status': 'human_verified_gold'}": 42
+    }
+  }
+}

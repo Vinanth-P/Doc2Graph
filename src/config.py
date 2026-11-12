@@ -34,6 +34,10 @@ class Settings(BaseSettings):
     relation_scorer_model_path: str = "models/relation_scorer.joblib"
     entity_resolver_model_path: str = "models/entity_resolver.joblib"
     relations_config_path: str = "config/relations.yaml"
+    relation_backend: Literal["rules", "learned", "encoder", "contextual_v2", "classical_news"] = "rules"
+    learned_relation_model_path: str = "models/learned_relations.joblib"
+    contextual_v2_model_path: str = "models/contextual_v2"
+    contextual_v2_allow_unverified: bool = False
 
     # Entity resolution
     resolution_threshold: float = 0.85

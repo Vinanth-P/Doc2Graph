@@ -1,0 +1,124 @@
+{
+  "schema_version": "2.classical_news.1",
+  "document_id": "news:chal:010",
+  "title": "Historical Past Employment",
+  "group_key": "group:chal_history",
+  "split": "challenge",
+  "content_hash": "4aa338367b3f0c51ab55e83f836719e271bf05d65b6d32a4cf656af24ae2a4a2",
+  "text": "John Sculley previously worked for Pepsi before joining Apple in Cupertino. Apple is based in California.",
+  "mentions": [
+    {
+      "id": "m0",
+      "document_id": "news:chal:010",
+      "text": "John Sculley",
+      "type": "PERSON",
+      "start": 0,
+      "end": 12,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m1",
+      "document_id": "news:chal:010",
+      "text": "Pepsi",
+      "type": "ORGANIZATION",
+      "start": 35,
+      "end": 40,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m2",
+      "document_id": "news:chal:010",
+      "text": "Apple",
+      "type": "ORGANIZATION",
+      "start": 56,
+      "end": 61,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m3",
+      "document_id": "news:chal:010",
+      "text": "Cupertino",
+      "type": "LOCATION",
+      "start": 65,
+      "end": 74,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m4",
+      "document_id": "news:chal:010",
+      "text": "Apple",
+      "type": "ORGANIZATION",
+      "start": 76,
+      "end": 81,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m5",
+      "document_id": "news:chal:010",
+      "text": "California",
+      "type": "LOCATION",
+      "start": 94,
+      "end": 104,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    }
+  ],
+  "relation_annotations": [
+    {
+      "subject_id": "m4",
+      "relation": "BASED_IN",
+      "object_id": "m5",
+      "label_status": "positive",
+      "evidence_text": "Apple is based in California.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m0",
+      "relation": "WORKS_FOR",
+      "object_id": "m1",
+      "label_status": "positive",
+      "evidence_text": "John Sculley previously worked for Pepsi before joining Apple in Cupertino.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m0",
+      "relation": "WORKS_FOR",
+      "object_id": "m2",
+      "label_status": "positive",
+      "evidence_text": "John Sculley previously worked for Pepsi before joining Apple in Cupertino.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    }
+  ]
+}

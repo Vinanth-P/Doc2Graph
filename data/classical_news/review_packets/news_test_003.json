@@ -1,0 +1,98 @@
+{
+  "schema_version": "2.classical_news.1",
+  "document_id": "news:test:003",
+  "title": "Morgan Stanley New York",
+  "group_key": "group:morgan_bank",
+  "split": "locked_test",
+  "content_hash": "8342afad2ec45c6d6836a4bc3cc4512dfd29fa674b50d1f24def4c1c1b1e4133",
+  "text": "Morgan Stanley is located in New York. Ted Pick works for Morgan Stanley. Pick lives in New York City.",
+  "mentions": [
+    {
+      "id": "m0",
+      "document_id": "news:test:003",
+      "text": "Morgan Stanley",
+      "type": "ORGANIZATION",
+      "start": 0,
+      "end": 14,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m1",
+      "document_id": "news:test:003",
+      "text": "New York",
+      "type": "LOCATION",
+      "start": 29,
+      "end": 37,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m2",
+      "document_id": "news:test:003",
+      "text": "Ted Pick",
+      "type": "PERSON",
+      "start": 39,
+      "end": 47,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m3",
+      "document_id": "news:test:003",
+      "text": "Morgan Stanley",
+      "type": "ORGANIZATION",
+      "start": 58,
+      "end": 72,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m4",
+      "document_id": "news:test:003",
+      "text": "New York City",
+      "type": "LOCATION",
+      "start": 88,
+      "end": 101,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    }
+  ],
+  "relation_annotations": [
+    {
+      "subject_id": "m0",
+      "relation": "BASED_IN",
+      "object_id": "m1",
+      "label_status": "positive",
+      "evidence_text": "Morgan Stanley is located in New York.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m2",
+      "relation": "WORKS_FOR",
+      "object_id": "m3",
+      "label_status": "positive",
+      "evidence_text": "Ted Pick works for Morgan Stanley.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    }
+  ]
+}

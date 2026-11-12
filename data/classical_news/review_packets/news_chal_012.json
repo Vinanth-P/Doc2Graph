@@ -1,0 +1,72 @@
+{
+  "schema_version": "2.classical_news.1",
+  "document_id": "news:chal:012",
+  "title": "Quotations and Reported Speech",
+  "group_key": "group:chal_quotes",
+  "split": "challenge",
+  "content_hash": "b1b5bcdbd595abdcdac91b4b6fe894810f5ffec328c0e2965cd0d654ee80e8f8",
+  "text": "According to reports, Tim Cook said that Apple will expand operations in Austin, Texas.",
+  "mentions": [
+    {
+      "id": "m0",
+      "document_id": "news:chal:012",
+      "text": "Tim Cook",
+      "type": "PERSON",
+      "start": 22,
+      "end": 30,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m1",
+      "document_id": "news:chal:012",
+      "text": "Apple",
+      "type": "ORGANIZATION",
+      "start": 41,
+      "end": 46,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m2",
+      "document_id": "news:chal:012",
+      "text": "Austin",
+      "type": "LOCATION",
+      "start": 73,
+      "end": 79,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m3",
+      "document_id": "news:chal:012",
+      "text": "Texas",
+      "type": "LOCATION",
+      "start": 81,
+      "end": 86,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    }
+  ],
+  "relation_annotations": [
+    {
+      "subject_id": "m2",
+      "relation": "LOCATED_IN",
+      "object_id": "m3",
+      "label_status": "positive",
+      "evidence_text": "According to reports, Tim Cook said that Apple will expand operations in Austin, Texas.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    }
+  ]
+}

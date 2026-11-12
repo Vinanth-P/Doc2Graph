@@ -1,0 +1,135 @@
+{
+  "schema_version": "2.classical_news.1",
+  "document_id": "news:dev:002",
+  "title": "Steve Jobs Biography and NeXT",
+  "group_key": "group:apple_execs",
+  "split": "dev",
+  "content_hash": "4b0967aa3d7e5155b77cd67b12fcf03d2669f703c4eddbcbd0ee90d4e388d721",
+  "text": "Steve Jobs co-founded Apple in Los Altos. Jobs lived in Palo Alto for many decades. Apple maintains major offices across California.",
+  "mentions": [
+    {
+      "id": "m0",
+      "document_id": "news:dev:002",
+      "text": "Steve Jobs",
+      "type": "PERSON",
+      "start": 0,
+      "end": 10,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m1",
+      "document_id": "news:dev:002",
+      "text": "Apple",
+      "type": "ORGANIZATION",
+      "start": 22,
+      "end": 27,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m2",
+      "document_id": "news:dev:002",
+      "text": "Los Altos",
+      "type": "LOCATION",
+      "start": 31,
+      "end": 40,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m3",
+      "document_id": "news:dev:002",
+      "text": "Jobs",
+      "type": "PERSON",
+      "start": 6,
+      "end": 10,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m4",
+      "document_id": "news:dev:002",
+      "text": "Palo Alto",
+      "type": "LOCATION",
+      "start": 56,
+      "end": 65,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m5",
+      "document_id": "news:dev:002",
+      "text": "Apple",
+      "type": "ORGANIZATION",
+      "start": 22,
+      "end": 27,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m6",
+      "document_id": "news:dev:002",
+      "text": "California",
+      "type": "LOCATION",
+      "start": 121,
+      "end": 131,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    }
+  ],
+  "relation_annotations": [
+    {
+      "subject_id": "m0",
+      "relation": "WORKS_FOR",
+      "object_id": "m1",
+      "label_status": "positive",
+      "evidence_text": "Steve Jobs co-founded Apple in Los Altos.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "annotator_verified_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m3",
+      "relation": "LIVES_IN",
+      "object_id": "m4",
+      "label_status": "positive",
+      "evidence_text": "Jobs lived in Palo Alto for many decades.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "annotator_verified_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m2",
+      "relation": "LOCATED_IN",
+      "object_id": "m6",
+      "label_status": "unknown",
+      "evidence_text": "in Los Altos",
+      "confidence": 0.0,
+      "polarity": "unknown",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "annotator_verified_pilot",
+        "review_status": "human_verified_gold"
+      }
+    }
+  ]
+}

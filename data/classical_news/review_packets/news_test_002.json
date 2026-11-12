@@ -1,0 +1,98 @@
+{
+  "schema_version": "2.classical_news.1",
+  "document_id": "news:test:002",
+  "title": "Goldman Sachs Manhattan",
+  "group_key": "group:goldman_bank",
+  "split": "locked_test",
+  "content_hash": "f9bdf02c77eaaeb4d8558d031882854ec949a88cdbdfa6c9d816c17d74ab0cbb",
+  "text": "Goldman Sachs is based in New York City. David Solomon works for Goldman Sachs. Solomon lives in Manhattan.",
+  "mentions": [
+    {
+      "id": "m0",
+      "document_id": "news:test:002",
+      "text": "Goldman Sachs",
+      "type": "ORGANIZATION",
+      "start": 0,
+      "end": 13,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m1",
+      "document_id": "news:test:002",
+      "text": "New York City",
+      "type": "LOCATION",
+      "start": 26,
+      "end": 39,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m2",
+      "document_id": "news:test:002",
+      "text": "David Solomon",
+      "type": "PERSON",
+      "start": 41,
+      "end": 54,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m3",
+      "document_id": "news:test:002",
+      "text": "Goldman Sachs",
+      "type": "ORGANIZATION",
+      "start": 65,
+      "end": 78,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m4",
+      "document_id": "news:test:002",
+      "text": "Manhattan",
+      "type": "LOCATION",
+      "start": 97,
+      "end": 106,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    }
+  ],
+  "relation_annotations": [
+    {
+      "subject_id": "m0",
+      "relation": "BASED_IN",
+      "object_id": "m1",
+      "label_status": "positive",
+      "evidence_text": "Goldman Sachs is based in New York City.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m2",
+      "relation": "WORKS_FOR",
+      "object_id": "m3",
+      "label_status": "positive",
+      "evidence_text": "David Solomon works for Goldman Sachs.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    }
+  ]
+}

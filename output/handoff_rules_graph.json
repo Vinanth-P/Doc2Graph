@@ -1,0 +1,1159 @@
+{
+  "filename": "Doc2Graph_Corporate_Finance_MA_Dummy.pdf",
+  "doc_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234",
+  "summary": {
+    "entities": 33,
+    "edges": 33,
+    "isolated_entities": 2,
+    "connected_entity_fraction": 0.9394,
+    "weakly_connected_components": 5,
+    "largest_component_entities": 27,
+    "relation_counts": {
+      "ADVISER_TO": 3,
+      "ASSESSED": 1,
+      "EMPLOYED_BY": 5,
+      "FOUNDED": 2,
+      "HAS_PRODUCT": 3,
+      "LEADS": 4,
+      "LISTED_ON": 1,
+      "LOCATED_IN": 3,
+      "OWNS": 2,
+      "PLANNED_SUBSIDIARY_OF": 1,
+      "PLANS_TO_ACQUIRE": 1,
+      "PLANS_TO_BORROW_FROM": 1,
+      "PLANS_TO_USE": 1,
+      "PROVIDED": 2,
+      "RELATED_TO": 2,
+      "REPORTS_TO": 1
+    }
+  },
+  "entities": [
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:0:147:175",
+      "name": "Meridian Analytics Pvt. Ltd",
+      "type": "ORG",
+      "aliases": [
+        "Meridian",
+        "Meridian Analytics Pvt. Ltd."
+      ],
+      "initials_key": "MAPL"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:14:0:9",
+      "name": "Northstar Systems Ltd",
+      "type": "ORG",
+      "aliases": [
+        "NSTAR.",
+        "Northstar",
+        "Northstar Systems Ltd.",
+        "Northstar systems"
+      ],
+      "initials_key": "NSL"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:0:61:70",
+      "name": "Bengaluru",
+      "type": "GPE",
+      "aliases": [
+        "Bengaluru"
+      ],
+      "initials_key": "B"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:0:192:196",
+      "name": "Pune",
+      "type": "GPE",
+      "aliases": [
+        "Pune"
+      ],
+      "initials_key": "P"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:52:0:11",
+      "name": "Rohan Mehta",
+      "type": "PERSON",
+      "aliases": [
+        "Mehta",
+        "Rohan Mehta"
+      ],
+      "initials_key": "RM"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:3:37:47",
+      "name": "Ananya Rao",
+      "type": "PERSON",
+      "aliases": [
+        "Ananya Rao",
+        "Rao"
+      ],
+      "initials_key": "AR"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:5:84:112",
+      "name": "Financial Services Analytics",
+      "type": "ORG",
+      "aliases": [
+        "Financial Services Analytics"
+      ],
+      "initials_key": "FSA"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:10:0:19",
+      "name": "Cedar Peak Ventures LLP",
+      "type": "ORG",
+      "aliases": [
+        "Cedar Peak Ventures",
+        "Cedar Peak Ventures LLP."
+      ],
+      "initials_key": "CPVL"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:11:16:20",
+      "name": "Kavya Iyer",
+      "type": "PERSON",
+      "aliases": [
+        "Iyer",
+        "Kavya Iyer"
+      ],
+      "initials_key": "KI"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:12:27:59",
+      "name": "National Stock Exchange Of India",
+      "type": "ORG",
+      "aliases": [
+        "National Stock Exchange of India"
+      ],
+      "initials_key": "NSEI"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:13:41:60",
+      "name": "Horizon Mutual Fund",
+      "type": "ORG",
+      "aliases": [
+        "Horizon Mutual Fund"
+      ],
+      "initials_key": "HMF"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:15:123:134",
+      "name": "Devika Shah",
+      "type": "PERSON",
+      "aliases": [
+        "Devika Shah"
+      ],
+      "initials_key": "DS"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:15:56:89",
+      "name": "Strategy And Investment Committee",
+      "type": "ORG",
+      "aliases": [
+        "Strategy and Investment Committee"
+      ],
+      "initials_key": "SIC"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:16:0:12",
+      "name": "Axis Capital",
+      "type": "ORG",
+      "aliases": [
+        "Axis Capital"
+      ],
+      "initials_key": "AC"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:17:62:82",
+      "name": "Desai Rao Associates",
+      "type": "ORG",
+      "aliases": [
+        "Desai Rao Associates"
+      ],
+      "initials_key": "DRA"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:17:0:19",
+      "name": "K&A Legal Partners",
+      "type": "ORG",
+      "aliases": [
+        "K&A; Legal Partners"
+      ],
+      "initials_key": "KLP"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:18:0:21",
+      "name": "Grant Thornton Bharat",
+      "type": "PERSON",
+      "aliases": [
+        "Grant Thornton Bharat"
+      ],
+      "initials_key": "GTB"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:18:61:79",
+      "name": "Veritas Cyber Risk",
+      "type": "ORG",
+      "aliases": [
+        "Veritas Cyber Risk"
+      ],
+      "initials_key": "VCR"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:19:127:147",
+      "name": "Union National Bank",
+      "type": "ORG",
+      "aliases": [
+        "Union National Bank."
+      ],
+      "initials_key": "UNB"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:21:37:52",
+      "name": "Sameer Kulkarni",
+      "type": "PERSON",
+      "aliases": [
+        "Sameer Kulkarni"
+      ],
+      "initials_key": "SK"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:23:23:39",
+      "name": "Meridian Insight",
+      "type": "PRODUCT",
+      "aliases": [
+        "Meridian Insight"
+      ],
+      "initials_key": "MI"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:26:76:94",
+      "name": "Northstar CloudOne",
+      "type": "PRODUCT",
+      "aliases": [
+        "CloudOne",
+        "Northstar CloudOne"
+      ],
+      "initials_key": "NCO"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:27:149:164",
+      "name": "Arjun Deshpande",
+      "type": "PERSON",
+      "aliases": [
+        "Arjun Deshpande",
+        "Deshpande"
+      ],
+      "initials_key": "AD"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:27:105:115",
+      "name": "Priya Nair",
+      "type": "PERSON",
+      "aliases": [
+        "Nair",
+        "Priya Nair"
+      ],
+      "initials_key": "PN"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:28:24:53",
+      "name": "Integration Management Office",
+      "type": "ORG",
+      "aliases": [
+        "IMO",
+        "Integration Management Office"
+      ],
+      "initials_key": "IMO"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:30:87:96",
+      "name": "Hyderabad",
+      "type": "GPE",
+      "aliases": [
+        "Hyderabad"
+      ],
+      "initials_key": "H"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:32:47:78",
+      "name": "Competition Commission Of India",
+      "type": "ORG",
+      "aliases": [
+        "CCI",
+        "Competition Commission of India"
+      ],
+      "initials_key": "CCI"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:40:80:90",
+      "name": "DataPocket",
+      "type": "PRODUCT",
+      "aliases": [
+        "DataPocket"
+      ],
+      "initials_key": "DP"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:41:60:81",
+      "name": "Pocket Labs Pvt. Ltd",
+      "type": "ORG",
+      "aliases": [
+        "Pocket Labs",
+        "Pocket Labs Pvt. Ltd."
+      ],
+      "initials_key": "PLPL"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:42:89:98",
+      "name": "Neel Shah",
+      "type": "PERSON",
+      "aliases": [
+        "Neel Shah"
+      ],
+      "initials_key": "NS"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:22:concept:18:47",
+      "name": "predictive analytics software",
+      "type": "PRODUCT",
+      "aliases": [
+        "predictive analytics software"
+      ],
+      "initials_key": "PAS"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:28:concept:87:119",
+      "name": "the product migration workstream",
+      "type": "PRODUCT",
+      "aliases": [
+        "the product migration workstream"
+      ],
+      "initials_key": "PMW"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:45:concept:32:62",
+      "name": "a quarterly integration report",
+      "type": "PRODUCT",
+      "aliases": [
+        "a quarterly integration report"
+      ],
+      "initials_key": "QIR"
+    }
+  ],
+  "relationships": [
+    {
+      "relation_type": "PLANS_TO_ACQUIRE",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:14:0:9",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:0:147:175",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:0"
+      ],
+      "extractors": [
+        "svo"
+      ],
+      "confidence": 0.8286472247569547,
+      "raw_predicate": "planned_acquire",
+      "evidence": "On 14 February 2025, Northstar Systems Ltd. (“Northstar”), a Bengaluru-based enterprise software company, signed a definitive agreement to acquire Meridian Analytics Pvt. Ltd. (“Meridian”), a Pune-based data analytics provider.",
+      "source_name": "Northstar Systems Ltd",
+      "target_name": "Meridian Analytics Pvt. Ltd"
+    },
+    {
+      "relation_type": "LOCATED_IN",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:14:0:9",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:0:61:70",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:0"
+      ],
+      "extractors": [
+        "nominal"
+      ],
+      "confidence": 0.9800299437833295,
+      "raw_predicate": "located_at",
+      "evidence": "On 14 February 2025, Northstar Systems Ltd. (“Northstar”), a Bengaluru-based enterprise software company, signed a definitive agreement to acquire Meridian Analytics Pvt. Ltd. (“Meridian”), a Pune-based data analytics provider.",
+      "source_name": "Northstar Systems Ltd",
+      "target_name": "Bengaluru"
+    },
+    {
+      "relation_type": "LOCATED_IN",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:0:147:175",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:0:192:196",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:0",
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:30"
+      ],
+      "extractors": [
+        "nominal"
+      ],
+      "confidence": 0.9800299437833295,
+      "raw_predicate": "located_at",
+      "evidence": "Meridian currently operates two data centres in Pune and one disaster-recovery site in Hyderabad.",
+      "source_name": "Meridian Analytics Pvt. Ltd",
+      "target_name": "Pune"
+    },
+    {
+      "relation_type": "EMPLOYED_BY",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:3:37:47",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:14:0:9",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:3"
+      ],
+      "extractors": [
+        "nominal"
+      ],
+      "confidence": 0.9589759442043272,
+      "raw_predicate": "role_at",
+      "evidence": "Northstar’s Chief Executive Officer, Ananya Rao, led the negotiations with Meridian’s founder and CEO, Rohan Mehta.",
+      "source_name": "Ananya Rao",
+      "target_name": "Northstar Systems Ltd"
+    },
+    {
+      "relation_type": "EMPLOYED_BY",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:52:0:11",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:0:147:175",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:3"
+      ],
+      "extractors": [
+        "nominal"
+      ],
+      "confidence": 0.9589759442043272,
+      "raw_predicate": "role_at",
+      "evidence": "Northstar’s Chief Executive Officer, Ananya Rao, led the negotiations with Meridian’s founder and CEO, Rohan Mehta.",
+      "source_name": "Rohan Mehta",
+      "target_name": "Meridian Analytics Pvt. Ltd"
+    },
+    {
+      "relation_type": "FOUNDED",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:52:0:11",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:0:147:175",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:3",
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:9"
+      ],
+      "extractors": [
+        "nominal",
+        "svo"
+      ],
+      "confidence": 0.9589759442043272,
+      "raw_predicate": "founder",
+      "evidence": "Northstar’s Chief Executive Officer, Ananya Rao, led the negotiations with Meridian’s founder and CEO, Rohan Mehta.",
+      "source_name": "Rohan Mehta",
+      "target_name": "Meridian Analytics Pvt. Ltd"
+    },
+    {
+      "relation_type": "RELATED_TO",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:3:37:47",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:0:147:175",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:4"
+      ],
+      "extractors": [
+        "svo"
+      ],
+      "confidence": 0.6393411573382471,
+      "raw_predicate": "describe",
+      "evidence": "Rao described Meridian as “a strong fit for our regulated-industry strategy.”",
+      "source_name": "Ananya Rao",
+      "target_name": "Meridian Analytics Pvt. Ltd"
+    },
+    {
+      "relation_type": "LEADS",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:52:0:11",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:5:84:112",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:5"
+      ],
+      "extractors": [
+        "prep"
+      ],
+      "confidence": 0.5121440957870685,
+      "raw_predicate": "president",
+      "evidence": "Mehta will remain with the combined business for at least 18 months as President of Financial Services Analytics.",
+      "source_name": "Rohan Mehta",
+      "target_name": "Financial Services Analytics"
+    },
+    {
+      "relation_type": "REPORTS_TO",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:52:0:11",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:3:37:47",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:6"
+      ],
+      "extractors": [
+        "prep"
+      ],
+      "confidence": 0.5818287134001012,
+      "raw_predicate": "report",
+      "evidence": "He will report to Rao after closing.",
+      "source_name": "Rohan Mehta",
+      "target_name": "Ananya Rao"
+    },
+    {
+      "relation_type": "FOUNDED",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:11:16:20",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:0:147:175",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:9"
+      ],
+      "extractors": [
+        "svo"
+      ],
+      "confidence": 0.6941326918677044,
+      "raw_predicate": "found",
+      "evidence": "Meridian was founded in 2016 by Rohan Mehta and Kavya Iyer.",
+      "source_name": "Kavya Iyer",
+      "target_name": "Meridian Analytics Pvt. Ltd"
+    },
+    {
+      "relation_type": "OWNS",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:10:0:19",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:0:147:175",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:10"
+      ],
+      "extractors": [
+        "svo"
+      ],
+      "confidence": 0.7673186913821753,
+      "raw_predicate": "own",
+      "evidence": "Cedar Peak Ventures invested n55 crore in a Series B round in 2021 and owns 22% of Meridian immediately before the transaction.",
+      "source_name": "Cedar Peak Ventures LLP",
+      "target_name": "Meridian Analytics Pvt. Ltd"
+    },
+    {
+      "relation_type": "LISTED_ON",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:14:0:9",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:12:27:59",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:12"
+      ],
+      "extractors": [
+        "prep"
+      ],
+      "confidence": 0.9038527208047256,
+      "raw_predicate": "list",
+      "evidence": "Northstar is listed on the National Stock Exchange of India under the ticker NSTAR.",
+      "source_name": "Northstar Systems Ltd",
+      "target_name": "National Stock Exchange Of India"
+    },
+    {
+      "relation_type": "OWNS",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:13:41:60",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:14:0:9",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:13"
+      ],
+      "extractors": [
+        "nominal"
+      ],
+      "confidence": 0.9803197978496815,
+      "raw_predicate": "own",
+      "evidence": "Its largest institutional shareholder is Horizon Mutual Fund, which holds 8.4% of its outstanding shares.",
+      "source_name": "Horizon Mutual Fund",
+      "target_name": "Northstar Systems Ltd"
+    },
+    {
+      "relation_type": "LEADS",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:15:123:134",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:15:56:89",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:15"
+      ],
+      "extractors": [
+        "nominal"
+      ],
+      "confidence": 0.9589759442043272,
+      "raw_predicate": "lead",
+      "evidence": "The board’s approval followed a recommendation from its Strategy and Investment Committee, chaired by independent director Devika Shah.",
+      "source_name": "Devika Shah",
+      "target_name": "Strategy And Investment Committee"
+    },
+    {
+      "relation_type": "ADVISER_TO",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:16:0:12",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:14:0:9",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:16"
+      ],
+      "extractors": [
+        "nominal"
+      ],
+      "confidence": 0.9803197978496815,
+      "raw_predicate": "adviser",
+      "evidence": "Axis Capital acted as the exclusive financial adviser to Northstar.",
+      "source_name": "Axis Capital",
+      "target_name": "Northstar Systems Ltd"
+    },
+    {
+      "relation_type": "ADVISER_TO",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:17:0:19",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:14:0:9",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:17"
+      ],
+      "extractors": [
+        "svo"
+      ],
+      "confidence": 0.9571977970218705,
+      "raw_predicate": "advise",
+      "evidence": "K&A; Legal Partners advised Northstar on legal matters, while Desai Rao Associates represented Meridian.",
+      "source_name": "K&A Legal Partners",
+      "target_name": "Northstar Systems Ltd"
+    },
+    {
+      "relation_type": "ADVISER_TO",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:17:62:82",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:0:147:175",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:17"
+      ],
+      "extractors": [
+        "svo"
+      ],
+      "confidence": 0.9571977970218705,
+      "raw_predicate": "represent",
+      "evidence": "K&A; Legal Partners advised Northstar on legal matters, while Desai Rao Associates represented Meridian.",
+      "source_name": "Desai Rao Associates",
+      "target_name": "Meridian Analytics Pvt. Ltd"
+    },
+    {
+      "relation_type": "ASSESSED",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:18:61:79",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:0:147:175",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:18"
+      ],
+      "extractors": [
+        "nominal"
+      ],
+      "confidence": 0.9803197978496815,
+      "raw_predicate": "assess",
+      "evidence": "Grant Thornton Bharat conducted financial due diligence, and Veritas Cyber Risk performed a cybersecurity assessment of Meridian’s systems.",
+      "source_name": "Veritas Cyber Risk",
+      "target_name": "Meridian Analytics Pvt. Ltd"
+    },
+    {
+      "relation_type": "PLANS_TO_BORROW_FROM",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:14:0:9",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:19:127:147",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:19"
+      ],
+      "extractors": [
+        "nominal"
+      ],
+      "confidence": 0.9803197978496815,
+      "raw_predicate": "planned_loan_from",
+      "evidence": "Northstar expects to fund the upfront consideration through n180 crore of internal cash and a n120 crore acquisition loan from Union National Bank.",
+      "source_name": "Northstar Systems Ltd",
+      "target_name": "Union National Bank"
+    },
+    {
+      "relation_type": "EMPLOYED_BY",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:21:37:52",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:14:0:9",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:21"
+      ],
+      "extractors": [
+        "nominal"
+      ],
+      "confidence": 0.9589759442043272,
+      "raw_predicate": "role_at",
+      "evidence": "Northstar’s Chief Financial Officer, Sameer Kulkarni, stated that the company expects the transaction to remain within its leverage policy.",
+      "source_name": "Sameer Kulkarni",
+      "target_name": "Northstar Systems Ltd"
+    },
+    {
+      "relation_type": "PROVIDED",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:0:147:175",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:22:concept:18:47",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:22"
+      ],
+      "extractors": [
+        "svo"
+      ],
+      "confidence": 0.916441465991175,
+      "raw_predicate": "provide",
+      "evidence": "Meridian provides predictive analytics software used by 38 banks and 14 insurance companies.",
+      "source_name": "Meridian Analytics Pvt. Ltd",
+      "target_name": "predictive analytics software"
+    },
+    {
+      "relation_type": "HAS_PRODUCT",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:0:147:175",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:23:23:39",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:23"
+      ],
+      "extractors": [
+        "nominal"
+      ],
+      "confidence": 0.9606757665210347,
+      "raw_predicate": "has_product",
+      "evidence": "Its flagship platform, Meridian Insight, helps financial institutions detect suspicious transactions, estimate credit risk, and forecast customer churn.",
+      "source_name": "Meridian Analytics Pvt. Ltd",
+      "target_name": "Meridian Insight"
+    },
+    {
+      "relation_type": "PLANS_TO_USE",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:14:0:9",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:23:23:39",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:26"
+      ],
+      "extractors": [
+        "svo"
+      ],
+      "confidence": 0.8081225456722925,
+      "raw_predicate": "planned_use",
+      "evidence": "Northstar also plans to integrate Meridian Insight with its cloud platform, Northstar CloudOne.",
+      "source_name": "Northstar Systems Ltd",
+      "target_name": "Meridian Insight"
+    },
+    {
+      "relation_type": "HAS_PRODUCT",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:14:0:9",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:26:76:94",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:26"
+      ],
+      "extractors": [
+        "nominal"
+      ],
+      "confidence": 0.9606757665210347,
+      "raw_predicate": "has_product",
+      "evidence": "Northstar also plans to integrate Meridian Insight with its cloud platform, Northstar CloudOne.",
+      "source_name": "Northstar Systems Ltd",
+      "target_name": "Northstar CloudOne"
+    },
+    {
+      "relation_type": "EMPLOYED_BY",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:27:105:115",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:14:0:9",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:27"
+      ],
+      "extractors": [
+        "nominal"
+      ],
+      "confidence": 0.9589759442043272,
+      "raw_predicate": "role_at",
+      "evidence": "The integration is expected to take 12 months and will be overseen by Northstar Chief Technology Officer Priya Nair and Meridian’s engineering head, Arjun Deshpande.",
+      "source_name": "Priya Nair",
+      "target_name": "Northstar Systems Ltd"
+    },
+    {
+      "relation_type": "EMPLOYED_BY",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:27:149:164",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:0:147:175",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:27"
+      ],
+      "extractors": [
+        "nominal"
+      ],
+      "confidence": 0.9589759442043272,
+      "raw_predicate": "role_at",
+      "evidence": "The integration is expected to take 12 months and will be overseen by Northstar Chief Technology Officer Priya Nair and Meridian’s engineering head, Arjun Deshpande.",
+      "source_name": "Arjun Deshpande",
+      "target_name": "Meridian Analytics Pvt. Ltd"
+    },
+    {
+      "relation_type": "LEADS",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:27:105:115",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:28:24:53",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:28"
+      ],
+      "extractors": [
+        "svo"
+      ],
+      "confidence": 0.9130027331430179,
+      "raw_predicate": "chair",
+      "evidence": "Nair will chair a joint Integration Management Office (IMO), while Deshpande will lead the product migration workstream.",
+      "source_name": "Priya Nair",
+      "target_name": "Integration Management Office"
+    },
+    {
+      "relation_type": "LEADS",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:27:149:164",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:28:concept:87:119",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:28"
+      ],
+      "extractors": [
+        "svo"
+      ],
+      "confidence": 0.916441465991175,
+      "raw_predicate": "lead",
+      "evidence": "Nair will chair a joint Integration Management Office (IMO), while Deshpande will lead the product migration workstream.",
+      "source_name": "Arjun Deshpande",
+      "target_name": "the product migration workstream"
+    },
+    {
+      "relation_type": "LOCATED_IN",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:0:147:175",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:30:87:96",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:30"
+      ],
+      "extractors": [
+        "nominal"
+      ],
+      "confidence": 0.9800299437833295,
+      "raw_predicate": "located_at",
+      "evidence": "Meridian currently operates two data centres in Pune and one disaster-recovery site in Hyderabad.",
+      "source_name": "Meridian Analytics Pvt. Ltd",
+      "target_name": "Hyderabad"
+    },
+    {
+      "relation_type": "HAS_PRODUCT",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:0:147:175",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:40:80:90",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:40"
+      ],
+      "extractors": [
+        "nominal"
+      ],
+      "confidence": 0.9606757665210347,
+      "raw_predicate": "has_product",
+      "evidence": "The transaction does not include Meridian’s small consumer mobile-app division, DataPocket.",
+      "source_name": "Meridian Analytics Pvt. Ltd",
+      "target_name": "DataPocket"
+    },
+    {
+      "relation_type": "RELATED_TO",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:41:60:81",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:42:89:98",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:42"
+      ],
+      "extractors": [
+        "appos"
+      ],
+      "confidence": 0.9677967413888854,
+      "raw_predicate": "appos",
+      "evidence": "Meridian’s shareholders will own 70% of Pocket Labs, while its current product director, Neel Shah, will own 30% and serve as its CEO.",
+      "source_name": "Pocket Labs Pvt. Ltd",
+      "target_name": "Neel Shah"
+    },
+    {
+      "relation_type": "PROVIDED",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:14:0:9",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:45:concept:32:62",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:45"
+      ],
+      "extractors": [
+        "svo"
+      ],
+      "confidence": 0.8081225456722925,
+      "raw_predicate": "provide",
+      "evidence": "Northstar has agreed to provide a quarterly integration report to Meridian’s former shareholders.",
+      "source_name": "Northstar Systems Ltd",
+      "target_name": "a quarterly integration report"
+    },
+    {
+      "relation_type": "PLANNED_SUBSIDIARY_OF",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:0:147:175",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:14:0:9",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:49"
+      ],
+      "extractors": [
+        "nominal"
+      ],
+      "confidence": 0.9803197978496815,
+      "raw_predicate": "planned_subsidiary",
+      "evidence": "After closing, Meridian will operate as a wholly owned subsidiary of Northstar Systems Ltd. for an initial integration period.",
+      "source_name": "Meridian Analytics Pvt. Ltd",
+      "target_name": "Northstar Systems Ltd"
+    }
+  ],
+  "isolated_entities": [
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:18:0:21",
+      "name": "Grant Thornton Bharat",
+      "type": "PERSON",
+      "aliases": [
+        "Grant Thornton Bharat"
+      ],
+      "initials_key": "GTB"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:32:47:78",
+      "name": "Competition Commission Of India",
+      "type": "ORG",
+      "aliases": [
+        "CCI",
+        "Competition Commission of India"
+      ],
+      "initials_key": "CCI"
+    }
+  ],
+  "chunks": [
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:0",
+      "text": "On 14 February 2025, Northstar Systems Ltd. (“Northstar”), a Bengaluru-based enterprise software company, signed a definitive agreement to acquire Meridian Analytics Pvt. Ltd. (“Meridian”), a Pune-based data analytics provider."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:1",
+      "text": "The transaction valued Meridian at approximately n420 crore on a cash-free, debt-free basis."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:2",
+      "text": "Northstar said the acquisition would strengthen its cloud analytics business and expand its presence in the Indian banking and insurance sectors."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:3",
+      "text": "Northstar’s Chief Executive Officer, Ananya Rao, led the negotiations with Meridian’s founder and CEO, Rohan Mehta."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:4",
+      "text": "Rao described Meridian as “a strong fit for our regulated-industry strategy.”"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:5",
+      "text": "Mehta will remain with the combined business for at least 18 months as President of Financial Services Analytics."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:6",
+      "text": "He will report to Rao after closing."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:7",
+      "text": "The agreement provides for an upfront cash payment of n300 crore and an earn-out of up to n120 crore, subject to Meridian achieving revenue and customer-retention targets during FY2026 and FY2027."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:8",
+      "text": "The earn-out will be paid to Meridian’s selling shareholders, including founder Rohan Mehta and venture investor Cedar Peak Ventures LLP."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:9",
+      "text": "Meridian was founded in 2016 by Rohan Mehta and Kavya Iyer."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:10",
+      "text": "Cedar Peak Ventures invested n55 crore in a Series B round in 2021 and owns 22% of Meridian immediately before the transaction."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:11",
+      "text": "Mehta owns 51%, Iyer owns 17%, and employees and other early investors collectively own the remaining 10%."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:12",
+      "text": "Northstar is listed on the National Stock Exchange of India under the ticker NSTAR."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:13",
+      "text": "Its largest institutional shareholder is Horizon Mutual Fund, which holds 8.4% of its outstanding shares."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:14",
+      "text": "Northstar’s board approved the acquisition unanimously on 12 February 2025."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:15",
+      "text": "The board’s approval followed a recommendation from its Strategy and Investment Committee, chaired by independent director Devika Shah."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:16",
+      "text": "Axis Capital acted as the exclusive financial adviser to Northstar."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:17",
+      "text": "K&A; Legal Partners advised Northstar on legal matters, while Desai Rao Associates represented Meridian."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:18",
+      "text": "Grant Thornton Bharat conducted financial due diligence, and Veritas Cyber Risk performed a cybersecurity assessment of Meridian’s systems."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:19",
+      "text": "Northstar expects to fund the upfront consideration through n180 crore of internal cash and a n120 crore acquisition loan from Union National Bank."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:20",
+      "text": "The loan carries a floating interest rate linked to the bank’s one-year benchmark and has a three-year maturity."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:21",
+      "text": "Northstar’s Chief Financial Officer, Sameer Kulkarni, stated that the company expects the transaction to remain within its leverage policy."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:22",
+      "text": "Meridian provides predictive analytics software used by 38 banks and 14 insurance companies."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:23",
+      "text": "Its flagship platform, Meridian Insight, helps financial institutions detect suspicious transactions, estimate credit risk, and forecast customer churn."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:24",
+      "text": "Northstar currently sells cloud infrastructure and workflow automation products to many of the same institutions but does not own a dedicated financial-services analytics platform."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:25",
+      "text": "The companies expect to cross-sell Meridian Insight to Northstar’s existing 110 banking and insurance customers."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:26",
+      "text": "Northstar also plans to integrate Meridian Insight with its cloud platform, Northstar CloudOne."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:27",
+      "text": "The integration is expected to take 12 months and will be overseen by Northstar Chief Technology Officer Priya Nair and Meridian’s engineering head, Arjun Deshpande."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:28",
+      "text": "Nair will chair a joint Integration Management Office (IMO), while Deshpande will lead the product migration workstream."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:29",
+      "text": "The IMO has identified three priorities: migrating customer workloads without service interruption, consolidating duplicate vendor contracts, and aligning data-governance controls."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:30",
+      "text": "Meridian currently operates two data centres in Pune and one disaster-recovery site in Hyderabad."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:31",
+      "text": "Northstar intends to retain the Pune facilities for at least two years and move selected workloads to CloudOne after regulatory review."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:32",
+      "text": "Completion is conditional on approval from the Competition Commission of India (CCI), consent from certain Meridian lenders, and the absence of a material adverse change."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:33",
+      "text": "The parties submitted their initial CCI filing on 3 March 2025."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:34",
+      "text": "The regulator requested additional market-share information on 21 March."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:35",
+      "text": "Northstar and Meridian submitted the requested data on 4 April."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:36",
+      "text": "The parties initially expected closing by 30 June 2025."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:37",
+      "text": "However, the extended regulatory review could move completion into July."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:38",
+      "text": "Until closing, both companies must operate independently and comply with the interim operating covenants in the agreement."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:39",
+      "text": "Neither party may make certain material acquisitions, dispose of specified assets, or amend key customer contracts without the other party’s consent."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:40",
+      "text": "The transaction does not include Meridian’s small consumer mobile-app division, DataPocket."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:41",
+      "text": "That business will be transferred to a newly formed entity, Pocket Labs Pvt. Ltd., before completion."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:42",
+      "text": "Meridian’s shareholders will own 70% of Pocket Labs, while its current product director, Neel Shah, will own 30% and serve as its CEO."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:43",
+      "text": "The principal execution risks are customer attrition, employee departures, technology integration delays, and regulatory restrictions on combining certain datasets."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:44",
+      "text": "Cedar Peak Ventures has requested monthly reporting on customer retention until the earn-out period ends."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:45",
+      "text": "Northstar has agreed to provide a quarterly integration report to Meridian’s former shareholders."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:46",
+      "text": "Some Meridian customers are concerned about whether their data will be transferred to Northstar systems."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:47",
+      "text": "The companies have stated that customer data will remain subject to existing contracts and applicable Indian data-protection requirements."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:48",
+      "text": "No customer-level migration will occur until the relevant approvals and technical safeguards are in place."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:49",
+      "text": "After closing, Meridian will operate as a wholly owned subsidiary of Northstar Systems Ltd. for an initial integration period."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:50",
+      "text": "Its legal entity will remain active while the companies evaluate whether to merge selected support and administrative functions."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:51",
+      "text": "Northstar will appoint two directors to Meridian’s board."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:52",
+      "text": "Rohan Mehta will hold one board seat for 18 months, subject to the shareholders’ agreement and applicable law."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:53",
+      "text": "The earn-out is linked to two performance measures."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:54",
+      "text": "First, Meridian must achieve cumulative revenue of at least n160 crore across FY2026 and FY2027."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:55",
+      "text": "Second, at least 90% of its top 30 customers by annual contract value must renew during the measurement period."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:56",
+      "text": "If both targets are met, the full n120 crore earn-out will be payable."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:57",
+      "text": "A partial payment may be made if revenue reaches 90% of target and customer retention remains above 85%."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:58",
+      "text": "Northstar’s finance team will calculate the earn-out using audited financial statements prepared under the accounting policies specified in the acquisition agreement."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:59",
+      "text": "Any dispute will first be referred to the chief financial officers of both parties."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:60",
+      "text": "If they cannot resolve it within 20 business days, an independent accounting expert jointly appointed by the parties will determine the disputed amount."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:61",
+      "text": "This document is entirely fictional and was created solely to test document-to-knowledge-graph extraction."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:62",
+      "text": "All companies, people, transaction terms, dates, and figures are synthetic."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:63",
+      "text": "Similarities to real entities or transactions are coincidental."
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:64",
+      "text": "Suggested extraction targets: PERSON, ORGANIZATION, LOCATION, DATE, MONEY, PRODUCT, REGULATOR, OWNERSHIP, ACQUISITION, ADVISER_TO, FOUNDED_BY, INVESTED_IN, REPORTS_TO, FINANCED_BY, SUBSIDIARY_OF, APPROVED_BY, and CONDITIONAL_ON."
+    }
+  ]
+}

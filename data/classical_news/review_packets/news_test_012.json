@@ -1,0 +1,139 @@
+{
+  "schema_version": "2.classical_news.1",
+  "document_id": "news:test:012",
+  "title": "Sony Group Tokyo",
+  "group_key": "group:sony_corp",
+  "split": "locked_test",
+  "content_hash": "1c72eff3ee3b3ab11b88eb0de0cebad406e14f96bf9fde90c22ea07bfd8c2ea6",
+  "text": "Sony is headquartered in Tokyo, Japan. Kenichiro Yoshida works for Sony. Yoshida lives in Tokyo.",
+  "mentions": [
+    {
+      "id": "m0",
+      "document_id": "news:test:012",
+      "text": "Sony",
+      "type": "ORGANIZATION",
+      "start": 0,
+      "end": 4,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m1",
+      "document_id": "news:test:012",
+      "text": "Tokyo",
+      "type": "LOCATION",
+      "start": 25,
+      "end": 30,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m2",
+      "document_id": "news:test:012",
+      "text": "Japan",
+      "type": "LOCATION",
+      "start": 32,
+      "end": 37,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m3",
+      "document_id": "news:test:012",
+      "text": "Kenichiro Yoshida",
+      "type": "PERSON",
+      "start": 39,
+      "end": 56,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m4",
+      "document_id": "news:test:012",
+      "text": "Sony",
+      "type": "ORGANIZATION",
+      "start": 67,
+      "end": 71,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m5",
+      "document_id": "news:test:012",
+      "text": "Tokyo",
+      "type": "LOCATION",
+      "start": 90,
+      "end": 95,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    }
+  ],
+  "relation_annotations": [
+    {
+      "subject_id": "m0",
+      "relation": "BASED_IN",
+      "object_id": "m1",
+      "label_status": "positive",
+      "evidence_text": "Sony is headquartered in Tokyo, Japan.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m0",
+      "relation": "BASED_IN",
+      "object_id": "m2",
+      "label_status": "positive",
+      "evidence_text": "Sony is headquartered in Tokyo, Japan.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m3",
+      "relation": "WORKS_FOR",
+      "object_id": "m4",
+      "label_status": "positive",
+      "evidence_text": "Kenichiro Yoshida works for Sony.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m1",
+      "relation": "LOCATED_IN",
+      "object_id": "m2",
+      "label_status": "positive",
+      "evidence_text": "Sony is headquartered in Tokyo, Japan.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    }
+  ]
+}

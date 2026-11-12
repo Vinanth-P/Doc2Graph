@@ -1,0 +1,72 @@
+{
+  "schema_version": "2.classical_news.1",
+  "document_id": "news:dev:020",
+  "title": "Sheryl Sandberg at Meta",
+  "group_key": "group:meta_social",
+  "split": "dev",
+  "content_hash": "53752cc61f4bb69f9c67a81502c778376e671e68755f17e00f5e620023217c8f",
+  "text": "Sheryl Sandberg worked for Meta for over a decade. Sandberg lived in Menlo Park before moving to Los Angeles.",
+  "mentions": [
+    {
+      "id": "m0",
+      "document_id": "news:dev:020",
+      "text": "Sheryl Sandberg",
+      "type": "PERSON",
+      "start": 0,
+      "end": 15,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m1",
+      "document_id": "news:dev:020",
+      "text": "Meta",
+      "type": "ORGANIZATION",
+      "start": 27,
+      "end": 31,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m2",
+      "document_id": "news:dev:020",
+      "text": "Menlo Park",
+      "type": "LOCATION",
+      "start": 69,
+      "end": 79,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m3",
+      "document_id": "news:dev:020",
+      "text": "Los Angeles",
+      "type": "LOCATION",
+      "start": 97,
+      "end": 108,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    }
+  ],
+  "relation_annotations": [
+    {
+      "subject_id": "m0",
+      "relation": "WORKS_FOR",
+      "object_id": "m1",
+      "label_status": "positive",
+      "evidence_text": "Sheryl Sandberg worked for Meta for over a decade.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    }
+  ]
+}

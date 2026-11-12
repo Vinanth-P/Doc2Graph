@@ -1,0 +1,98 @@
+{
+  "schema_version": "2.classical_news.1",
+  "document_id": "news:test:001",
+  "title": "JPMorgan Chase New York",
+  "group_key": "group:jpmorgan_bank",
+  "split": "locked_test",
+  "content_hash": "1f4c6214100328f6a414196b08dcbf849ccc6d4111c29392931f12a64e0228e7",
+  "text": "JPMorgan is headquartered in New York. Jamie Dimon works for JPMorgan as chairman and CEO. Dimon lives in New York.",
+  "mentions": [
+    {
+      "id": "m0",
+      "document_id": "news:test:001",
+      "text": "JPMorgan",
+      "type": "ORGANIZATION",
+      "start": 0,
+      "end": 8,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m1",
+      "document_id": "news:test:001",
+      "text": "New York",
+      "type": "LOCATION",
+      "start": 29,
+      "end": 37,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m2",
+      "document_id": "news:test:001",
+      "text": "Jamie Dimon",
+      "type": "PERSON",
+      "start": 39,
+      "end": 50,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m3",
+      "document_id": "news:test:001",
+      "text": "JPMorgan",
+      "type": "ORGANIZATION",
+      "start": 61,
+      "end": 69,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m4",
+      "document_id": "news:test:001",
+      "text": "New York",
+      "type": "LOCATION",
+      "start": 106,
+      "end": 114,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    }
+  ],
+  "relation_annotations": [
+    {
+      "subject_id": "m0",
+      "relation": "BASED_IN",
+      "object_id": "m1",
+      "label_status": "positive",
+      "evidence_text": "JPMorgan is headquartered in New York.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m2",
+      "relation": "WORKS_FOR",
+      "object_id": "m3",
+      "label_status": "positive",
+      "evidence_text": "Jamie Dimon works for JPMorgan as chairman and CEO.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    }
+  ]
+}

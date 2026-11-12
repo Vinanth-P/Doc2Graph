@@ -1,0 +1,139 @@
+{
+  "schema_version": "2.classical_news.1",
+  "document_id": "news:test:006",
+  "title": "Wells Fargo San Francisco",
+  "group_key": "group:wells_bank",
+  "split": "locked_test",
+  "content_hash": "351222baaf78680c2fe38e54b356f24360b9ece42c99ed964d1e32a31c2295b5",
+  "text": "Wells Fargo is based in San Francisco, California. Charlie Scharf works for Wells Fargo. Scharf lives in New York.",
+  "mentions": [
+    {
+      "id": "m0",
+      "document_id": "news:test:006",
+      "text": "Wells Fargo",
+      "type": "ORGANIZATION",
+      "start": 0,
+      "end": 11,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m1",
+      "document_id": "news:test:006",
+      "text": "San Francisco",
+      "type": "LOCATION",
+      "start": 24,
+      "end": 37,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m2",
+      "document_id": "news:test:006",
+      "text": "California",
+      "type": "LOCATION",
+      "start": 39,
+      "end": 49,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m3",
+      "document_id": "news:test:006",
+      "text": "Charlie Scharf",
+      "type": "PERSON",
+      "start": 51,
+      "end": 65,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m4",
+      "document_id": "news:test:006",
+      "text": "Wells Fargo",
+      "type": "ORGANIZATION",
+      "start": 76,
+      "end": 87,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m5",
+      "document_id": "news:test:006",
+      "text": "New York",
+      "type": "LOCATION",
+      "start": 105,
+      "end": 113,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    }
+  ],
+  "relation_annotations": [
+    {
+      "subject_id": "m0",
+      "relation": "BASED_IN",
+      "object_id": "m1",
+      "label_status": "positive",
+      "evidence_text": "Wells Fargo is based in San Francisco, California.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m0",
+      "relation": "BASED_IN",
+      "object_id": "m2",
+      "label_status": "positive",
+      "evidence_text": "Wells Fargo is based in San Francisco, California.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m3",
+      "relation": "WORKS_FOR",
+      "object_id": "m4",
+      "label_status": "positive",
+      "evidence_text": "Charlie Scharf works for Wells Fargo.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m1",
+      "relation": "LOCATED_IN",
+      "object_id": "m2",
+      "label_status": "positive",
+      "evidence_text": "Wells Fargo is based in San Francisco, California.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    }
+  ]
+}

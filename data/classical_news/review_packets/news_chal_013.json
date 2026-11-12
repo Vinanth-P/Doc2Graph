@@ -1,0 +1,124 @@
+{
+  "schema_version": "2.classical_news.1",
+  "document_id": "news:chal:013",
+  "title": "Location Parent Containment Chain",
+  "group_key": "group:chal_geo",
+  "split": "challenge",
+  "content_hash": "d3d72dab4eef483db313aa833196a9c3af2c0912d73c36677165144bbb79080f",
+  "text": "Palo Alto is located in Santa Clara County. Santa Clara County is located in California. California is in the United States.",
+  "mentions": [
+    {
+      "id": "m0",
+      "document_id": "news:chal:013",
+      "text": "Palo Alto",
+      "type": "LOCATION",
+      "start": 0,
+      "end": 9,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m1",
+      "document_id": "news:chal:013",
+      "text": "Santa Clara County",
+      "type": "LOCATION",
+      "start": 24,
+      "end": 42,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m2",
+      "document_id": "news:chal:013",
+      "text": "Santa Clara County",
+      "type": "LOCATION",
+      "start": 44,
+      "end": 62,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m3",
+      "document_id": "news:chal:013",
+      "text": "California",
+      "type": "LOCATION",
+      "start": 77,
+      "end": 87,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m4",
+      "document_id": "news:chal:013",
+      "text": "California",
+      "type": "LOCATION",
+      "start": 89,
+      "end": 99,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m5",
+      "document_id": "news:chal:013",
+      "text": "United States",
+      "type": "LOCATION",
+      "start": 110,
+      "end": 123,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    }
+  ],
+  "relation_annotations": [
+    {
+      "subject_id": "m0",
+      "relation": "LOCATED_IN",
+      "object_id": "m1",
+      "label_status": "positive",
+      "evidence_text": "Palo Alto is located in Santa Clara County.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m2",
+      "relation": "LOCATED_IN",
+      "object_id": "m3",
+      "label_status": "positive",
+      "evidence_text": "Santa Clara County is located in California.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m4",
+      "relation": "LOCATED_IN",
+      "object_id": "m5",
+      "label_status": "positive",
+      "evidence_text": "California is in the United States.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    }
+  ]
+}

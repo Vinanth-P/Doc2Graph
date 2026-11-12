@@ -1,0 +1,150 @@
+{
+  "schema_version": "2.classical_news.1",
+  "document_id": "news:dev:010",
+  "title": "Larry Page Google Stanford Origins",
+  "group_key": "group:google_corp",
+  "split": "dev",
+  "content_hash": "9b0f7939fcc0b46b03d0ceca1db101f6ede54cf910c343e23ea27d285893c6af",
+  "text": "Larry Page co-founded Google with Sergey Brin. Page resides in Palo Alto. Mountain View is located in California.",
+  "mentions": [
+    {
+      "id": "m0",
+      "document_id": "news:dev:010",
+      "text": "Larry Page",
+      "type": "PERSON",
+      "start": 0,
+      "end": 10,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m1",
+      "document_id": "news:dev:010",
+      "text": "Google",
+      "type": "ORGANIZATION",
+      "start": 22,
+      "end": 28,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m2",
+      "document_id": "news:dev:010",
+      "text": "Sergey Brin",
+      "type": "PERSON",
+      "start": 34,
+      "end": 45,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m3",
+      "document_id": "news:dev:010",
+      "text": "Page",
+      "type": "PERSON",
+      "start": 6,
+      "end": 10,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m4",
+      "document_id": "news:dev:010",
+      "text": "Palo Alto",
+      "type": "LOCATION",
+      "start": 63,
+      "end": 72,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m5",
+      "document_id": "news:dev:010",
+      "text": "Mountain View",
+      "type": "LOCATION",
+      "start": 74,
+      "end": 87,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m6",
+      "document_id": "news:dev:010",
+      "text": "California",
+      "type": "LOCATION",
+      "start": 102,
+      "end": 112,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    }
+  ],
+  "relation_annotations": [
+    {
+      "subject_id": "m0",
+      "relation": "WORKS_FOR",
+      "object_id": "m1",
+      "label_status": "positive",
+      "evidence_text": "Larry Page co-founded Google with Sergey Brin.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "annotator_verified_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m2",
+      "relation": "WORKS_FOR",
+      "object_id": "m1",
+      "label_status": "positive",
+      "evidence_text": "Larry Page co-founded Google with Sergey Brin.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "annotator_verified_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m3",
+      "relation": "LIVES_IN",
+      "object_id": "m4",
+      "label_status": "positive",
+      "evidence_text": "Page resides in Palo Alto.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "annotator_verified_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m5",
+      "relation": "LOCATED_IN",
+      "object_id": "m6",
+      "label_status": "positive",
+      "evidence_text": "Mountain View is located in California.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "annotator_verified_pilot",
+        "review_status": "human_verified_gold"
+      }
+    }
+  ]
+}

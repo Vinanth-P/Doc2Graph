@@ -1,0 +1,111 @@
+{
+  "schema_version": "2.dataset.2",
+  "dataset_name": "reviewed_finance_v2",
+  "seed": "doc2graph-v2-finance-20261111",
+  "near_dedup_threshold": 0.85,
+  "label_order": [
+    "FOUNDED",
+    "EMPLOYED_BY",
+    "MEMBER_OF",
+    "OWNS",
+    "SUBSIDIARY_OF",
+    "ACQUIRED",
+    "INVESTED_IN",
+    "ADVISED",
+    "FINANCED"
+  ],
+  "counts": {
+    "train": 5,
+    "candidates": 37,
+    "positive_labels": 11,
+    "explicit_negative_labels": 2,
+    "unknown_labels": 320,
+    "locked_test": 1
+  },
+  "source_hashes": {
+    "pilot_reviewed_annotations.json": "0dcb9fefd55ac59ebe6aa4ce2b30888b10d1ab8ff3f6516db0b8163369baf704"
+  },
+  "ontology_sha256": "5fa95dcc7e8ee411afbe7391a439f9a60c0add02ef86a00867a787cc59780ee3",
+  "code_sha256": "d32db9fd43f90e26cfff4bbc6ac430eb20bb88922f1ac3faa71951106d924782",
+  "output_hashes": {
+    "train": "f276f006eb4402f1740a30843019a11d22f481833f100aaf1547b606b84902d1",
+    "validation": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "calibration": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "locked_test": "9b0d60f65f088a777d952f3972914bc2aca817e3725e4163578f78f637cf4c7d"
+  },
+  "exclusions": [],
+  "group_membership_including_exclusions": {
+    "fin_doc_001": "deal:msft_github_2018",
+    "fin_doc_002": "deal:stripe_bridge_2024",
+    "fin_doc_003": "deal:adobe_figma_2022",
+    "fin_doc_004": "deal:databricks_expansion_2023",
+    "fin_doc_005_near_dup": "deal:msft_github_wire",
+    "fin_doc_006_exact_dup": "deal:msft_github_2018"
+  },
+  "assignments": [
+    {
+      "document_id": "fin_doc_001",
+      "split": "train",
+      "group_key": "deal:msft_github_2018",
+      "content_hash": "a192e7405ae5b739ec3d374017c0bd3ad9e4e075c2789fac6bd190b96f80c708"
+    },
+    {
+      "document_id": "fin_doc_002",
+      "split": "train",
+      "group_key": "deal:stripe_bridge_2024",
+      "content_hash": "68781f3346913358ff3920d347f9fd3d029e43c9556185b0609a1ecf9828b265"
+    },
+    {
+      "document_id": "fin_doc_003",
+      "split": "train",
+      "group_key": "deal:adobe_figma_2022",
+      "content_hash": "46be59b16ba872dd5c480325237814fbd60f9c7245b2b8415b0cffd65bff94cc"
+    },
+    {
+      "document_id": "fin_doc_004",
+      "split": "train",
+      "group_key": "deal:databricks_expansion_2023",
+      "content_hash": "d3982dd4628a94e67e007826bdbc10def0bac4ec3faaee99d0f68494791af6d4"
+    },
+    {
+      "document_id": "fin_doc_005_near_dup",
+      "split": "locked_test",
+      "group_key": "deal:msft_github_wire",
+      "content_hash": "077350290288f1dfb069eff538ba5c719052d0ad277f954adc202c4e834c9ae6"
+    },
+    {
+      "document_id": "fin_doc_006_exact_dup",
+      "split": "train",
+      "group_key": "deal:msft_github_2018",
+      "content_hash": "a192e7405ae5b739ec3d374017c0bd3ad9e4e075c2789fac6bd190b96f80c708"
+    }
+  ],
+  "reviewer_summary": {
+    "expert_reviewer_1": 4,
+    "expert_reviewer_2": 2
+  },
+  "split_proportions": {
+    "train": 0.6,
+    "validation": 0.15,
+    "calibration": 0.15,
+    "locked_test": 0.1
+  },
+  "locked_test_sealed": false,
+  "release_holdout_available": false,
+  "contains_test_fixtures": true,
+  "review_provenance_verified": false,
+  "dependency_hashes": {
+    "src/nlp/contracts_v2.py": "23e51c6fe7922963bfcec6b3d0b52798a78af01724d7648048e4abbd22b5e00c",
+    "src/nlp/dataset_v2.py": "3e4e66a12fdb9931cfb5e75433d2d66b3d317d18aea77967c11178301d099ebb",
+    "src/nlp/deduplication.py": "e43caf9c6504400e10eac423327d451e7d647a7fa3698a835af779d1ab63f139"
+  },
+  "limitations": [
+    "Any labels with review_status 'pending_human_review' are proposed drafts, not independent test truth.",
+    "All unreviewed pairs are explicitly masked (target=None, loss_mask=False).",
+    "Near-duplicate documents share the same group_key and partition.",
+    "The locked_test partition is only an assignment: plaintext files are not sealed or access-controlled.",
+    "Reviewer fields are recorded attestations, not independently verified human-review provenance.",
+    "Test fixtures are for tooling validation only, never training or independent evaluation truth.",
+    "Same-type argument direction and financial semantics still require human review."
+  ]
+}

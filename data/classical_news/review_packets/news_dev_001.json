@@ -1,0 +1,176 @@
+{
+  "schema_version": "2.classical_news.1",
+  "document_id": "news:dev:001",
+  "title": "Tim Cook and Apple Cupertino Headquarters",
+  "group_key": "group:apple_execs",
+  "split": "dev",
+  "content_hash": "4a9b2a8c0a75c0c693e888e15191443a5b72c21440ae9db4f035e9ff5e6044a3",
+  "text": "Tim Cook serves as the chief executive officer of Apple. He works closely with design teams in Cupertino. Apple is based in Cupertino, California. Tim Cook lives in Palo Alto.",
+  "mentions": [
+    {
+      "id": "m0",
+      "document_id": "news:dev:001",
+      "text": "Tim Cook",
+      "type": "PERSON",
+      "start": 0,
+      "end": 8,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m1",
+      "document_id": "news:dev:001",
+      "text": "Apple",
+      "type": "ORGANIZATION",
+      "start": 50,
+      "end": 55,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m2",
+      "document_id": "news:dev:001",
+      "text": "Cupertino",
+      "type": "LOCATION",
+      "start": 95,
+      "end": 104,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m3",
+      "document_id": "news:dev:001",
+      "text": "Apple",
+      "type": "ORGANIZATION",
+      "start": 50,
+      "end": 55,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m4",
+      "document_id": "news:dev:001",
+      "text": "Cupertino",
+      "type": "LOCATION",
+      "start": 95,
+      "end": 104,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m5",
+      "document_id": "news:dev:001",
+      "text": "California",
+      "type": "LOCATION",
+      "start": 135,
+      "end": 145,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m6",
+      "document_id": "news:dev:001",
+      "text": "Tim Cook",
+      "type": "PERSON",
+      "start": 0,
+      "end": 8,
+      "sentence_idx": 3,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m7",
+      "document_id": "news:dev:001",
+      "text": "Palo Alto",
+      "type": "LOCATION",
+      "start": 165,
+      "end": 174,
+      "sentence_idx": 3,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    }
+  ],
+  "relation_annotations": [
+    {
+      "subject_id": "m0",
+      "relation": "WORKS_FOR",
+      "object_id": "m1",
+      "label_status": "positive",
+      "evidence_text": "Tim Cook serves as the chief executive officer of Apple.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "annotator_verified_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m3",
+      "relation": "BASED_IN",
+      "object_id": "m4",
+      "label_status": "positive",
+      "evidence_text": "Apple is based in Cupertino, California.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "annotator_verified_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m4",
+      "relation": "LOCATED_IN",
+      "object_id": "m5",
+      "label_status": "positive",
+      "evidence_text": "Apple is based in Cupertino, California.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "annotator_verified_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m6",
+      "relation": "LIVES_IN",
+      "object_id": "m7",
+      "label_status": "positive",
+      "evidence_text": "Tim Cook lives in Palo Alto.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "annotator_verified_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m0",
+      "relation": "LIVES_IN",
+      "object_id": "m2",
+      "label_status": "explicit_negative",
+      "evidence_text": "He works closely with design teams in Cupertino.",
+      "confidence": 0.0,
+      "polarity": "negated",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "annotator_verified_pilot",
+        "review_status": "human_verified_gold"
+      }
+    }
+  ]
+}

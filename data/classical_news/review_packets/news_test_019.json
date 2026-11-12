@@ -1,0 +1,98 @@
+{
+  "schema_version": "2.classical_news.1",
+  "document_id": "news:test:019",
+  "title": "Wipro Bengaluru",
+  "group_key": "group:wipro_tech",
+  "split": "locked_test",
+  "content_hash": "50b25fdc4f2433c41c0600c6e1715db68af361dcc5e4c30c0f14a58fd20eda5f",
+  "text": "Wipro is headquartered in Bengaluru. Rishad Premji works for Wipro. Premji lives in Bengaluru.",
+  "mentions": [
+    {
+      "id": "m0",
+      "document_id": "news:test:019",
+      "text": "Wipro",
+      "type": "ORGANIZATION",
+      "start": 0,
+      "end": 5,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m1",
+      "document_id": "news:test:019",
+      "text": "Bengaluru",
+      "type": "LOCATION",
+      "start": 26,
+      "end": 35,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m2",
+      "document_id": "news:test:019",
+      "text": "Rishad Premji",
+      "type": "PERSON",
+      "start": 37,
+      "end": 50,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m3",
+      "document_id": "news:test:019",
+      "text": "Wipro",
+      "type": "ORGANIZATION",
+      "start": 61,
+      "end": 66,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m4",
+      "document_id": "news:test:019",
+      "text": "Bengaluru",
+      "type": "LOCATION",
+      "start": 84,
+      "end": 93,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    }
+  ],
+  "relation_annotations": [
+    {
+      "subject_id": "m0",
+      "relation": "BASED_IN",
+      "object_id": "m1",
+      "label_status": "positive",
+      "evidence_text": "Wipro is headquartered in Bengaluru.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m2",
+      "relation": "WORKS_FOR",
+      "object_id": "m3",
+      "label_status": "positive",
+      "evidence_text": "Rishad Premji works for Wipro.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    }
+  ]
+}

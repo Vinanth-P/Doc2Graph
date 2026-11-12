@@ -1,0 +1,98 @@
+{
+  "schema_version": "2.classical_news.1",
+  "document_id": "news:test:007",
+  "title": "BlackRock New York",
+  "group_key": "group:blackrock_asset",
+  "split": "locked_test",
+  "content_hash": "0f3539876fc63d8ca2dd5252585b7dd350ac759df63345d8d8793a442d5d8b1f",
+  "text": "Larry Fink works for BlackRock as chairman and CEO. Fink lives in New York. BlackRock is headquartered in Manhattan.",
+  "mentions": [
+    {
+      "id": "m0",
+      "document_id": "news:test:007",
+      "text": "Larry Fink",
+      "type": "PERSON",
+      "start": 0,
+      "end": 10,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m1",
+      "document_id": "news:test:007",
+      "text": "BlackRock",
+      "type": "ORGANIZATION",
+      "start": 21,
+      "end": 30,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m2",
+      "document_id": "news:test:007",
+      "text": "New York",
+      "type": "LOCATION",
+      "start": 66,
+      "end": 74,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m3",
+      "document_id": "news:test:007",
+      "text": "BlackRock",
+      "type": "ORGANIZATION",
+      "start": 76,
+      "end": 85,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m4",
+      "document_id": "news:test:007",
+      "text": "Manhattan",
+      "type": "LOCATION",
+      "start": 106,
+      "end": 115,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    }
+  ],
+  "relation_annotations": [
+    {
+      "subject_id": "m3",
+      "relation": "BASED_IN",
+      "object_id": "m4",
+      "label_status": "positive",
+      "evidence_text": "BlackRock is headquartered in Manhattan.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m0",
+      "relation": "WORKS_FOR",
+      "object_id": "m1",
+      "label_status": "positive",
+      "evidence_text": "Larry Fink works for BlackRock as chairman and CEO.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    }
+  ]
+}

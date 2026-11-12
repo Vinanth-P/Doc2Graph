@@ -1,0 +1,98 @@
+{
+  "schema_version": "2.classical_news.1",
+  "document_id": "news:dev:029",
+  "title": "Shell London Headquarters",
+  "group_key": "group:shell_energy",
+  "split": "dev",
+  "content_hash": "87c6100522b55588a3e937345d4f7a2b9a59b5ed8bea1e411a5a7fda33ff3e66",
+  "text": "Shell is based in London. Wael Sawan works for Shell. Sawan lives in The Hague.",
+  "mentions": [
+    {
+      "id": "m0",
+      "document_id": "news:dev:029",
+      "text": "Shell",
+      "type": "ORGANIZATION",
+      "start": 0,
+      "end": 5,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m1",
+      "document_id": "news:dev:029",
+      "text": "London",
+      "type": "LOCATION",
+      "start": 18,
+      "end": 24,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m2",
+      "document_id": "news:dev:029",
+      "text": "Wael Sawan",
+      "type": "PERSON",
+      "start": 26,
+      "end": 36,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m3",
+      "document_id": "news:dev:029",
+      "text": "Shell",
+      "type": "ORGANIZATION",
+      "start": 47,
+      "end": 52,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m4",
+      "document_id": "news:dev:029",
+      "text": "The Hague",
+      "type": "LOCATION",
+      "start": 69,
+      "end": 78,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    }
+  ],
+  "relation_annotations": [
+    {
+      "subject_id": "m0",
+      "relation": "BASED_IN",
+      "object_id": "m1",
+      "label_status": "positive",
+      "evidence_text": "Shell is based in London.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m2",
+      "relation": "WORKS_FOR",
+      "object_id": "m3",
+      "label_status": "positive",
+      "evidence_text": "Wael Sawan works for Shell.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    }
+  ]
+}

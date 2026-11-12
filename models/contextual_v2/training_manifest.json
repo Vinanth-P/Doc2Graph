@@ -1,0 +1,73 @@
+{
+  "model_name": "contextual_v2",
+  "version": "2.0.0",
+  "seed": 42,
+  "epochs": 6,
+  "best_epoch": 5,
+  "best_val_f1": 0.33266533066132264,
+  "device": "cuda",
+  "hidden_dim": 256,
+  "lr": 0.001,
+  "relations": [
+    "FOUNDED",
+    "EMPLOYED_BY",
+    "MEMBER_OF",
+    "OWNS",
+    "SUBSIDIARY_OF",
+    "ACQUIRED",
+    "INVESTED_IN",
+    "ADVISED",
+    "FINANCED"
+  ],
+  "training_history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.21485220044851303,
+      "val_loss": 0.21074916251624623,
+      "val_precision": 0.42857142857142855,
+      "val_recall": 0.06451612903225806,
+      "val_f1": 0.11214953271028037
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.15858843479962909,
+      "val_loss": 0.22222061144808927,
+      "val_precision": 0.3648068669527897,
+      "val_recall": 0.3046594982078853,
+      "val_f1": 0.33203125000000006
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.12012626696377993,
+      "val_loss": 0.2489096357797583,
+      "val_precision": 0.35172413793103446,
+      "val_recall": 0.1827956989247312,
+      "val_f1": 0.24056603773584906
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.09510711211272899,
+      "val_loss": 0.2765629931042592,
+      "val_precision": 0.4161490683229814,
+      "val_recall": 0.24014336917562723,
+      "val_f1": 0.30454545454545456
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.07150593078969156,
+      "val_loss": 0.28922188514843583,
+      "val_precision": 0.37727272727272726,
+      "val_recall": 0.2974910394265233,
+      "val_f1": 0.33266533066132264
+    },
+    {
+      "epoch": 6,
+      "train_loss": 0.055745743154822024,
+      "val_loss": 0.36826881549010676,
+      "val_precision": 0.4088050314465409,
+      "val_recall": 0.23297491039426524,
+      "val_f1": 0.29680365296803657
+    }
+  ],
+  "timestamp": "2026-11-11T18:02:50Z"
+}

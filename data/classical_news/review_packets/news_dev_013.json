@@ -1,0 +1,124 @@
+{
+  "schema_version": "2.classical_news.1",
+  "document_id": "news:dev:013",
+  "title": "BMW Group in Munich",
+  "group_key": "group:bmw_germany",
+  "split": "dev",
+  "content_hash": "3c7082ed15d42734cd805707ebdb09b486bbbfc6c493c479a3527a244692718a",
+  "text": "BMW is headquartered in Munich. Oliver Zipse works for BMW as chairman of the board. Munich is situated in Bavaria.",
+  "mentions": [
+    {
+      "id": "m0",
+      "document_id": "news:dev:013",
+      "text": "BMW",
+      "type": "ORGANIZATION",
+      "start": 0,
+      "end": 3,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m1",
+      "document_id": "news:dev:013",
+      "text": "Munich",
+      "type": "LOCATION",
+      "start": 24,
+      "end": 30,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m2",
+      "document_id": "news:dev:013",
+      "text": "Oliver Zipse",
+      "type": "PERSON",
+      "start": 32,
+      "end": 44,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m3",
+      "document_id": "news:dev:013",
+      "text": "BMW",
+      "type": "ORGANIZATION",
+      "start": 0,
+      "end": 3,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m4",
+      "document_id": "news:dev:013",
+      "text": "Munich",
+      "type": "LOCATION",
+      "start": 24,
+      "end": 30,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m5",
+      "document_id": "news:dev:013",
+      "text": "Bavaria",
+      "type": "LOCATION",
+      "start": 107,
+      "end": 114,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    }
+  ],
+  "relation_annotations": [
+    {
+      "subject_id": "m0",
+      "relation": "BASED_IN",
+      "object_id": "m1",
+      "label_status": "positive",
+      "evidence_text": "BMW is headquartered in Munich.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "annotator_verified_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m2",
+      "relation": "WORKS_FOR",
+      "object_id": "m3",
+      "label_status": "positive",
+      "evidence_text": "Oliver Zipse works for BMW as chairman of the board.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "annotator_verified_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m4",
+      "relation": "LOCATED_IN",
+      "object_id": "m5",
+      "label_status": "positive",
+      "evidence_text": "Munich is situated in Bavaria.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "annotator_verified_pilot",
+        "review_status": "human_verified_gold"
+      }
+    }
+  ]
+}

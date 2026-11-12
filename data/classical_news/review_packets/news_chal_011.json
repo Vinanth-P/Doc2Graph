@@ -1,0 +1,139 @@
+{
+  "schema_version": "2.classical_news.1",
+  "document_id": "news:chal:011",
+  "title": "Repeated Name Collision Disambiguation",
+  "group_key": "group:chal_collision",
+  "split": "challenge",
+  "content_hash": "6ab1f0de62046e80ee86c7a5dea4491b5ab5b674b3c880bb022a8453c5292350",
+  "text": "David Smith lives in London and works for Shell. Another David Smith resides in New York and works for Citi.",
+  "mentions": [
+    {
+      "id": "m0",
+      "document_id": "news:chal:011",
+      "text": "David Smith",
+      "type": "PERSON",
+      "start": 0,
+      "end": 11,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m1",
+      "document_id": "news:chal:011",
+      "text": "London",
+      "type": "LOCATION",
+      "start": 21,
+      "end": 27,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m2",
+      "document_id": "news:chal:011",
+      "text": "Shell",
+      "type": "ORGANIZATION",
+      "start": 42,
+      "end": 47,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m3",
+      "document_id": "news:chal:011",
+      "text": "David Smith",
+      "type": "PERSON",
+      "start": 57,
+      "end": 68,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m4",
+      "document_id": "news:chal:011",
+      "text": "New York",
+      "type": "LOCATION",
+      "start": 80,
+      "end": 88,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m5",
+      "document_id": "news:chal:011",
+      "text": "Citi",
+      "type": "ORGANIZATION",
+      "start": 103,
+      "end": 107,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    }
+  ],
+  "relation_annotations": [
+    {
+      "subject_id": "m0",
+      "relation": "WORKS_FOR",
+      "object_id": "m2",
+      "label_status": "positive",
+      "evidence_text": "David Smith lives in London and works for Shell.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m3",
+      "relation": "WORKS_FOR",
+      "object_id": "m5",
+      "label_status": "explicit_negative",
+      "evidence_text": "Another David Smith resides in New York and works for Citi.",
+      "confidence": 0.0,
+      "polarity": "negated",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m0",
+      "relation": "LIVES_IN",
+      "object_id": "m1",
+      "label_status": "positive",
+      "evidence_text": "David Smith lives in London and works for Shell.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m3",
+      "relation": "LIVES_IN",
+      "object_id": "m4",
+      "label_status": "explicit_negative",
+      "evidence_text": "Another David Smith resides in New York and works for Citi.",
+      "confidence": 0.0,
+      "polarity": "negated",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    }
+  ]
+}

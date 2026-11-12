@@ -1,0 +1,140 @@
+version: "2.0"
+description: "Doc2Graph v2 Ontology: Typed, directed relations with assertion semantics."
+
+relations:
+  FOUNDED:
+    description: "Founder establishes or co-founds an organization."
+    direction: "founder -> organization"
+    subject_role: "founder"
+    object_role: "organization"
+    entity_type_pairs:
+      - [PERSON, ORG]
+      - [ORG, ORG]
+    distinction: "Founder versus later executive, director, or passive investor."
+    external_mappings:
+      redocred:
+        code: "P112"
+        reverse: true
+
+  EMPLOYED_BY:
+    description: "Person is currently or was previously employed by or holds an executive office at an organization."
+    direction: "person -> employer"
+    subject_role: "employee"
+    object_role: "employer"
+    entity_type_pairs:
+      - [PERSON, ORG]
+    distinction: "Employment/office vs general club/committee membership."
+    external_mappings:
+      redocred:
+        code: "P108"
+        reverse: false
+
+  MEMBER_OF:
+    description: "Individual is a member of an association, political party, advisory council, or group."
+    direction: "member -> organization"
+    subject_role: "member"
+    object_role: "organization"
+    entity_type_pairs:
+      - [PERSON, ORG]
+    distinction: "Membership does not require formal paid employment."
+    external_mappings:
+      redocred:
+        code: "P463"
+        reverse: false
+
+  OWNS:
+    description: "Owner holds full or partial equity, assets, or beneficial ownership in an entity."
+    direction: "owner -> owned_entity"
+    subject_role: "owner"
+    object_role: "owned_entity"
+    entity_type_pairs:
+      - [ORG, ORG]
+      - [PERSON, ORG]
+      - [ORG, PRODUCT]
+      - [PERSON, PRODUCT]
+    distinction: "Ownership stake vs commercial partnership or vendor relationship."
+    external_mappings:
+      redocred:
+        code: "P127"
+        reverse: true
+
+  SUBSIDIARY_OF:
+    description: "Operating entity is a subsidiary or controlled operating division of a parent organization."
+    direction: "subsidiary -> parent"
+    subject_role: "subsidiary"
+    object_role: "parent"
+    entity_type_pairs:
+      - [ORG, ORG]
+    distinction: "Legal corporate subsidiary vs joint venture, alliance, or affiliate."
+    external_mappings:
+      redocred:
+        code: "P749"
+        reverse: false
+
+  ACQUIRED:
+    description: "Acquiring organization purchases or merges another organization."
+    direction: "acquirer -> target"
+    subject_role: "acquirer"
+    object_role: "target"
+    entity_type_pairs:
+      - [ORG, ORG]
+    distinction: "Executed or completed acquisition vs announced proposal (check lifecycle/modality)."
+
+  INVESTED_IN:
+    description: "Investor commits financial capital or equity funding to an investee organization."
+    direction: "investor -> investee"
+    subject_role: "investor"
+    object_role: "investee"
+    entity_type_pairs:
+      - [ORG, ORG]
+      - [PERSON, ORG]
+    distinction: "Capital investment vs debt financing or advisory fees."
+
+  ADVISED:
+    description: "Adviser (investment bank, law firm, consultancy) counsels a client on a transaction or mandate."
+    direction: "adviser -> client"
+    subject_role: "adviser"
+    object_role: "client"
+    entity_type_pairs:
+      - [ORG, ORG]
+      - [PERSON, ORG]
+    distinction: "Professional adviser representation vs counterparty principal."
+
+  FINANCED:
+    description: "Financier provides debt, underwriting, credit facility, or syndicated loan to a borrower."
+    direction: "financier -> borrower"
+    subject_role: "financier"
+    object_role: "borrower"
+    entity_type_pairs:
+      - [ORG, ORG]
+      - [PERSON, ORG]
+    distinction: "Lender / debt provider vs equity investor."
+
+assertion_attributes:
+  polarity:
+    values: ["affirmed", "negated", "unknown"]
+    default: "unknown"
+    definitions:
+      affirmed: "Fact is affirmed by narrative evidence."
+      negated: "Fact is explicitly denied, disputed, or refuted."
+      unknown: "Polarity cannot be determined."
+
+  modality:
+    values: ["asserted", "planned", "conditional", "rumored", "unknown"]
+    default: "unknown"
+    definitions:
+      asserted: "Occurred, completed, or existing reality."
+      planned: "Prospective intention, proposal, or bid."
+      conditional: "Contingent on regulatory or shareholder approval."
+      rumored: "Speculative, unconfirmed press report."
+      unknown: "Modality cannot be determined."
+
+  lifecycle:
+    values: ["announced", "signed", "completed", "cancelled", "unknown"]
+    default: "unknown"
+    definitions:
+      announced: "Transaction or appointment formally announced."
+      signed: "Definitive agreement signed."
+      completed: "Transaction closed or appointment effective."
+      cancelled: "Transaction terminated or abandoned."
+      unknown: "Lifecycle stage unspecified."

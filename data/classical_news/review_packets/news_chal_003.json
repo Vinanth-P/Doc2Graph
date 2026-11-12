@@ -1,0 +1,94 @@
+{
+  "schema_version": "2.classical_news.1",
+  "document_id": "news:chal:003",
+  "title": "Reversed Direction: City to Company",
+  "group_key": "group:chal_order",
+  "split": "challenge",
+  "content_hash": "b45cc69391a991d6a223c8f75f145cf8db0459679735bdcec9f37f0b08dce994",
+  "text": "Seattle is the proud home of Amazon. Washington is home to Microsoft. Redmond is located in Washington.",
+  "mentions": [
+    {
+      "id": "m0",
+      "document_id": "news:chal:003",
+      "text": "Seattle",
+      "type": "LOCATION",
+      "start": 0,
+      "end": 7,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m1",
+      "document_id": "news:chal:003",
+      "text": "Amazon",
+      "type": "ORGANIZATION",
+      "start": 29,
+      "end": 35,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m2",
+      "document_id": "news:chal:003",
+      "text": "Washington",
+      "type": "LOCATION",
+      "start": 37,
+      "end": 47,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m3",
+      "document_id": "news:chal:003",
+      "text": "Microsoft",
+      "type": "ORGANIZATION",
+      "start": 59,
+      "end": 68,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m4",
+      "document_id": "news:chal:003",
+      "text": "Redmond",
+      "type": "LOCATION",
+      "start": 70,
+      "end": 77,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m5",
+      "document_id": "news:chal:003",
+      "text": "Washington",
+      "type": "LOCATION",
+      "start": 92,
+      "end": 102,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    }
+  ],
+  "relation_annotations": [
+    {
+      "subject_id": "m4",
+      "relation": "LOCATED_IN",
+      "object_id": "m5",
+      "label_status": "positive",
+      "evidence_text": "Redmond is located in Washington.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    }
+  ]
+}

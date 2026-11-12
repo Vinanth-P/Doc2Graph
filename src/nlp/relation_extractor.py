@@ -11,6 +11,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from typing import Optional
+import re
 
 import spacy
 from spacy.tokens import Doc, Token, Span
@@ -78,7 +79,9 @@ def _token_to_entity(
     for chunk in token.doc.noun_chunks:
         if chunk.start <= token.i < chunk.end:
             for (s, e), ent in span_map.items():
-                if not (e <= chunk.start_char or s >= chunk.end_char):
+                # A possessive company is not the head of "Acme's shareholders"
+                # or "Acme's CFO". Only use the named noun-phrase head.
+                if s <= chunk.root.idx < e:
                     if coref_map and entity_by_id and ent.entity_id in coref_map:
                         return entity_by_id.get(coref_map[ent.entity_id], ent)
                     return ent
@@ -132,6 +135,40 @@ def _has_negation(token: Token) -> bool:
         if c.dep_ in ("aux", "auxpass") and any(gc.dep_ == "neg" for gc in c.children):
             return True
     return False
+
+
+def _subject_token(verb: Token) -> Optional[Token]:
+    """Recover subjects shared by coordinated verbs and controlled clauses."""
+    direct = next((c for c in verb.children if c.dep_ in {"nsubj", "nsubjpass"}), None)
+    if direct is not None:
+        if direct.lower_ in {"who", "which", "that"} and verb.dep_ == "relcl":
+            return verb.head
+        return direct
+    if verb.dep_ in {"conj", "xcomp"} and verb.head.pos_ in {"VERB", "AUX"}:
+        if verb.dep_ == "xcomp" and verb.head.lemma_ in {"ask", "tell", "instruct", "allow"}:
+            return next((c for c in verb.head.children if c.dep_ == "dobj"), None)
+        return _subject_token(verb.head)
+    if verb.dep_ in {"acl", "relcl"}:
+        if verb.head.lemma_ in {"agreement", "plan", "decision", "offer"}:
+            return _subject_token(verb.head.head) if verb.head.head.pos_ == "VERB" else None
+        return verb.head
+    return None
+
+
+def _is_planned(verb: Token) -> bool:
+    return any(t.lemma_ in {"plan", "expect", "intend", "agree", "agreement", "offer"}
+               or any(c.lower_ in {"will", "would", "may", "might", "could"} for c in t.children)
+               for t in [verb, *verb.ancestors])
+
+
+def _predicate(verb: Token) -> str:
+    # An agreement/plan is not evidence that an acquisition has closed.
+    if verb.lemma_ in {"acquire", "buy", "purchase"}:
+        if _is_planned(verb):
+            return "planned_acquire"
+    if verb.lemma_ in {"use", "integrate", "deploy", "adopt"} and _is_planned(verb):
+        return "planned_use"
+    return verb.lemma_.lower()
 
 
 def _noun_phrase_product(token: Token, chunk_id: str) -> Optional[Entity]:
@@ -197,6 +234,7 @@ class DepPatternExtractor:
             triples += self._appositive(sent, span_map, center_chunk_id, center_sent_idx, coref_map, entity_by_id)
             triples += self._prepositional(sent, span_map, center_chunk_id, center_sent_idx, coref_map, entity_by_id)
             triples += self._nominal(sent, span_map, center_chunk_id, center_sent_idx, coref_map, entity_by_id)
+            triples += self._business_patterns(sent, span_map, center_chunk_id, center_sent_idx, coref_map, entity_by_id)
         return triples
 
     # ── Pattern implementations ───────────────────────────────────────────────
@@ -212,20 +250,23 @@ class DepPatternExtractor:
             if token.pos_ != "VERB":
                 continue
             # Find subject
-            subj_tok = next(
-                (c for c in token.children if c.dep_ in {"nsubj", "nsubjpass"}),
-                None,
-            )
+            subj_tok = _subject_token(token)
             # Find object
             obj_tok = next(
                 (c for c in token.children if c.dep_ in {"dobj", "attr", "oprd"}),
                 None,
             )
             # Convert passive voice to actor -> patient before normalization.
-            if subj_tok is not None and subj_tok.dep_ == "nsubjpass":
+            if subj_tok is not None and (subj_tok.dep_ == "nsubjpass" or
+                    any(c.dep_ == "agent" for c in token.children)):
                 agent = next((c for c in token.children if c.dep_ == "agent"), None)
                 actor = next((c for c in agent.children if c.dep_ == "pobj"), None) if agent is not None else None
                 subj_tok, obj_tok = actor, subj_tok
+            # "owns 22% of Acme": the percentage modifies the named target.
+            if obj_tok is not None and token.lemma_ in {"own", "hold"}:
+                of = next((c for c in obj_tok.children if c.dep_ == "prep" and c.lower_ == "of"), None)
+                if of is not None:
+                    obj_tok = next((c for c in of.children if c.dep_ == "pobj"), obj_tok)
             if subj_tok is None or obj_tok is None:
                 continue
 
@@ -282,14 +323,16 @@ class DepPatternExtractor:
 
                     triples.append(RawTriple(
                         subject=subj_ent,
-                        predicate=token.lemma_,
+                        predicate=_predicate(token),
                         object=obj_ent,
                         prep=prep_text,
                         source="svo",
                         sent_idx=sent_idx,
                         chunk_id=chunk_id,
                         dep_distance=_dep_distance(s_tok, o_tok),
-                        has_negation=_has_negation(token),
+                        has_negation=_has_negation(token) or (
+                            token.dep_ in {"conj", "xcomp", "acl"} and _has_negation(token.head)
+                        ),
                     ))
         return triples
 
@@ -343,6 +386,11 @@ class DepPatternExtractor:
             if pobj is None:
                 continue
             governor = token.head
+            if governor.lemma_.lower() in {"subsidiary", "adviser", "advisor"}:
+                # Dedicated patterns preserve subject direction and modality.
+                continue
+            if governor.lemma_.lower() == "report" and governor.pos_ != "VERB":
+                continue
             subject_token = None
             subject_ent_override = None
             # Reduced clauses such as "TechNova Solutions partnered with
@@ -357,7 +405,7 @@ class DepPatternExtractor:
             # In "AIRI in Bengaluru" and "IISc, located in Bengaluru",
             # the location preposition can attach to a nearby verb/adjective.
             # A preceding organization is the subject of the location fact.
-            if token.text.lower() in {"in", "at"} and pobj is not None:
+            if token.text.lower() in {"in", "at"} and pobj is not None and governor.lemma_ in {"locate", "base", "headquarter"}:
                 preceding_orgs = [
                     entity for entity in span_map.values()
                     if entity.type in {"ORG", "PERSON"}
@@ -515,4 +563,113 @@ class DepPatternExtractor:
                     dep_distance=_dep_distance(person_tok, org_tok),
                     has_negation=_has_negation(token),
                 ))
+        return triples
+
+    def _business_patterns(self, sent, span_map, chunk_id, sent_idx, coref_map, entity_by_id):
+        """Finance/role constructions with explicit lexical and type guards."""
+        triples = []
+        entities = sorted((e for e in span_map.values()
+                           if sent.start_char <= e.start_char < sent.end_char),
+                          key=lambda e: e.start_char)
+
+        def emit(subject, predicate, obj, source="nominal", negated=False):
+            if subject and obj and subject.canonical_name != obj.canonical_name:
+                triples.append(RawTriple(subject, predicate, obj, None, source,
+                                         sent_idx, chunk_id, 2, negated))
+
+        def ent(token):
+            return _token_to_entity(token, span_map, chunk_id, coref_map, entity_by_id)
+
+        # Organization's role, Person / Organization role Person.
+        for org in entities:
+            if org.type != "ORG":
+                continue
+            for person in entities:
+                if person.type != "PERSON" or person.start_char < org.end_char:
+                    continue
+                between = sent.doc.text[org.end_char:person.start_char]
+                role = re.fullmatch(
+                    r"(?:['\u2019]s)?\s+(?:Chief\s+(?:Executive|Financial|Technology|Operating)\s+Officer|"
+                    r"(?:engineering\s+)?head|(?:independent\s+|product\s+)?director|"
+                    r"founder(?:\s+and\s+CEO)?|CEO|CFO|CTO)\s*,?\s*", between, re.I)
+                if role:
+                    emit(person, "role_at", org)
+                    if re.search(r"\bfounder\b", between, re.I):
+                        emit(person, "founder", org)
+
+        # A city-based apposition names the immediately preceding company.
+        for org, place in zip(entities, entities[1:]):
+            between = sent.doc.text[org.end_char:place.start_char]
+            if (org.type == "ORG" and place.type == "GPE"
+                    and re.fullmatch(r"[\s,()\"\u201c\u201d]*(?:a|an)?\s*", between)
+                    and sent.doc.text[place.end_char:].startswith("-based")):
+                emit(org, "located_at", place)
+
+        for token in sent:
+            lemma = token.lemma_.lower()
+            # Axis acted as [financial adviser to Acme].
+            if lemma in {"adviser", "advisor", "subsidiary"}:
+                prep = next((c for c in token.children if c.dep_ == "prep" and c.lower_ in {"to", "of"}), None)
+                obj_tok = next((c for c in prep.children if c.dep_ == "pobj"), None) if prep is not None else None
+                governing = next((a for a in token.ancestors if a.pos_ in {"VERB", "AUX"}), None)
+                subj_tok = _subject_token(governing) if governing is not None else None
+                if subj_tok is not None and obj_tok is not None:
+                    predicate = "adviser" if lemma != "subsidiary" else (
+                        "planned_subsidiary" if _is_planned(governing) else "subsidiary")
+                    emit(ent(subj_tok), predicate,
+                         ent(obj_tok), negated=_has_negation(governing))
+            # A loan from Bank explicitly identifies the borrower's financing.
+            if lemma == "loan":
+                prep = next((c for c in token.children if c.dep_ == "prep" and c.lower_ == "from"), None)
+                if prep is None and token.dep_ == "dobj" and token.head.lemma_ in {"receive", "obtain", "secure", "take"}:
+                    prep = next((c for c in token.head.children if c.dep_ == "prep" and c.lower_ == "from"), None)
+                lender = next((c for c in prep.children if c.dep_ == "pobj"), None) if prep is not None else None
+                verb = next((a for a in token.ancestors if a.pos_ == "VERB"), None)
+                borrower = _subject_token(verb) if verb is not None else None
+                if lender is not None and borrower is not None:
+                    emit(ent(borrower), "planned_loan_from" if _is_planned(verb) else "loan_from",
+                         ent(lender), negated=_has_negation(verb))
+            # A named product/division in apposition to a possessed noun.
+            if lemma in {"platform", "product", "division"}:
+                owner = next((c for c in token.children if c.dep_ == "poss"), None)
+                product = next((c for c in token.children if c.dep_ == "appos"), None)
+                if owner is not None and product is not None:
+                    emit(ent(owner), "has_product", ent(product))
+            if lemma == "assessment":
+                prep = next((c for c in token.children if c.dep_ == "prep" and c.lower_ == "of"), None)
+                target = next((c for c in prep.children if c.dep_ == "pobj"), None) if prep is not None else None
+                verb = token.head if token.head.lemma_ in {"perform", "conduct"} else None
+                subject = _subject_token(verb) if verb is not None else None
+                if target is not None and subject is not None:
+                    target_ent = ent(target)
+                    if target_ent is None and target.lemma_ in {"system", "account", "operation"}:
+                        poss = next((c for c in target.children if c.dep_ == "poss"), None)
+                        target_ent = ent(poss) if poss is not None else None
+                    emit(ent(subject), "assess", target_ent, negated=_has_negation(verb))
+            # Reduced passive: committee, chaired by Person.
+            if lemma in {"chair", "lead", "head"} and token.dep_ in {"acl", "relcl"}:
+                agent = next((c for c in token.children if c.dep_ == "agent"), None)
+                actor = next((c for c in agent.children if c.dep_ == "pobj"), None) if agent is not None else None
+                if actor is not None:
+                    target = ent(token.head)
+                    if target is None:
+                        # Parser may attach the clause to "recommendation from
+                        # Committee, chaired ...". Require an adjacent comma.
+                        previous = [e for e in entities if e.type == "ORG" and e.end_char <= token.idx
+                                    and re.fullmatch(r"\s*,\s*", sent.doc.text[e.end_char:token.idx])]
+                        target = previous[-1] if previous else None
+                    emit(ent(actor), "lead", target, negated=_has_negation(token))
+            if lemma == "in" and token.dep_ == "prep":
+                obj_tok = next((c for c in token.children if c.dep_ == "pobj"), None)
+                if obj_tok is not None and token.head.lemma_ in {"centre", "center", "site", "facility"}:
+                    verb = next((a for a in token.ancestors if a.lemma_ == "operate"), None)
+                    subject = _subject_token(verb) if verb is not None else None
+                    if subject is not None:
+                        emit(ent(subject), "located_at", ent(obj_tok), negated=_has_negation(verb))
+            if lemma == "shareholder":
+                owner = next((c for c in token.children if c.dep_ == "poss"), None)
+                if token.dep_ == "nsubj" and owner is not None:
+                    holder = next((c for c in token.head.children if c.dep_ == "attr"), None)
+                    if holder is not None:
+                        emit(ent(holder), "own", ent(owner), negated=_has_negation(token.head))
         return triples

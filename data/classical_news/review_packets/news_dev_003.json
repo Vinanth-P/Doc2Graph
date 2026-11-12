@@ -1,0 +1,124 @@
+{
+  "schema_version": "2.classical_news.1",
+  "document_id": "news:dev:003",
+  "title": "Jony Ive Design at Apple",
+  "group_key": "group:apple_execs",
+  "split": "dev",
+  "content_hash": "9581a8d86afd8186aecf0d51c3a1cb1bf2c1ddf8f57161959d8c2a5a20d2d1da",
+  "text": "Jony Ive worked for Apple for over two decades. Ive resided in San Francisco while leading industrial design. Apple is located in Cupertino.",
+  "mentions": [
+    {
+      "id": "m0",
+      "document_id": "news:dev:003",
+      "text": "Jony Ive",
+      "type": "PERSON",
+      "start": 0,
+      "end": 8,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m1",
+      "document_id": "news:dev:003",
+      "text": "Apple",
+      "type": "ORGANIZATION",
+      "start": 20,
+      "end": 25,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m2",
+      "document_id": "news:dev:003",
+      "text": "Ive",
+      "type": "PERSON",
+      "start": 5,
+      "end": 8,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m3",
+      "document_id": "news:dev:003",
+      "text": "San Francisco",
+      "type": "LOCATION",
+      "start": 63,
+      "end": 76,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m4",
+      "document_id": "news:dev:003",
+      "text": "Apple",
+      "type": "ORGANIZATION",
+      "start": 20,
+      "end": 25,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m5",
+      "document_id": "news:dev:003",
+      "text": "Cupertino",
+      "type": "LOCATION",
+      "start": 130,
+      "end": 139,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    }
+  ],
+  "relation_annotations": [
+    {
+      "subject_id": "m0",
+      "relation": "WORKS_FOR",
+      "object_id": "m1",
+      "label_status": "positive",
+      "evidence_text": "Jony Ive worked for Apple for over two decades.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "annotator_verified_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m2",
+      "relation": "LIVES_IN",
+      "object_id": "m3",
+      "label_status": "positive",
+      "evidence_text": "Ive resided in San Francisco while leading industrial design.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "annotator_verified_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m4",
+      "relation": "BASED_IN",
+      "object_id": "m5",
+      "label_status": "positive",
+      "evidence_text": "Apple is located in Cupertino.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "annotator_verified_pilot",
+        "review_status": "human_verified_gold"
+      }
+    }
+  ]
+}

@@ -1,0 +1,139 @@
+{
+  "schema_version": "2.classical_news.1",
+  "document_id": "news:test:030",
+  "title": "Stellantis Hoofddorp",
+  "group_key": "group:stellantis_auto",
+  "split": "locked_test",
+  "content_hash": "c4bb7af28923b112a4940c417534c3b89e9bd13dfcc4cecb1bc6ebe251beebf7",
+  "text": "Stellantis is based in Hoofddorp, Netherlands. Carlos Tavares works for Stellantis. Tavares lives in Lisbon.",
+  "mentions": [
+    {
+      "id": "m0",
+      "document_id": "news:test:030",
+      "text": "Stellantis",
+      "type": "ORGANIZATION",
+      "start": 0,
+      "end": 10,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m1",
+      "document_id": "news:test:030",
+      "text": "Hoofddorp",
+      "type": "LOCATION",
+      "start": 23,
+      "end": 32,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m2",
+      "document_id": "news:test:030",
+      "text": "Netherlands",
+      "type": "LOCATION",
+      "start": 34,
+      "end": 45,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m3",
+      "document_id": "news:test:030",
+      "text": "Carlos Tavares",
+      "type": "PERSON",
+      "start": 47,
+      "end": 61,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m4",
+      "document_id": "news:test:030",
+      "text": "Stellantis",
+      "type": "ORGANIZATION",
+      "start": 72,
+      "end": 82,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m5",
+      "document_id": "news:test:030",
+      "text": "Lisbon",
+      "type": "LOCATION",
+      "start": 101,
+      "end": 107,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    }
+  ],
+  "relation_annotations": [
+    {
+      "subject_id": "m0",
+      "relation": "BASED_IN",
+      "object_id": "m1",
+      "label_status": "positive",
+      "evidence_text": "Stellantis is based in Hoofddorp, Netherlands.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m0",
+      "relation": "BASED_IN",
+      "object_id": "m2",
+      "label_status": "positive",
+      "evidence_text": "Stellantis is based in Hoofddorp, Netherlands.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m3",
+      "relation": "WORKS_FOR",
+      "object_id": "m4",
+      "label_status": "positive",
+      "evidence_text": "Carlos Tavares works for Stellantis.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m1",
+      "relation": "LOCATED_IN",
+      "object_id": "m2",
+      "label_status": "positive",
+      "evidence_text": "Stellantis is based in Hoofddorp, Netherlands.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    }
+  ]
+}

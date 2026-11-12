@@ -1,0 +1,154 @@
+{
+  "schema_version": "2.classical_news.1",
+  "document_id": "news:chal:007",
+  "title": "Complex Relocation Chain",
+  "group_key": "group:chal_multi",
+  "split": "challenge",
+  "content_hash": "81fd2c8afb0f35b2a72a9217f5769a91ddb52fe472aa75d6483f787fdab77b19",
+  "text": "Elon Musk left Los Angeles and established his residence in Austin, Texas. Tesla is based in Austin.",
+  "mentions": [
+    {
+      "id": "m0",
+      "document_id": "news:chal:007",
+      "text": "Elon Musk",
+      "type": "PERSON",
+      "start": 0,
+      "end": 9,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m1",
+      "document_id": "news:chal:007",
+      "text": "Los Angeles",
+      "type": "LOCATION",
+      "start": 15,
+      "end": 26,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m2",
+      "document_id": "news:chal:007",
+      "text": "Austin",
+      "type": "LOCATION",
+      "start": 60,
+      "end": 66,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m3",
+      "document_id": "news:chal:007",
+      "text": "Texas",
+      "type": "LOCATION",
+      "start": 68,
+      "end": 73,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m4",
+      "document_id": "news:chal:007",
+      "text": "Tesla",
+      "type": "ORGANIZATION",
+      "start": 75,
+      "end": 80,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m5",
+      "document_id": "news:chal:007",
+      "text": "Austin",
+      "type": "LOCATION",
+      "start": 93,
+      "end": 99,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    }
+  ],
+  "relation_annotations": [
+    {
+      "subject_id": "m4",
+      "relation": "BASED_IN",
+      "object_id": "m5",
+      "label_status": "positive",
+      "evidence_text": "Tesla is based in Austin.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m0",
+      "relation": "LIVES_IN",
+      "object_id": "m1",
+      "label_status": "positive",
+      "evidence_text": "Elon Musk left Los Angeles and established his residence in Austin, Texas.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m0",
+      "relation": "LIVES_IN",
+      "object_id": "m2",
+      "label_status": "positive",
+      "evidence_text": "Elon Musk left Los Angeles and established his residence in Austin, Texas.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m0",
+      "relation": "LIVES_IN",
+      "object_id": "m3",
+      "label_status": "positive",
+      "evidence_text": "Elon Musk left Los Angeles and established his residence in Austin, Texas.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m2",
+      "relation": "LOCATED_IN",
+      "object_id": "m3",
+      "label_status": "positive",
+      "evidence_text": "Elon Musk left Los Angeles and established his residence in Austin, Texas.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    }
+  ]
+}

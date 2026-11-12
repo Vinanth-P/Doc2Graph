@@ -1,0 +1,2389 @@
+{
+  "schema_version": "2.classical_news_eval.1",
+  "timestamp": "2026-11-11T21:59:54.073935+00:00",
+  "model_backend": "stanford_classical",
+  "evaluator": "evaluate_classical_news.py",
+  "splits_evaluated": [
+    "dev",
+    "locked_test",
+    "challenge"
+  ],
+  "results": {
+    "dev": {
+      "split": "dev",
+      "document_count": 30,
+      "elapsed_seconds": 5.61,
+      "silent_inference_failures": 0,
+      "ner": {
+        "micro": {
+          "tp": 149,
+          "fp": 47,
+          "fn": 26,
+          "precision": 76.02,
+          "recall": 85.14,
+          "f1": 80.32
+        },
+        "by_type": {
+          "PERSON": {
+            "support": 44,
+            "tp": 32,
+            "fp": 22,
+            "fn": 12,
+            "precision": 59.26,
+            "recall": 72.73,
+            "f1": 65.31
+          },
+          "ORGANIZATION": {
+            "support": 43,
+            "tp": 30,
+            "fp": 12,
+            "fn": 13,
+            "precision": 71.43,
+            "recall": 69.77,
+            "f1": 70.59
+          },
+          "LOCATION": {
+            "support": 88,
+            "tp": 87,
+            "fp": 13,
+            "fn": 1,
+            "precision": 87.0,
+            "recall": 98.86,
+            "f1": 92.55
+          }
+        }
+      },
+      "relation_oracle_mode": {
+        "available": false,
+        "reason": "Native Stanford bridge runs unified pipeline from raw text; gold mention injection is unsupported in Roth annotator without custom pipeline hooks."
+      },
+      "relations_end_to_end": {
+        "micro": {
+          "tp": 12,
+          "fp": 13,
+          "fn": 97,
+          "precision": 48.0,
+          "recall": 11.01,
+          "f1": 17.91
+        },
+        "macro_f1": 17.19,
+        "by_label": {
+          "WORKS_FOR": {
+            "support": 30,
+            "tp": 5,
+            "fp": 4,
+            "fn": 25,
+            "precision": 55.56,
+            "recall": 16.67,
+            "f1": 25.64
+          },
+          "LIVES_IN": {
+            "support": 15,
+            "tp": 1,
+            "fp": 8,
+            "fn": 14,
+            "precision": 11.11,
+            "recall": 6.67,
+            "f1": 8.33
+          },
+          "BASED_IN": {
+            "support": 35,
+            "tp": 2,
+            "fp": 1,
+            "fn": 33,
+            "precision": 66.67,
+            "recall": 5.71,
+            "f1": 10.53
+          },
+          "LOCATED_IN": {
+            "support": 29,
+            "tp": 4,
+            "fp": 0,
+            "fn": 25,
+            "precision": 100.0,
+            "recall": 13.79,
+            "f1": 24.24
+          }
+        }
+      },
+      "bootstrap_ci": {
+        "ner_micro_f1_95ci": [
+          76.68,
+          84.01
+        ],
+        "relation_precision_95ci": [
+          28.57,
+          65.52
+        ],
+        "relation_recall_95ci": [
+          4.81,
+          18.87
+        ],
+        "relation_micro_f1_95ci": [
+          8.4,
+          28.57
+        ]
+      },
+      "documents": [
+        {
+          "document_id": "news:dev:016",
+          "title": "Tesla Austin Texas",
+          "group_key": "group:tesla_auto",
+          "ner": {
+            "gold_count": 7,
+            "pred_count": 7,
+            "tp": 6,
+            "fp": 1,
+            "fn": 1
+          },
+          "relations": {
+            "gold_count": 5,
+            "pred_count": 1,
+            "tp": 1,
+            "fp": 0,
+            "fn": 4,
+            "missed_gold": [
+              "ORGANIZATION:Tesla -> BASED_IN -> LOCATION:Texas",
+              "ORGANIZATION:Tesla -> BASED_IN -> LOCATION:Austin",
+              "LOCATION:Austin -> LOCATED_IN -> LOCATION:Texas",
+              "LOCATION:Austin -> LOCATED_IN -> LOCATION:Texas"
+            ],
+            "false_positives": []
+          }
+        },
+        {
+          "document_id": "news:dev:017",
+          "title": "SpaceX Hawthorne and Starbase",
+          "group_key": "group:spacex_aero",
+          "ner": {
+            "gold_count": 7,
+            "pred_count": 6,
+            "tp": 5,
+            "fp": 1,
+            "fn": 2
+          },
+          "relations": {
+            "gold_count": 3,
+            "pred_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 3,
+            "missed_gold": [
+              "LOCATION:Hawthorne -> LOCATED_IN -> LOCATION:California",
+              "PERSON:Gwynne Shotwell -> WORKS_FOR -> ORGANIZATION:SpaceX",
+              "LOCATION:Hawthorne -> LOCATED_IN -> LOCATION:California"
+            ],
+            "false_positives": []
+          }
+        },
+        {
+          "document_id": "news:dev:018",
+          "title": "Nvidia Santa Clara",
+          "group_key": "group:nvidia_semis",
+          "ner": {
+            "gold_count": 6,
+            "pred_count": 7,
+            "tp": 6,
+            "fp": 1,
+            "fn": 0
+          },
+          "relations": {
+            "gold_count": 4,
+            "pred_count": 3,
+            "tp": 2,
+            "fp": 1,
+            "fn": 2,
+            "missed_gold": [
+              "PERSON:Jensen Huang -> WORKS_FOR -> ORGANIZATION:Nvidia",
+              "ORGANIZATION:Nvidia -> BASED_IN -> LOCATION:California"
+            ],
+            "false_positives": [
+              "PERSON:Huang -> LIVES_IN -> LOCATION:Los Altos"
+            ]
+          }
+        },
+        {
+          "document_id": "news:dev:019",
+          "title": "Meta Platforms Menlo Park",
+          "group_key": "group:meta_social",
+          "ner": {
+            "gold_count": 6,
+            "pred_count": 5,
+            "tp": 4,
+            "fp": 1,
+            "fn": 2
+          },
+          "relations": {
+            "gold_count": 4,
+            "pred_count": 1,
+            "tp": 1,
+            "fp": 0,
+            "fn": 3,
+            "missed_gold": [
+              "ORGANIZATION:Meta -> BASED_IN -> LOCATION:Menlo Park",
+              "ORGANIZATION:Meta -> BASED_IN -> LOCATION:California",
+              "PERSON:Mark Zuckerberg -> WORKS_FOR -> ORGANIZATION:Meta"
+            ],
+            "false_positives": []
+          }
+        },
+        {
+          "document_id": "news:dev:020",
+          "title": "Sheryl Sandberg at Meta",
+          "group_key": "group:meta_social",
+          "ner": {
+            "gold_count": 4,
+            "pred_count": 4,
+            "tp": 3,
+            "fp": 1,
+            "fn": 1
+          },
+          "relations": {
+            "gold_count": 1,
+            "pred_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 1,
+            "missed_gold": [
+              "PERSON:Sheryl Sandberg -> WORKS_FOR -> ORGANIZATION:Meta"
+            ],
+            "false_positives": []
+          }
+        },
+        {
+          "document_id": "news:dev:021",
+          "title": "Netflix Los Gatos",
+          "group_key": "group:netflix_media",
+          "ner": {
+            "gold_count": 6,
+            "pred_count": 7,
+            "tp": 6,
+            "fp": 1,
+            "fn": 0
+          },
+          "relations": {
+            "gold_count": 4,
+            "pred_count": 4,
+            "tp": 3,
+            "fp": 1,
+            "fn": 1,
+            "missed_gold": [
+              "ORGANIZATION:Netflix -> BASED_IN -> LOCATION:California"
+            ],
+            "false_positives": [
+              "PERSON:Sarandos -> LIVES_IN -> LOCATION:Beverly Hills"
+            ]
+          }
+        },
+        {
+          "document_id": "news:dev:022",
+          "title": "Spotify Stockholm",
+          "group_key": "group:spotify_audio",
+          "ner": {
+            "gold_count": 6,
+            "pred_count": 5,
+            "tp": 4,
+            "fp": 1,
+            "fn": 2
+          },
+          "relations": {
+            "gold_count": 4,
+            "pred_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 4,
+            "missed_gold": [
+              "LOCATION:Stockholm -> LOCATED_IN -> LOCATION:Sweden",
+              "ORGANIZATION:Spotify -> BASED_IN -> LOCATION:Stockholm",
+              "PERSON:Daniel Ek -> WORKS_FOR -> ORGANIZATION:Spotify",
+              "ORGANIZATION:Spotify -> BASED_IN -> LOCATION:Sweden"
+            ],
+            "false_positives": []
+          }
+        },
+        {
+          "document_id": "news:dev:023",
+          "title": "ASML Veldhoven",
+          "group_key": "group:asml_semis",
+          "ner": {
+            "gold_count": 7,
+            "pred_count": 7,
+            "tp": 7,
+            "fp": 0,
+            "fn": 0
+          },
+          "relations": {
+            "gold_count": 5,
+            "pred_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 5,
+            "missed_gold": [
+              "LOCATION:Veldhoven -> LOCATED_IN -> LOCATION:Netherlands",
+              "PERSON:Peter Wennink -> WORKS_FOR -> ORGANIZATION:ASML",
+              "ORGANIZATION:ASML -> BASED_IN -> LOCATION:Netherlands",
+              "LOCATION:Veldhoven -> LOCATED_IN -> LOCATION:Netherlands",
+              "ORGANIZATION:ASML -> BASED_IN -> LOCATION:Veldhoven"
+            ],
+            "false_positives": []
+          }
+        },
+        {
+          "document_id": "news:dev:024",
+          "title": "Roche Basel Switzerland",
+          "group_key": "group:roche_pharma",
+          "ner": {
+            "gold_count": 7,
+            "pred_count": 7,
+            "tp": 5,
+            "fp": 2,
+            "fn": 2
+          },
+          "relations": {
+            "gold_count": 5,
+            "pred_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 5,
+            "missed_gold": [
+              "PERSON:Thomas Schinecker -> WORKS_FOR -> ORGANIZATION:Roche",
+              "LOCATION:Basel -> LOCATED_IN -> LOCATION:Switzerland",
+              "LOCATION:Basel -> LOCATED_IN -> LOCATION:Switzerland",
+              "ORGANIZATION:Roche -> BASED_IN -> LOCATION:Basel",
+              "ORGANIZATION:Roche -> BASED_IN -> LOCATION:Switzerland"
+            ],
+            "false_positives": []
+          }
+        },
+        {
+          "document_id": "news:dev:025",
+          "title": "Novartis Basel Operations",
+          "group_key": "group:novartis_pharma",
+          "ner": {
+            "gold_count": 6,
+            "pred_count": 7,
+            "tp": 6,
+            "fp": 1,
+            "fn": 0
+          },
+          "relations": {
+            "gold_count": 4,
+            "pred_count": 2,
+            "tp": 1,
+            "fp": 1,
+            "fn": 3,
+            "missed_gold": [
+              "LOCATION:Basel -> LOCATED_IN -> LOCATION:Switzerland",
+              "ORGANIZATION:Novartis -> BASED_IN -> LOCATION:Switzerland",
+              "ORGANIZATION:Novartis -> BASED_IN -> LOCATION:Basel"
+            ],
+            "false_positives": [
+              "PERSON:Narasimhan -> LIVES_IN -> LOCATION:Basel"
+            ]
+          }
+        },
+        {
+          "document_id": "news:dev:026",
+          "title": "AstraZeneca Cambridge",
+          "group_key": "group:az_pharma",
+          "ner": {
+            "gold_count": 6,
+            "pred_count": 7,
+            "tp": 6,
+            "fp": 1,
+            "fn": 0
+          },
+          "relations": {
+            "gold_count": 4,
+            "pred_count": 2,
+            "tp": 1,
+            "fp": 1,
+            "fn": 3,
+            "missed_gold": [
+              "ORGANIZATION:AstraZeneca -> BASED_IN -> LOCATION:Cambridge",
+              "LOCATION:Cambridge -> LOCATED_IN -> LOCATION:England",
+              "ORGANIZATION:AstraZeneca -> BASED_IN -> LOCATION:England"
+            ],
+            "false_positives": [
+              "PERSON:Soriot -> LIVES_IN -> LOCATION:Sydney"
+            ]
+          }
+        },
+        {
+          "document_id": "news:dev:027",
+          "title": "GlaxoSmithKline London",
+          "group_key": "group:gsk_pharma",
+          "ner": {
+            "gold_count": 6,
+            "pred_count": 7,
+            "tp": 6,
+            "fp": 1,
+            "fn": 0
+          },
+          "relations": {
+            "gold_count": 4,
+            "pred_count": 1,
+            "tp": 1,
+            "fp": 0,
+            "fn": 3,
+            "missed_gold": [
+              "ORGANIZATION:GSK -> BASED_IN -> LOCATION:London",
+              "ORGANIZATION:GSK -> BASED_IN -> LOCATION:United Kingdom",
+              "LOCATION:London -> LOCATED_IN -> LOCATION:United Kingdom"
+            ],
+            "false_positives": []
+          }
+        },
+        {
+          "document_id": "news:dev:028",
+          "title": "BP London Energy",
+          "group_key": "group:bp_energy",
+          "ner": {
+            "gold_count": 7,
+            "pred_count": 6,
+            "tp": 6,
+            "fp": 0,
+            "fn": 1
+          },
+          "relations": {
+            "gold_count": 5,
+            "pred_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 5,
+            "missed_gold": [
+              "ORGANIZATION:BP -> BASED_IN -> LOCATION:England",
+              "ORGANIZATION:BP -> BASED_IN -> LOCATION:London",
+              "LOCATION:London -> LOCATED_IN -> LOCATION:United Kingdom",
+              "PERSON:Murray Auchincloss -> WORKS_FOR -> ORGANIZATION:BP",
+              "LOCATION:London -> LOCATED_IN -> LOCATION:England"
+            ],
+            "false_positives": []
+          }
+        },
+        {
+          "document_id": "news:dev:029",
+          "title": "Shell London Headquarters",
+          "group_key": "group:shell_energy",
+          "ner": {
+            "gold_count": 5,
+            "pred_count": 6,
+            "tp": 5,
+            "fp": 1,
+            "fn": 0
+          },
+          "relations": {
+            "gold_count": 2,
+            "pred_count": 1,
+            "tp": 1,
+            "fp": 0,
+            "fn": 1,
+            "missed_gold": [
+              "ORGANIZATION:Shell -> BASED_IN -> LOCATION:London"
+            ],
+            "false_positives": []
+          }
+        },
+        {
+          "document_id": "news:dev:030",
+          "title": "TotalEnergies Paris",
+          "group_key": "group:total_energy",
+          "ner": {
+            "gold_count": 6,
+            "pred_count": 5,
+            "tp": 4,
+            "fp": 1,
+            "fn": 2
+          },
+          "relations": {
+            "gold_count": 4,
+            "pred_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 4,
+            "missed_gold": [
+              "ORGANIZATION:TotalEnergies -> BASED_IN -> LOCATION:France",
+              "ORGANIZATION:TotalEnergies -> BASED_IN -> LOCATION:Paris",
+              "LOCATION:Paris -> LOCATED_IN -> LOCATION:France",
+              "PERSON:Patrick Pouyanne -> WORKS_FOR -> ORGANIZATION:TotalEnergies"
+            ],
+            "false_positives": []
+          }
+        },
+        {
+          "document_id": "news:dev:001",
+          "title": "Tim Cook and Apple Cupertino Headquarters",
+          "group_key": "group:apple_execs",
+          "ner": {
+            "gold_count": 5,
+            "pred_count": 8,
+            "tp": 5,
+            "fp": 3,
+            "fn": 0
+          },
+          "relations": {
+            "gold_count": 4,
+            "pred_count": 1,
+            "tp": 0,
+            "fp": 1,
+            "fn": 4,
+            "missed_gold": [
+              "ORGANIZATION:Apple -> BASED_IN -> LOCATION:Cupertino",
+              "LOCATION:Cupertino -> LOCATED_IN -> LOCATION:California",
+              "PERSON:Tim Cook -> LIVES_IN -> LOCATION:Palo Alto",
+              "PERSON:Tim Cook -> WORKS_FOR -> ORGANIZATION:Apple"
+            ],
+            "false_positives": [
+              "PERSON:Tim Cook -> LIVES_IN -> LOCATION:Palo Alto"
+            ]
+          }
+        },
+        {
+          "document_id": "news:dev:002",
+          "title": "Steve Jobs Biography and NeXT",
+          "group_key": "group:apple_execs",
+          "ner": {
+            "gold_count": 6,
+            "pred_count": 6,
+            "tp": 5,
+            "fp": 1,
+            "fn": 1
+          },
+          "relations": {
+            "gold_count": 2,
+            "pred_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 2,
+            "missed_gold": [
+              "PERSON:Steve Jobs -> WORKS_FOR -> ORGANIZATION:Apple",
+              "PERSON:Jobs -> LIVES_IN -> LOCATION:Palo Alto"
+            ],
+            "false_positives": []
+          }
+        },
+        {
+          "document_id": "news:dev:003",
+          "title": "Jony Ive Design at Apple",
+          "group_key": "group:apple_execs",
+          "ner": {
+            "gold_count": 5,
+            "pred_count": 6,
+            "tp": 4,
+            "fp": 2,
+            "fn": 1
+          },
+          "relations": {
+            "gold_count": 3,
+            "pred_count": 1,
+            "tp": 0,
+            "fp": 1,
+            "fn": 3,
+            "missed_gold": [
+              "PERSON:Ive -> LIVES_IN -> LOCATION:San Francisco",
+              "ORGANIZATION:Apple -> BASED_IN -> LOCATION:Cupertino",
+              "PERSON:Jony Ive -> WORKS_FOR -> ORGANIZATION:Apple"
+            ],
+            "false_positives": [
+              "PERSON:Ive -> LIVES_IN -> LOCATION:San Francisco"
+            ]
+          }
+        },
+        {
+          "document_id": "news:dev:004",
+          "title": "Satya Nadella Leadership at Microsoft",
+          "group_key": "group:microsoft_execs",
+          "ner": {
+            "gold_count": 7,
+            "pred_count": 8,
+            "tp": 6,
+            "fp": 2,
+            "fn": 1
+          },
+          "relations": {
+            "gold_count": 4,
+            "pred_count": 1,
+            "tp": 0,
+            "fp": 1,
+            "fn": 4,
+            "missed_gold": [
+              "ORGANIZATION:Microsoft -> BASED_IN -> LOCATION:Redmond",
+              "PERSON:Satya Nadella -> WORKS_FOR -> ORGANIZATION:Microsoft",
+              "LOCATION:Redmond -> LOCATED_IN -> LOCATION:Washington",
+              "PERSON:Nadella -> LIVES_IN -> LOCATION:Bellevue"
+            ],
+            "false_positives": [
+              "PERSON:Nadella -> LIVES_IN -> LOCATION:Bellevue"
+            ]
+          }
+        },
+        {
+          "document_id": "news:dev:005",
+          "title": "Bill Gates Foundation and Seattle",
+          "group_key": "group:microsoft_execs",
+          "ner": {
+            "gold_count": 6,
+            "pred_count": 6,
+            "tp": 5,
+            "fp": 1,
+            "fn": 1
+          },
+          "relations": {
+            "gold_count": 3,
+            "pred_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 3,
+            "missed_gold": [
+              "PERSON:Bill Gates -> WORKS_FOR -> ORGANIZATION:Microsoft",
+              "LOCATION:Medina -> LOCATED_IN -> LOCATION:Washington",
+              "PERSON:Gates -> LIVES_IN -> LOCATION:Medina"
+            ],
+            "false_positives": []
+          }
+        },
+        {
+          "document_id": "news:dev:006",
+          "title": "Brad Smith Legal Counsel",
+          "group_key": "group:microsoft_execs",
+          "ner": {
+            "gold_count": 5,
+            "pred_count": 6,
+            "tp": 4,
+            "fp": 2,
+            "fn": 1
+          },
+          "relations": {
+            "gold_count": 2,
+            "pred_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 2,
+            "missed_gold": [
+              "PERSON:Smith -> LIVES_IN -> LOCATION:Bellevue",
+              "PERSON:Brad Smith -> WORKS_FOR -> ORGANIZATION:Microsoft"
+            ],
+            "false_positives": []
+          }
+        },
+        {
+          "document_id": "news:dev:007",
+          "title": "Jeff Bezos and Amazon Relocation",
+          "group_key": "group:amazon_corp",
+          "ner": {
+            "gold_count": 6,
+            "pred_count": 9,
+            "tp": 5,
+            "fp": 4,
+            "fn": 1
+          },
+          "relations": {
+            "gold_count": 5,
+            "pred_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 5,
+            "missed_gold": [
+              "ORGANIZATION:Amazon -> BASED_IN -> LOCATION:Seattle",
+              "PERSON:Bezos -> LIVES_IN -> LOCATION:Seattle",
+              "PERSON:Bezos -> LIVES_IN -> LOCATION:Miami",
+              "PERSON:Jeff Bezos -> WORKS_FOR -> ORGANIZATION:Amazon",
+              "LOCATION:Seattle -> LOCATED_IN -> LOCATION:Washington"
+            ],
+            "false_positives": []
+          }
+        },
+        {
+          "document_id": "news:dev:008",
+          "title": "Andy Jassy Amazon Leadership",
+          "group_key": "group:amazon_corp",
+          "ner": {
+            "gold_count": 6,
+            "pred_count": 7,
+            "tp": 4,
+            "fp": 3,
+            "fn": 2
+          },
+          "relations": {
+            "gold_count": 2,
+            "pred_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 2,
+            "missed_gold": [
+              "PERSON:Jassy -> LIVES_IN -> LOCATION:Seattle",
+              "PERSON:Andy Jassy -> WORKS_FOR -> ORGANIZATION:Amazon"
+            ],
+            "false_positives": []
+          }
+        },
+        {
+          "document_id": "news:dev:009",
+          "title": "Sundar Pichai at Alphabet and Google",
+          "group_key": "group:google_corp",
+          "ner": {
+            "gold_count": 6,
+            "pred_count": 7,
+            "tp": 5,
+            "fp": 2,
+            "fn": 1
+          },
+          "relations": {
+            "gold_count": 4,
+            "pred_count": 2,
+            "tp": 1,
+            "fp": 1,
+            "fn": 3,
+            "missed_gold": [
+              "PERSON:Sundar Pichai -> WORKS_FOR -> ORGANIZATION:Google",
+              "ORGANIZATION:Google -> BASED_IN -> LOCATION:Mountain View",
+              "PERSON:Pichai -> LIVES_IN -> LOCATION:Los Altos Hills"
+            ],
+            "false_positives": [
+              "ORGANIZATION:Google -> BASED_IN -> LOCATION:Mountain View"
+            ]
+          }
+        },
+        {
+          "document_id": "news:dev:010",
+          "title": "Larry Page Google Stanford Origins",
+          "group_key": "group:google_corp",
+          "ner": {
+            "gold_count": 7,
+            "pred_count": 6,
+            "tp": 6,
+            "fp": 0,
+            "fn": 1
+          },
+          "relations": {
+            "gold_count": 4,
+            "pred_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 4,
+            "missed_gold": [
+              "LOCATION:Mountain View -> LOCATED_IN -> LOCATION:California",
+              "PERSON:Larry Page -> WORKS_FOR -> ORGANIZATION:Google",
+              "PERSON:Sergey Brin -> WORKS_FOR -> ORGANIZATION:Google",
+              "PERSON:Page -> LIVES_IN -> LOCATION:Palo Alto"
+            ],
+            "false_positives": []
+          }
+        },
+        {
+          "document_id": "news:dev:011",
+          "title": "Siemens Headquarters in Munich",
+          "group_key": "group:siemens_germany",
+          "ner": {
+            "gold_count": 5,
+            "pred_count": 7,
+            "tp": 4,
+            "fp": 3,
+            "fn": 1
+          },
+          "relations": {
+            "gold_count": 4,
+            "pred_count": 2,
+            "tp": 0,
+            "fp": 2,
+            "fn": 4,
+            "missed_gold": [
+              "ORGANIZATION:Siemens -> BASED_IN -> LOCATION:Munich",
+              "PERSON:Roland Busch -> WORKS_FOR -> ORGANIZATION:Siemens",
+              "LOCATION:Munich -> LOCATED_IN -> LOCATION:Germany",
+              "PERSON:Busch -> LIVES_IN -> LOCATION:Munich"
+            ],
+            "false_positives": [
+              "PERSON:Busch -> LIVES_IN -> LOCATION:Munich",
+              "PERSON:Roland Busch -> WORKS_FOR -> ORGANIZATION:Siemens"
+            ]
+          }
+        },
+        {
+          "document_id": "news:dev:012",
+          "title": "SAP Headquarters in Walldorf",
+          "group_key": "group:sap_germany",
+          "ner": {
+            "gold_count": 6,
+            "pred_count": 7,
+            "tp": 5,
+            "fp": 2,
+            "fn": 1
+          },
+          "relations": {
+            "gold_count": 4,
+            "pred_count": 1,
+            "tp": 0,
+            "fp": 1,
+            "fn": 4,
+            "missed_gold": [
+              "PERSON:Christian Klein -> WORKS_FOR -> ORGANIZATION:SAP",
+              "PERSON:Klein -> LIVES_IN -> LOCATION:Heidelberg",
+              "LOCATION:Walldorf -> LOCATED_IN -> LOCATION:Germany",
+              "ORGANIZATION:SAP -> BASED_IN -> LOCATION:Walldorf"
+            ],
+            "false_positives": [
+              "PERSON:Christian Klein -> WORKS_FOR -> ORGANIZATION:SAP"
+            ]
+          }
+        },
+        {
+          "document_id": "news:dev:013",
+          "title": "BMW Group in Munich",
+          "group_key": "group:bmw_germany",
+          "ner": {
+            "gold_count": 4,
+            "pred_count": 6,
+            "tp": 4,
+            "fp": 2,
+            "fn": 0
+          },
+          "relations": {
+            "gold_count": 3,
+            "pred_count": 1,
+            "tp": 0,
+            "fp": 1,
+            "fn": 3,
+            "missed_gold": [
+              "PERSON:Oliver Zipse -> WORKS_FOR -> ORGANIZATION:BMW",
+              "LOCATION:Munich -> LOCATED_IN -> LOCATION:Bavaria",
+              "ORGANIZATION:BMW -> BASED_IN -> LOCATION:Munich"
+            ],
+            "false_positives": [
+              "PERSON:Oliver Zipse -> WORKS_FOR -> ORGANIZATION:BMW"
+            ]
+          }
+        },
+        {
+          "document_id": "news:dev:014",
+          "title": "Airbus Facilities in Toulouse",
+          "group_key": "group:airbus_france",
+          "ner": {
+            "gold_count": 4,
+            "pred_count": 7,
+            "tp": 4,
+            "fp": 3,
+            "fn": 0
+          },
+          "relations": {
+            "gold_count": 3,
+            "pred_count": 1,
+            "tp": 0,
+            "fp": 1,
+            "fn": 3,
+            "missed_gold": [
+              "PERSON:Guillaume Faury -> WORKS_FOR -> ORGANIZATION:Airbus",
+              "LOCATION:Toulouse -> LOCATED_IN -> LOCATION:France",
+              "ORGANIZATION:Airbus -> BASED_IN -> LOCATION:Toulouse"
+            ],
+            "false_positives": [
+              "PERSON:Guillaume Faury -> WORKS_FOR -> ORGANIZATION:Airbus"
+            ]
+          }
+        },
+        {
+          "document_id": "news:dev:015",
+          "title": "LVMH and Paris Fashion",
+          "group_key": "group:lvmh_france",
+          "ner": {
+            "gold_count": 5,
+            "pred_count": 7,
+            "tp": 4,
+            "fp": 3,
+            "fn": 1
+          },
+          "relations": {
+            "gold_count": 4,
+            "pred_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 4,
+            "missed_gold": [
+              "PERSON:Bernard Arnault -> WORKS_FOR -> ORGANIZATION:LVMH",
+              "ORGANIZATION:LVMH -> BASED_IN -> LOCATION:Paris",
+              "LOCATION:Paris -> LOCATED_IN -> LOCATION:France",
+              "PERSON:Arnault -> LIVES_IN -> LOCATION:Paris"
+            ],
+            "false_positives": []
+          }
+        }
+      ],
+      "feasibility_gate_audit": {
+        "all_gates_passed": false,
+        "release_recommendation": "KEEP_DEFAULT_RULES",
+        "gates": {
+          "entity_micro_f1": {
+            "target": ">= 85.0%",
+            "actual": "80.32%",
+            "passed": false
+          },
+          "relation_precision": {
+            "target": ">= 80.0%",
+            "actual": "48.0%",
+            "passed": false
+          },
+          "relation_recall": {
+            "target": ">= 50.0%",
+            "actual": "11.01%",
+            "passed": false
+          },
+          "relation_micro_f1": {
+            "target": ">= 60.0%",
+            "actual": "17.91%",
+            "passed": false
+          },
+          "silent_inference_failures": {
+            "target": "== 0",
+            "actual": "0",
+            "passed": true
+          },
+          "supported_label_and_direction_mapping": {
+            "target": "Fully tested via test_classical_news_contracts",
+            "actual": "7 of 7 contract tests passing",
+            "passed": true
+          }
+        }
+      }
+    },
+    "locked_test": {
+      "split": "locked_test",
+      "document_count": 30,
+      "elapsed_seconds": 2.04,
+      "silent_inference_failures": 0,
+      "ner": {
+        "micro": {
+          "tp": 175,
+          "fp": 17,
+          "fn": 9,
+          "precision": 91.15,
+          "recall": 95.11,
+          "f1": 93.09
+        },
+        "by_type": {
+          "PERSON": {
+            "support": 30,
+            "tp": 29,
+            "fp": 14,
+            "fn": 1,
+            "precision": 67.44,
+            "recall": 96.67,
+            "f1": 79.45
+          },
+          "ORGANIZATION": {
+            "support": 59,
+            "tp": 52,
+            "fp": 0,
+            "fn": 7,
+            "precision": 100.0,
+            "recall": 88.14,
+            "f1": 93.69
+          },
+          "LOCATION": {
+            "support": 95,
+            "tp": 94,
+            "fp": 3,
+            "fn": 1,
+            "precision": 96.91,
+            "recall": 98.95,
+            "f1": 97.92
+          }
+        }
+      },
+      "relation_oracle_mode": {
+        "available": false,
+        "reason": "Native Stanford bridge runs unified pipeline from raw text; gold mention injection is unsupported in Roth annotator without custom pipeline hooks."
+      },
+      "relations_end_to_end": {
+        "micro": {
+          "tp": 33,
+          "fp": 8,
+          "fn": 81,
+          "precision": 80.49,
+          "recall": 28.95,
+          "f1": 42.58
+        },
+        "macro_f1": 31.63,
+        "by_label": {
+          "WORKS_FOR": {
+            "support": 30,
+            "tp": 25,
+            "fp": 0,
+            "fn": 5,
+            "precision": 100.0,
+            "recall": 83.33,
+            "f1": 90.91
+          },
+          "LIVES_IN": {
+            "support": 0,
+            "tp": 0,
+            "fp": 8,
+            "fn": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "BASED_IN": {
+            "support": 49,
+            "tp": 4,
+            "fp": 0,
+            "fn": 45,
+            "precision": 100.0,
+            "recall": 8.16,
+            "f1": 15.09
+          },
+          "LOCATED_IN": {
+            "support": 35,
+            "tp": 4,
+            "fp": 0,
+            "fn": 31,
+            "precision": 100.0,
+            "recall": 11.43,
+            "f1": 20.51
+          }
+        }
+      },
+      "bootstrap_ci": {
+        "ner_micro_f1_95ci": [
+          89.5,
+          95.85
+        ],
+        "relation_precision_95ci": [
+          70.0,
+          90.91
+        ],
+        "relation_recall_95ci": [
+          21.88,
+          36.94
+        ],
+        "relation_micro_f1_95ci": [
+          34.18,
+          50.75
+        ]
+      },
+      "documents": [
+        {
+          "document_id": "news:test:001",
+          "title": "JPMorgan Chase New York",
+          "group_key": "group:jpmorgan_bank",
+          "ner": {
+            "gold_count": 5,
+            "pred_count": 6,
+            "tp": 5,
+            "fp": 1,
+            "fn": 0
+          },
+          "relations": {
+            "gold_count": 2,
+            "pred_count": 1,
+            "tp": 1,
+            "fp": 0,
+            "fn": 1,
+            "missed_gold": [
+              "ORGANIZATION:JPMorgan -> BASED_IN -> LOCATION:New York"
+            ],
+            "false_positives": []
+          }
+        },
+        {
+          "document_id": "news:test:002",
+          "title": "Goldman Sachs Manhattan",
+          "group_key": "group:goldman_bank",
+          "ner": {
+            "gold_count": 5,
+            "pred_count": 6,
+            "tp": 5,
+            "fp": 1,
+            "fn": 0
+          },
+          "relations": {
+            "gold_count": 2,
+            "pred_count": 2,
+            "tp": 1,
+            "fp": 1,
+            "fn": 1,
+            "missed_gold": [
+              "ORGANIZATION:Goldman Sachs -> BASED_IN -> LOCATION:New York City"
+            ],
+            "false_positives": [
+              "PERSON:Solomon -> LIVES_IN -> LOCATION:Manhattan"
+            ]
+          }
+        },
+        {
+          "document_id": "news:test:003",
+          "title": "Morgan Stanley New York",
+          "group_key": "group:morgan_bank",
+          "ner": {
+            "gold_count": 5,
+            "pred_count": 5,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "relations": {
+            "gold_count": 2,
+            "pred_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 2,
+            "missed_gold": [
+              "ORGANIZATION:Morgan Stanley -> BASED_IN -> LOCATION:New York",
+              "PERSON:Ted Pick -> WORKS_FOR -> ORGANIZATION:Morgan Stanley"
+            ],
+            "false_positives": []
+          }
+        },
+        {
+          "document_id": "news:test:004",
+          "title": "Citigroup New York",
+          "group_key": "group:citi_bank",
+          "ner": {
+            "gold_count": 5,
+            "pred_count": 6,
+            "tp": 5,
+            "fp": 1,
+            "fn": 0
+          },
+          "relations": {
+            "gold_count": 2,
+            "pred_count": 2,
+            "tp": 2,
+            "fp": 0,
+            "fn": 0,
+            "missed_gold": [],
+            "false_positives": []
+          }
+        },
+        {
+          "document_id": "news:test:005",
+          "title": "Bank of America Charlotte",
+          "group_key": "group:bofa_bank",
+          "ner": {
+            "gold_count": 6,
+            "pred_count": 7,
+            "tp": 6,
+            "fp": 1,
+            "fn": 0
+          },
+          "relations": {
+            "gold_count": 4,
+            "pred_count": 2,
+            "tp": 1,
+            "fp": 1,
+            "fn": 3,
+            "missed_gold": [
+              "LOCATION:Charlotte -> LOCATED_IN -> LOCATION:North Carolina",
+              "ORGANIZATION:Bank of America -> BASED_IN -> LOCATION:North Carolina",
+              "ORGANIZATION:Bank of America -> BASED_IN -> LOCATION:Charlotte"
+            ],
+            "false_positives": [
+              "PERSON:Moynihan -> LIVES_IN -> LOCATION:Boston"
+            ]
+          }
+        },
+        {
+          "document_id": "news:test:006",
+          "title": "Wells Fargo San Francisco",
+          "group_key": "group:wells_bank",
+          "ner": {
+            "gold_count": 6,
+            "pred_count": 7,
+            "tp": 6,
+            "fp": 1,
+            "fn": 0
+          },
+          "relations": {
+            "gold_count": 4,
+            "pred_count": 3,
+            "tp": 3,
+            "fp": 0,
+            "fn": 1,
+            "missed_gold": [
+              "ORGANIZATION:Wells Fargo -> BASED_IN -> LOCATION:California"
+            ],
+            "false_positives": []
+          }
+        },
+        {
+          "document_id": "news:test:007",
+          "title": "BlackRock New York",
+          "group_key": "group:blackrock_asset",
+          "ner": {
+            "gold_count": 5,
+            "pred_count": 6,
+            "tp": 5,
+            "fp": 1,
+            "fn": 0
+          },
+          "relations": {
+            "gold_count": 2,
+            "pred_count": 1,
+            "tp": 1,
+            "fp": 0,
+            "fn": 1,
+            "missed_gold": [
+              "ORGANIZATION:BlackRock -> BASED_IN -> LOCATION:Manhattan"
+            ],
+            "false_positives": []
+          }
+        },
+        {
+          "document_id": "news:test:008",
+          "title": "Berkshire Hathaway Omaha",
+          "group_key": "group:berkshire_inv",
+          "ner": {
+            "gold_count": 6,
+            "pred_count": 7,
+            "tp": 6,
+            "fp": 1,
+            "fn": 0
+          },
+          "relations": {
+            "gold_count": 3,
+            "pred_count": 2,
+            "tp": 1,
+            "fp": 1,
+            "fn": 2,
+            "missed_gold": [
+              "LOCATION:Omaha -> LOCATED_IN -> LOCATION:Nebraska",
+              "ORGANIZATION:Berkshire Hathaway -> BASED_IN -> LOCATION:Omaha"
+            ],
+            "false_positives": [
+              "PERSON:Buffett -> LIVES_IN -> LOCATION:Omaha"
+            ]
+          }
+        },
+        {
+          "document_id": "news:test:009",
+          "title": "Charlie Munger at Berkshire",
+          "group_key": "group:berkshire_inv",
+          "ner": {
+            "gold_count": 5,
+            "pred_count": 6,
+            "tp": 5,
+            "fp": 1,
+            "fn": 0
+          },
+          "relations": {
+            "gold_count": 2,
+            "pred_count": 1,
+            "tp": 1,
+            "fp": 0,
+            "fn": 1,
+            "missed_gold": [
+              "LOCATION:Omaha -> LOCATED_IN -> LOCATION:Nebraska"
+            ],
+            "false_positives": []
+          }
+        },
+        {
+          "document_id": "news:test:010",
+          "title": "Toyota Motor Corporation",
+          "group_key": "group:toyota_auto",
+          "ner": {
+            "gold_count": 7,
+            "pred_count": 7,
+            "tp": 7,
+            "fp": 0,
+            "fn": 0
+          },
+          "relations": {
+            "gold_count": 5,
+            "pred_count": 2,
+            "tp": 2,
+            "fp": 0,
+            "fn": 3,
+            "missed_gold": [
+              "LOCATION:Toyota City -> LOCATED_IN -> LOCATION:Japan",
+              "ORGANIZATION:Toyota -> BASED_IN -> LOCATION:Toyota City",
+              "ORGANIZATION:Toyota -> BASED_IN -> LOCATION:Japan"
+            ],
+            "false_positives": []
+          }
+        },
+        {
+          "document_id": "news:test:011",
+          "title": "Honda Motor Tokyo",
+          "group_key": "group:honda_auto",
+          "ner": {
+            "gold_count": 7,
+            "pred_count": 7,
+            "tp": 7,
+            "fp": 0,
+            "fn": 0
+          },
+          "relations": {
+            "gold_count": 5,
+            "pred_count": 1,
+            "tp": 1,
+            "fp": 0,
+            "fn": 4,
+            "missed_gold": [
+              "LOCATION:Tokyo -> LOCATED_IN -> LOCATION:Japan",
+              "ORGANIZATION:Honda -> BASED_IN -> LOCATION:Japan",
+              "ORGANIZATION:Honda -> BASED_IN -> LOCATION:Tokyo",
+              "LOCATION:Tokyo -> LOCATED_IN -> LOCATION:Japan"
+            ],
+            "false_positives": []
+          }
+        },
+        {
+          "document_id": "news:test:012",
+          "title": "Sony Group Tokyo",
+          "group_key": "group:sony_corp",
+          "ner": {
+            "gold_count": 6,
+            "pred_count": 7,
+            "tp": 6,
+            "fp": 1,
+            "fn": 0
+          },
+          "relations": {
+            "gold_count": 4,
+            "pred_count": 1,
+            "tp": 1,
+            "fp": 0,
+            "fn": 3,
+            "missed_gold": [
+              "ORGANIZATION:Sony -> BASED_IN -> LOCATION:Tokyo",
+              "LOCATION:Tokyo -> LOCATED_IN -> LOCATION:Japan",
+              "ORGANIZATION:Sony -> BASED_IN -> LOCATION:Japan"
+            ],
+            "false_positives": []
+          }
+        },
+        {
+          "document_id": "news:test:013",
+          "title": "Nintendo Kyoto",
+          "group_key": "group:nintendo_corp",
+          "ner": {
+            "gold_count": 7,
+            "pred_count": 7,
+            "tp": 7,
+            "fp": 0,
+            "fn": 0
+          },
+          "relations": {
+            "gold_count": 5,
+            "pred_count": 1,
+            "tp": 1,
+            "fp": 0,
+            "fn": 4,
+            "missed_gold": [
+              "ORGANIZATION:Nintendo -> BASED_IN -> LOCATION:Kyoto",
+              "ORGANIZATION:Nintendo -> BASED_IN -> LOCATION:Japan",
+              "LOCATION:Kyoto -> LOCATED_IN -> LOCATION:Japan",
+              "LOCATION:Kyoto -> LOCATED_IN -> LOCATION:Japan"
+            ],
+            "false_positives": []
+          }
+        },
+        {
+          "document_id": "news:test:014",
+          "title": "Samsung Electronics Suwon",
+          "group_key": "group:samsung_corp",
+          "ner": {
+            "gold_count": 7,
+            "pred_count": 7,
+            "tp": 7,
+            "fp": 0,
+            "fn": 0
+          },
+          "relations": {
+            "gold_count": 5,
+            "pred_count": 1,
+            "tp": 1,
+            "fp": 0,
+            "fn": 4,
+            "missed_gold": [
+              "LOCATION:Suwon -> LOCATED_IN -> LOCATION:South Korea",
+              "ORGANIZATION:Samsung -> BASED_IN -> LOCATION:Suwon",
+              "LOCATION:Suwon -> LOCATED_IN -> LOCATION:South Korea",
+              "ORGANIZATION:Samsung -> BASED_IN -> LOCATION:South Korea"
+            ],
+            "false_positives": []
+          }
+        },
+        {
+          "document_id": "news:test:015",
+          "title": "Hyundai Motor Seoul",
+          "group_key": "group:hyundai_corp",
+          "ner": {
+            "gold_count": 7,
+            "pred_count": 7,
+            "tp": 7,
+            "fp": 0,
+            "fn": 0
+          },
+          "relations": {
+            "gold_count": 5,
+            "pred_count": 1,
+            "tp": 1,
+            "fp": 0,
+            "fn": 4,
+            "missed_gold": [
+              "LOCATION:Seoul -> LOCATED_IN -> LOCATION:South Korea",
+              "ORGANIZATION:Hyundai -> BASED_IN -> LOCATION:Seoul",
+              "ORGANIZATION:Hyundai -> BASED_IN -> LOCATION:South Korea",
+              "LOCATION:Seoul -> LOCATED_IN -> LOCATION:South Korea"
+            ],
+            "false_positives": []
+          }
+        },
+        {
+          "document_id": "news:test:016",
+          "title": "Tata Sons Mumbai",
+          "group_key": "group:tata_india",
+          "ner": {
+            "gold_count": 7,
+            "pred_count": 6,
+            "tp": 6,
+            "fp": 0,
+            "fn": 1
+          },
+          "relations": {
+            "gold_count": 5,
+            "pred_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 5,
+            "missed_gold": [
+              "PERSON:Natarajan Chandrasekaran -> WORKS_FOR -> ORGANIZATION:Tata",
+              "LOCATION:Mumbai -> LOCATED_IN -> LOCATION:India",
+              "ORGANIZATION:Tata Sons -> BASED_IN -> LOCATION:Mumbai",
+              "ORGANIZATION:Tata Sons -> BASED_IN -> LOCATION:India",
+              "LOCATION:Mumbai -> LOCATED_IN -> LOCATION:India"
+            ],
+            "false_positives": []
+          }
+        },
+        {
+          "document_id": "news:test:017",
+          "title": "Reliance Industries Mumbai",
+          "group_key": "group:reliance_india",
+          "ner": {
+            "gold_count": 5,
+            "pred_count": 6,
+            "tp": 5,
+            "fp": 1,
+            "fn": 0
+          },
+          "relations": {
+            "gold_count": 2,
+            "pred_count": 3,
+            "tp": 2,
+            "fp": 1,
+            "fn": 0,
+            "missed_gold": [],
+            "false_positives": [
+              "PERSON:Ambani -> LIVES_IN -> LOCATION:Mumbai"
+            ]
+          }
+        },
+        {
+          "document_id": "news:test:018",
+          "title": "Infosys Bengaluru",
+          "group_key": "group:infosys_tech",
+          "ner": {
+            "gold_count": 7,
+            "pred_count": 6,
+            "tp": 6,
+            "fp": 0,
+            "fn": 1
+          },
+          "relations": {
+            "gold_count": 5,
+            "pred_count": 1,
+            "tp": 1,
+            "fp": 0,
+            "fn": 4,
+            "missed_gold": [
+              "ORGANIZATION:Infosys -> BASED_IN -> LOCATION:India",
+              "LOCATION:Bengaluru -> LOCATED_IN -> LOCATION:India",
+              "LOCATION:Bengaluru -> LOCATED_IN -> LOCATION:India",
+              "ORGANIZATION:Infosys -> BASED_IN -> LOCATION:Bengaluru"
+            ],
+            "false_positives": []
+          }
+        },
+        {
+          "document_id": "news:test:019",
+          "title": "Wipro Bengaluru",
+          "group_key": "group:wipro_tech",
+          "ner": {
+            "gold_count": 5,
+            "pred_count": 6,
+            "tp": 5,
+            "fp": 1,
+            "fn": 0
+          },
+          "relations": {
+            "gold_count": 2,
+            "pred_count": 2,
+            "tp": 1,
+            "fp": 1,
+            "fn": 1,
+            "missed_gold": [
+              "ORGANIZATION:Wipro -> BASED_IN -> LOCATION:Bengaluru"
+            ],
+            "false_positives": [
+              "PERSON:Premji -> LIVES_IN -> LOCATION:Bengaluru"
+            ]
+          }
+        },
+        {
+          "document_id": "news:test:020",
+          "title": "BHP Group Melbourne",
+          "group_key": "group:bhp_mining",
+          "ner": {
+            "gold_count": 7,
+            "pred_count": 7,
+            "tp": 7,
+            "fp": 0,
+            "fn": 0
+          },
+          "relations": {
+            "gold_count": 5,
+            "pred_count": 2,
+            "tp": 2,
+            "fp": 0,
+            "fn": 3,
+            "missed_gold": [
+              "LOCATION:Melbourne -> LOCATED_IN -> LOCATION:Australia",
+              "ORGANIZATION:BHP -> BASED_IN -> LOCATION:Australia",
+              "LOCATION:Melbourne -> LOCATED_IN -> LOCATION:Australia"
+            ],
+            "false_positives": []
+          }
+        },
+        {
+          "document_id": "news:test:021",
+          "title": "Rio Tinto London Melbourne",
+          "group_key": "group:riotinto_mining",
+          "ner": {
+            "gold_count": 5,
+            "pred_count": 4,
+            "tp": 2,
+            "fp": 2,
+            "fn": 3
+          },
+          "relations": {
+            "gold_count": 2,
+            "pred_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 2,
+            "missed_gold": [
+              "PERSON:Jakob Stausholm -> WORKS_FOR -> ORGANIZATION:Rio Tinto",
+              "ORGANIZATION:Rio Tinto -> BASED_IN -> LOCATION:London"
+            ],
+            "false_positives": []
+          }
+        },
+        {
+          "document_id": "news:test:022",
+          "title": "Vale Rio de Janeiro",
+          "group_key": "group:vale_mining",
+          "ner": {
+            "gold_count": 7,
+            "pred_count": 7,
+            "tp": 7,
+            "fp": 0,
+            "fn": 0
+          },
+          "relations": {
+            "gold_count": 5,
+            "pred_count": 2,
+            "tp": 2,
+            "fp": 0,
+            "fn": 3,
+            "missed_gold": [
+              "ORGANIZATION:Vale -> BASED_IN -> LOCATION:Brazil",
+              "ORGANIZATION:Vale -> BASED_IN -> LOCATION:Rio de Janeiro",
+              "LOCATION:Rio de Janeiro -> LOCATED_IN -> LOCATION:Brazil"
+            ],
+            "false_positives": []
+          }
+        },
+        {
+          "document_id": "news:test:023",
+          "title": "Petrobras Rio de Janeiro",
+          "group_key": "group:petrobras_energy",
+          "ner": {
+            "gold_count": 6,
+            "pred_count": 7,
+            "tp": 6,
+            "fp": 1,
+            "fn": 0
+          },
+          "relations": {
+            "gold_count": 4,
+            "pred_count": 3,
+            "tp": 2,
+            "fp": 1,
+            "fn": 2,
+            "missed_gold": [
+              "ORGANIZATION:Petrobras -> BASED_IN -> LOCATION:Brazil",
+              "ORGANIZATION:Petrobras -> BASED_IN -> LOCATION:Rio de Janeiro"
+            ],
+            "false_positives": [
+              "PERSON:Prates -> LIVES_IN -> LOCATION:Brasilia"
+            ]
+          }
+        },
+        {
+          "document_id": "news:test:024",
+          "title": "Aramco Dhahran",
+          "group_key": "group:aramco_energy",
+          "ner": {
+            "gold_count": 7,
+            "pred_count": 7,
+            "tp": 7,
+            "fp": 0,
+            "fn": 0
+          },
+          "relations": {
+            "gold_count": 5,
+            "pred_count": 1,
+            "tp": 1,
+            "fp": 0,
+            "fn": 4,
+            "missed_gold": [
+              "LOCATION:Dhahran -> LOCATED_IN -> LOCATION:Saudi Arabia",
+              "ORGANIZATION:Aramco -> BASED_IN -> LOCATION:Dhahran",
+              "LOCATION:Dhahran -> LOCATED_IN -> LOCATION:Saudi Arabia",
+              "ORGANIZATION:Aramco -> BASED_IN -> LOCATION:Saudi Arabia"
+            ],
+            "false_positives": []
+          }
+        },
+        {
+          "document_id": "news:test:025",
+          "title": "Nestle Vevey Switzerland",
+          "group_key": "group:nestle_food",
+          "ner": {
+            "gold_count": 7,
+            "pred_count": 7,
+            "tp": 7,
+            "fp": 0,
+            "fn": 0
+          },
+          "relations": {
+            "gold_count": 5,
+            "pred_count": 1,
+            "tp": 1,
+            "fp": 0,
+            "fn": 4,
+            "missed_gold": [
+              "ORGANIZATION:Nestle -> BASED_IN -> LOCATION:Switzerland",
+              "LOCATION:Vevey -> LOCATED_IN -> LOCATION:Switzerland",
+              "ORGANIZATION:Nestle -> BASED_IN -> LOCATION:Vevey",
+              "LOCATION:Vevey -> LOCATED_IN -> LOCATION:Switzerland"
+            ],
+            "false_positives": []
+          }
+        },
+        {
+          "document_id": "news:test:026",
+          "title": "Danone Paris",
+          "group_key": "group:danone_food",
+          "ner": {
+            "gold_count": 6,
+            "pred_count": 7,
+            "tp": 6,
+            "fp": 1,
+            "fn": 0
+          },
+          "relations": {
+            "gold_count": 4,
+            "pred_count": 1,
+            "tp": 1,
+            "fp": 0,
+            "fn": 3,
+            "missed_gold": [
+              "ORGANIZATION:Danone -> BASED_IN -> LOCATION:France",
+              "ORGANIZATION:Danone -> BASED_IN -> LOCATION:Paris",
+              "LOCATION:Paris -> LOCATED_IN -> LOCATION:France"
+            ],
+            "false_positives": []
+          }
+        },
+        {
+          "document_id": "news:test:027",
+          "title": "Unilever London",
+          "group_key": "group:unilever_cpg",
+          "ner": {
+            "gold_count": 6,
+            "pred_count": 7,
+            "tp": 6,
+            "fp": 1,
+            "fn": 0
+          },
+          "relations": {
+            "gold_count": 4,
+            "pred_count": 2,
+            "tp": 1,
+            "fp": 1,
+            "fn": 3,
+            "missed_gold": [
+              "ORGANIZATION:Unilever -> BASED_IN -> LOCATION:England",
+              "LOCATION:London -> LOCATED_IN -> LOCATION:England",
+              "ORGANIZATION:Unilever -> BASED_IN -> LOCATION:London"
+            ],
+            "false_positives": [
+              "PERSON:Schumacher -> LIVES_IN -> LOCATION:Amsterdam"
+            ]
+          }
+        },
+        {
+          "document_id": "news:test:028",
+          "title": "Heineken Amsterdam",
+          "group_key": "group:heineken_bev",
+          "ner": {
+            "gold_count": 7,
+            "pred_count": 7,
+            "tp": 7,
+            "fp": 0,
+            "fn": 0
+          },
+          "relations": {
+            "gold_count": 5,
+            "pred_count": 1,
+            "tp": 1,
+            "fp": 0,
+            "fn": 4,
+            "missed_gold": [
+              "LOCATION:Amsterdam -> LOCATED_IN -> LOCATION:Netherlands",
+              "ORGANIZATION:Heineken -> BASED_IN -> LOCATION:Amsterdam",
+              "LOCATION:Amsterdam -> LOCATED_IN -> LOCATION:Netherlands",
+              "ORGANIZATION:Heineken -> BASED_IN -> LOCATION:Netherlands"
+            ],
+            "false_positives": []
+          }
+        },
+        {
+          "document_id": "news:test:029",
+          "title": "Ferrari Maranello",
+          "group_key": "group:ferrari_auto",
+          "ner": {
+            "gold_count": 7,
+            "pred_count": 5,
+            "tp": 5,
+            "fp": 0,
+            "fn": 2
+          },
+          "relations": {
+            "gold_count": 5,
+            "pred_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 5,
+            "missed_gold": [
+              "ORGANIZATION:Ferrari -> BASED_IN -> LOCATION:Maranello",
+              "LOCATION:Maranello -> LOCATED_IN -> LOCATION:Italy",
+              "LOCATION:Maranello -> LOCATED_IN -> LOCATION:Italy",
+              "ORGANIZATION:Ferrari -> BASED_IN -> LOCATION:Italy",
+              "PERSON:Benedetto Vigna -> WORKS_FOR -> ORGANIZATION:Ferrari"
+            ],
+            "false_positives": []
+          }
+        },
+        {
+          "document_id": "news:test:030",
+          "title": "Stellantis Hoofddorp",
+          "group_key": "group:stellantis_auto",
+          "ner": {
+            "gold_count": 6,
+            "pred_count": 5,
+            "tp": 4,
+            "fp": 1,
+            "fn": 2
+          },
+          "relations": {
+            "gold_count": 4,
+            "pred_count": 1,
+            "tp": 0,
+            "fp": 1,
+            "fn": 4,
+            "missed_gold": [
+              "ORGANIZATION:Stellantis -> BASED_IN -> LOCATION:Hoofddorp",
+              "LOCATION:Hoofddorp -> LOCATED_IN -> LOCATION:Netherlands",
+              "PERSON:Carlos Tavares -> WORKS_FOR -> ORGANIZATION:Stellantis",
+              "ORGANIZATION:Stellantis -> BASED_IN -> LOCATION:Netherlands"
+            ],
+            "false_positives": [
+              "PERSON:Tavares -> LIVES_IN -> LOCATION:Lisbon"
+            ]
+          }
+        }
+      ],
+      "feasibility_gate_audit": {
+        "all_gates_passed": false,
+        "release_recommendation": "KEEP_DEFAULT_RULES",
+        "gates": {
+          "entity_micro_f1": {
+            "target": ">= 85.0%",
+            "actual": "93.09%",
+            "passed": true
+          },
+          "relation_precision": {
+            "target": ">= 80.0%",
+            "actual": "80.49%",
+            "passed": true
+          },
+          "relation_recall": {
+            "target": ">= 50.0%",
+            "actual": "28.95%",
+            "passed": false
+          },
+          "relation_micro_f1": {
+            "target": ">= 60.0%",
+            "actual": "42.58%",
+            "passed": false
+          },
+          "silent_inference_failures": {
+            "target": "== 0",
+            "actual": "0",
+            "passed": true
+          },
+          "supported_label_and_direction_mapping": {
+            "target": "Fully tested via test_classical_news_contracts",
+            "actual": "7 of 7 contract tests passing",
+            "passed": true
+          }
+        }
+      }
+    },
+    "challenge": {
+      "split": "challenge",
+      "document_count": 15,
+      "elapsed_seconds": 1.08,
+      "silent_inference_failures": 0,
+      "ner": {
+        "micro": {
+          "tp": 81,
+          "fp": 9,
+          "fn": 3,
+          "precision": 90.0,
+          "recall": 96.43,
+          "f1": 93.1
+        },
+        "by_type": {
+          "PERSON": {
+            "support": 14,
+            "tp": 14,
+            "fp": 7,
+            "fn": 0,
+            "precision": 66.67,
+            "recall": 100.0,
+            "f1": 80.0
+          },
+          "ORGANIZATION": {
+            "support": 24,
+            "tp": 22,
+            "fp": 1,
+            "fn": 2,
+            "precision": 95.65,
+            "recall": 91.67,
+            "f1": 93.62
+          },
+          "LOCATION": {
+            "support": 46,
+            "tp": 45,
+            "fp": 1,
+            "fn": 1,
+            "precision": 97.83,
+            "recall": 97.83,
+            "f1": 97.83
+          }
+        }
+      },
+      "relation_oracle_mode": {
+        "available": false,
+        "reason": "Native Stanford bridge runs unified pipeline from raw text; gold mention injection is unsupported in Roth annotator without custom pipeline hooks."
+      },
+      "relations_end_to_end": {
+        "micro": {
+          "tp": 4,
+          "fp": 9,
+          "fn": 32,
+          "precision": 30.77,
+          "recall": 11.11,
+          "f1": 16.33
+        },
+        "macro_f1": 16.83,
+        "by_label": {
+          "WORKS_FOR": {
+            "support": 8,
+            "tp": 2,
+            "fp": 1,
+            "fn": 6,
+            "precision": 66.67,
+            "recall": 25.0,
+            "f1": 36.36
+          },
+          "LIVES_IN": {
+            "support": 4,
+            "tp": 0,
+            "fp": 8,
+            "fn": 4,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "BASED_IN": {
+            "support": 13,
+            "tp": 1,
+            "fp": 0,
+            "fn": 12,
+            "precision": 100.0,
+            "recall": 7.69,
+            "f1": 14.29
+          },
+          "LOCATED_IN": {
+            "support": 11,
+            "tp": 1,
+            "fp": 0,
+            "fn": 10,
+            "precision": 100.0,
+            "recall": 9.09,
+            "f1": 16.67
+          }
+        }
+      },
+      "bootstrap_ci": {
+        "ner_micro_f1_95ci": [
+          88.14,
+          97.59
+        ],
+        "relation_precision_95ci": [
+          8.33,
+          53.33
+        ],
+        "relation_recall_95ci": [
+          2.78,
+          20.0
+        ],
+        "relation_micro_f1_95ci": [
+          4.26,
+          26.67
+        ]
+      },
+      "documents": [
+        {
+          "document_id": "news:chal:001",
+          "title": "Negation: Bill Gates Not Employed",
+          "group_key": "group:chal_negation",
+          "ner": {
+            "gold_count": 5,
+            "pred_count": 5,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "relations": {
+            "gold_count": 1,
+            "pred_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 1,
+            "missed_gold": [
+              "ORGANIZATION:Microsoft -> BASED_IN -> LOCATION:Redmond"
+            ],
+            "false_positives": []
+          }
+        },
+        {
+          "document_id": "news:chal:002",
+          "title": "Negation: Steve Jobs Residence Denial",
+          "group_key": "group:chal_negation",
+          "ner": {
+            "gold_count": 6,
+            "pred_count": 6,
+            "tp": 6,
+            "fp": 0,
+            "fn": 0
+          },
+          "relations": {
+            "gold_count": 1,
+            "pred_count": 1,
+            "tp": 0,
+            "fp": 1,
+            "fn": 1,
+            "missed_gold": [
+              "ORGANIZATION:Apple -> BASED_IN -> LOCATION:Cupertino"
+            ],
+            "false_positives": [
+              "PERSON:Steve Jobs -> LIVES_IN -> LOCATION:New York"
+            ]
+          }
+        },
+        {
+          "document_id": "news:chal:003",
+          "title": "Reversed Direction: City to Company",
+          "group_key": "group:chal_order",
+          "ner": {
+            "gold_count": 6,
+            "pred_count": 6,
+            "tp": 4,
+            "fp": 2,
+            "fn": 2
+          },
+          "relations": {
+            "gold_count": 1,
+            "pred_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 1,
+            "missed_gold": [
+              "LOCATION:Redmond -> LOCATED_IN -> LOCATION:Washington"
+            ],
+            "false_positives": []
+          }
+        },
+        {
+          "document_id": "news:chal:004",
+          "title": "Distractor: Official Diplomatic Visits",
+          "group_key": "group:chal_distractor",
+          "ner": {
+            "gold_count": 6,
+            "pred_count": 7,
+            "tp": 6,
+            "fp": 1,
+            "fn": 0
+          },
+          "relations": {
+            "gold_count": 2,
+            "pred_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 2,
+            "missed_gold": [
+              "LOCATION:Paris -> LOCATED_IN -> LOCATION:France",
+              "LOCATION:France -> LOCATED_IN -> LOCATION:Europe"
+            ],
+            "false_positives": []
+          }
+        },
+        {
+          "document_id": "news:chal:005",
+          "title": "Distractor: Conference Attendance",
+          "group_key": "group:chal_distractor",
+          "ner": {
+            "gold_count": 5,
+            "pred_count": 6,
+            "tp": 5,
+            "fp": 1,
+            "fn": 0
+          },
+          "relations": {
+            "gold_count": 1,
+            "pred_count": 1,
+            "tp": 0,
+            "fp": 1,
+            "fn": 1,
+            "missed_gold": [
+              "ORGANIZATION:Microsoft -> BASED_IN -> LOCATION:Redmond"
+            ],
+            "false_positives": [
+              "PERSON:Nadella -> WORKS_FOR -> ORGANIZATION:Microsoft"
+            ]
+          }
+        },
+        {
+          "document_id": "news:chal:006",
+          "title": "Multiple Entities Single Sentence",
+          "group_key": "group:chal_multi",
+          "ner": {
+            "gold_count": 5,
+            "pred_count": 5,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "relations": {
+            "gold_count": 2,
+            "pred_count": 2,
+            "tp": 0,
+            "fp": 2,
+            "fn": 2,
+            "missed_gold": [
+              "PERSON:Andy Jassy -> WORKS_FOR -> ORGANIZATION:Amazon",
+              "PERSON:Jeff Bezos -> WORKS_FOR -> ORGANIZATION:Amazon"
+            ],
+            "false_positives": [
+              "PERSON:Andy Jassy -> LIVES_IN -> LOCATION:Seattle",
+              "PERSON:Andy Jassy -> LIVES_IN -> LOCATION:Washington"
+            ]
+          }
+        },
+        {
+          "document_id": "news:chal:007",
+          "title": "Complex Relocation Chain",
+          "group_key": "group:chal_multi",
+          "ner": {
+            "gold_count": 6,
+            "pred_count": 6,
+            "tp": 5,
+            "fp": 1,
+            "fn": 1
+          },
+          "relations": {
+            "gold_count": 5,
+            "pred_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 5,
+            "missed_gold": [
+              "LOCATION:Austin -> LOCATED_IN -> LOCATION:Texas",
+              "PERSON:Elon Musk -> LIVES_IN -> LOCATION:Los Angeles",
+              "PERSON:Elon Musk -> LIVES_IN -> LOCATION:Texas",
+              "PERSON:Elon Musk -> LIVES_IN -> LOCATION:Austin",
+              "ORGANIZATION:Tesla -> BASED_IN -> LOCATION:Austin"
+            ],
+            "false_positives": []
+          }
+        },
+        {
+          "document_id": "news:chal:008",
+          "title": "Acronym Company Headquarters",
+          "group_key": "group:chal_acronym",
+          "ner": {
+            "gold_count": 6,
+            "pred_count": 7,
+            "tp": 6,
+            "fp": 1,
+            "fn": 0
+          },
+          "relations": {
+            "gold_count": 4,
+            "pred_count": 2,
+            "tp": 1,
+            "fp": 1,
+            "fn": 3,
+            "missed_gold": [
+              "ORGANIZATION:IBM -> BASED_IN -> LOCATION:New York",
+              "ORGANIZATION:IBM -> BASED_IN -> LOCATION:Armonk",
+              "LOCATION:Armonk -> LOCATED_IN -> LOCATION:New York"
+            ],
+            "false_positives": [
+              "PERSON:Krishna -> LIVES_IN -> LOCATION:New Canaan"
+            ]
+          }
+        },
+        {
+          "document_id": "news:chal:009",
+          "title": "Multiple Organizations Disambiguation",
+          "group_key": "group:chal_disambig",
+          "ner": {
+            "gold_count": 6,
+            "pred_count": 7,
+            "tp": 6,
+            "fp": 1,
+            "fn": 0
+          },
+          "relations": {
+            "gold_count": 3,
+            "pred_count": 1,
+            "tp": 0,
+            "fp": 1,
+            "fn": 3,
+            "missed_gold": [
+              "PERSON:Eric Schmidt -> WORKS_FOR -> ORGANIZATION:Novell",
+              "LOCATION:Atherton -> LOCATED_IN -> LOCATION:California",
+              "PERSON:Eric Schmidt -> WORKS_FOR -> ORGANIZATION:Google"
+            ],
+            "false_positives": [
+              "PERSON:Schmidt -> LIVES_IN -> LOCATION:Atherton"
+            ]
+          }
+        },
+        {
+          "document_id": "news:chal:010",
+          "title": "Historical Past Employment",
+          "group_key": "group:chal_history",
+          "ner": {
+            "gold_count": 6,
+            "pred_count": 6,
+            "tp": 6,
+            "fp": 0,
+            "fn": 0
+          },
+          "relations": {
+            "gold_count": 3,
+            "pred_count": 1,
+            "tp": 1,
+            "fp": 0,
+            "fn": 2,
+            "missed_gold": [
+              "PERSON:John Sculley -> WORKS_FOR -> ORGANIZATION:Apple",
+              "ORGANIZATION:Apple -> BASED_IN -> LOCATION:California"
+            ],
+            "false_positives": []
+          }
+        },
+        {
+          "document_id": "news:chal:011",
+          "title": "Repeated Name Collision Disambiguation",
+          "group_key": "group:chal_collision",
+          "ner": {
+            "gold_count": 6,
+            "pred_count": 6,
+            "tp": 6,
+            "fp": 0,
+            "fn": 0
+          },
+          "relations": {
+            "gold_count": 2,
+            "pred_count": 1,
+            "tp": 0,
+            "fp": 1,
+            "fn": 2,
+            "missed_gold": [
+              "PERSON:David Smith -> LIVES_IN -> LOCATION:London",
+              "PERSON:David Smith -> WORKS_FOR -> ORGANIZATION:Shell"
+            ],
+            "false_positives": [
+              "PERSON:David Smith -> LIVES_IN -> LOCATION:New York"
+            ]
+          }
+        },
+        {
+          "document_id": "news:chal:012",
+          "title": "Quotations and Reported Speech",
+          "group_key": "group:chal_quotes",
+          "ner": {
+            "gold_count": 4,
+            "pred_count": 4,
+            "tp": 4,
+            "fp": 0,
+            "fn": 0
+          },
+          "relations": {
+            "gold_count": 1,
+            "pred_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 1,
+            "missed_gold": [
+              "LOCATION:Austin -> LOCATED_IN -> LOCATION:Texas"
+            ],
+            "false_positives": []
+          }
+        },
+        {
+          "document_id": "news:chal:013",
+          "title": "Location Parent Containment Chain",
+          "group_key": "group:chal_geo",
+          "ner": {
+            "gold_count": 6,
+            "pred_count": 6,
+            "tp": 6,
+            "fp": 0,
+            "fn": 0
+          },
+          "relations": {
+            "gold_count": 3,
+            "pred_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 3,
+            "missed_gold": [
+              "LOCATION:Palo Alto -> LOCATED_IN -> LOCATION:Santa Clara County",
+              "LOCATION:Santa Clara County -> LOCATED_IN -> LOCATION:California",
+              "LOCATION:California -> LOCATED_IN -> LOCATION:United States"
+            ],
+            "false_positives": []
+          }
+        },
+        {
+          "document_id": "news:chal:014",
+          "title": "Org Subsidiary Inversion",
+          "group_key": "group:chal_subsidiary",
+          "ner": {
+            "gold_count": 6,
+            "pred_count": 6,
+            "tp": 6,
+            "fp": 0,
+            "fn": 0
+          },
+          "relations": {
+            "gold_count": 6,
+            "pred_count": 1,
+            "tp": 1,
+            "fp": 0,
+            "fn": 5,
+            "missed_gold": [
+              "ORGANIZATION:YouTube -> BASED_IN -> LOCATION:California",
+              "ORGANIZATION:Google -> BASED_IN -> LOCATION:Mountain View",
+              "ORGANIZATION:Google -> BASED_IN -> LOCATION:San Bruno",
+              "ORGANIZATION:Google -> BASED_IN -> LOCATION:California",
+              "ORGANIZATION:YouTube -> BASED_IN -> LOCATION:San Bruno"
+            ],
+            "false_positives": []
+          }
+        },
+        {
+          "document_id": "news:chal:015",
+          "title": "Non-residence Hotel Travel",
+          "group_key": "group:chal_travel",
+          "ner": {
+            "gold_count": 5,
+            "pred_count": 7,
+            "tp": 5,
+            "fp": 2,
+            "fn": 0
+          },
+          "relations": {
+            "gold_count": 1,
+            "pred_count": 3,
+            "tp": 1,
+            "fp": 2,
+            "fn": 0,
+            "missed_gold": [],
+            "false_positives": [
+              "PERSON:Huang -> LIVES_IN -> LOCATION:Los Altos",
+              "PERSON:Jensen Huang -> LIVES_IN -> LOCATION:Taipei"
+            ]
+          }
+        }
+      ],
+      "feasibility_gate_audit": {
+        "all_gates_passed": false,
+        "release_recommendation": "KEEP_DEFAULT_RULES",
+        "gates": {
+          "entity_micro_f1": {
+            "target": ">= 85.0%",
+            "actual": "93.1%",
+            "passed": true
+          },
+          "relation_precision": {
+            "target": ">= 80.0%",
+            "actual": "30.77%",
+            "passed": false
+          },
+          "relation_recall": {
+            "target": ">= 50.0%",
+            "actual": "11.11%",
+            "passed": false
+          },
+          "relation_micro_f1": {
+            "target": ">= 60.0%",
+            "actual": "16.33%",
+            "passed": false
+          },
+          "silent_inference_failures": {
+            "target": "== 0",
+            "actual": "0",
+            "passed": true
+          },
+          "supported_label_and_direction_mapping": {
+            "target": "Fully tested via test_classical_news_contracts",
+            "actual": "7 of 7 contract tests passing",
+            "passed": true
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "schema_version": "2.classical_news.1",
+  "document_id": "news:test:021",
+  "title": "Rio Tinto London Melbourne",
+  "group_key": "group:riotinto_mining",
+  "split": "locked_test",
+  "content_hash": "2fd382f67fb30513cbdcdb9ae2db5f04ead36db88d78089367058d73e0d1397d",
+  "text": "Rio Tinto is headquartered in London. Jakob Stausholm works for Rio Tinto. Stausholm lives in London.",
+  "mentions": [
+    {
+      "id": "m0",
+      "document_id": "news:test:021",
+      "text": "Rio Tinto",
+      "type": "ORGANIZATION",
+      "start": 0,
+      "end": 9,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m1",
+      "document_id": "news:test:021",
+      "text": "London",
+      "type": "LOCATION",
+      "start": 30,
+      "end": 36,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m2",
+      "document_id": "news:test:021",
+      "text": "Jakob Stausholm",
+      "type": "PERSON",
+      "start": 38,
+      "end": 53,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m3",
+      "document_id": "news:test:021",
+      "text": "Rio Tinto",
+      "type": "ORGANIZATION",
+      "start": 64,
+      "end": 73,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m4",
+      "document_id": "news:test:021",
+      "text": "London",
+      "type": "LOCATION",
+      "start": 94,
+      "end": 100,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    }
+  ],
+  "relation_annotations": [
+    {
+      "subject_id": "m0",
+      "relation": "BASED_IN",
+      "object_id": "m1",
+      "label_status": "positive",
+      "evidence_text": "Rio Tinto is headquartered in London.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m2",
+      "relation": "WORKS_FOR",
+      "object_id": "m3",
+      "label_status": "positive",
+      "evidence_text": "Jakob Stausholm works for Rio Tinto.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    }
+  ]
+}

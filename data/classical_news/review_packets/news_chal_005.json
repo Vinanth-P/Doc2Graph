@@ -1,0 +1,98 @@
+{
+  "schema_version": "2.classical_news.1",
+  "document_id": "news:chal:005",
+  "title": "Distractor: Conference Attendance",
+  "group_key": "group:chal_distractor",
+  "split": "challenge",
+  "content_hash": "cc00434af0524cca8d523e3c2c26ac85ffa8b366cb03bc3bf76cd8c45b7c5b98",
+  "text": "Satya Nadella traveled to Davos for the annual meeting. Nadella works for Microsoft. Microsoft is based in Redmond.",
+  "mentions": [
+    {
+      "id": "m0",
+      "document_id": "news:chal:005",
+      "text": "Satya Nadella",
+      "type": "PERSON",
+      "start": 0,
+      "end": 13,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m1",
+      "document_id": "news:chal:005",
+      "text": "Davos",
+      "type": "LOCATION",
+      "start": 26,
+      "end": 31,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m2",
+      "document_id": "news:chal:005",
+      "text": "Microsoft",
+      "type": "ORGANIZATION",
+      "start": 74,
+      "end": 83,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m3",
+      "document_id": "news:chal:005",
+      "text": "Microsoft",
+      "type": "ORGANIZATION",
+      "start": 85,
+      "end": 94,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m4",
+      "document_id": "news:chal:005",
+      "text": "Redmond",
+      "type": "LOCATION",
+      "start": 107,
+      "end": 114,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    }
+  ],
+  "relation_annotations": [
+    {
+      "subject_id": "m3",
+      "relation": "BASED_IN",
+      "object_id": "m4",
+      "label_status": "positive",
+      "evidence_text": "Microsoft is based in Redmond.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m0",
+      "relation": "LIVES_IN",
+      "object_id": "m1",
+      "label_status": "explicit_negative",
+      "evidence_text": "Satya Nadella traveled to Davos for the annual meeting.",
+      "confidence": 0.0,
+      "polarity": "negated",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    }
+  ]
+}

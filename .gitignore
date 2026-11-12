@@ -61,6 +61,7 @@ testdata.pdf
 doc2graph_test_data_02.txt
 *.log
 PROJECT_EVALUATION_SUMMARY.md
+PROJECT_EVALUATION_SUMMARY_PREVIOUS.md
 project_evaluation_summary*
 *project_evaluation*
 
@@ -75,3 +76,14 @@ npm-debug.log*
 *.swo
 .DS_Store
 Thumbs.db
+
+# Local relation-encoder dependencies and downloaded checkpoints
+.runtime/
+output/evaluation/cache/
+output/test_tmp*/
+output/pytest*/
+tmp/
+*.class
+java/**/build/
+java/**/probe/*.class
+data/prepared/

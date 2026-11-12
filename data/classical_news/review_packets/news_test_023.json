@@ -1,0 +1,139 @@
+{
+  "schema_version": "2.classical_news.1",
+  "document_id": "news:test:023",
+  "title": "Petrobras Rio de Janeiro",
+  "group_key": "group:petrobras_energy",
+  "split": "locked_test",
+  "content_hash": "3e716f097f9a26c697e2ba37a479ef01c1d397b2c78970179ce7742a6b1c4400",
+  "text": "Petrobras is headquartered in Rio de Janeiro, Brazil. Jean Paul Prates works for Petrobras. Prates lives in Brasilia.",
+  "mentions": [
+    {
+      "id": "m0",
+      "document_id": "news:test:023",
+      "text": "Petrobras",
+      "type": "ORGANIZATION",
+      "start": 0,
+      "end": 9,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m1",
+      "document_id": "news:test:023",
+      "text": "Rio de Janeiro",
+      "type": "LOCATION",
+      "start": 30,
+      "end": 44,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m2",
+      "document_id": "news:test:023",
+      "text": "Brazil",
+      "type": "LOCATION",
+      "start": 46,
+      "end": 52,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m3",
+      "document_id": "news:test:023",
+      "text": "Jean Paul Prates",
+      "type": "PERSON",
+      "start": 54,
+      "end": 70,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m4",
+      "document_id": "news:test:023",
+      "text": "Petrobras",
+      "type": "ORGANIZATION",
+      "start": 81,
+      "end": 90,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m5",
+      "document_id": "news:test:023",
+      "text": "Brasilia",
+      "type": "LOCATION",
+      "start": 108,
+      "end": 116,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    }
+  ],
+  "relation_annotations": [
+    {
+      "subject_id": "m0",
+      "relation": "BASED_IN",
+      "object_id": "m1",
+      "label_status": "positive",
+      "evidence_text": "Petrobras is headquartered in Rio de Janeiro, Brazil.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m0",
+      "relation": "BASED_IN",
+      "object_id": "m2",
+      "label_status": "positive",
+      "evidence_text": "Petrobras is headquartered in Rio de Janeiro, Brazil.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m3",
+      "relation": "WORKS_FOR",
+      "object_id": "m4",
+      "label_status": "positive",
+      "evidence_text": "Jean Paul Prates works for Petrobras.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m1",
+      "relation": "LOCATED_IN",
+      "object_id": "m2",
+      "label_status": "positive",
+      "evidence_text": "Petrobras is headquartered in Rio de Janeiro, Brazil.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    }
+  ]
+}

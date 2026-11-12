@@ -1,0 +1,98 @@
+{
+  "schema_version": "2.classical_news.1",
+  "document_id": "news:chal:006",
+  "title": "Multiple Entities Single Sentence",
+  "group_key": "group:chal_multi",
+  "split": "challenge",
+  "content_hash": "cab1a22311dc720806007558d5cddd0428efd33037a4760d96f88f2a600a09f2",
+  "text": "Jeff Bezos founded Amazon in Seattle before Andy Jassy took over operations in Washington.",
+  "mentions": [
+    {
+      "id": "m0",
+      "document_id": "news:chal:006",
+      "text": "Jeff Bezos",
+      "type": "PERSON",
+      "start": 0,
+      "end": 10,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m1",
+      "document_id": "news:chal:006",
+      "text": "Amazon",
+      "type": "ORGANIZATION",
+      "start": 19,
+      "end": 25,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m2",
+      "document_id": "news:chal:006",
+      "text": "Seattle",
+      "type": "LOCATION",
+      "start": 29,
+      "end": 36,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m3",
+      "document_id": "news:chal:006",
+      "text": "Andy Jassy",
+      "type": "PERSON",
+      "start": 44,
+      "end": 54,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m4",
+      "document_id": "news:chal:006",
+      "text": "Washington",
+      "type": "LOCATION",
+      "start": 79,
+      "end": 89,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    }
+  ],
+  "relation_annotations": [
+    {
+      "subject_id": "m0",
+      "relation": "WORKS_FOR",
+      "object_id": "m1",
+      "label_status": "positive",
+      "evidence_text": "Jeff Bezos founded Amazon in Seattle before Andy Jassy took over operations in Washington.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m3",
+      "relation": "WORKS_FOR",
+      "object_id": "m1",
+      "label_status": "positive",
+      "evidence_text": "Jeff Bezos founded Amazon in Seattle before Andy Jassy took over operations in Washington.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    }
+  ]
+}

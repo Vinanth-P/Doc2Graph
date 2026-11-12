@@ -46,6 +46,12 @@ class QueryEngine:
                            target_id: other.id,
                            target_name: other.name,
                            confidence: r.confidence,
+                           polarity: coalesce(r.polarity, 'unknown'),
+                           modality: coalesce(r.modality, 'unknown'),
+                           lifecycle: coalesce(r.lifecycle, 'unknown'),
+                           time_qualifiers: coalesce(r.time_qualifiers, '{}'),
+                           claim_id: coalesce(r.claim_id, ''),
+                           deal_key: coalesce(r.deal_key, 'default'),
                            evidence_count: CASE WHEN $doc_id IS NULL THEN r.evidence_count
                                ELSE size([cid IN coalesce(r.chunk_ids, [])
                                    WHERE cid STARTS WITH $doc_id + ':']) END

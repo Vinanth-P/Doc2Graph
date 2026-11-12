@@ -1,0 +1,176 @@
+{
+  "schema_version": "2.classical_news.1",
+  "document_id": "news:dev:004",
+  "title": "Satya Nadella Leadership at Microsoft",
+  "group_key": "group:microsoft_execs",
+  "split": "dev",
+  "content_hash": "4985b4d04384e28fe43ac7ab25e0e46f23acdddfbb6dd592cc35350f424ab4af",
+  "text": "Satya Nadella joined Microsoft in 1992 and became chief executive in 2014. Nadella lives in Bellevue near Seattle. Microsoft is headquartered in Redmond, Washington.",
+  "mentions": [
+    {
+      "id": "m0",
+      "document_id": "news:dev:004",
+      "text": "Satya Nadella",
+      "type": "PERSON",
+      "start": 0,
+      "end": 13,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m1",
+      "document_id": "news:dev:004",
+      "text": "Microsoft",
+      "type": "ORGANIZATION",
+      "start": 21,
+      "end": 30,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m2",
+      "document_id": "news:dev:004",
+      "text": "Nadella",
+      "type": "PERSON",
+      "start": 6,
+      "end": 13,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m3",
+      "document_id": "news:dev:004",
+      "text": "Bellevue",
+      "type": "LOCATION",
+      "start": 92,
+      "end": 100,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m4",
+      "document_id": "news:dev:004",
+      "text": "Seattle",
+      "type": "LOCATION",
+      "start": 106,
+      "end": 113,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m5",
+      "document_id": "news:dev:004",
+      "text": "Microsoft",
+      "type": "ORGANIZATION",
+      "start": 21,
+      "end": 30,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m6",
+      "document_id": "news:dev:004",
+      "text": "Redmond",
+      "type": "LOCATION",
+      "start": 145,
+      "end": 152,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m7",
+      "document_id": "news:dev:004",
+      "text": "Washington",
+      "type": "LOCATION",
+      "start": 154,
+      "end": 164,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    }
+  ],
+  "relation_annotations": [
+    {
+      "subject_id": "m0",
+      "relation": "WORKS_FOR",
+      "object_id": "m1",
+      "label_status": "positive",
+      "evidence_text": "Satya Nadella joined Microsoft in 1992 and became chief executive in 2014.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "annotator_verified_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m2",
+      "relation": "LIVES_IN",
+      "object_id": "m3",
+      "label_status": "positive",
+      "evidence_text": "Nadella lives in Bellevue near Seattle.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "annotator_verified_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m5",
+      "relation": "BASED_IN",
+      "object_id": "m6",
+      "label_status": "positive",
+      "evidence_text": "Microsoft is headquartered in Redmond, Washington.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "annotator_verified_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m6",
+      "relation": "LOCATED_IN",
+      "object_id": "m7",
+      "label_status": "positive",
+      "evidence_text": "Microsoft is headquartered in Redmond, Washington.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "annotator_verified_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m2",
+      "relation": "LIVES_IN",
+      "object_id": "m4",
+      "label_status": "explicit_negative",
+      "evidence_text": "Nadella lives in Bellevue near Seattle.",
+      "confidence": 0.0,
+      "polarity": "negated",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "annotator_verified_pilot",
+        "review_status": "human_verified_gold"
+      }
+    }
+  ]
+}

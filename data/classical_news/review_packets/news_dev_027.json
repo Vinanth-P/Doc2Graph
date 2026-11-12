@@ -1,0 +1,139 @@
+{
+  "schema_version": "2.classical_news.1",
+  "document_id": "news:dev:027",
+  "title": "GlaxoSmithKline London",
+  "group_key": "group:gsk_pharma",
+  "split": "dev",
+  "content_hash": "10a762f7c0ae358dbb7204b18df33d588246f9ec04ba3ce60100afd8af5e07be",
+  "text": "GSK is based in London, United Kingdom. Emma Walmsley works for GSK as chief executive. Walmsley lives in London.",
+  "mentions": [
+    {
+      "id": "m0",
+      "document_id": "news:dev:027",
+      "text": "GSK",
+      "type": "ORGANIZATION",
+      "start": 0,
+      "end": 3,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m1",
+      "document_id": "news:dev:027",
+      "text": "London",
+      "type": "LOCATION",
+      "start": 16,
+      "end": 22,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m2",
+      "document_id": "news:dev:027",
+      "text": "United Kingdom",
+      "type": "LOCATION",
+      "start": 24,
+      "end": 38,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m3",
+      "document_id": "news:dev:027",
+      "text": "Emma Walmsley",
+      "type": "PERSON",
+      "start": 40,
+      "end": 53,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m4",
+      "document_id": "news:dev:027",
+      "text": "GSK",
+      "type": "ORGANIZATION",
+      "start": 64,
+      "end": 67,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m5",
+      "document_id": "news:dev:027",
+      "text": "London",
+      "type": "LOCATION",
+      "start": 106,
+      "end": 112,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    }
+  ],
+  "relation_annotations": [
+    {
+      "subject_id": "m0",
+      "relation": "BASED_IN",
+      "object_id": "m1",
+      "label_status": "positive",
+      "evidence_text": "GSK is based in London, United Kingdom.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m0",
+      "relation": "BASED_IN",
+      "object_id": "m2",
+      "label_status": "positive",
+      "evidence_text": "GSK is based in London, United Kingdom.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m3",
+      "relation": "WORKS_FOR",
+      "object_id": "m4",
+      "label_status": "positive",
+      "evidence_text": "Emma Walmsley works for GSK as chief executive.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m1",
+      "relation": "LOCATED_IN",
+      "object_id": "m2",
+      "label_status": "positive",
+      "evidence_text": "GSK is based in London, United Kingdom.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    }
+  ]
+}

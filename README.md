@@ -119,6 +119,18 @@ and target IDs. Unsupported predicates are omitted rather than emitted as
 generic `RELATED_TO` edges. Set `debug_pipeline: true` in `config/config.yaml` to
 enable stage-level pipeline logging.
 
+### Relation whitelist configuration
+
+Edit `canonical_relations` in `config/relations.yaml` to control which extracted
+predicates become graph edges. Each relation defines matching `lemmas`, optional
+`requires_prep` values, and allowed `entity_type_pairs`. Set `lemma_swap: true`
+when the extracted subject and object must be reversed to express the canonical
+edge direction (for example, "Acme hired Alice" becomes `Alice EMPLOYED_BY Acme`).
+The ingestion pipeline enables all configured relations, including the extended
+`LEADS`, `PROVIDED`, `FUNDED`, `DEVELOPED`, `USES`, and `STORES_DATA_IN` types.
+Predicates that do not match the configured lemma, preposition, and type pair are
+excluded from the ingested graph.
+
 ### Benchmark & Model Training
 Evaluate NER quality and train the Logistic Regression scorers on annotated gold sets using 5-fold cross-validation:
 ```bash

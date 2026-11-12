@@ -1,0 +1,98 @@
+{
+  "schema_version": "2.classical_news.1",
+  "document_id": "news:chal:015",
+  "title": "Non-residence Hotel Travel",
+  "group_key": "group:chal_travel",
+  "split": "challenge",
+  "content_hash": "5567cc5474401a96f39f46d7bbfabd464b3f75e1e878f28356974140dcd7249f",
+  "text": "Jensen Huang stayed at a hotel in Taipei during Computex. Huang lives in Los Altos. Nvidia is based in Santa Clara.",
+  "mentions": [
+    {
+      "id": "m0",
+      "document_id": "news:chal:015",
+      "text": "Jensen Huang",
+      "type": "PERSON",
+      "start": 0,
+      "end": 12,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m1",
+      "document_id": "news:chal:015",
+      "text": "Taipei",
+      "type": "LOCATION",
+      "start": 34,
+      "end": 40,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m2",
+      "document_id": "news:chal:015",
+      "text": "Los Altos",
+      "type": "LOCATION",
+      "start": 73,
+      "end": 82,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m3",
+      "document_id": "news:chal:015",
+      "text": "Nvidia",
+      "type": "ORGANIZATION",
+      "start": 84,
+      "end": 90,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m4",
+      "document_id": "news:chal:015",
+      "text": "Santa Clara",
+      "type": "LOCATION",
+      "start": 103,
+      "end": 114,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    }
+  ],
+  "relation_annotations": [
+    {
+      "subject_id": "m3",
+      "relation": "BASED_IN",
+      "object_id": "m4",
+      "label_status": "positive",
+      "evidence_text": "Nvidia is based in Santa Clara.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m0",
+      "relation": "LIVES_IN",
+      "object_id": "m1",
+      "label_status": "explicit_negative",
+      "evidence_text": "Jensen Huang stayed at a hotel in Taipei during Computex.",
+      "confidence": 0.0,
+      "polarity": "negated",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    }
+  ]
+}

@@ -333,6 +333,13 @@ class NERRunner:
         # Only return node-types for graph construction
         # DATE/MONEY/EMAIL are retained by the lower-level extractors as
         # metadata, but are not graph nodes.
+        # A dictionary name can also be an ordinary noun (e.g. a bank's
+        # benchmark). Keep lowercase proper names, but reject common-noun uses.
+        merged = [e for e in merged if not (
+            e.source == "gazetteer" and e.text.islower() and len(e.text.split()) == 1
+            and (span := doc.char_span(e.start_char, e.end_char)) is not None
+            and span.root.pos_ == "NOUN"
+        )]
         return [
             Entity(**{**e.__dict__, "sentence": raw_text})
             for e in merged

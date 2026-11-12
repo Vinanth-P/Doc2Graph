@@ -1,0 +1,150 @@
+{
+  "schema_version": "2.classical_news.1",
+  "document_id": "news:dev:011",
+  "title": "Siemens Headquarters in Munich",
+  "group_key": "group:siemens_germany",
+  "split": "dev",
+  "content_hash": "819707b354bf5885ca82d528bf082dfb0e6d4bf6e19b7eebdba0ae34f19b75c9",
+  "text": "Siemens is headquartered in Munich, Germany. Roland Busch works for Siemens as president and CEO. Busch lives in Munich.",
+  "mentions": [
+    {
+      "id": "m0",
+      "document_id": "news:dev:011",
+      "text": "Siemens",
+      "type": "ORGANIZATION",
+      "start": 0,
+      "end": 7,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m1",
+      "document_id": "news:dev:011",
+      "text": "Munich",
+      "type": "LOCATION",
+      "start": 28,
+      "end": 34,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m2",
+      "document_id": "news:dev:011",
+      "text": "Germany",
+      "type": "LOCATION",
+      "start": 36,
+      "end": 43,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m3",
+      "document_id": "news:dev:011",
+      "text": "Roland Busch",
+      "type": "PERSON",
+      "start": 45,
+      "end": 57,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m4",
+      "document_id": "news:dev:011",
+      "text": "Siemens",
+      "type": "ORGANIZATION",
+      "start": 0,
+      "end": 7,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m5",
+      "document_id": "news:dev:011",
+      "text": "Busch",
+      "type": "PERSON",
+      "start": 52,
+      "end": 57,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m6",
+      "document_id": "news:dev:011",
+      "text": "Munich",
+      "type": "LOCATION",
+      "start": 28,
+      "end": 34,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    }
+  ],
+  "relation_annotations": [
+    {
+      "subject_id": "m0",
+      "relation": "BASED_IN",
+      "object_id": "m1",
+      "label_status": "positive",
+      "evidence_text": "Siemens is headquartered in Munich, Germany.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "annotator_verified_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m1",
+      "relation": "LOCATED_IN",
+      "object_id": "m2",
+      "label_status": "positive",
+      "evidence_text": "Siemens is headquartered in Munich, Germany.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "annotator_verified_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m3",
+      "relation": "WORKS_FOR",
+      "object_id": "m4",
+      "label_status": "positive",
+      "evidence_text": "Roland Busch works for Siemens as president and CEO.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "annotator_verified_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m5",
+      "relation": "LIVES_IN",
+      "object_id": "m6",
+      "label_status": "positive",
+      "evidence_text": "Busch lives in Munich.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "annotator_verified_pilot",
+        "review_status": "human_verified_gold"
+      }
+    }
+  ]
+}

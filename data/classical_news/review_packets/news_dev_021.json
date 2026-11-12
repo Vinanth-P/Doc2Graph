@@ -1,0 +1,139 @@
+{
+  "schema_version": "2.classical_news.1",
+  "document_id": "news:dev:021",
+  "title": "Netflix Los Gatos",
+  "group_key": "group:netflix_media",
+  "split": "dev",
+  "content_hash": "4ed1943457ad28445c50fd3bed08dfaaf1397786dc015c6a9ef8c00b417797e7",
+  "text": "Netflix is based in Los Gatos, California. Ted Sarandos works for Netflix as co-chief executive. Sarandos lives in Beverly Hills.",
+  "mentions": [
+    {
+      "id": "m0",
+      "document_id": "news:dev:021",
+      "text": "Netflix",
+      "type": "ORGANIZATION",
+      "start": 0,
+      "end": 7,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m1",
+      "document_id": "news:dev:021",
+      "text": "Los Gatos",
+      "type": "LOCATION",
+      "start": 20,
+      "end": 29,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m2",
+      "document_id": "news:dev:021",
+      "text": "California",
+      "type": "LOCATION",
+      "start": 31,
+      "end": 41,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m3",
+      "document_id": "news:dev:021",
+      "text": "Ted Sarandos",
+      "type": "PERSON",
+      "start": 43,
+      "end": 55,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m4",
+      "document_id": "news:dev:021",
+      "text": "Netflix",
+      "type": "ORGANIZATION",
+      "start": 66,
+      "end": 73,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m5",
+      "document_id": "news:dev:021",
+      "text": "Beverly Hills",
+      "type": "LOCATION",
+      "start": 115,
+      "end": 128,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    }
+  ],
+  "relation_annotations": [
+    {
+      "subject_id": "m0",
+      "relation": "BASED_IN",
+      "object_id": "m1",
+      "label_status": "positive",
+      "evidence_text": "Netflix is based in Los Gatos, California.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m0",
+      "relation": "BASED_IN",
+      "object_id": "m2",
+      "label_status": "positive",
+      "evidence_text": "Netflix is based in Los Gatos, California.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m3",
+      "relation": "WORKS_FOR",
+      "object_id": "m4",
+      "label_status": "positive",
+      "evidence_text": "Ted Sarandos works for Netflix as co-chief executive.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m1",
+      "relation": "LOCATED_IN",
+      "object_id": "m2",
+      "label_status": "positive",
+      "evidence_text": "Netflix is based in Los Gatos, California.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    }
+  ]
+}

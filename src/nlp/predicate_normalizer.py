@@ -15,7 +15,7 @@ Swap flag:
 """
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Optional
 
@@ -39,6 +39,11 @@ class NormalizedTriple:
     confidence: float = 0.0    # filled in by relation_scorer
     evidence: str = ""
     extractor: str = ""
+    polarity: str = "unknown"
+    modality: str = "unknown"
+    lifecycle: str = "unknown"
+    time_qualifiers: dict = field(default_factory=dict)
+    claim_id: str = ""
 
 
 # ── Loader ────────────────────────────────────────────────────────────────────
@@ -73,7 +78,8 @@ class PredicateNormalizer:
 
     def normalize(self, triple: RawTriple) -> NormalizedTriple | None:
         # The graph represents asserted facts and has no negated-edge schema.
-        if triple.has_negation:
+        if triple.has_negation or (triple.subject.type == triple.object.type and
+                                  triple.subject.canonical_name == triple.object.canonical_name):
             return None
         for rel_name, conf in self._config.items():
             if (

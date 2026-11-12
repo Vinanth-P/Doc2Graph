@@ -1,0 +1,98 @@
+{
+  "schema_version": "2.classical_news.1",
+  "document_id": "news:test:009",
+  "title": "Charlie Munger at Berkshire",
+  "group_key": "group:berkshire_inv",
+  "split": "locked_test",
+  "content_hash": "c21d3f0aecb91ab5a2fbc7349c078ec6a3c148d0339ecfa33251ba713d74d386",
+  "text": "Charlie Munger worked for Berkshire Hathaway for decades. Munger lived in Los Angeles. Omaha is located in Nebraska.",
+  "mentions": [
+    {
+      "id": "m0",
+      "document_id": "news:test:009",
+      "text": "Charlie Munger",
+      "type": "PERSON",
+      "start": 0,
+      "end": 14,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m1",
+      "document_id": "news:test:009",
+      "text": "Berkshire Hathaway",
+      "type": "ORGANIZATION",
+      "start": 26,
+      "end": 44,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m2",
+      "document_id": "news:test:009",
+      "text": "Los Angeles",
+      "type": "LOCATION",
+      "start": 74,
+      "end": 85,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m3",
+      "document_id": "news:test:009",
+      "text": "Omaha",
+      "type": "LOCATION",
+      "start": 87,
+      "end": 92,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m4",
+      "document_id": "news:test:009",
+      "text": "Nebraska",
+      "type": "LOCATION",
+      "start": 107,
+      "end": 115,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    }
+  ],
+  "relation_annotations": [
+    {
+      "subject_id": "m0",
+      "relation": "WORKS_FOR",
+      "object_id": "m1",
+      "label_status": "positive",
+      "evidence_text": "Charlie Munger worked for Berkshire Hathaway for decades.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m3",
+      "relation": "LOCATED_IN",
+      "object_id": "m4",
+      "label_status": "positive",
+      "evidence_text": "Omaha is located in Nebraska.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    }
+  ]
+}

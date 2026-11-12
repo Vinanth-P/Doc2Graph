@@ -1,0 +1,109 @@
+{
+  "schema_version": "2.classical_news.1",
+  "document_id": "news:chal:002",
+  "title": "Negation: Steve Jobs Residence Denial",
+  "group_key": "group:chal_negation",
+  "split": "challenge",
+  "content_hash": "380f82c2ea386ad42e1abdd3633fa55ac142825d66204d5f4bf44133f261d62a",
+  "text": "Steve Jobs never lived in New York during his tenure at Apple. Jobs lived in Palo Alto. Apple is based in Cupertino.",
+  "mentions": [
+    {
+      "id": "m0",
+      "document_id": "news:chal:002",
+      "text": "Steve Jobs",
+      "type": "PERSON",
+      "start": 0,
+      "end": 10,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m1",
+      "document_id": "news:chal:002",
+      "text": "New York",
+      "type": "LOCATION",
+      "start": 26,
+      "end": 34,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m2",
+      "document_id": "news:chal:002",
+      "text": "Apple",
+      "type": "ORGANIZATION",
+      "start": 56,
+      "end": 61,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m3",
+      "document_id": "news:chal:002",
+      "text": "Palo Alto",
+      "type": "LOCATION",
+      "start": 77,
+      "end": 86,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m4",
+      "document_id": "news:chal:002",
+      "text": "Apple",
+      "type": "ORGANIZATION",
+      "start": 88,
+      "end": 93,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m5",
+      "document_id": "news:chal:002",
+      "text": "Cupertino",
+      "type": "LOCATION",
+      "start": 106,
+      "end": 115,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    }
+  ],
+  "relation_annotations": [
+    {
+      "subject_id": "m4",
+      "relation": "BASED_IN",
+      "object_id": "m5",
+      "label_status": "positive",
+      "evidence_text": "Apple is based in Cupertino.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m0",
+      "relation": "LIVES_IN",
+      "object_id": "m1",
+      "label_status": "explicit_negative",
+      "evidence_text": "Steve Jobs never lived in New York during his tenure at Apple.",
+      "confidence": 0.0,
+      "polarity": "negated",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    }
+  ]
+}

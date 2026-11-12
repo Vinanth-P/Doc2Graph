@@ -1,0 +1,540 @@
+[
+  {
+    "schema_version": "2.finance.1",
+    "document_id": "fin_doc_001",
+    "title": "Microsoft GitHub Acquisition Close",
+    "text": "Microsoft acquired GitHub for $7.5 billion in an all-stock transaction. Satya Nadella serves as CEO of Microsoft. Goldman Sachs advised Microsoft on the transaction.",
+    "doc_group": "deal:msft_github_2018",
+    "license_or_rights": "public_press_release",
+    "reviewer": "expert_reviewer_1",
+    "review_guidelines_version": "2.0",
+    "review_timestamp": "2026-11-11T12:00:00Z",
+    "annotation_scope": "exhaustive_corporate_finance",
+    "mentions": [
+      {
+        "id": "m1",
+        "document_id": "fin_doc_001",
+        "text": "Microsoft",
+        "type": "ORG",
+        "start": 0,
+        "end": 9,
+        "detector": "human_gold",
+        "score": 1.0
+      },
+      {
+        "id": "m2",
+        "document_id": "fin_doc_001",
+        "text": "GitHub",
+        "type": "ORG",
+        "start": 19,
+        "end": 25,
+        "detector": "human_gold",
+        "score": 1.0
+      },
+      {
+        "id": "m3",
+        "document_id": "fin_doc_001",
+        "text": "Satya Nadella",
+        "type": "PERSON",
+        "start": 72,
+        "end": 85,
+        "detector": "human_gold",
+        "score": 1.0
+      },
+      {
+        "id": "m4",
+        "document_id": "fin_doc_001",
+        "text": "Goldman Sachs",
+        "type": "ORG",
+        "start": 114,
+        "end": 127,
+        "detector": "human_gold",
+        "score": 1.0
+      }
+    ],
+    "relation_annotations": [
+      {
+        "annotation_id": "ann_1_1",
+        "subject_mention_id": "m1",
+        "object_mention_id": "m2",
+        "relation": "ACQUIRED",
+        "decision": "positive",
+        "polarity": "affirmed",
+        "modality": "asserted",
+        "lifecycle": "completed",
+        "evidence_spans": [
+          [
+            0,
+            71
+          ]
+        ],
+        "evidence_text": "Microsoft acquired GitHub for $7.5 billion in an all-stock transaction.",
+        "reviewer": "expert_reviewer_1",
+        "review_status": "reviewed"
+      },
+      {
+        "annotation_id": "ann_1_2",
+        "subject_mention_id": "m3",
+        "object_mention_id": "m1",
+        "relation": "EMPLOYED_BY",
+        "decision": "positive",
+        "polarity": "affirmed",
+        "modality": "asserted",
+        "lifecycle": "completed",
+        "evidence_spans": [
+          [
+            72,
+            113
+          ]
+        ],
+        "evidence_text": "Satya Nadella serves as CEO of Microsoft.",
+        "reviewer": "expert_reviewer_1",
+        "review_status": "reviewed"
+      },
+      {
+        "annotation_id": "ann_1_3",
+        "subject_mention_id": "m4",
+        "object_mention_id": "m1",
+        "relation": "ADVISED",
+        "decision": "positive",
+        "polarity": "affirmed",
+        "modality": "asserted",
+        "lifecycle": "completed",
+        "evidence_spans": [
+          [
+            114,
+            165
+          ]
+        ],
+        "evidence_text": "Goldman Sachs advised Microsoft on the transaction.",
+        "reviewer": "expert_reviewer_1",
+        "review_status": "reviewed"
+      },
+      {
+        "annotation_id": "ann_1_4",
+        "subject_mention_id": "m4",
+        "object_mention_id": "m2",
+        "relation": "ACQUIRED",
+        "decision": "explicit_negative",
+        "polarity": "unknown",
+        "modality": "unknown",
+        "lifecycle": "unknown",
+        "evidence_spans": [],
+        "evidence_text": "",
+        "reviewer": "expert_reviewer_1",
+        "review_status": "reviewed",
+        "notes": "Goldman Sachs acted as financial advisor, not acquirer."
+      }
+    ],
+    "data_origin": "test_fixture",
+    "review_status": "reviewed"
+  },
+  {
+    "schema_version": "2.finance.1",
+    "document_id": "fin_doc_002",
+    "title": "Stripe Bridge Acquisition",
+    "text": "Patrick Collison co-founded Stripe in San Francisco. Stripe acquired Bridge to accelerate global stablecoin payment settlements. Morgan Stanley financed Stripe in a major liquidity facility.",
+    "doc_group": "deal:stripe_bridge_2024",
+    "license_or_rights": "public_press_release",
+    "reviewer": "expert_reviewer_2",
+    "review_guidelines_version": "2.0",
+    "review_timestamp": "2026-11-11T13:00:00Z",
+    "annotation_scope": "exhaustive_corporate_finance",
+    "mentions": [
+      {
+        "id": "m1",
+        "document_id": "fin_doc_002",
+        "text": "Patrick Collison",
+        "type": "PERSON",
+        "start": 0,
+        "end": 16,
+        "detector": "human_gold",
+        "score": 1.0
+      },
+      {
+        "id": "m2",
+        "document_id": "fin_doc_002",
+        "text": "Stripe",
+        "type": "ORG",
+        "start": 28,
+        "end": 34,
+        "detector": "human_gold",
+        "score": 1.0
+      },
+      {
+        "id": "m3",
+        "document_id": "fin_doc_002",
+        "text": "Bridge",
+        "type": "ORG",
+        "start": 69,
+        "end": 75,
+        "detector": "human_gold",
+        "score": 1.0
+      },
+      {
+        "id": "m4",
+        "document_id": "fin_doc_002",
+        "text": "Morgan Stanley",
+        "type": "ORG",
+        "start": 129,
+        "end": 143,
+        "detector": "human_gold",
+        "score": 1.0
+      }
+    ],
+    "relation_annotations": [
+      {
+        "annotation_id": "ann_2_1",
+        "subject_mention_id": "m1",
+        "object_mention_id": "m2",
+        "relation": "FOUNDED",
+        "decision": "positive",
+        "polarity": "affirmed",
+        "modality": "asserted",
+        "lifecycle": "completed",
+        "evidence_spans": [
+          [
+            0,
+            52
+          ]
+        ],
+        "evidence_text": "Patrick Collison co-founded Stripe in San Francisco.",
+        "reviewer": "expert_reviewer_2",
+        "review_status": "reviewed"
+      },
+      {
+        "annotation_id": "ann_2_2",
+        "subject_mention_id": "m2",
+        "object_mention_id": "m3",
+        "relation": "ACQUIRED",
+        "decision": "positive",
+        "polarity": "affirmed",
+        "modality": "asserted",
+        "lifecycle": "completed",
+        "evidence_spans": [
+          [
+            53,
+            127
+          ]
+        ],
+        "evidence_text": "Stripe acquired Bridge to accelerate global stablecoin payment settlements.",
+        "reviewer": "expert_reviewer_2",
+        "review_status": "reviewed"
+      },
+      {
+        "annotation_id": "ann_2_3",
+        "subject_mention_id": "m4",
+        "object_mention_id": "m2",
+        "relation": "FINANCED",
+        "decision": "positive",
+        "polarity": "affirmed",
+        "modality": "asserted",
+        "lifecycle": "completed",
+        "evidence_spans": [
+          [
+            129,
+            190
+          ]
+        ],
+        "evidence_text": "Morgan Stanley financed Stripe in a major liquidity facility.",
+        "reviewer": "expert_reviewer_2",
+        "review_status": "reviewed"
+      }
+    ],
+    "data_origin": "test_fixture",
+    "review_status": "reviewed"
+  },
+  {
+    "schema_version": "2.finance.1",
+    "document_id": "fin_doc_003",
+    "title": "Adobe Figma Cancelled Merger",
+    "text": "Adobe announced plans to acquire Figma for $20 billion. However, regulatory scrutiny led both companies to cancel the deal. Adobe did not acquire Figma.",
+    "doc_group": "deal:adobe_figma_2022",
+    "license_or_rights": "regulatory_filing",
+    "reviewer": "expert_reviewer_1",
+    "review_guidelines_version": "2.0",
+    "review_timestamp": "2026-11-11T14:00:00Z",
+    "annotation_scope": "exhaustive_corporate_finance",
+    "mentions": [
+      {
+        "id": "m1",
+        "document_id": "fin_doc_003",
+        "text": "Adobe",
+        "type": "ORG",
+        "start": 0,
+        "end": 5,
+        "detector": "human_gold",
+        "score": 1.0
+      },
+      {
+        "id": "m2",
+        "document_id": "fin_doc_003",
+        "text": "Figma",
+        "type": "ORG",
+        "start": 33,
+        "end": 38,
+        "detector": "human_gold",
+        "score": 1.0
+      }
+    ],
+    "relation_annotations": [
+      {
+        "annotation_id": "ann_3_1",
+        "subject_mention_id": "m1",
+        "object_mention_id": "m2",
+        "relation": "ACQUIRED",
+        "decision": "positive",
+        "polarity": "negated",
+        "modality": "planned",
+        "lifecycle": "cancelled",
+        "evidence_spans": [
+          [
+            0,
+            152
+          ]
+        ],
+        "evidence_text": "Adobe announced plans to acquire Figma for $20 billion. However, regulatory scrutiny led both companies to cancel the deal. Adobe did not acquire Figma.",
+        "reviewer": "expert_reviewer_1",
+        "review_status": "reviewed",
+        "notes": "Proposed acquisition officially terminated and cancelled."
+      }
+    ],
+    "data_origin": "test_fixture",
+    "review_status": "reviewed"
+  },
+  {
+    "schema_version": "2.finance.1",
+    "document_id": "fin_doc_004",
+    "title": "Blackstone Databricks Investment",
+    "text": "Blackstone invested in Databricks to accelerate cloud data analytics expansion. Databricks acquired MosaicML to strengthen generative AI training.",
+    "doc_group": "deal:databricks_expansion_2023",
+    "license_or_rights": "public_press_release",
+    "reviewer": "expert_reviewer_2",
+    "review_guidelines_version": "2.0",
+    "review_timestamp": "2026-11-11T15:00:00Z",
+    "annotation_scope": "exhaustive_corporate_finance",
+    "mentions": [
+      {
+        "id": "m1",
+        "document_id": "fin_doc_004",
+        "text": "Blackstone",
+        "type": "ORG",
+        "start": 0,
+        "end": 10,
+        "detector": "human_gold",
+        "score": 1.0
+      },
+      {
+        "id": "m2",
+        "document_id": "fin_doc_004",
+        "text": "Databricks",
+        "type": "ORG",
+        "start": 23,
+        "end": 33,
+        "detector": "human_gold",
+        "score": 1.0
+      },
+      {
+        "id": "m3",
+        "document_id": "fin_doc_004",
+        "text": "MosaicML",
+        "type": "ORG",
+        "start": 100,
+        "end": 108,
+        "detector": "human_gold",
+        "score": 1.0
+      }
+    ],
+    "relation_annotations": [
+      {
+        "annotation_id": "ann_4_1",
+        "subject_mention_id": "m1",
+        "object_mention_id": "m2",
+        "relation": "INVESTED_IN",
+        "decision": "positive",
+        "polarity": "affirmed",
+        "modality": "asserted",
+        "lifecycle": "completed",
+        "evidence_spans": [
+          [
+            0,
+            79
+          ]
+        ],
+        "evidence_text": "Blackstone invested in Databricks to accelerate cloud data analytics expansion.",
+        "reviewer": "expert_reviewer_2",
+        "review_status": "reviewed"
+      },
+      {
+        "annotation_id": "ann_4_2",
+        "subject_mention_id": "m2",
+        "object_mention_id": "m3",
+        "relation": "ACQUIRED",
+        "decision": "positive",
+        "polarity": "affirmed",
+        "modality": "asserted",
+        "lifecycle": "completed",
+        "evidence_spans": [
+          [
+            80,
+            146
+          ]
+        ],
+        "evidence_text": "Databricks acquired MosaicML to strengthen generative AI training.",
+        "reviewer": "expert_reviewer_2",
+        "review_status": "reviewed"
+      },
+      {
+        "annotation_id": "ann_4_3",
+        "subject_mention_id": "m1",
+        "object_mention_id": "m3",
+        "relation": "ACQUIRED",
+        "decision": "explicit_negative",
+        "polarity": "unknown",
+        "modality": "unknown",
+        "lifecycle": "unknown",
+        "evidence_spans": [],
+        "evidence_text": "",
+        "reviewer": "expert_reviewer_2",
+        "review_status": "reviewed",
+        "notes": "Blackstone did not acquire MosaicML."
+      }
+    ],
+    "data_origin": "test_fixture",
+    "review_status": "reviewed"
+  },
+  {
+    "schema_version": "2.finance.1",
+    "document_id": "fin_doc_005_near_dup",
+    "title": "Microsoft GitHub Acquisition Close (Near Duplicate Wire)",
+    "text": "Microsoft completed the acquisition of GitHub for $7.5 billion in an all-stock transaction. Satya Nadella serves as CEO of Microsoft. Goldman Sachs advised Microsoft on the transaction.",
+    "doc_group": "deal:msft_github_wire",
+    "license_or_rights": "news_wire",
+    "reviewer": "expert_reviewer_1",
+    "review_guidelines_version": "2.0",
+    "review_timestamp": "2026-11-11T16:00:00Z",
+    "annotation_scope": "exhaustive_corporate_finance",
+    "mentions": [
+      {
+        "id": "m1",
+        "document_id": "fin_doc_005_near_dup",
+        "text": "Microsoft",
+        "type": "ORG",
+        "start": 0,
+        "end": 9,
+        "detector": "human_gold",
+        "score": 1.0
+      },
+      {
+        "id": "m2",
+        "document_id": "fin_doc_005_near_dup",
+        "text": "GitHub",
+        "type": "ORG",
+        "start": 39,
+        "end": 45,
+        "detector": "human_gold",
+        "score": 1.0
+      },
+      {
+        "id": "m3",
+        "document_id": "fin_doc_005_near_dup",
+        "text": "Satya Nadella",
+        "type": "PERSON",
+        "start": 92,
+        "end": 105,
+        "detector": "human_gold",
+        "score": 1.0
+      },
+      {
+        "id": "m4",
+        "document_id": "fin_doc_005_near_dup",
+        "text": "Goldman Sachs",
+        "type": "ORG",
+        "start": 134,
+        "end": 147,
+        "detector": "human_gold",
+        "score": 1.0
+      }
+    ],
+    "relation_annotations": [
+      {
+        "annotation_id": "ann_5_1",
+        "subject_mention_id": "m1",
+        "object_mention_id": "m2",
+        "relation": "ACQUIRED",
+        "decision": "positive",
+        "polarity": "affirmed",
+        "modality": "asserted",
+        "lifecycle": "completed",
+        "evidence_spans": [
+          [
+            0,
+            91
+          ]
+        ],
+        "evidence_text": "Microsoft completed the acquisition of GitHub for $7.5 billion in an all-stock transaction.",
+        "reviewer": "expert_reviewer_1",
+        "review_status": "reviewed"
+      }
+    ],
+    "data_origin": "test_fixture",
+    "review_status": "reviewed"
+  },
+  {
+    "schema_version": "2.finance.1",
+    "document_id": "fin_doc_006_exact_dup",
+    "title": "Microsoft GitHub Acquisition Duplicate",
+    "text": "Microsoft acquired GitHub for $7.5 billion in an all-stock transaction. Satya Nadella serves as CEO of Microsoft. Goldman Sachs advised Microsoft on the transaction.",
+    "doc_group": "deal:msft_github_dup",
+    "license_or_rights": "public_press_release",
+    "reviewer": "expert_reviewer_1",
+    "review_guidelines_version": "2.0",
+    "review_timestamp": "2026-11-11T12:00:00Z",
+    "annotation_scope": "exhaustive_corporate_finance",
+    "mentions": [
+      {
+        "id": "m1",
+        "document_id": "fin_doc_006_exact_dup",
+        "text": "Microsoft",
+        "type": "ORG",
+        "start": 0,
+        "end": 9,
+        "detector": "human_gold",
+        "score": 1.0
+      },
+      {
+        "id": "m2",
+        "document_id": "fin_doc_006_exact_dup",
+        "text": "GitHub",
+        "type": "ORG",
+        "start": 19,
+        "end": 25,
+        "detector": "human_gold",
+        "score": 1.0
+      }
+    ],
+    "relation_annotations": [
+      {
+        "annotation_id": "ann_6_1",
+        "subject_mention_id": "m1",
+        "object_mention_id": "m2",
+        "relation": "ACQUIRED",
+        "decision": "positive",
+        "polarity": "affirmed",
+        "modality": "asserted",
+        "lifecycle": "completed",
+        "evidence_spans": [
+          [
+            0,
+            71
+          ]
+        ],
+        "evidence_text": "Microsoft acquired GitHub for $7.5 billion in an all-stock transaction.",
+        "reviewer": "expert_reviewer_1",
+        "review_status": "reviewed"
+      }
+    ],
+    "data_origin": "test_fixture",
+    "review_status": "reviewed"
+  }
+]

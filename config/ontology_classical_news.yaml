@@ -1,0 +1,55 @@
+version: "1.0-classical-news"
+domain: "news_biography"
+description: "Pretrained Classical News Ontology: Stanford CRF NER (3-class) + Roth Supervised Relation Extractor."
+
+entity_types:
+  PERSON:
+    native_tag: "PEOPLE"
+    description: "Individuals, historical figures, executives, public officials."
+  ORGANIZATION:
+    native_tag: "ORGANIZATION"
+    description: "Companies, government bodies, universities, institutions."
+  LOCATION:
+    native_tag: "LOCATION"
+    description: "Countries, cities, states, geographic regions, physical facilities."
+
+relations:
+  WORKS_FOR:
+    native_label: "Work_For"
+    description: "Person is employed by, leads, or works for an organization."
+    direction: "PERSON -> ORGANIZATION"
+    subject_type: "PERSON"
+    object_type: "ORGANIZATION"
+    allowed_type_pairs:
+      - ["PERSON", "ORGANIZATION"]
+    distinction: "Employment or corporate leadership vs ownership or customer relation."
+
+  LIVES_IN:
+    native_label: "Live_In"
+    description: "Person lives, resides, or resided in a geographical location."
+    direction: "PERSON -> LOCATION"
+    subject_type: "PERSON"
+    object_type: "LOCATION"
+    allowed_type_pairs:
+      - ["PERSON", "LOCATION"]
+    distinction: "Residence or domicile vs birthplace or temporary visit."
+
+  BASED_IN:
+    native_label: "OrgBased_In"
+    description: "Organization is headquartered, incorporated, or based in a location."
+    direction: "ORGANIZATION -> LOCATION"
+    subject_type: "ORGANIZATION"
+    object_type: "LOCATION"
+    allowed_type_pairs:
+      - ["ORGANIZATION", "LOCATION"]
+    distinction: "Corporate headquarters/base vs branch office or sales market."
+
+  LOCATED_IN:
+    native_label: "Located_In"
+    description: "Location or physical place is geographically situated within a broader location."
+    direction: "LOCATION -> LOCATION"
+    subject_type: "LOCATION"
+    object_type: "LOCATION"
+    allowed_type_pairs:
+      - ["LOCATION", "LOCATION"]
+    distinction: "Physical geographic containment (city in state, country in continent)."

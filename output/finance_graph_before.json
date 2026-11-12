@@ -1,0 +1,1500 @@
+{
+  "filename": "Doc2Graph_Corporate_Finance_MA_Dummy.pdf",
+  "summary": {
+    "entities": 73,
+    "edges": 26,
+    "isolated_entities": 44,
+    "connected_entity_fraction": 0.3973
+  },
+  "entities": [
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:0:36:133",
+      "name": "Northstar Systems\u2019 Acquisition Of Meridian Analytics Corporate Finance & Mergers And Acquisitions",
+      "type": "ORG",
+      "aliases": [
+        "Northstar Systems\u2019 Acquisition of Meridian\nAnalytics\nCorporate Finance & Mergers and Acquisitions"
+      ],
+      "initials_key": "NSAMACFMA"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:67:0:35",
+      "name": "Target Meridian Analytics Pvt. Ltd",
+      "type": "ORG",
+      "aliases": [
+        "Meridian Analytics Pvt. Ltd.",
+        "Target Meridian Analytics Pvt. Ltd."
+      ],
+      "initials_key": "TMAPL"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:29:70:96",
+      "name": "Northstar Chief Technology",
+      "type": "ORG",
+      "aliases": [
+        "Northstar",
+        "Northstar Chief Technology",
+        "Northstar CloudOne",
+        "Northstar Systems Ltd."
+      ],
+      "initials_key": "NCT"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:1:82:91",
+      "name": "Bengaluru",
+      "type": "GPE",
+      "aliases": [
+        "Bengaluru"
+      ],
+      "initials_key": "B"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:1:213:217",
+      "name": "Pune",
+      "type": "ORG",
+      "aliases": [
+        "Pune"
+      ],
+      "initials_key": "P"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:10:57:68",
+      "name": "Rohan Mehta",
+      "type": "PERSON",
+      "aliases": [
+        "Rohan\nMehta",
+        "Rohan Mehta"
+      ],
+      "initials_key": "RM"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:4:37:47",
+      "name": "Ananya Rao",
+      "type": "PERSON",
+      "aliases": [
+        "Ananya Rao"
+      ],
+      "initials_key": "AR"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:5:0:3",
+      "name": "Rao",
+      "type": "PERSON",
+      "aliases": [
+        "Rao"
+      ],
+      "initials_key": "R"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:6:84:112",
+      "name": "Financial Services Analytics",
+      "type": "ORG",
+      "aliases": [
+        "Financial Services Analytics"
+      ],
+      "initials_key": "FSA"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:12:0:5",
+      "name": "Mehta",
+      "type": "PERSON",
+      "aliases": [
+        "Mehta"
+      ],
+      "initials_key": "M"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:8:178:195",
+      "name": "FY2026 And FY2027",
+      "type": "ORG",
+      "aliases": [
+        "FY2026 and FY2027"
+      ],
+      "initials_key": "FF"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:9:133:136",
+      "name": "LLP",
+      "type": "ORG",
+      "aliases": [
+        "LLP"
+      ],
+      "initials_key": "LLP"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:9:113:123",
+      "name": "Cedar Peak",
+      "type": "PERSON",
+      "aliases": [
+        "Cedar Peak"
+      ],
+      "initials_key": "CP"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:10:73:83",
+      "name": "Kavya Iyer",
+      "type": "PERSON",
+      "aliases": [
+        "Kavya Iyer"
+      ],
+      "initials_key": "KI"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:10:15:33",
+      "name": "Ownership Meridian",
+      "type": "ORG",
+      "aliases": [
+        "Ownership\nMeridian"
+      ],
+      "initials_key": "OM"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:11:0:19",
+      "name": "Cedar Peak Ventures",
+      "type": "ORG",
+      "aliases": [
+        "Cedar Peak Ventures"
+      ],
+      "initials_key": "CPV"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:12:16:20",
+      "name": "Iyer",
+      "type": "ORG",
+      "aliases": [
+        "Iyer"
+      ],
+      "initials_key": "I"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:13:77:82",
+      "name": "NSTAR",
+      "type": "ORG",
+      "aliases": [
+        "NSTAR"
+      ],
+      "initials_key": "NSTAR"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:13:23:53",
+      "name": "National Stock Exchange Of",
+      "type": "ORG",
+      "aliases": [
+        "the National Stock Exchange of"
+      ],
+      "initials_key": "NSE"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:13:54:59",
+      "name": "India",
+      "type": "GPE",
+      "aliases": [
+        "India"
+      ],
+      "initials_key": "I"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:14:41:60",
+      "name": "Horizon Mutual Fund",
+      "type": "ORG",
+      "aliases": [
+        "Horizon Mutual Fund"
+      ],
+      "initials_key": "HMF"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:16:123:134",
+      "name": "Devika Shah",
+      "type": "PERSON",
+      "aliases": [
+        "Devika Shah"
+      ],
+      "initials_key": "DS"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:16:56:89",
+      "name": "Strategy And Investment Committee",
+      "type": "ORG",
+      "aliases": [
+        "Strategy and Investment Committee"
+      ],
+      "initials_key": "SIC"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:19:62:82",
+      "name": "Desai Rao Associates",
+      "type": "ORG",
+      "aliases": [
+        "Desai Rao Associates"
+      ],
+      "initials_key": "DRA"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:68:202:226",
+      "name": "K&A Legal Partners Legal",
+      "type": "ORG",
+      "aliases": [
+        "K&A Legal Partners\nLegal",
+        "Legal Partners"
+      ],
+      "initials_key": "KLPL"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:19:0:3",
+      "name": "K&A",
+      "type": "ORG",
+      "aliases": [
+        "K&A"
+      ],
+      "initials_key": "KA"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:20:0:21",
+      "name": "Grant Thornton Bharat",
+      "type": "PERSON",
+      "aliases": [
+        "Grant Thornton Bharat"
+      ],
+      "initials_key": "GTB"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:20:61:79",
+      "name": "Veritas Cyber Risk",
+      "type": "ORG",
+      "aliases": [
+        "Veritas Cyber Risk"
+      ],
+      "initials_key": "VCR"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:21:127:146",
+      "name": "Union National Bank",
+      "type": "ORG",
+      "aliases": [
+        "Union National Bank"
+      ],
+      "initials_key": "UNB"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:22:72:81",
+      "name": "Benchmark",
+      "type": "ORG",
+      "aliases": [
+        "benchmark"
+      ],
+      "initials_key": "B"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:23:37:52",
+      "name": "Sameer Kulkarni",
+      "type": "PERSON",
+      "aliases": [
+        "Sameer Kulkarni"
+      ],
+      "initials_key": "SK"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:24:24:33",
+      "name": "FICTIONAL",
+      "type": "ORG",
+      "aliases": [
+        "FICTIONAL"
+      ],
+      "initials_key": "F"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:33:102:110",
+      "name": "CloudOne",
+      "type": "ORG",
+      "aliases": [
+        "CORPUS",
+        "CloudOne"
+      ],
+      "initials_key": "CO"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:24:10:14",
+      "name": "TEST",
+      "type": "ORG",
+      "aliases": [
+        "TEST"
+      ],
+      "initials_key": "TEST"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:25:23:39",
+      "name": "Meridian Insight",
+      "type": "PERSON",
+      "aliases": [
+        "Meridian Insight"
+      ],
+      "initials_key": "MI"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:27:35:51",
+      "name": "Meridian Insight",
+      "type": "ORG",
+      "aliases": [
+        "Meridian Insight"
+      ],
+      "initials_key": "MI"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:29:149:164",
+      "name": "Arjun Deshpande",
+      "type": "ORG",
+      "aliases": [
+        "Arjun Deshpande"
+      ],
+      "initials_key": "AD"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:29:105:115",
+      "name": "Priya Nair",
+      "type": "PERSON",
+      "aliases": [
+        "Priya Nair"
+      ],
+      "initials_key": "PN"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:30:24:53",
+      "name": "Integration Management Office",
+      "type": "ORG",
+      "aliases": [
+        "IMO",
+        "Integration Management Office"
+      ],
+      "initials_key": "IMO"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:30:67:76",
+      "name": "Deshpande",
+      "type": "ORG",
+      "aliases": [
+        "Deshpande"
+      ],
+      "initials_key": "D"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:30:0:4",
+      "name": "Nair",
+      "type": "ORG",
+      "aliases": [
+        "Nair"
+      ],
+      "initials_key": "N"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:32:87:96",
+      "name": "Hyderabad",
+      "type": "ORG",
+      "aliases": [
+        "Hyderabad"
+      ],
+      "initials_key": "H"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:32:48:52",
+      "name": "Pune",
+      "type": "GPE",
+      "aliases": [
+        "Pune"
+      ],
+      "initials_key": "P"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:34:80:115",
+      "name": "Competition Commission Of India",
+      "type": "ORG",
+      "aliases": [
+        "CCI",
+        "the Competition Commission of India"
+      ],
+      "initials_key": "CCI"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:34:18:47",
+      "name": "Closing Conditions Completion",
+      "type": "PERSON",
+      "aliases": [
+        "Closing Conditions\nCompletion"
+      ],
+      "initials_key": "CCC"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:42:80:90",
+      "name": "DataPocket",
+      "type": "ORG",
+      "aliases": [
+        "DataPocket"
+      ],
+      "initials_key": "DP"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:43:60:81",
+      "name": "Pocket Labs Pvt. Ltd",
+      "type": "PERSON",
+      "aliases": [
+        "Pocket Labs",
+        "Pocket Labs Pvt. Ltd."
+      ],
+      "initials_key": "PLPL"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:44:89:98",
+      "name": "Neel Shah",
+      "type": "PERSON",
+      "aliases": [
+        "Neel Shah"
+      ],
+      "initials_key": "NS"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:44:0:10",
+      "name": "Meridian\u2019S",
+      "type": "ORG",
+      "aliases": [
+        "Meridian\u2019s"
+      ],
+      "initials_key": "MS"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:53:0:23",
+      "name": "Post-Closing Governance",
+      "type": "ORG",
+      "aliases": [
+        "Post-Closing Governance"
+      ],
+      "initials_key": "PCG"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:58:78:84",
+      "name": "FY2026",
+      "type": "ORG",
+      "aliases": [
+        "FY2026"
+      ],
+      "initials_key": "F"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:66:54:85",
+      "name": "Acquirer Northstar Systems Ltd",
+      "type": "ORG",
+      "aliases": [
+        "Acquirer Northstar Systems Ltd."
+      ],
+      "initials_key": "ANSL"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:68:266:325",
+      "name": "Lender Union National Bank Regulator Competition Commission",
+      "type": "ORG",
+      "aliases": [
+        "Lender Union National Bank\nRegulator Competition Commission"
+      ],
+      "initials_key": "LUNBRCC"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:68:245:265",
+      "name": "Desai Rao Associates",
+      "type": "PERSON",
+      "aliases": [
+        "Desai Rao Associates"
+      ],
+      "initials_key": "DRA"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:68:163:181",
+      "name": "Axis Capital Legal",
+      "type": "ORG",
+      "aliases": [
+        "Axis Capital\nLegal"
+      ],
+      "initials_key": "ACL"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:68:133:142",
+      "name": "Financial",
+      "type": "ORG",
+      "aliases": [
+        "Financial"
+      ],
+      "initials_key": "F"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:68:72:79",
+      "name": "Upfront",
+      "type": "ORG",
+      "aliases": [
+        "Upfront"
+      ],
+      "initials_key": "U"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:69:0:12",
+      "name": "Analyst Note",
+      "type": "PERSON",
+      "aliases": [
+        "Analyst Note"
+      ],
+      "initials_key": "AN"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:72:38:50",
+      "name": "ORGANIZATION",
+      "type": "ORG",
+      "aliases": [
+        "ORGANIZATION"
+      ],
+      "initials_key": "O"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:72:106:117",
+      "name": "ACQUISITION",
+      "type": "ORG",
+      "aliases": [
+        "ACQUISITION"
+      ],
+      "initials_key": "A"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:72:84:93",
+      "name": "REGULATOR",
+      "type": "ORG",
+      "aliases": [
+        "REGULATOR"
+      ],
+      "initials_key": "R"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:72:95:104",
+      "name": "OWNERSHIP",
+      "type": "ORG",
+      "aliases": [
+        "OWNERSHIP"
+      ],
+      "initials_key": "O"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:72:52:60",
+      "name": "LOCATION",
+      "type": "ORG",
+      "aliases": [
+        "LOCATION"
+      ],
+      "initials_key": "LOCATION"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:72:75:82",
+      "name": "PRODUCT",
+      "type": "ORG",
+      "aliases": [
+        "PRODUCT"
+      ],
+      "initials_key": "PRODUCT"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:72:30:36",
+      "name": "PERSON",
+      "type": "ORG",
+      "aliases": [
+        "PERSON"
+      ],
+      "initials_key": "PERSON"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:72:68:73",
+      "name": "MONEY",
+      "type": "ORG",
+      "aliases": [
+        "MONEY"
+      ],
+      "initials_key": "MONEY"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:72:62:66",
+      "name": "DATE",
+      "type": "ORG",
+      "aliases": [
+        "DATE"
+      ],
+      "initials_key": "DATE"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:72:181:194",
+      "name": "SUBSIDIARY_OF",
+      "type": "GPE",
+      "aliases": [
+        "SUBSIDIARY_OF"
+      ],
+      "initials_key": "S"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:72:168:179",
+      "name": "FINANCED_BY",
+      "type": "ORG",
+      "aliases": [
+        "FINANCED_BY",
+        "FOUNDED_BY"
+      ],
+      "initials_key": "FB"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:72:196:207",
+      "name": "APPROVED_BY",
+      "type": "PERSON",
+      "aliases": [
+        "APPROVED_BY"
+      ],
+      "initials_key": "AB"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:72:156:166",
+      "name": "REPORTS_TO",
+      "type": "ORG",
+      "aliases": [
+        "REPORTS_TO"
+      ],
+      "initials_key": "RT"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:4:concept:53:69",
+      "name": "the negotiations",
+      "type": "PRODUCT",
+      "aliases": [
+        "the negotiations"
+      ],
+      "initials_key": "N"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:30:concept:87:119",
+      "name": "the product migration workstream",
+      "type": "PRODUCT",
+      "aliases": [
+        "the product migration workstream"
+      ],
+      "initials_key": "PMW"
+    }
+  ],
+  "relationships": [
+    {
+      "relation_type": "ACQUIRED",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:0:36:133",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:0:36:133",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:0"
+      ],
+      "extractors": [
+        "prep"
+      ],
+      "confidence": 0.9607543918344554,
+      "raw_predicate": "acquisition",
+      "evidence": "CONFIDENTIAL \u2014 FICTIONAL CASE STUDY\nNorthstar Systems\u2019 Acquisition of Meridian\nAnalytics\nCorporate Finance & Mergers and Acquisitions | Synthetic training document for entity and relationship extraction\n1.",
+      "source_name": "Northstar Systems\u2019 Acquisition Of Meridian Analytics Corporate Finance & Mergers And Acquisitions",
+      "target_name": "Northstar Systems\u2019 Acquisition Of Meridian Analytics Corporate Finance & Mergers And Acquisitions"
+    },
+    {
+      "relation_type": "RELATED_TO",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:67:0:35",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:1:213:217",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:1"
+      ],
+      "extractors": [
+        "appos"
+      ],
+      "confidence": 0.9827763348345245,
+      "raw_predicate": "appos",
+      "evidence": "Transaction Overview\nOn 14 February 2025, Northstar Systems Ltd. (\u201cNorthstar\u201d), a Bengaluru-based enterprise software company,\nsigned a definitive agreement to acquire Meridian Analytics Pvt. Ltd. (\u201cMeridian\u201d), a Pune-based data analytics\nprovider.",
+      "source_name": "Target Meridian Analytics Pvt. Ltd",
+      "target_name": "Pune"
+    },
+    {
+      "relation_type": "RELATED_TO",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:0:36:133",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:4:concept:53:69",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:4"
+      ],
+      "extractors": [
+        "svo"
+      ],
+      "confidence": 0.916441465991175,
+      "raw_predicate": "lead",
+      "evidence": "Northstar\u2019s Chief Executive Officer, Ananya Rao, led the negotiations with Meridian\u2019s founder and CEO, Rohan\nMehta.",
+      "source_name": "Northstar Systems\u2019 Acquisition Of Meridian Analytics Corporate Finance & Mergers And Acquisitions",
+      "target_name": "the negotiations"
+    },
+    {
+      "relation_type": "RELATED_TO",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:0:36:133",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:4:37:47",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:4"
+      ],
+      "extractors": [
+        "appos"
+      ],
+      "confidence": 0.9677967413888854,
+      "raw_predicate": "appos",
+      "evidence": "Northstar\u2019s Chief Executive Officer, Ananya Rao, led the negotiations with Meridian\u2019s founder and CEO, Rohan\nMehta.",
+      "source_name": "Northstar Systems\u2019 Acquisition Of Meridian Analytics Corporate Finance & Mergers And Acquisitions",
+      "target_name": "Ananya Rao"
+    },
+    {
+      "relation_type": "RELATED_TO",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:0:36:133",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:0:36:133",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:4",
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:23"
+      ],
+      "extractors": [
+        "nominal"
+      ],
+      "confidence": 0.9827763348345245,
+      "raw_predicate": "Officer",
+      "evidence": "Northstar\u2019s Chief Financial Officer, Sameer Kulkarni, stated that the\ncompany expects the transaction to remain within its leverage policy.",
+      "source_name": "Northstar Systems\u2019 Acquisition Of Meridian Analytics Corporate Finance & Mergers And Acquisitions",
+      "target_name": "Northstar Systems\u2019 Acquisition Of Meridian Analytics Corporate Finance & Mergers And Acquisitions"
+    },
+    {
+      "relation_type": "LEADS",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:10:57:68",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:6:84:112",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:6"
+      ],
+      "extractors": [
+        "prep"
+      ],
+      "confidence": 0.5121440957870685,
+      "raw_predicate": "president",
+      "evidence": "Mehta will remain with the\ncombined business for at least 18 months as President of Financial Services Analytics.",
+      "source_name": "Rohan Mehta",
+      "target_name": "Financial Services Analytics"
+    },
+    {
+      "relation_type": "INVESTED_IN",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:9:133:136",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:9:133:136",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:9"
+      ],
+      "extractors": [
+        "nominal"
+      ],
+      "confidence": 0.9803197978496815,
+      "raw_predicate": "investor",
+      "evidence": "The earn-out will be\npaid to Meridian\u2019s selling shareholders, including founder Rohan Mehta and venture investor Cedar Peak\nVentures LLP.",
+      "source_name": "LLP",
+      "target_name": "LLP"
+    },
+    {
+      "relation_type": "FOUNDED",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:10:57:68",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:10:15:33",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:10"
+      ],
+      "extractors": [
+        "svo"
+      ],
+      "confidence": 0.6941326918677044,
+      "raw_predicate": "found",
+      "evidence": "2. Parties and Ownership\nMeridian was founded in 2016 by Rohan Mehta and Kavya Iyer.",
+      "source_name": "Rohan Mehta",
+      "target_name": "Ownership Meridian"
+    },
+    {
+      "relation_type": "FOUNDED",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:10:73:83",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:10:15:33",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:10"
+      ],
+      "extractors": [
+        "svo"
+      ],
+      "confidence": 0.6074662662093945,
+      "raw_predicate": "found",
+      "evidence": "2. Parties and Ownership\nMeridian was founded in 2016 by Rohan Mehta and Kavya Iyer.",
+      "source_name": "Kavya Iyer",
+      "target_name": "Ownership Meridian"
+    },
+    {
+      "relation_type": "RELATED_TO",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:0:36:133",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:13:23:53",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:13"
+      ],
+      "extractors": [
+        "prep"
+      ],
+      "confidence": 0.613590198796727,
+      "raw_predicate": "list",
+      "evidence": "Northstar is listed on the National Stock Exchange of India under the ticker NSTAR.",
+      "source_name": "Northstar Systems\u2019 Acquisition Of Meridian Analytics Corporate Finance & Mergers And Acquisitions",
+      "target_name": "National Stock Exchange Of"
+    },
+    {
+      "relation_type": "RELATED_TO",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:13:23:53",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:13:54:59",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:13"
+      ],
+      "extractors": [
+        "prep"
+      ],
+      "confidence": 0.8029138209334845,
+      "raw_predicate": "exchange",
+      "evidence": "Northstar is listed on the National Stock Exchange of India under the ticker NSTAR.",
+      "source_name": "National Stock Exchange Of",
+      "target_name": "India"
+    },
+    {
+      "relation_type": "RELATED_TO",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:68:202:226",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:0:36:133",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:19"
+      ],
+      "extractors": [
+        "svo"
+      ],
+      "confidence": 0.7906857734725629,
+      "raw_predicate": "advise",
+      "evidence": "K&A; Legal Partners advised Northstar on legal\nmatters, while Desai Rao Associates represented Meridian.",
+      "source_name": "K&A Legal Partners Legal",
+      "target_name": "Northstar Systems\u2019 Acquisition Of Meridian Analytics Corporate Finance & Mergers And Acquisitions"
+    },
+    {
+      "relation_type": "RELATED_TO",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:0:36:133",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:23:37:52",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:23"
+      ],
+      "extractors": [
+        "appos"
+      ],
+      "confidence": 0.9677967413888854,
+      "raw_predicate": "appos",
+      "evidence": "Northstar\u2019s Chief Financial Officer, Sameer Kulkarni, stated that the\ncompany expects the transaction to remain within its leverage policy.",
+      "source_name": "Northstar Systems\u2019 Acquisition Of Meridian Analytics Corporate Finance & Mergers And Acquisitions",
+      "target_name": "Sameer Kulkarni"
+    },
+    {
+      "relation_type": "RELATED_TO",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:24:24:33",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:25:23:39",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:25"
+      ],
+      "extractors": [
+        "appos"
+      ],
+      "confidence": 0.9677967413888854,
+      "raw_predicate": "appos",
+      "evidence": "Its flagship\nplatform, Meridian Insight, helps financial institutions detect suspicious transactions, estimate credit risk, and\nforecast customer churn.",
+      "source_name": "FICTIONAL",
+      "target_name": "Meridian Insight"
+    },
+    {
+      "relation_type": "RELATED_TO",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:27:35:51",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:29:70:96",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:28"
+      ],
+      "extractors": [
+        "appos"
+      ],
+      "confidence": 0.9827763348345245,
+      "raw_predicate": "appos",
+      "evidence": "Northstar also plans to integrate Meridian Insight with its cloud platform, Northstar CloudOne.",
+      "source_name": "Meridian Insight",
+      "target_name": "Northstar Chief Technology"
+    },
+    {
+      "relation_type": "RELATED_TO",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:29:105:115",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:29:70:96",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:29"
+      ],
+      "extractors": [
+        "nominal"
+      ],
+      "confidence": 0.7979210063888993,
+      "raw_predicate": "Officer",
+      "evidence": "The\nintegration is expected to take 12 months and will be overseen by Northstar Chief Technology Officer Priya Nair\nand Meridian\u2019s engineering head, Arjun Deshpande.",
+      "source_name": "Priya Nair",
+      "target_name": "Northstar Chief Technology"
+    },
+    {
+      "relation_type": "RELATED_TO",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:30:0:4",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:30:24:53",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:30"
+      ],
+      "extractors": [
+        "svo"
+      ],
+      "confidence": 0.7906857734725629,
+      "raw_predicate": "chair",
+      "evidence": "Nair will chair a joint Integration Management Office (IMO),\nwhile Deshpande will lead the product migration workstream.",
+      "source_name": "Nair",
+      "target_name": "Integration Management Office"
+    },
+    {
+      "relation_type": "RELATED_TO",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:29:149:164",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:30:concept:87:119",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:30"
+      ],
+      "extractors": [
+        "svo"
+      ],
+      "confidence": 0.916441465991175,
+      "raw_predicate": "lead",
+      "evidence": "Nair will chair a joint Integration Management Office (IMO),\nwhile Deshpande will lead the product migration workstream.",
+      "source_name": "Arjun Deshpande",
+      "target_name": "the product migration workstream"
+    },
+    {
+      "relation_type": "RELATED_TO",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:30:24:53",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:30:24:53",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:30"
+      ],
+      "extractors": [
+        "appos"
+      ],
+      "confidence": 0.9827763348345245,
+      "raw_predicate": "appos",
+      "evidence": "Nair will chair a joint Integration Management Office (IMO),\nwhile Deshpande will lead the product migration workstream.",
+      "source_name": "Integration Management Office",
+      "target_name": "Integration Management Office"
+    },
+    {
+      "relation_type": "RELATED_TO",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:34:80:115",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:34:80:115",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:34"
+      ],
+      "extractors": [
+        "appos",
+        "prep"
+      ],
+      "confidence": 0.9827763348345245,
+      "raw_predicate": "appos",
+      "evidence": "5. Regulatory and Closing Conditions\nCompletion is conditional on approval from the Competition Commission of India (CCI), consent from certain\nMeridian lenders, and the absence of a material adverse change.",
+      "source_name": "Competition Commission Of India",
+      "target_name": "Competition Commission Of India"
+    },
+    {
+      "relation_type": "RELATED_TO",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:27:35:51",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:44:89:98",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:44"
+      ],
+      "extractors": [
+        "appos"
+      ],
+      "confidence": 0.9677967413888854,
+      "raw_predicate": "appos",
+      "evidence": "Meridian\u2019s shareholders will\nown 70% of Pocket Labs, while its current product director, Neel Shah, will own 30% and serve as its CEO.",
+      "source_name": "Meridian Insight",
+      "target_name": "Neel Shah"
+    },
+    {
+      "relation_type": "LEADS",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:27:35:51",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:27:35:51",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:44"
+      ],
+      "extractors": [
+        "nominal"
+      ],
+      "confidence": 0.9970484052008372,
+      "raw_predicate": "director",
+      "evidence": "Meridian\u2019s shareholders will\nown 70% of Pocket Labs, while its current product director, Neel Shah, will own 30% and serve as its CEO.",
+      "source_name": "Meridian Insight",
+      "target_name": "Meridian Insight"
+    },
+    {
+      "relation_type": "RELATED_TO",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:0:36:133",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:27:35:51",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:55"
+      ],
+      "extractors": [
+        "prep"
+      ],
+      "confidence": 0.9038527208047256,
+      "raw_predicate": "appoint",
+      "evidence": "Northstar will appoint two directors to Meridian\u2019s board.",
+      "source_name": "Northstar Systems\u2019 Acquisition Of Meridian Analytics Corporate Finance & Mergers And Acquisitions",
+      "target_name": "Meridian Insight"
+    },
+    {
+      "relation_type": "RELATED_TO",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:66:54:85",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:1:82:91",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:66"
+      ],
+      "extractors": [
+        "appos"
+      ],
+      "confidence": 0.9825220160953545,
+      "raw_predicate": "appos",
+      "evidence": "Selected Transaction Facts\nItem Fictional case detail\nAcquirer Northstar Systems Ltd. (Bengaluru)",
+      "source_name": "Acquirer Northstar Systems Ltd",
+      "target_name": "Bengaluru"
+    },
+    {
+      "relation_type": "RELATED_TO",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:6:84:112",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:6:84:112",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:68"
+      ],
+      "extractors": [
+        "appos"
+      ],
+      "confidence": 0.9827763348345245,
+      "raw_predicate": "appos",
+      "evidence": "Signing date 14 February 2025\nEnterprise value Approximately n420 crore\nUpfront consideration n300 crore\nMaximum earn-out n120 crore\nFinancial adviser to acquirer Axis Capital\nLegal adviser to acquirer K&A Legal Partners\nLegal adviser to target Desai Rao Associates\nLender Union National Bank\nRegulator Competition Commission of India\n9.",
+      "source_name": "Financial Services Analytics",
+      "target_name": "Financial Services Analytics"
+    },
+    {
+      "relation_type": "RELATED_TO",
+      "source_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:72:30:36",
+      "target_id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:72:38:50",
+      "chunk_ids": [
+        "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:72"
+      ],
+      "extractors": [
+        "appos"
+      ],
+      "confidence": 0.9827763348345245,
+      "raw_predicate": "appos",
+      "evidence": "Suggested extraction targets: PERSON, ORGANIZATION, LOCATION, DATE, MONEY, PRODUCT, REGULATOR,\nOWNERSHIP, ACQUISITION, ADVISER_TO, FOUNDED_BY, INVESTED_IN, REPORTS_TO, FINANCED_BY,\nSUBSIDIARY_OF, APPROVED_BY, and CONDITIONAL_ON.",
+      "source_name": "PERSON",
+      "target_name": "ORGANIZATION"
+    }
+  ],
+  "isolated_entities": [
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:5:0:3",
+      "name": "Rao",
+      "type": "PERSON",
+      "aliases": [
+        "Rao"
+      ],
+      "initials_key": "R"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:12:0:5",
+      "name": "Mehta",
+      "type": "PERSON",
+      "aliases": [
+        "Mehta"
+      ],
+      "initials_key": "M"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:8:178:195",
+      "name": "FY2026 And FY2027",
+      "type": "ORG",
+      "aliases": [
+        "FY2026 and FY2027"
+      ],
+      "initials_key": "FF"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:9:113:123",
+      "name": "Cedar Peak",
+      "type": "PERSON",
+      "aliases": [
+        "Cedar Peak"
+      ],
+      "initials_key": "CP"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:11:0:19",
+      "name": "Cedar Peak Ventures",
+      "type": "ORG",
+      "aliases": [
+        "Cedar Peak Ventures"
+      ],
+      "initials_key": "CPV"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:12:16:20",
+      "name": "Iyer",
+      "type": "ORG",
+      "aliases": [
+        "Iyer"
+      ],
+      "initials_key": "I"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:13:77:82",
+      "name": "NSTAR",
+      "type": "ORG",
+      "aliases": [
+        "NSTAR"
+      ],
+      "initials_key": "NSTAR"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:14:41:60",
+      "name": "Horizon Mutual Fund",
+      "type": "ORG",
+      "aliases": [
+        "Horizon Mutual Fund"
+      ],
+      "initials_key": "HMF"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:16:123:134",
+      "name": "Devika Shah",
+      "type": "PERSON",
+      "aliases": [
+        "Devika Shah"
+      ],
+      "initials_key": "DS"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:16:56:89",
+      "name": "Strategy And Investment Committee",
+      "type": "ORG",
+      "aliases": [
+        "Strategy and Investment Committee"
+      ],
+      "initials_key": "SIC"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:19:62:82",
+      "name": "Desai Rao Associates",
+      "type": "ORG",
+      "aliases": [
+        "Desai Rao Associates"
+      ],
+      "initials_key": "DRA"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:19:0:3",
+      "name": "K&A",
+      "type": "ORG",
+      "aliases": [
+        "K&A"
+      ],
+      "initials_key": "KA"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:20:0:21",
+      "name": "Grant Thornton Bharat",
+      "type": "PERSON",
+      "aliases": [
+        "Grant Thornton Bharat"
+      ],
+      "initials_key": "GTB"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:20:61:79",
+      "name": "Veritas Cyber Risk",
+      "type": "ORG",
+      "aliases": [
+        "Veritas Cyber Risk"
+      ],
+      "initials_key": "VCR"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:21:127:146",
+      "name": "Union National Bank",
+      "type": "ORG",
+      "aliases": [
+        "Union National Bank"
+      ],
+      "initials_key": "UNB"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:22:72:81",
+      "name": "Benchmark",
+      "type": "ORG",
+      "aliases": [
+        "benchmark"
+      ],
+      "initials_key": "B"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:33:102:110",
+      "name": "CloudOne",
+      "type": "ORG",
+      "aliases": [
+        "CORPUS",
+        "CloudOne"
+      ],
+      "initials_key": "CO"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:24:10:14",
+      "name": "TEST",
+      "type": "ORG",
+      "aliases": [
+        "TEST"
+      ],
+      "initials_key": "TEST"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:30:67:76",
+      "name": "Deshpande",
+      "type": "ORG",
+      "aliases": [
+        "Deshpande"
+      ],
+      "initials_key": "D"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:32:87:96",
+      "name": "Hyderabad",
+      "type": "ORG",
+      "aliases": [
+        "Hyderabad"
+      ],
+      "initials_key": "H"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:32:48:52",
+      "name": "Pune",
+      "type": "GPE",
+      "aliases": [
+        "Pune"
+      ],
+      "initials_key": "P"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:34:18:47",
+      "name": "Closing Conditions Completion",
+      "type": "PERSON",
+      "aliases": [
+        "Closing Conditions\nCompletion"
+      ],
+      "initials_key": "CCC"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:42:80:90",
+      "name": "DataPocket",
+      "type": "ORG",
+      "aliases": [
+        "DataPocket"
+      ],
+      "initials_key": "DP"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:43:60:81",
+      "name": "Pocket Labs Pvt. Ltd",
+      "type": "PERSON",
+      "aliases": [
+        "Pocket Labs",
+        "Pocket Labs Pvt. Ltd."
+      ],
+      "initials_key": "PLPL"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:44:0:10",
+      "name": "Meridian\u2019S",
+      "type": "ORG",
+      "aliases": [
+        "Meridian\u2019s"
+      ],
+      "initials_key": "MS"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:53:0:23",
+      "name": "Post-Closing Governance",
+      "type": "ORG",
+      "aliases": [
+        "Post-Closing Governance"
+      ],
+      "initials_key": "PCG"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:58:78:84",
+      "name": "FY2026",
+      "type": "ORG",
+      "aliases": [
+        "FY2026"
+      ],
+      "initials_key": "F"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:68:266:325",
+      "name": "Lender Union National Bank Regulator Competition Commission",
+      "type": "ORG",
+      "aliases": [
+        "Lender Union National Bank\nRegulator Competition Commission"
+      ],
+      "initials_key": "LUNBRCC"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:68:245:265",
+      "name": "Desai Rao Associates",
+      "type": "PERSON",
+      "aliases": [
+        "Desai Rao Associates"
+      ],
+      "initials_key": "DRA"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:68:163:181",
+      "name": "Axis Capital Legal",
+      "type": "ORG",
+      "aliases": [
+        "Axis Capital\nLegal"
+      ],
+      "initials_key": "ACL"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:68:133:142",
+      "name": "Financial",
+      "type": "ORG",
+      "aliases": [
+        "Financial"
+      ],
+      "initials_key": "F"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:68:72:79",
+      "name": "Upfront",
+      "type": "ORG",
+      "aliases": [
+        "Upfront"
+      ],
+      "initials_key": "U"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:69:0:12",
+      "name": "Analyst Note",
+      "type": "PERSON",
+      "aliases": [
+        "Analyst Note"
+      ],
+      "initials_key": "AN"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:72:106:117",
+      "name": "ACQUISITION",
+      "type": "ORG",
+      "aliases": [
+        "ACQUISITION"
+      ],
+      "initials_key": "A"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:72:84:93",
+      "name": "REGULATOR",
+      "type": "ORG",
+      "aliases": [
+        "REGULATOR"
+      ],
+      "initials_key": "R"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:72:95:104",
+      "name": "OWNERSHIP",
+      "type": "ORG",
+      "aliases": [
+        "OWNERSHIP"
+      ],
+      "initials_key": "O"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:72:52:60",
+      "name": "LOCATION",
+      "type": "ORG",
+      "aliases": [
+        "LOCATION"
+      ],
+      "initials_key": "LOCATION"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:72:75:82",
+      "name": "PRODUCT",
+      "type": "ORG",
+      "aliases": [
+        "PRODUCT"
+      ],
+      "initials_key": "PRODUCT"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:72:68:73",
+      "name": "MONEY",
+      "type": "ORG",
+      "aliases": [
+        "MONEY"
+      ],
+      "initials_key": "MONEY"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:72:62:66",
+      "name": "DATE",
+      "type": "ORG",
+      "aliases": [
+        "DATE"
+      ],
+      "initials_key": "DATE"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:72:181:194",
+      "name": "SUBSIDIARY_OF",
+      "type": "GPE",
+      "aliases": [
+        "SUBSIDIARY_OF"
+      ],
+      "initials_key": "S"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:72:168:179",
+      "name": "FINANCED_BY",
+      "type": "ORG",
+      "aliases": [
+        "FINANCED_BY",
+        "FOUNDED_BY"
+      ],
+      "initials_key": "FB"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:72:196:207",
+      "name": "APPROVED_BY",
+      "type": "PERSON",
+      "aliases": [
+        "APPROVED_BY"
+      ],
+      "initials_key": "AB"
+    },
+    {
+      "id": "e94fb7b9ed9a41f2a4f74b511e47fdf2c2b126ddf255f71c8d32f491533c0234:72:156:166",
+      "name": "REPORTS_TO",
+      "type": "ORG",
+      "aliases": [
+        "REPORTS_TO"
+      ],
+      "initials_key": "RT"
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "schema_version": "2.classical_news.1",
+  "document_id": "news:test:008",
+  "title": "Berkshire Hathaway Omaha",
+  "group_key": "group:berkshire_inv",
+  "split": "locked_test",
+  "content_hash": "0f8d7cf722c3a76b8e2a357295951a1f78ca70999105aaea009ad2af64db6834",
+  "text": "Warren Buffett works for Berkshire Hathaway. Buffett lives in Omaha, Nebraska. Berkshire Hathaway is based in Omaha.",
+  "mentions": [
+    {
+      "id": "m0",
+      "document_id": "news:test:008",
+      "text": "Warren Buffett",
+      "type": "PERSON",
+      "start": 0,
+      "end": 14,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m1",
+      "document_id": "news:test:008",
+      "text": "Berkshire Hathaway",
+      "type": "ORGANIZATION",
+      "start": 25,
+      "end": 43,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m2",
+      "document_id": "news:test:008",
+      "text": "Omaha",
+      "type": "LOCATION",
+      "start": 62,
+      "end": 67,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m3",
+      "document_id": "news:test:008",
+      "text": "Nebraska",
+      "type": "LOCATION",
+      "start": 69,
+      "end": 77,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m4",
+      "document_id": "news:test:008",
+      "text": "Berkshire Hathaway",
+      "type": "ORGANIZATION",
+      "start": 79,
+      "end": 97,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m5",
+      "document_id": "news:test:008",
+      "text": "Omaha",
+      "type": "LOCATION",
+      "start": 110,
+      "end": 115,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    }
+  ],
+  "relation_annotations": [
+    {
+      "subject_id": "m4",
+      "relation": "BASED_IN",
+      "object_id": "m5",
+      "label_status": "positive",
+      "evidence_text": "Berkshire Hathaway is based in Omaha.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m0",
+      "relation": "WORKS_FOR",
+      "object_id": "m1",
+      "label_status": "positive",
+      "evidence_text": "Warren Buffett works for Berkshire Hathaway.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m2",
+      "relation": "LOCATED_IN",
+      "object_id": "m3",
+      "label_status": "positive",
+      "evidence_text": "Buffett lives in Omaha, Nebraska.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "curated_pilot",
+        "review_status": "human_verified_gold"
+      }
+    }
+  ]
+}

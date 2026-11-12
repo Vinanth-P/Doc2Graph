@@ -1,0 +1,14 @@
+{
+  "missing_hash_guard": {
+    "is_valid": true,
+    "artifact_status": "verified_calibrated",
+    "missing_ACQUIRED_disabled": false
+  },
+  "unregistered_document_missing_manifest": "accepted",
+  "same_split_group": "Cross-split group leakage: group 'probe-group' (doc 'probe-b') appears in both 'train' and 'train'!",
+  "contradiction_order": {
+    "affirmed,negated,affirmed": "affirmed",
+    "affirmed,affirmed,negated": "unknown"
+  },
+  "distinct_claim_ids_same_deal_edge_count": 1
+}

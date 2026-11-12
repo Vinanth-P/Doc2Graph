@@ -1,0 +1,68 @@
+{
+  "evaluation_dataset": "data\\prepared\\v2_redocred\\regression_dev.jsonl",
+  "model": "contextual_v2",
+  "timestamp": "2026-11-11T18:05:44Z",
+  "evaluation_results": {
+    "documents": 100,
+    "metrics": {
+      "precision": 0.04983922829581994,
+      "recall": 0.248,
+      "f1": 0.08299866131191433,
+      "tp": 31,
+      "fp": 591,
+      "fn": 94
+    },
+    "bootstrap_95ci": {
+      "precision": [
+        0.026754556658234417,
+        0.07818763204476671
+      ],
+      "recall": [
+        0.14467534849596478,
+        0.3766654554263564
+      ],
+      "f1": [
+        0.04678909130736374,
+        0.1280096845281989
+      ]
+    },
+    "latency_per_doc_sec": 0.03278184175491333
+  },
+  "gate_audit": {
+    "research_gate": {
+      "target": "P >= 70%, R >= 30%",
+      "achieved": "P = 4.98%, R = 24.80%",
+      "passed": false
+    },
+    "promotion_gate": {
+      "target": "P >= 90%, R >= 60%, P_low >= 80%, sealed holdout, support >= 100",
+      "passed": false
+    },
+    "release_decision": "KEEP_DEFAULT_RULES",
+    "recommendation": "Keep 'rules' as the default production backend. Maintain 'contextual_v2' as an opt-in experimental backend until independently sealed corporate finance holdout is annotated.",
+    "audit_notes": [
+      "Research gate (P>=70%, R>=30%) not met: achieved P=4.98%, R=24.80%.",
+      "Default-promotion gate failed: Performance (P=4.98%, R=24.80%) below 90%/60% target; Bootstrap 95% lower precision bound (2.68%) below 80%; Independently sealed release holdout not yet available; Finance review support (5) below 100 documents."
+    ]
+  },
+  "baseline_comparison": {
+    "historical_learned_dev": {
+      "precision": 0.0507,
+      "recall": 0.0767,
+      "f1": 0.061
+    },
+    "historical_oracle_dev": {
+      "precision": 0.2455,
+      "recall": 0.3116,
+      "f1": 0.2746
+    },
+    "contextual_v2_oracle_dev": {
+      "precision": 0.04983922829581994,
+      "recall": 0.248,
+      "f1": 0.08299866131191433,
+      "tp": 31,
+      "fp": 591,
+      "fn": 94
+    }
+  }
+}

@@ -12,6 +12,7 @@ from __future__ import annotations
 
 from collections import defaultdict
 from dataclasses import dataclass, field
+import json
 from typing import Any
 
 from neo4j import AsyncSession, AsyncTransaction
@@ -59,8 +60,22 @@ class ResolvedEdge:
     confidence: float
     raw_predicate: str = ""
     evidence: str = ""
+    polarity: str = "unknown"
+    modality: str = "unknown"
+    lifecycle: str = "unknown"
+    time_qualifiers: dict = field(default_factory=dict)
+    claim_id: str = ""
 
     def to_dict(self) -> dict:
+        deal_key = (
+            self.time_qualifiers.get("deal_id")
+            or self.time_qualifiers.get("date")
+            or self.time_qualifiers.get("year")
+            or self.claim_id
+            or "default"
+            if self.time_qualifiers
+            else (self.claim_id or "default")
+        )
         return {
             "relation_type": self.relation_type,
             "source_id": self.source_id,
@@ -70,6 +85,12 @@ class ResolvedEdge:
             "confidence": self.confidence,
             "raw_predicate": self.raw_predicate,
             "evidence": self.evidence,
+            "polarity": self.polarity,
+            "modality": self.modality,
+            "lifecycle": self.lifecycle,
+            "time_qualifiers": self.time_qualifiers or {},
+            "claim_id": self.claim_id,
+            "deal_key": str(deal_key),
         }
 
 
@@ -78,13 +99,19 @@ class ResolvedEdge:
 class GraphBuilder:
     """Writes a processed document's graph data to Neo4j."""
 
-    # Canonical relation types (from relations.yaml) + catch-all
+    # Canonical relation types (from relations.yaml, ontology_v2.yaml) + catch-all
     CANONICAL_TYPES = [
         "MEMBER_OF", "EMPLOYED_BY", "ACQUIRED",
         "LOCATED_IN", "FOUNDED", "INVESTED_IN", "PARTNER_WITH",
         "COLLABORATED_WITH", "RELATED_TO", "LEADS", "PROVIDED",
         "SUPPLIED", "MONITORS", "FUNDED", "DEVELOPED", "USES",
         "STORES_DATA_IN",
+        "PLANS_TO_ACQUIRE", "ADVISER_TO", "ADVISED", "OWNS", "REPORTS_TO",
+        "FINANCED_BY", "FINANCED", "SUBSIDIARY_OF", "LISTED_ON",
+        "HAS_PRODUCT", "ASSESSED", "PLANS_TO_USE", "PLANS_TO_BORROW_FROM",
+        "PLANNED_SUBSIDIARY_OF",
+        # Classical News Domain Relations
+        "WORKS_FOR", "LIVES_IN", "BASED_IN",
     ]
 
     async def write_document_graph_atomic(
@@ -241,7 +268,13 @@ class GraphBuilder:
     ) -> None:
         """Idempotent edge write — union chunk_ids, max confidence, derive count."""
         for rel_type in self.CANONICAL_TYPES:
-            group = [e.to_dict() for e in edges if e.relation_type == rel_type]
+            group = []
+            for e in edges:
+                if e.relation_type == rel_type:
+                    d = e.to_dict()
+                    tq = d.get("time_qualifiers")
+                    d["time_qualifiers"] = json.dumps(tq) if isinstance(tq, dict) else (tq or "{}")
+                    group.append(d)
             if not group:
                 continue
             # rel_type is from the hardcoded whitelist above — safe to interpolate
@@ -250,22 +283,43 @@ class GraphBuilder:
                 UNWIND $edges AS e
                 MATCH (a:Entity {{id: e.source_id}})
                 MATCH (b:Entity {{id: e.target_id}})
-                MERGE (a)-[r:{rel_type}]->(b)
-                ON CREATE SET r.chunk_ids    = e.chunk_ids,
-                              r.extractors   = e.extractors,
-                              r.confidence   = e.confidence,
-                              r.raw_predicate = e.raw_predicate,
-                              r.evidence     = e.evidence
-                ON MATCH SET  r.chunk_ids    = apoc.coll.toSet(
+                MERGE (a)-[r:{rel_type} {{deal_key: e.deal_key, claim_id: e.claim_id}}]->(b)
+                ON CREATE SET r.chunk_ids       = e.chunk_ids,
+                              r.extractors      = e.extractors,
+                              r.confidence      = e.confidence,
+                              r.raw_predicate   = e.raw_predicate,
+                              r.evidence        = e.evidence,
+                              r.polarity        = e.polarity,
+                              r.modality        = e.modality,
+                              r.lifecycle       = e.lifecycle,
+                              r.time_qualifiers = e.time_qualifiers,
+                              r.claim_id        = e.claim_id,
+                              r.deal_key        = e.deal_key
+                ON MATCH SET  r.chunk_ids       = apoc.coll.toSet(
                                   coalesce(r.chunk_ids, []) + e.chunk_ids),
-                              r.extractors   = apoc.coll.toSet(
+                              r.extractors      = apoc.coll.toSet(
                                   coalesce(r.extractors, []) + e.extractors),
-                              r.confidence   = CASE
+                              r.confidence      = CASE
                                   WHEN e.confidence > r.confidence
-                                  THEN e.confidence ELSE r.confidence END
-                              ,r.evidence = CASE
+                                  THEN e.confidence ELSE r.confidence END,
+                              r.evidence        = CASE
                                   WHEN e.confidence >= coalesce(r.confidence, 0)
-                                  THEN e.evidence ELSE r.evidence END
+                                  THEN e.evidence ELSE r.evidence END,
+                              r.polarity        = CASE
+                                  WHEN r.polarity = e.polarity THEN r.polarity
+                                  WHEN r.polarity = 'unknown' THEN e.polarity
+                                  WHEN e.polarity = 'unknown' THEN r.polarity
+                                  ELSE 'unknown' END,
+                              r.modality        = CASE
+                                  WHEN r.modality = e.modality THEN r.modality
+                                  WHEN r.modality = 'unknown' THEN e.modality
+                                  WHEN e.modality = 'unknown' THEN r.modality
+                                  ELSE 'unknown' END,
+                              r.lifecycle       = CASE
+                                  WHEN r.lifecycle = e.lifecycle THEN r.lifecycle
+                                  WHEN r.lifecycle = 'unknown' THEN e.lifecycle
+                                  WHEN e.lifecycle = 'unknown' THEN r.lifecycle
+                                  ELSE 'unknown' END
                 SET r.evidence_count = size(r.chunk_ids)
                 """,
                 edges=group,
@@ -325,7 +379,18 @@ def build_resolved_edges(
             continue
         src_id = id_map.get(t.subject.entity_id, t.subject.entity_id)
         tgt_id = id_map.get(t.object.entity_id,  t.object.entity_id)
-        key = (src_id, t.relation_type, tgt_id)
+        if src_id == tgt_id:
+            continue
+        deal_key = (
+            t.time_qualifiers.get("deal_id")
+            or t.time_qualifiers.get("date")
+            or t.time_qualifiers.get("year")
+            or getattr(t, "claim_id", "")
+            or "default"
+            if getattr(t, "time_qualifiers", None)
+            else (getattr(t, "claim_id", "") or "default")
+        )
+        key = (src_id, t.relation_type, tgt_id, str(deal_key))
 
         if key in edge_map:
             e = edge_map[key]
@@ -337,6 +402,33 @@ def build_resolved_edges(
             if t.confidence >= e.confidence and t.evidence:
                 e.evidence = t.evidence
                 e.raw_predicate = t.raw_predicate
+
+            # Contradiction handling on assertion status:
+            t_pol = getattr(t, "polarity", "unknown")
+            if e.polarity != t_pol and t_pol != "unknown":
+                if e.polarity == "unknown":
+                    e.polarity = t_pol
+                else:
+                    e.polarity = "unknown"
+
+            t_mod = getattr(t, "modality", "unknown")
+            if e.modality != t_mod and t_mod != "unknown":
+                if e.modality == "unknown":
+                    e.modality = t_mod
+                else:
+                    e.modality = "unknown"
+
+            t_life = getattr(t, "lifecycle", "unknown")
+            if e.lifecycle != t_life and t_life != "unknown":
+                if e.lifecycle == "unknown":
+                    e.lifecycle = t_life
+                else:
+                    e.lifecycle = "unknown"
+
+            if getattr(t, "time_qualifiers", None):
+                for k, v in t.time_qualifiers.items():
+                    if k not in e.time_qualifiers:
+                        e.time_qualifiers[k] = v
         else:
             edge_map[key] = ResolvedEdge(
                 relation_type=t.relation_type,
@@ -347,6 +439,11 @@ def build_resolved_edges(
                 confidence=t.confidence,
                 raw_predicate=t.raw_predicate,
                 evidence=t.evidence,
+                polarity=getattr(t, "polarity", "unknown"),
+                modality=getattr(t, "modality", "unknown"),
+                lifecycle=getattr(t, "lifecycle", "unknown"),
+                time_qualifiers=dict(getattr(t, "time_qualifiers", {}) or {}),
+                claim_id=getattr(t, "claim_id", ""),
             )
 
     return list(edge_map.values())

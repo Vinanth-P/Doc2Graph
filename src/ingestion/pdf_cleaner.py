@@ -17,22 +17,23 @@ def remove_headers_footers(text: str, min_freq: int = 3) -> str:
         return text
 
     candidate_lines: dict[str, int] = {}
+    def signature(line: str) -> str:
+        return re.sub(r"\bPage\s+\d+(?:\s+of\s+\d+)?\b", "Page #", line.strip(), flags=re.I)
     for page in pages:
         lines = page.strip().splitlines()
         if not lines:
             continue
-        for line in [lines[0], lines[-1]]:
-            stripped = line.strip()
+        for stripped in {signature(line) for line in lines[:2] + lines[-2:]}:
             if stripped:
                 candidate_lines[stripped] = candidate_lines.get(stripped, 0) + 1
 
-    boilerplate = {ln for ln, cnt in candidate_lines.items() if cnt >= min_freq}
+    boilerplate = {ln for ln, cnt in candidate_lines.items() if cnt >= min(min_freq, len(pages))}
 
     cleaned_pages = []
     for page in pages:
         lines = [
             ln for ln in page.splitlines()
-            if ln.strip() not in boilerplate
+            if signature(ln) not in boilerplate
         ]
         cleaned_pages.append("\n".join(lines))
     return "\x0c".join(cleaned_pages)
@@ -73,8 +74,18 @@ def strip_tables(text: str) -> str:
 def clean_pdf_text(text: str) -> str:
     """Apply all cleaning steps in sequence."""
     text = remove_headers_footers(text)
+    text = text.replace("\x0c", "\n\n")
     text = dehyphenate(text)
+    # Numbered section headings must not join the following company name.
+    heading = re.compile(r"^[ \t]*\d{1,2}\.[ \t]+[A-Z][^.!?\n]{2,90}$", re.M)
+    first = heading.search(text)
+    if first and first.start() < 500 and not re.search(r"[.!?]\s", text[:first.start()]):
+        text = text[first.start():]
+    text = heading.sub("\n\n", text)
+    text = re.sub(r"^\s*Page\s+\d+(?:\s+of\s+\d+)?\s*$", "", text, flags=re.M | re.I)
     text = strip_tables(text)
+    # PDF line wraps are layout, not sentence boundaries. Preserve paragraphs.
+    text = re.sub(r"(?<!\n)\n(?!\n)", " ", text)
     # Normalize whitespace
     text = re.sub(r"\n{3,}", "\n\n", text)
     text = text.strip()

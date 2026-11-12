@@ -1,0 +1,109 @@
+{
+  "schema_version": "2.classical_news.1",
+  "document_id": "news:dev:006",
+  "title": "Brad Smith Legal Counsel",
+  "group_key": "group:microsoft_execs",
+  "split": "dev",
+  "content_hash": "f5e23bdd0f511e2c84b0fb1ae129f1dc5fb7a2b8bbaac16c925292ba18cd82a8",
+  "text": "Brad Smith serves as vice chair and president of Microsoft. Smith resides in Bellevue. Microsoft operates major campuses across Washington.",
+  "mentions": [
+    {
+      "id": "m0",
+      "document_id": "news:dev:006",
+      "text": "Brad Smith",
+      "type": "PERSON",
+      "start": 0,
+      "end": 10,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m1",
+      "document_id": "news:dev:006",
+      "text": "Microsoft",
+      "type": "ORGANIZATION",
+      "start": 49,
+      "end": 58,
+      "sentence_idx": 0,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m2",
+      "document_id": "news:dev:006",
+      "text": "Smith",
+      "type": "PERSON",
+      "start": 5,
+      "end": 10,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m3",
+      "document_id": "news:dev:006",
+      "text": "Bellevue",
+      "type": "LOCATION",
+      "start": 77,
+      "end": 85,
+      "sentence_idx": 1,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m4",
+      "document_id": "news:dev:006",
+      "text": "Microsoft",
+      "type": "ORGANIZATION",
+      "start": 49,
+      "end": 58,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    },
+    {
+      "id": "m5",
+      "document_id": "news:dev:006",
+      "text": "Washington",
+      "type": "LOCATION",
+      "start": 128,
+      "end": 138,
+      "sentence_idx": 2,
+      "detector": "human_gold_standard",
+      "score": 1.0
+    }
+  ],
+  "relation_annotations": [
+    {
+      "subject_id": "m0",
+      "relation": "WORKS_FOR",
+      "object_id": "m1",
+      "label_status": "positive",
+      "evidence_text": "Brad Smith serves as vice chair and president of Microsoft.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "annotator_verified_pilot",
+        "review_status": "human_verified_gold"
+      }
+    },
+    {
+      "subject_id": "m2",
+      "relation": "LIVES_IN",
+      "object_id": "m3",
+      "label_status": "positive",
+      "evidence_text": "Smith resides in Bellevue.",
+      "confidence": 1.0,
+      "polarity": "affirmed",
+      "modality": "factual",
+      "lifecycle": "completed",
+      "provenance": {
+        "reviewer_id": "annotator_verified_pilot",
+        "review_status": "human_verified_gold"
+      }
+    }
+  ]
+}

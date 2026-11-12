@@ -15,6 +15,7 @@ from src.ingestion.loader import load_document
 from src.ingestion.pdf_cleaner import clean_pdf_text
 from src.ingestion.preprocessor import preprocess, build_windows, get_nlp
 from src.nlp.ner import NERRunner
+from src.nlp.document_entities import recover_document_entities
 from src.nlp.coref_resolver import RuleBasedCorefResolver
 from src.nlp.relation_extractor import DepPatternExtractor
 from src.nlp.predicate_normalizer import PredicateNormalizer
@@ -55,6 +56,8 @@ def _write_intermediate_graph(
     entity_to_chunks: dict[str, list[str]],
     edges,
     mentions_by_id: dict[str, list[dict]],
+    claims: list = None,
+    canonical_claims: list = None,
 ) -> None:
     """Persist the graph payload before Neo4j so NLP and storage can be separated."""
     entity_by_id = {entity.canonical_id: entity for entity in entities}
@@ -76,6 +79,8 @@ def _write_intermediate_graph(
         ],
         "relationships": relationships,
         "entity_to_chunks": entity_to_chunks,
+        "claims": [c.model_dump() for c in (claims or [])],
+        "canonical_claims": [c.model_dump() for c in (canonical_claims or [])],
     }
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
@@ -83,6 +88,24 @@ def _write_intermediate_graph(
 def _get_nlp() -> spacy.Language:
     # Share the tokenizer and parser used for preprocessing.
     return get_nlp()
+
+
+def _assemble_nlp_result(preprocessed, filename, all_entities, normalized, resolver, id_map):
+    """Shared persistence payload for either relation backend."""
+    resolved_entities, _ = build_resolved_entities(all_entities, id_map)
+    mentions_by_id: dict[str, list[dict]] = {}
+    for ent in all_entities:
+        canonical_id = id_map.get(ent.entity_id, ent.entity_id)
+        mentions_by_id.setdefault(canonical_id, []).append({
+            "id": ent.entity_id, "text": ent.text, "start": ent.start_char,
+            "end": ent.end_char, "sentence": ent.sentence, "source": ent.source,
+            "chunk_id": ent.chunk_id,
+        })
+    return {
+        "preprocessed": preprocessed, "chunks": preprocessed.chunks, "filename": filename,
+        "all_entities": all_entities, "id_map": id_map, "resolved_entities": resolved_entities,
+        "normalized": normalized, "mentions_by_id": mentions_by_id, "resolver": resolver,
+    }
 
 
 def run_pipeline_nlp(
@@ -116,6 +139,118 @@ def run_pipeline_nlp(
         chunks = preprocessed.chunks
         logger.info("[%s] %d sentences extracted", job_id, len(chunks))
 
+        if getattr(settings, "relation_backend", "rules") == "classical_news":
+            from src.nlp.classical_news import ClassicalNewsExtractor
+            from src.nlp.ner import Entity
+            from src.nlp.predicate_normalizer import NormalizedTriple
+            from src.ingestion.source_map import SourceMap
+
+            extractor = ClassicalNewsExtractor()
+            if not extractor.client.is_available():
+                raise RuntimeError(
+                    "Classical news relation backend requested, but runtime dependencies (Java/CoreNLP) are not installed."
+                )
+
+            ref_text = preprocessed.raw_text
+            _, source_map = SourceMap.create(ref_text)
+
+            p_prefix = job_id or preprocessed.doc_id
+            res = extractor.extract_document(
+                document_id=preprocessed.doc_id,
+                text=ref_text,
+                source_map=source_map,
+                chunk_id_prefix=p_prefix,
+            )
+
+            ent_by_mid = {m.id: m for m in res["mentions"]}
+            id_map = {m.id: res["mention_to_entity_id"][m.id] for m in res["mentions"]}
+
+            class ClassicalNewsResolver:
+                def __init__(self, resolved_ents, id_m):
+                    self._resolved = resolved_ents
+                    self._id_map = id_m
+                def resolve_within_doc(self, entities):
+                    return self._id_map
+                def get_resolved_entities(self):
+                    return self._resolved
+                async def resolve_against_graph(self, ent, session):
+                    return None
+
+            resolver = ClassicalNewsResolver(res["resolved_entities"], id_map)
+
+            normalized = []
+            for claim in res["claims"]:
+                s_rec = ent_by_mid.get(claim.subject_mention_id)
+                o_rec = ent_by_mid.get(claim.object_mention_id)
+                if s_rec and o_rec:
+                    cid = f"{p_prefix}:{s_rec.sentence_idx or 0}"
+                    s_idx = s_rec.sentence_idx or 0
+                    s_ent = Entity(
+                        entity_id=s_rec.id,
+                        text=s_rec.text,
+                        canonical_name=s_rec.text.strip(),
+                        type=s_rec.type,
+                        start_char=s_rec.start,
+                        end_char=s_rec.end,
+                        source="stanford_crf_3class",
+                        chunk_id=cid,
+                        sentence=claim.evidence_text,
+                    )
+                    o_ent = Entity(
+                        entity_id=o_rec.id,
+                        text=o_rec.text,
+                        canonical_name=o_rec.text.strip(),
+                        type=o_rec.type,
+                        start_char=o_rec.start,
+                        end_char=o_rec.end,
+                        source="stanford_crf_3class",
+                        chunk_id=cid,
+                        sentence=claim.evidence_text,
+                    )
+                    normalized.append(
+                        NormalizedTriple(
+                            relation_type=claim.relation,
+                            subject=s_ent,
+                            object=o_ent,
+                            raw_predicate="stanford_classical_roth",
+                            chunk_id=cid,
+                            sent_idx=s_idx,
+                            confidence=claim.raw_score,
+                            evidence=claim.evidence_text,
+                            extractor="stanford_classical_roth",
+                            polarity=claim.polarity,
+                            modality=claim.modality,
+                            lifecycle=claim.lifecycle,
+                            time_qualifiers=claim.time_qualifiers,
+                            claim_id=claim.claim_id,
+                        )
+                    )
+
+            all_classical_entities = []
+            for m in res["mentions"]:
+                all_classical_entities.append(
+                    Entity(
+                        entity_id=m.id,
+                        text=m.text,
+                        canonical_name=m.text.strip(),
+                        type=m.type,
+                        start_char=m.start,
+                        end_char=m.end,
+                        source="stanford_crf_3class",
+                        chunk_id=f"{p_prefix}:{m.sentence_idx or 0}",
+                        sentence="",
+                    )
+                )
+
+            nlp_res = _assemble_nlp_result(
+                preprocessed, filename, all_classical_entities, normalized, resolver, id_map
+            )
+            nlp_res["resolved_entities"] = res["resolved_entities"]
+            nlp_res["v2_claims"] = res["claims"]
+            nlp_res["v2_canonical_claims"] = res["canonical_claims"]
+            nlp_res["resolved_edges"] = res["resolved_edges"]
+            return nlp_res
+
         # ── Phase 2a: NER ─────────────────────────────────────────────────
         nlp = _get_nlp()
         ner = NERRunner()
@@ -126,11 +261,154 @@ def run_pipeline_nlp(
             entities_by_chunk[chunk.chunk_id] = chunk_entities
 
         entities_by_chunk = _remove_document_title_entities(chunks, entities_by_chunk)
+        entities_by_chunk = recover_document_entities(chunks, entities_by_chunk)
         all_entities = [
             entity for chunk_entities in entities_by_chunk.values()
             for entity in chunk_entities
         ]
         logger.info("[%s] %d raw entities extracted", job_id, len(all_entities))
+
+        if getattr(settings, "relation_backend", "rules") == "contextual_v2":
+            import torch
+            from src.nlp.contextual_ner import NonDestructiveResolver
+            from src.nlp.contextual_relations import (
+                ContextualRelationExtractor,
+                ContextualRelationModel,
+                SimpleVocabulary,
+            )
+            from src.nlp.contracts_v2 import MentionRecord
+            from src.nlp.claim_aggregation import aggregate_claims
+            from src.nlp.predicate_normalizer import NormalizedTriple
+            from src.nlp.artifact_guard import validate_model_artifacts
+
+            resolver = NonDestructiveResolver(base_threshold=settings.resolution_threshold)
+            id_map = resolver.resolve_within_doc(all_entities)
+
+            from src.ingestion.source_map import SourceMap
+
+            ref_text = preprocessed.raw_text
+            _, source_map = SourceMap.create(ref_text)
+
+            chunk_by_id = {c.chunk_id: c for c in chunks}
+            doc_mentions = []
+            entity_by_mid = {}
+            for ent in all_entities:
+                chunk = chunk_by_id.get(ent.chunk_id)
+                offset = chunk.start_char if chunk else 0
+                sent_idx = chunk.sent_idx if chunk else 0
+                m_start = offset + ent.start_char
+                m_end = offset + ent.end_char
+
+                src_start, src_end = source_map.normalized_to_source(m_start, m_end)
+
+                m_rec = MentionRecord(
+                    id=ent.entity_id,
+                    document_id=preprocessed.doc_id,
+                    text=ent.text,
+                    type=ent.type,
+                    start=m_start,
+                    end=m_end,
+                    source_start=src_start,
+                    source_end=src_end,
+                    sentence_idx=sent_idx,
+                    detector=ent.source,
+                )
+                doc_mentions.append(m_rec)
+                entity_by_mid[ent.entity_id] = ent
+
+            model_dir = Path(getattr(settings, "contextual_v2_model_path", "models/contextual_v2"))
+            allow_research = getattr(settings, "contextual_v2_allow_unverified", False)
+            validation = validate_model_artifacts(model_dir, allow_research_override=allow_research)
+
+            vocab_data = json.loads((model_dir / "vocab.json").read_text(encoding="utf-8"))
+            vocab = SimpleVocabulary.from_dict(vocab_data)
+
+            manifest_data = validation.manifest
+            hidden_dim = manifest_data.get("hidden_dim", 256)
+            embed_dim = manifest_data.get("embed_dim", 128)
+            num_layers = manifest_data.get("num_layers", 2)
+
+            device = "cuda" if torch.cuda.is_available() else "cpu"
+            ctx_model = ContextualRelationModel(
+                vocab_size=len(vocab.token_to_idx),
+                embed_dim=embed_dim,
+                hidden_dim=hidden_dim,
+                num_layers=num_layers,
+                dropout=0.0,
+            )
+            ctx_model.load_state_dict(torch.load(model_dir / "model.pt", map_location=device))
+
+            model_version = (
+                f"{manifest_data.get('version', '2.0.0')}:provisional_research"
+                if validation.is_provisional
+                else manifest_data.get("version", "2.0.0")
+            )
+
+            extractor = ContextualRelationExtractor(
+                model=ctx_model,
+                vocab=vocab,
+                thresholds=validation.thresholds,
+                disabled_relations=validation.disabled_relations,
+                assertion_support=manifest_data.get("assertion_support_by_relation", {}),
+                device=device,
+                model_version=model_version,
+            )
+
+            claims = extractor.extract_from_document(
+                document_id=preprocessed.doc_id,
+                text=ref_text,
+                mentions=doc_mentions,
+            )
+
+            canonical_claims = aggregate_claims(claims, id_map)
+
+            normalized = []
+            for claim in claims:
+                subj_ent = entity_by_mid.get(claim.subject_mention_id)
+                obj_ent = entity_by_mid.get(claim.object_mention_id)
+                if subj_ent and obj_ent:
+                    cid = subj_ent.chunk_id
+                    s_idx = chunk_by_id[cid].sent_idx if cid in chunk_by_id else 0
+                    conf = (
+                        claim.calibrated_confidence
+                        if claim.calibrated_confidence is not None
+                        else claim.raw_score
+                    )
+                    normalized.append(
+                        NormalizedTriple(
+                            relation_type=claim.relation,
+                            subject=subj_ent,
+                            object=obj_ent,
+                            raw_predicate="contextual_v2",
+                            chunk_id=cid,
+                            sent_idx=s_idx,
+                            confidence=conf,
+                            evidence=claim.evidence_text,
+                            extractor="contextual_v2",
+                            polarity=claim.polarity,
+                            modality=claim.modality,
+                            lifecycle=claim.lifecycle,
+                            time_qualifiers=claim.time_qualifiers,
+                            claim_id=claim.claim_id,
+                        )
+                    )
+
+            nlp_res = _assemble_nlp_result(preprocessed, filename, all_entities, normalized, resolver, id_map)
+            nlp_res["v2_claims"] = claims
+            nlp_res["v2_canonical_claims"] = canonical_claims
+            return nlp_res
+
+        if getattr(settings, "relation_backend", "rules") in {"learned", "encoder"}:
+            from src.nlp.learned_relations import load_learned_extractor
+            resolver = EntityResolver(threshold=settings.resolution_threshold)
+            id_map = resolver.resolve_within_doc(all_entities)
+            if settings.relation_backend == "encoder":
+                from src.nlp.encoder_relations import load_encoder_extractor
+                learned = load_encoder_extractor()
+            else:
+                learned = load_learned_extractor(settings.learned_relation_model_path)
+            normalized = learned.extract(chunks, all_entities, id_map)
+            return _assemble_nlp_result(preprocessed, filename, all_entities, normalized, resolver, id_map)
 
         # ── Phase 2b: Coreference ─────────────────────────────────────────
         coref = RuleBasedCorefResolver()
@@ -207,6 +485,12 @@ def run_pipeline_nlp(
             t for t in normalized
             if t.relation_type != "RELATED_TO" or t.confidence >= min_related_conf
         ]
+        # A specific relation supersedes a generic apposition from the same
+        # evidence; retaining both makes the graph look artificially denser.
+        supported_pairs = {(t.chunk_id, t.subject.canonical_name, t.object.canonical_name)
+                           for t in normalized if t.relation_type != "RELATED_TO"}
+        normalized = [t for t in normalized if t.relation_type != "RELATED_TO" or
+                      (t.chunk_id, t.subject.canonical_name, t.object.canonical_name) not in supported_pairs]
         if getattr(settings, "debug_pipeline", False):
             logger.debug(
                 "[%s] raw triples=%d, supported triples=%d",
@@ -218,32 +502,7 @@ def run_pipeline_nlp(
         resolver = EntityResolver(threshold=settings.resolution_threshold)
         id_map = resolver.resolve_within_doc(all_entities)
 
-        # Build resolved entities and mentions map for graph write
-        resolved_entities, _ = build_resolved_entities(all_entities, id_map)
-        mentions_by_id: dict[str, list[dict]] = {}
-        for ent in all_entities:
-            canonical_id = id_map.get(ent.entity_id, ent.entity_id)
-            mentions_by_id.setdefault(canonical_id, []).append({
-                "id": ent.entity_id,
-                "text": ent.text,
-                "start": ent.start_char,
-                "end": ent.end_char,
-                "sentence": ent.sentence,
-                "source": ent.source,
-                "chunk_id": ent.chunk_id,
-            })
-
-        return {
-            "preprocessed": preprocessed,
-            "chunks": chunks,
-            "filename": filename,
-            "all_entities": all_entities,
-            "id_map": id_map,
-            "resolved_entities": resolved_entities,
-            "normalized": normalized,
-            "mentions_by_id": mentions_by_id,
-            "resolver": resolver,
-        }
+        return _assemble_nlp_result(preprocessed, filename, all_entities, normalized, resolver, id_map)
 
     finally:
         pipeline_lock.release()

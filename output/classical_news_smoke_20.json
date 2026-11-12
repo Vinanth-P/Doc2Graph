@@ -1,0 +1,3125 @@
+{
+  "metadata": {
+    "annotators": "tokenize,ssplit,pos,lemma,ner,parse,relation",
+    "pos_model": "english-left3words-distsim.tagger",
+    "ner_model": "english.all.3class.distsim.crf.ser.gz",
+    "parse_model": "englishPCFG.ser.gz",
+    "relation_model": "roth_relation_model_pipelineNER.ser",
+    "neural_components": "NONE",
+    "total_sentences": 20,
+    "bridge_handshake": {
+      "status": "ready",
+      "version": "4.5.8",
+      "non_dl_verified": true,
+      "models": {
+        "ner": "english.all.3class.distsim.crf.ser.gz",
+        "parser": "englishPCFG.ser.gz",
+        "pos": "english-left3words-distsim.tagger",
+        "relation": "roth_relation_model_pipelineNER.ser"
+      }
+    }
+  },
+  "items": [
+    {
+      "id": "smoke-01",
+      "text": "Barack Obama was born in Hawaii.",
+      "sentence_count": 1,
+      "entities": [
+        {
+          "mention_id": "EntityMention-1",
+          "sentence_index": 0,
+          "type": "PEOPLE",
+          "text": "Obama",
+          "char_start": 0,
+          "char_end": 12,
+          "head_char_start": 7,
+          "head_char_end": 12,
+          "token_start": 0,
+          "token_end": 2,
+          "mapped_text": "Barack Obama"
+        },
+        {
+          "mention_id": "EntityMention-2",
+          "sentence_index": 0,
+          "type": "LOCATION",
+          "text": "Hawaii",
+          "char_start": 25,
+          "char_end": 31,
+          "head_char_start": 25,
+          "head_char_end": 31,
+          "token_start": 5,
+          "token_end": 6,
+          "mapped_text": "Hawaii"
+        }
+      ],
+      "relations": [
+        {
+          "relation_id": "RelationMention-1",
+          "sentence_index": 0,
+          "sentence_text": "Barack Obama was born in Hawaii.",
+          "label": "Live_In",
+          "arg0": {
+            "text": "Obama",
+            "type": "PEOPLE",
+            "char_start": 0,
+            "char_end": 12,
+            "head_char_start": 7,
+            "head_char_end": 12,
+            "object_id": "EntityMention-1",
+            "mapped_text": "Barack Obama"
+          },
+          "arg1": {
+            "text": "Hawaii",
+            "type": "LOCATION",
+            "char_start": 25,
+            "char_end": 31,
+            "head_char_start": 25,
+            "head_char_end": 31,
+            "object_id": "EntityMention-2",
+            "mapped_text": "Hawaii"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.03814779982274018,
+            "_NR": 0.11792057642824423,
+            "Located_In": 0.034213045395864804,
+            "Work_For": 0.03052761515662259,
+            "Live_In": 0.7791909631965285
+          }
+        },
+        {
+          "relation_id": "RelationMention-2",
+          "sentence_index": 0,
+          "sentence_text": "Barack Obama was born in Hawaii.",
+          "label": "Live_In",
+          "arg0": {
+            "text": "Hawaii",
+            "type": "LOCATION",
+            "char_start": 25,
+            "char_end": 31,
+            "head_char_start": 25,
+            "head_char_end": 31,
+            "object_id": "EntityMention-2",
+            "mapped_text": "Hawaii"
+          },
+          "arg1": {
+            "text": "Obama",
+            "type": "PEOPLE",
+            "char_start": 0,
+            "char_end": 12,
+            "head_char_start": 7,
+            "head_char_end": 12,
+            "object_id": "EntityMention-1",
+            "mapped_text": "Barack Obama"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.04051685770705794,
+            "_NR": 0.22300809103095387,
+            "Located_In": 0.03671743454714545,
+            "Work_For": 0.046402651141371515,
+            "Live_In": 0.6533549655734715
+          }
+        }
+      ]
+    },
+    {
+      "id": "smoke-02",
+      "text": "Satya Nadella is the CEO of Microsoft.",
+      "sentence_count": 1,
+      "entities": [
+        {
+          "mention_id": "EntityMention-3",
+          "sentence_index": 0,
+          "type": "PEOPLE",
+          "text": "Nadella",
+          "char_start": 0,
+          "char_end": 13,
+          "head_char_start": 6,
+          "head_char_end": 13,
+          "token_start": 0,
+          "token_end": 2,
+          "mapped_text": "Satya Nadella"
+        },
+        {
+          "mention_id": "EntityMention-4",
+          "sentence_index": 0,
+          "type": "ORGANIZATION",
+          "text": "Microsoft",
+          "char_start": 28,
+          "char_end": 37,
+          "head_char_start": 28,
+          "head_char_end": 37,
+          "token_start": 6,
+          "token_end": 7,
+          "mapped_text": "Microsoft"
+        }
+      ],
+      "relations": [
+        {
+          "relation_id": "RelationMention-3",
+          "sentence_index": 0,
+          "sentence_text": "Satya Nadella is the CEO of Microsoft.",
+          "label": "Live_In",
+          "arg0": {
+            "text": "Nadella",
+            "type": "PEOPLE",
+            "char_start": 0,
+            "char_end": 13,
+            "head_char_start": 6,
+            "head_char_end": 13,
+            "object_id": "EntityMention-3",
+            "mapped_text": "Satya Nadella"
+          },
+          "arg1": {
+            "text": "Microsoft",
+            "type": "ORGANIZATION",
+            "char_start": 28,
+            "char_end": 37,
+            "head_char_start": 28,
+            "head_char_end": 37,
+            "object_id": "EntityMention-4",
+            "mapped_text": "Microsoft"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.1322821335827391,
+            "_NR": 0.08391712797823926,
+            "Located_In": 0.14866193967021785,
+            "Work_For": 0.23506067793284063,
+            "Live_In": 0.40007812083596306
+          }
+        },
+        {
+          "relation_id": "RelationMention-4",
+          "sentence_index": 0,
+          "sentence_text": "Satya Nadella is the CEO of Microsoft.",
+          "label": "Live_In",
+          "arg0": {
+            "text": "Microsoft",
+            "type": "ORGANIZATION",
+            "char_start": 28,
+            "char_end": 37,
+            "head_char_start": 28,
+            "head_char_end": 37,
+            "object_id": "EntityMention-4",
+            "mapped_text": "Microsoft"
+          },
+          "arg1": {
+            "text": "Nadella",
+            "type": "PEOPLE",
+            "char_start": 0,
+            "char_end": 13,
+            "head_char_start": 6,
+            "head_char_end": 13,
+            "object_id": "EntityMention-3",
+            "mapped_text": "Satya Nadella"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.18307210083344208,
+            "_NR": 0.21372575802922594,
+            "Located_In": 0.17064681534360354,
+            "Work_For": 0.1826230931810214,
+            "Live_In": 0.24993223261270697
+          }
+        }
+      ]
+    },
+    {
+      "id": "smoke-03",
+      "text": "Google is headquartered in Mountain View, California.",
+      "sentence_count": 1,
+      "entities": [
+        {
+          "mention_id": "EntityMention-5",
+          "sentence_index": 0,
+          "type": "ORGANIZATION",
+          "text": "Google",
+          "char_start": 0,
+          "char_end": 6,
+          "head_char_start": 0,
+          "head_char_end": 6,
+          "token_start": 0,
+          "token_end": 1,
+          "mapped_text": "Google"
+        },
+        {
+          "mention_id": "EntityMention-6",
+          "sentence_index": 0,
+          "type": "LOCATION",
+          "text": "View",
+          "char_start": 27,
+          "char_end": 40,
+          "head_char_start": 36,
+          "head_char_end": 40,
+          "token_start": 4,
+          "token_end": 6,
+          "mapped_text": "Mountain View"
+        },
+        {
+          "mention_id": "EntityMention-7",
+          "sentence_index": 0,
+          "type": "LOCATION",
+          "text": "California",
+          "char_start": 42,
+          "char_end": 52,
+          "head_char_start": 42,
+          "head_char_end": 52,
+          "token_start": 7,
+          "token_end": 8,
+          "mapped_text": "California"
+        }
+      ],
+      "relations": [
+        {
+          "relation_id": "RelationMention-5",
+          "sentence_index": 0,
+          "sentence_text": "Google is headquartered in Mountain View, California.",
+          "label": "_NR",
+          "arg0": {
+            "text": "Google",
+            "type": "ORGANIZATION",
+            "char_start": 0,
+            "char_end": 6,
+            "head_char_start": 0,
+            "head_char_end": 6,
+            "object_id": "EntityMention-5",
+            "mapped_text": "Google"
+          },
+          "arg1": {
+            "text": "View",
+            "type": "LOCATION",
+            "char_start": 27,
+            "char_end": 40,
+            "head_char_start": 36,
+            "head_char_end": 40,
+            "object_id": "EntityMention-6",
+            "mapped_text": "Mountain View"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.39661418119130565,
+            "_NR": 0.5508558898493746,
+            "Located_In": 0.02966492673889633,
+            "Work_For": 0.0059782562175304844,
+            "Live_In": 0.016886746002892583
+          }
+        },
+        {
+          "relation_id": "RelationMention-6",
+          "sentence_index": 0,
+          "sentence_text": "Google is headquartered in Mountain View, California.",
+          "label": "_NR",
+          "arg0": {
+            "text": "Google",
+            "type": "ORGANIZATION",
+            "char_start": 0,
+            "char_end": 6,
+            "head_char_start": 0,
+            "head_char_end": 6,
+            "object_id": "EntityMention-5",
+            "mapped_text": "Google"
+          },
+          "arg1": {
+            "text": "California",
+            "type": "LOCATION",
+            "char_start": 42,
+            "char_end": 52,
+            "head_char_start": 42,
+            "head_char_end": 52,
+            "object_id": "EntityMention-7",
+            "mapped_text": "California"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.10492377399660266,
+            "_NR": 0.859280003158881,
+            "Located_In": 0.029190912128800168,
+            "Work_For": 0.0019671668469751933,
+            "Live_In": 0.0046381438687410955
+          }
+        },
+        {
+          "relation_id": "RelationMention-7",
+          "sentence_index": 0,
+          "sentence_text": "Google is headquartered in Mountain View, California.",
+          "label": "_NR",
+          "arg0": {
+            "text": "View",
+            "type": "LOCATION",
+            "char_start": 27,
+            "char_end": 40,
+            "head_char_start": 36,
+            "head_char_end": 40,
+            "object_id": "EntityMention-6",
+            "mapped_text": "Mountain View"
+          },
+          "arg1": {
+            "text": "Google",
+            "type": "ORGANIZATION",
+            "char_start": 0,
+            "char_end": 6,
+            "head_char_start": 0,
+            "head_char_end": 6,
+            "object_id": "EntityMention-5",
+            "mapped_text": "Google"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.02294421978937802,
+            "_NR": 0.9466742550983787,
+            "Located_In": 0.009001916503372853,
+            "Work_For": 0.014577855229771928,
+            "Live_In": 0.006801753379098448
+          }
+        },
+        {
+          "relation_id": "RelationMention-8",
+          "sentence_index": 0,
+          "sentence_text": "Google is headquartered in Mountain View, California.",
+          "label": "Located_In",
+          "arg0": {
+            "text": "View",
+            "type": "LOCATION",
+            "char_start": 27,
+            "char_end": 40,
+            "head_char_start": 36,
+            "head_char_end": 40,
+            "object_id": "EntityMention-6",
+            "mapped_text": "Mountain View"
+          },
+          "arg1": {
+            "text": "California",
+            "type": "LOCATION",
+            "char_start": 42,
+            "char_end": 52,
+            "head_char_start": 42,
+            "head_char_end": 52,
+            "object_id": "EntityMention-7",
+            "mapped_text": "California"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.00016865506755477992,
+            "_NR": 0.04220785265566235,
+            "Located_In": 0.9575251949149033,
+            "Work_For": 5.6854603407711656e-05,
+            "Live_In": 4.144275847155547e-05
+          }
+        },
+        {
+          "relation_id": "RelationMention-9",
+          "sentence_index": 0,
+          "sentence_text": "Google is headquartered in Mountain View, California.",
+          "label": "_NR",
+          "arg0": {
+            "text": "California",
+            "type": "LOCATION",
+            "char_start": 42,
+            "char_end": 52,
+            "head_char_start": 42,
+            "head_char_end": 52,
+            "object_id": "EntityMention-7",
+            "mapped_text": "California"
+          },
+          "arg1": {
+            "text": "Google",
+            "type": "ORGANIZATION",
+            "char_start": 0,
+            "char_end": 6,
+            "head_char_start": 0,
+            "head_char_end": 6,
+            "object_id": "EntityMention-5",
+            "mapped_text": "Google"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.0025117414896204627,
+            "_NR": 0.994199011634043,
+            "Located_In": 0.000790952159506331,
+            "Work_For": 0.0016405303130531432,
+            "Live_In": 0.0008577644037772869
+          }
+        },
+        {
+          "relation_id": "RelationMention-10",
+          "sentence_index": 0,
+          "sentence_text": "Google is headquartered in Mountain View, California.",
+          "label": "_NR",
+          "arg0": {
+            "text": "California",
+            "type": "LOCATION",
+            "char_start": 42,
+            "char_end": 52,
+            "head_char_start": 42,
+            "head_char_end": 52,
+            "object_id": "EntityMention-7",
+            "mapped_text": "California"
+          },
+          "arg1": {
+            "text": "View",
+            "type": "LOCATION",
+            "char_start": 27,
+            "char_end": 40,
+            "head_char_start": 36,
+            "head_char_end": 40,
+            "object_id": "EntityMention-6",
+            "mapped_text": "Mountain View"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.0009223992124234766,
+            "_NR": 0.9677246546290762,
+            "Located_In": 0.030896765383233844,
+            "Work_For": 0.0003543770720226588,
+            "Live_In": 0.00010180370324416612
+          }
+        }
+      ]
+    },
+    {
+      "id": "smoke-04",
+      "text": "Steve Jobs lived in Palo Alto.",
+      "sentence_count": 1,
+      "entities": [
+        {
+          "mention_id": "EntityMention-8",
+          "sentence_index": 0,
+          "type": "PEOPLE",
+          "text": "Jobs",
+          "char_start": 0,
+          "char_end": 10,
+          "head_char_start": 6,
+          "head_char_end": 10,
+          "token_start": 0,
+          "token_end": 2,
+          "mapped_text": "Steve Jobs"
+        },
+        {
+          "mention_id": "EntityMention-9",
+          "sentence_index": 0,
+          "type": "LOCATION",
+          "text": "Alto",
+          "char_start": 20,
+          "char_end": 29,
+          "head_char_start": 25,
+          "head_char_end": 29,
+          "token_start": 4,
+          "token_end": 6,
+          "mapped_text": "Palo Alto"
+        }
+      ],
+      "relations": [
+        {
+          "relation_id": "RelationMention-11",
+          "sentence_index": 0,
+          "sentence_text": "Steve Jobs lived in Palo Alto.",
+          "label": "_NR",
+          "arg0": {
+            "text": "Jobs",
+            "type": "PEOPLE",
+            "char_start": 0,
+            "char_end": 10,
+            "head_char_start": 6,
+            "head_char_end": 10,
+            "object_id": "EntityMention-8",
+            "mapped_text": "Steve Jobs"
+          },
+          "arg1": {
+            "text": "Alto",
+            "type": "LOCATION",
+            "char_start": 20,
+            "char_end": 29,
+            "head_char_start": 25,
+            "head_char_end": 29,
+            "object_id": "EntityMention-9",
+            "mapped_text": "Palo Alto"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.14338818648820212,
+            "_NR": 0.5094865760164867,
+            "Located_In": 0.09589143435962852,
+            "Work_For": 0.08688989665691182,
+            "Live_In": 0.16434390647877095
+          }
+        },
+        {
+          "relation_id": "RelationMention-12",
+          "sentence_index": 0,
+          "sentence_text": "Steve Jobs lived in Palo Alto.",
+          "label": "_NR",
+          "arg0": {
+            "text": "Alto",
+            "type": "LOCATION",
+            "char_start": 20,
+            "char_end": 29,
+            "head_char_start": 25,
+            "head_char_end": 29,
+            "object_id": "EntityMention-9",
+            "mapped_text": "Palo Alto"
+          },
+          "arg1": {
+            "text": "Jobs",
+            "type": "PEOPLE",
+            "char_start": 0,
+            "char_end": 10,
+            "head_char_start": 6,
+            "head_char_end": 10,
+            "object_id": "EntityMention-8",
+            "mapped_text": "Steve Jobs"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.09921680607463254,
+            "_NR": 0.3484949748467731,
+            "Located_In": 0.20547893864228936,
+            "Work_For": 0.11431637729282737,
+            "Live_In": 0.2324929031434777
+          }
+        }
+      ]
+    },
+    {
+      "id": "smoke-05",
+      "text": "Apple was founded in Cupertino.",
+      "sentence_count": 1,
+      "entities": [
+        {
+          "mention_id": "EntityMention-10",
+          "sentence_index": 0,
+          "type": "ORGANIZATION",
+          "text": "Apple",
+          "char_start": 0,
+          "char_end": 5,
+          "head_char_start": 0,
+          "head_char_end": 5,
+          "token_start": 0,
+          "token_end": 1,
+          "mapped_text": "Apple"
+        },
+        {
+          "mention_id": "EntityMention-11",
+          "sentence_index": 0,
+          "type": "LOCATION",
+          "text": "Cupertino",
+          "char_start": 21,
+          "char_end": 30,
+          "head_char_start": 21,
+          "head_char_end": 30,
+          "token_start": 4,
+          "token_end": 5,
+          "mapped_text": "Cupertino"
+        }
+      ],
+      "relations": [
+        {
+          "relation_id": "RelationMention-13",
+          "sentence_index": 0,
+          "sentence_text": "Apple was founded in Cupertino.",
+          "label": "_NR",
+          "arg0": {
+            "text": "Apple",
+            "type": "ORGANIZATION",
+            "char_start": 0,
+            "char_end": 5,
+            "head_char_start": 0,
+            "head_char_end": 5,
+            "object_id": "EntityMention-10",
+            "mapped_text": "Apple"
+          },
+          "arg1": {
+            "text": "Cupertino",
+            "type": "LOCATION",
+            "char_start": 21,
+            "char_end": 30,
+            "head_char_start": 21,
+            "head_char_end": 30,
+            "object_id": "EntityMention-11",
+            "mapped_text": "Cupertino"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.1655669967235014,
+            "_NR": 0.7917426540133936,
+            "Located_In": 0.020543092629261937,
+            "Work_For": 0.006696138937457555,
+            "Live_In": 0.01545111769638571
+          }
+        },
+        {
+          "relation_id": "RelationMention-14",
+          "sentence_index": 0,
+          "sentence_text": "Apple was founded in Cupertino.",
+          "label": "_NR",
+          "arg0": {
+            "text": "Cupertino",
+            "type": "LOCATION",
+            "char_start": 21,
+            "char_end": 30,
+            "head_char_start": 21,
+            "head_char_end": 30,
+            "object_id": "EntityMention-11",
+            "mapped_text": "Cupertino"
+          },
+          "arg1": {
+            "text": "Apple",
+            "type": "ORGANIZATION",
+            "char_start": 0,
+            "char_end": 5,
+            "head_char_start": 0,
+            "head_char_end": 5,
+            "object_id": "EntityMention-10",
+            "mapped_text": "Apple"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.0035239839295021793,
+            "_NR": 0.9861558270455645,
+            "Located_In": 0.0027625316747377135,
+            "Work_For": 0.005086871202807189,
+            "Live_In": 0.0024707861473885675
+          }
+        }
+      ]
+    },
+    {
+      "id": "smoke-06",
+      "text": "France is located in Europe.",
+      "sentence_count": 1,
+      "entities": [
+        {
+          "mention_id": "EntityMention-12",
+          "sentence_index": 0,
+          "type": "LOCATION",
+          "text": "France",
+          "char_start": 0,
+          "char_end": 6,
+          "head_char_start": 0,
+          "head_char_end": 6,
+          "token_start": 0,
+          "token_end": 1,
+          "mapped_text": "France"
+        },
+        {
+          "mention_id": "EntityMention-13",
+          "sentence_index": 0,
+          "type": "LOCATION",
+          "text": "Europe",
+          "char_start": 21,
+          "char_end": 27,
+          "head_char_start": 21,
+          "head_char_end": 27,
+          "token_start": 4,
+          "token_end": 5,
+          "mapped_text": "Europe"
+        }
+      ],
+      "relations": [
+        {
+          "relation_id": "RelationMention-15",
+          "sentence_index": 0,
+          "sentence_text": "France is located in Europe.",
+          "label": "_NR",
+          "arg0": {
+            "text": "France",
+            "type": "LOCATION",
+            "char_start": 0,
+            "char_end": 6,
+            "head_char_start": 0,
+            "head_char_end": 6,
+            "object_id": "EntityMention-12",
+            "mapped_text": "France"
+          },
+          "arg1": {
+            "text": "Europe",
+            "type": "LOCATION",
+            "char_start": 21,
+            "char_end": 27,
+            "head_char_start": 21,
+            "head_char_end": 27,
+            "object_id": "EntityMention-13",
+            "mapped_text": "Europe"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.006258198326888507,
+            "_NR": 0.9625306377780268,
+            "Located_In": 0.029663311708480557,
+            "Work_For": 0.000750368187636769,
+            "Live_In": 0.0007974839989675695
+          }
+        },
+        {
+          "relation_id": "RelationMention-16",
+          "sentence_index": 0,
+          "sentence_text": "France is located in Europe.",
+          "label": "_NR",
+          "arg0": {
+            "text": "Europe",
+            "type": "LOCATION",
+            "char_start": 21,
+            "char_end": 27,
+            "head_char_start": 21,
+            "head_char_end": 27,
+            "object_id": "EntityMention-13",
+            "mapped_text": "Europe"
+          },
+          "arg1": {
+            "text": "France",
+            "type": "LOCATION",
+            "char_start": 0,
+            "char_end": 6,
+            "head_char_start": 0,
+            "head_char_end": 6,
+            "object_id": "EntityMention-12",
+            "mapped_text": "France"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.002513356750329576,
+            "_NR": 0.9597042427114298,
+            "Located_In": 0.03592841192356212,
+            "Work_For": 0.0008946934422078849,
+            "Live_In": 0.0009592951724702039
+          }
+        }
+      ]
+    },
+    {
+      "id": "smoke-07",
+      "text": "Albert Einstein lived in Princeton, New Jersey.",
+      "sentence_count": 1,
+      "entities": [
+        {
+          "mention_id": "EntityMention-14",
+          "sentence_index": 0,
+          "type": "PEOPLE",
+          "text": "Einstein",
+          "char_start": 0,
+          "char_end": 15,
+          "head_char_start": 7,
+          "head_char_end": 15,
+          "token_start": 0,
+          "token_end": 2,
+          "mapped_text": "Albert Einstein"
+        },
+        {
+          "mention_id": "EntityMention-15",
+          "sentence_index": 0,
+          "type": "LOCATION",
+          "text": "Princeton",
+          "char_start": 25,
+          "char_end": 34,
+          "head_char_start": 25,
+          "head_char_end": 34,
+          "token_start": 4,
+          "token_end": 5,
+          "mapped_text": "Princeton"
+        },
+        {
+          "mention_id": "EntityMention-16",
+          "sentence_index": 0,
+          "type": "LOCATION",
+          "text": "Jersey",
+          "char_start": 36,
+          "char_end": 46,
+          "head_char_start": 40,
+          "head_char_end": 46,
+          "token_start": 6,
+          "token_end": 8,
+          "mapped_text": "New Jersey"
+        }
+      ],
+      "relations": [
+        {
+          "relation_id": "RelationMention-17",
+          "sentence_index": 0,
+          "sentence_text": "Albert Einstein lived in Princeton, New Jersey.",
+          "label": "_NR",
+          "arg0": {
+            "text": "Einstein",
+            "type": "PEOPLE",
+            "char_start": 0,
+            "char_end": 15,
+            "head_char_start": 7,
+            "head_char_end": 15,
+            "object_id": "EntityMention-14",
+            "mapped_text": "Albert Einstein"
+          },
+          "arg1": {
+            "text": "Princeton",
+            "type": "LOCATION",
+            "char_start": 25,
+            "char_end": 34,
+            "head_char_start": 25,
+            "head_char_end": 34,
+            "object_id": "EntityMention-15",
+            "mapped_text": "Princeton"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.22457115794123,
+            "_NR": 0.5271913844880644,
+            "Located_In": 0.0762217993422487,
+            "Work_For": 0.0518951476319918,
+            "Live_In": 0.12012051059646493
+          }
+        },
+        {
+          "relation_id": "RelationMention-18",
+          "sentence_index": 0,
+          "sentence_text": "Albert Einstein lived in Princeton, New Jersey.",
+          "label": "_NR",
+          "arg0": {
+            "text": "Einstein",
+            "type": "PEOPLE",
+            "char_start": 0,
+            "char_end": 15,
+            "head_char_start": 7,
+            "head_char_end": 15,
+            "object_id": "EntityMention-14",
+            "mapped_text": "Albert Einstein"
+          },
+          "arg1": {
+            "text": "Jersey",
+            "type": "LOCATION",
+            "char_start": 36,
+            "char_end": 46,
+            "head_char_start": 40,
+            "head_char_end": 46,
+            "object_id": "EntityMention-16",
+            "mapped_text": "New Jersey"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.07874587895413791,
+            "_NR": 0.7607407008934132,
+            "Located_In": 0.030793297641594792,
+            "Work_For": 0.0277505694984954,
+            "Live_In": 0.10196955301235856
+          }
+        },
+        {
+          "relation_id": "RelationMention-19",
+          "sentence_index": 0,
+          "sentence_text": "Albert Einstein lived in Princeton, New Jersey.",
+          "label": "_NR",
+          "arg0": {
+            "text": "Princeton",
+            "type": "LOCATION",
+            "char_start": 25,
+            "char_end": 34,
+            "head_char_start": 25,
+            "head_char_end": 34,
+            "object_id": "EntityMention-15",
+            "mapped_text": "Princeton"
+          },
+          "arg1": {
+            "text": "Einstein",
+            "type": "PEOPLE",
+            "char_start": 0,
+            "char_end": 15,
+            "head_char_start": 7,
+            "head_char_end": 15,
+            "object_id": "EntityMention-14",
+            "mapped_text": "Albert Einstein"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.16935730528775045,
+            "_NR": 0.39301593996075795,
+            "Located_In": 0.17801015642087886,
+            "Work_For": 0.0744121769860775,
+            "Live_In": 0.18520442134453524
+          }
+        },
+        {
+          "relation_id": "RelationMention-20",
+          "sentence_index": 0,
+          "sentence_text": "Albert Einstein lived in Princeton, New Jersey.",
+          "label": "_NR",
+          "arg0": {
+            "text": "Princeton",
+            "type": "LOCATION",
+            "char_start": 25,
+            "char_end": 34,
+            "head_char_start": 25,
+            "head_char_end": 34,
+            "object_id": "EntityMention-15",
+            "mapped_text": "Princeton"
+          },
+          "arg1": {
+            "text": "Jersey",
+            "type": "LOCATION",
+            "char_start": 36,
+            "char_end": 46,
+            "head_char_start": 40,
+            "head_char_end": 46,
+            "object_id": "EntityMention-16",
+            "mapped_text": "New Jersey"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.00317944924297322,
+            "_NR": 0.9650002966629658,
+            "Located_In": 0.029829878211241913,
+            "Work_For": 0.0012340326944653478,
+            "Live_In": 0.0007563431883536484
+          }
+        },
+        {
+          "relation_id": "RelationMention-21",
+          "sentence_index": 0,
+          "sentence_text": "Albert Einstein lived in Princeton, New Jersey.",
+          "label": "_NR",
+          "arg0": {
+            "text": "Jersey",
+            "type": "LOCATION",
+            "char_start": 36,
+            "char_end": 46,
+            "head_char_start": 40,
+            "head_char_end": 46,
+            "object_id": "EntityMention-16",
+            "mapped_text": "New Jersey"
+          },
+          "arg1": {
+            "text": "Einstein",
+            "type": "PEOPLE",
+            "char_start": 0,
+            "char_end": 15,
+            "head_char_start": 7,
+            "head_char_end": 15,
+            "object_id": "EntityMention-14",
+            "mapped_text": "Albert Einstein"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.06028074764272987,
+            "_NR": 0.7292001523614983,
+            "Located_In": 0.07097664450155373,
+            "Work_For": 0.040827973379158784,
+            "Live_In": 0.09871448211505934
+          }
+        },
+        {
+          "relation_id": "RelationMention-22",
+          "sentence_index": 0,
+          "sentence_text": "Albert Einstein lived in Princeton, New Jersey.",
+          "label": "_NR",
+          "arg0": {
+            "text": "Jersey",
+            "type": "LOCATION",
+            "char_start": 36,
+            "char_end": 46,
+            "head_char_start": 40,
+            "head_char_end": 46,
+            "object_id": "EntityMention-16",
+            "mapped_text": "New Jersey"
+          },
+          "arg1": {
+            "text": "Princeton",
+            "type": "LOCATION",
+            "char_start": 25,
+            "char_end": 34,
+            "head_char_start": 25,
+            "head_char_end": 34,
+            "object_id": "EntityMention-15",
+            "mapped_text": "Princeton"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.002530913553599698,
+            "_NR": 0.9730166262768618,
+            "Located_In": 0.023087118698573283,
+            "Work_For": 0.0009929329136364256,
+            "Live_In": 0.00037240855732899184
+          }
+        }
+      ]
+    },
+    {
+      "id": "smoke-08",
+      "text": "Bill Gates does not work for Apple.",
+      "sentence_count": 1,
+      "entities": [
+        {
+          "mention_id": "EntityMention-17",
+          "sentence_index": 0,
+          "type": "PEOPLE",
+          "text": "Gates",
+          "char_start": 0,
+          "char_end": 10,
+          "head_char_start": 5,
+          "head_char_end": 10,
+          "token_start": 0,
+          "token_end": 2,
+          "mapped_text": "Bill Gates"
+        },
+        {
+          "mention_id": "EntityMention-18",
+          "sentence_index": 0,
+          "type": "ORGANIZATION",
+          "text": "Apple",
+          "char_start": 29,
+          "char_end": 34,
+          "head_char_start": 29,
+          "head_char_end": 34,
+          "token_start": 6,
+          "token_end": 7,
+          "mapped_text": "Apple"
+        }
+      ],
+      "relations": [
+        {
+          "relation_id": "RelationMention-23",
+          "sentence_index": 0,
+          "sentence_text": "Bill Gates does not work for Apple.",
+          "label": "_NR",
+          "arg0": {
+            "text": "Gates",
+            "type": "PEOPLE",
+            "char_start": 0,
+            "char_end": 10,
+            "head_char_start": 5,
+            "head_char_end": 10,
+            "object_id": "EntityMention-17",
+            "mapped_text": "Bill Gates"
+          },
+          "arg1": {
+            "text": "Apple",
+            "type": "ORGANIZATION",
+            "char_start": 29,
+            "char_end": 34,
+            "head_char_start": 29,
+            "head_char_end": 34,
+            "object_id": "EntityMention-18",
+            "mapped_text": "Apple"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.23972558483632123,
+            "_NR": 0.24427818665831022,
+            "Located_In": 0.10117209986197315,
+            "Work_For": 0.23453797745271535,
+            "Live_In": 0.18028615119068012
+          }
+        },
+        {
+          "relation_id": "RelationMention-24",
+          "sentence_index": 0,
+          "sentence_text": "Bill Gates does not work for Apple.",
+          "label": "_NR",
+          "arg0": {
+            "text": "Apple",
+            "type": "ORGANIZATION",
+            "char_start": 29,
+            "char_end": 34,
+            "head_char_start": 29,
+            "head_char_end": 34,
+            "object_id": "EntityMention-18",
+            "mapped_text": "Apple"
+          },
+          "arg1": {
+            "text": "Gates",
+            "type": "PEOPLE",
+            "char_start": 0,
+            "char_end": 10,
+            "head_char_start": 5,
+            "head_char_end": 10,
+            "object_id": "EntityMention-17",
+            "mapped_text": "Bill Gates"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.18885623001782997,
+            "_NR": 0.33262893525970383,
+            "Located_In": 0.0980486294583097,
+            "Work_For": 0.27768584820848347,
+            "Live_In": 0.10278035705567312
+          }
+        }
+      ]
+    },
+    {
+      "id": "smoke-09",
+      "text": "Amazon did not acquire Netflix.",
+      "sentence_count": 1,
+      "entities": [
+        {
+          "mention_id": "EntityMention-19",
+          "sentence_index": 0,
+          "type": "ORGANIZATION",
+          "text": "Amazon",
+          "char_start": 0,
+          "char_end": 6,
+          "head_char_start": 0,
+          "head_char_end": 6,
+          "token_start": 0,
+          "token_end": 1,
+          "mapped_text": "Amazon"
+        },
+        {
+          "mention_id": "EntityMention-20",
+          "sentence_index": 0,
+          "type": "ORGANIZATION",
+          "text": "Netflix",
+          "char_start": 23,
+          "char_end": 30,
+          "head_char_start": 23,
+          "head_char_end": 30,
+          "token_start": 4,
+          "token_end": 5,
+          "mapped_text": "Netflix"
+        }
+      ],
+      "relations": [
+        {
+          "relation_id": "RelationMention-25",
+          "sentence_index": 0,
+          "sentence_text": "Amazon did not acquire Netflix.",
+          "label": "_NR",
+          "arg0": {
+            "text": "Amazon",
+            "type": "ORGANIZATION",
+            "char_start": 0,
+            "char_end": 6,
+            "head_char_start": 0,
+            "head_char_end": 6,
+            "object_id": "EntityMention-19",
+            "mapped_text": "Amazon"
+          },
+          "arg1": {
+            "text": "Netflix",
+            "type": "ORGANIZATION",
+            "char_start": 23,
+            "char_end": 30,
+            "head_char_start": 23,
+            "head_char_end": 30,
+            "object_id": "EntityMention-20",
+            "mapped_text": "Netflix"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.023358456346860002,
+            "_NR": 0.966463278246305,
+            "Located_In": 0.00348205050892772,
+            "Work_For": 0.003732965175384459,
+            "Live_In": 0.0029632497225225668
+          }
+        },
+        {
+          "relation_id": "RelationMention-26",
+          "sentence_index": 0,
+          "sentence_text": "Amazon did not acquire Netflix.",
+          "label": "_NR",
+          "arg0": {
+            "text": "Netflix",
+            "type": "ORGANIZATION",
+            "char_start": 23,
+            "char_end": 30,
+            "head_char_start": 23,
+            "head_char_end": 30,
+            "object_id": "EntityMention-20",
+            "mapped_text": "Netflix"
+          },
+          "arg1": {
+            "text": "Amazon",
+            "type": "ORGANIZATION",
+            "char_start": 0,
+            "char_end": 6,
+            "head_char_start": 0,
+            "head_char_end": 6,
+            "object_id": "EntityMention-19",
+            "mapped_text": "Amazon"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.016225537711797647,
+            "_NR": 0.9768065341828799,
+            "Located_In": 0.0025330482654207713,
+            "Work_For": 0.0028866953037755324,
+            "Live_In": 0.001548184536125763
+          }
+        }
+      ]
+    },
+    {
+      "id": "smoke-10",
+      "text": "Elon Musk formerly worked for PayPal.",
+      "sentence_count": 1,
+      "entities": [
+        {
+          "mention_id": "EntityMention-21",
+          "sentence_index": 0,
+          "type": "PEOPLE",
+          "text": "Musk",
+          "char_start": 0,
+          "char_end": 9,
+          "head_char_start": 5,
+          "head_char_end": 9,
+          "token_start": 0,
+          "token_end": 2,
+          "mapped_text": "Elon Musk"
+        },
+        {
+          "mention_id": "EntityMention-22",
+          "sentence_index": 0,
+          "type": "ORGANIZATION",
+          "text": "PayPal",
+          "char_start": 30,
+          "char_end": 36,
+          "head_char_start": 30,
+          "head_char_end": 36,
+          "token_start": 5,
+          "token_end": 6,
+          "mapped_text": "PayPal"
+        }
+      ],
+      "relations": [
+        {
+          "relation_id": "RelationMention-27",
+          "sentence_index": 0,
+          "sentence_text": "Elon Musk formerly worked for PayPal.",
+          "label": "Work_For",
+          "arg0": {
+            "text": "Musk",
+            "type": "PEOPLE",
+            "char_start": 0,
+            "char_end": 9,
+            "head_char_start": 5,
+            "head_char_end": 9,
+            "object_id": "EntityMention-21",
+            "mapped_text": "Elon Musk"
+          },
+          "arg1": {
+            "text": "PayPal",
+            "type": "ORGANIZATION",
+            "char_start": 30,
+            "char_end": 36,
+            "head_char_start": 30,
+            "head_char_end": 36,
+            "object_id": "EntityMention-22",
+            "mapped_text": "PayPal"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.23116127991631255,
+            "_NR": 0.17588877532686895,
+            "Located_In": 0.12486978804878773,
+            "Work_For": 0.3254078750127131,
+            "Live_In": 0.14267228169531768
+          }
+        },
+        {
+          "relation_id": "RelationMention-28",
+          "sentence_index": 0,
+          "sentence_text": "Elon Musk formerly worked for PayPal.",
+          "label": "Work_For",
+          "arg0": {
+            "text": "PayPal",
+            "type": "ORGANIZATION",
+            "char_start": 30,
+            "char_end": 36,
+            "head_char_start": 30,
+            "head_char_end": 36,
+            "object_id": "EntityMention-22",
+            "mapped_text": "PayPal"
+          },
+          "arg1": {
+            "text": "Musk",
+            "type": "PEOPLE",
+            "char_start": 0,
+            "char_end": 9,
+            "head_char_start": 5,
+            "head_char_end": 9,
+            "object_id": "EntityMention-21",
+            "mapped_text": "Elon Musk"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.23116127991631255,
+            "_NR": 0.17588877532686895,
+            "Located_In": 0.12486978804878773,
+            "Work_For": 0.3254078750127131,
+            "Live_In": 0.14267228169531768
+          }
+        }
+      ]
+    },
+    {
+      "id": "smoke-11",
+      "text": "Berlin is in Germany, and Tokyo is in Japan.",
+      "sentence_count": 1,
+      "entities": [
+        {
+          "mention_id": "EntityMention-23",
+          "sentence_index": 0,
+          "type": "LOCATION",
+          "text": "Berlin",
+          "char_start": 0,
+          "char_end": 6,
+          "head_char_start": 0,
+          "head_char_end": 6,
+          "token_start": 0,
+          "token_end": 1,
+          "mapped_text": "Berlin"
+        },
+        {
+          "mention_id": "EntityMention-24",
+          "sentence_index": 0,
+          "type": "LOCATION",
+          "text": "Germany",
+          "char_start": 13,
+          "char_end": 20,
+          "head_char_start": 13,
+          "head_char_end": 20,
+          "token_start": 3,
+          "token_end": 4,
+          "mapped_text": "Germany"
+        },
+        {
+          "mention_id": "EntityMention-25",
+          "sentence_index": 0,
+          "type": "LOCATION",
+          "text": "Tokyo",
+          "char_start": 26,
+          "char_end": 31,
+          "head_char_start": 26,
+          "head_char_end": 31,
+          "token_start": 6,
+          "token_end": 7,
+          "mapped_text": "Tokyo"
+        },
+        {
+          "mention_id": "EntityMention-26",
+          "sentence_index": 0,
+          "type": "LOCATION",
+          "text": "Japan",
+          "char_start": 38,
+          "char_end": 43,
+          "head_char_start": 38,
+          "head_char_end": 43,
+          "token_start": 9,
+          "token_end": 10,
+          "mapped_text": "Japan"
+        }
+      ],
+      "relations": [
+        {
+          "relation_id": "RelationMention-29",
+          "sentence_index": 0,
+          "sentence_text": "Berlin is in Germany, and Tokyo is in Japan.",
+          "label": "_NR",
+          "arg0": {
+            "text": "Berlin",
+            "type": "LOCATION",
+            "char_start": 0,
+            "char_end": 6,
+            "head_char_start": 0,
+            "head_char_end": 6,
+            "object_id": "EntityMention-23",
+            "mapped_text": "Berlin"
+          },
+          "arg1": {
+            "text": "Germany",
+            "type": "LOCATION",
+            "char_start": 13,
+            "char_end": 20,
+            "head_char_start": 13,
+            "head_char_end": 20,
+            "object_id": "EntityMention-24",
+            "mapped_text": "Germany"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.03639305822166022,
+            "_NR": 0.9182189319018255,
+            "Located_In": 0.04341876958402937,
+            "Work_For": 0.0011698737713290647,
+            "Live_In": 0.0007993665211560061
+          }
+        },
+        {
+          "relation_id": "RelationMention-30",
+          "sentence_index": 0,
+          "sentence_text": "Berlin is in Germany, and Tokyo is in Japan.",
+          "label": "_NR",
+          "arg0": {
+            "text": "Berlin",
+            "type": "LOCATION",
+            "char_start": 0,
+            "char_end": 6,
+            "head_char_start": 0,
+            "head_char_end": 6,
+            "object_id": "EntityMention-23",
+            "mapped_text": "Berlin"
+          },
+          "arg1": {
+            "text": "Tokyo",
+            "type": "LOCATION",
+            "char_start": 26,
+            "char_end": 31,
+            "head_char_start": 26,
+            "head_char_end": 31,
+            "object_id": "EntityMention-25",
+            "mapped_text": "Tokyo"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.0024561665654766252,
+            "_NR": 0.9895346615082645,
+            "Located_In": 0.007352704206786642,
+            "Work_For": 0.0002804270727872985,
+            "Live_In": 0.00037604064668464156
+          }
+        },
+        {
+          "relation_id": "RelationMention-31",
+          "sentence_index": 0,
+          "sentence_text": "Berlin is in Germany, and Tokyo is in Japan.",
+          "label": "_NR",
+          "arg0": {
+            "text": "Berlin",
+            "type": "LOCATION",
+            "char_start": 0,
+            "char_end": 6,
+            "head_char_start": 0,
+            "head_char_end": 6,
+            "object_id": "EntityMention-23",
+            "mapped_text": "Berlin"
+          },
+          "arg1": {
+            "text": "Japan",
+            "type": "LOCATION",
+            "char_start": 38,
+            "char_end": 43,
+            "head_char_start": 38,
+            "head_char_end": 43,
+            "object_id": "EntityMention-26",
+            "mapped_text": "Japan"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.0031450029012041396,
+            "_NR": 0.9788995398291451,
+            "Located_In": 0.016982166886559426,
+            "Work_For": 0.00044388480646353557,
+            "Live_In": 0.0005294055766279746
+          }
+        },
+        {
+          "relation_id": "RelationMention-32",
+          "sentence_index": 0,
+          "sentence_text": "Berlin is in Germany, and Tokyo is in Japan.",
+          "label": "_NR",
+          "arg0": {
+            "text": "Germany",
+            "type": "LOCATION",
+            "char_start": 13,
+            "char_end": 20,
+            "head_char_start": 13,
+            "head_char_end": 20,
+            "object_id": "EntityMention-24",
+            "mapped_text": "Germany"
+          },
+          "arg1": {
+            "text": "Berlin",
+            "type": "LOCATION",
+            "char_start": 0,
+            "char_end": 6,
+            "head_char_start": 0,
+            "head_char_end": 6,
+            "object_id": "EntityMention-23",
+            "mapped_text": "Berlin"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.021527857678273934,
+            "_NR": 0.8829635710301094,
+            "Located_In": 0.09188597678888537,
+            "Work_For": 0.0018097262595592864,
+            "Live_In": 0.0018128682431719422
+          }
+        },
+        {
+          "relation_id": "RelationMention-33",
+          "sentence_index": 0,
+          "sentence_text": "Berlin is in Germany, and Tokyo is in Japan.",
+          "label": "_NR",
+          "arg0": {
+            "text": "Germany",
+            "type": "LOCATION",
+            "char_start": 13,
+            "char_end": 20,
+            "head_char_start": 13,
+            "head_char_end": 20,
+            "object_id": "EntityMention-24",
+            "mapped_text": "Germany"
+          },
+          "arg1": {
+            "text": "Tokyo",
+            "type": "LOCATION",
+            "char_start": 26,
+            "char_end": 31,
+            "head_char_start": 26,
+            "head_char_end": 31,
+            "object_id": "EntityMention-25",
+            "mapped_text": "Tokyo"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.0020455251737255486,
+            "_NR": 0.9875194635047678,
+            "Located_In": 0.009549722941590375,
+            "Work_For": 0.00037936673402804675,
+            "Live_In": 0.0005059216458884842
+          }
+        },
+        {
+          "relation_id": "RelationMention-34",
+          "sentence_index": 0,
+          "sentence_text": "Berlin is in Germany, and Tokyo is in Japan.",
+          "label": "_NR",
+          "arg0": {
+            "text": "Germany",
+            "type": "LOCATION",
+            "char_start": 13,
+            "char_end": 20,
+            "head_char_start": 13,
+            "head_char_end": 20,
+            "object_id": "EntityMention-24",
+            "mapped_text": "Germany"
+          },
+          "arg1": {
+            "text": "Japan",
+            "type": "LOCATION",
+            "char_start": 38,
+            "char_end": 43,
+            "head_char_start": 38,
+            "head_char_end": 43,
+            "object_id": "EntityMention-26",
+            "mapped_text": "Japan"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.0018587046334043818,
+            "_NR": 0.9876676343268835,
+            "Located_In": 0.009772996655874297,
+            "Work_For": 0.0003246555727405369,
+            "Live_In": 0.0003760088110977525
+          }
+        },
+        {
+          "relation_id": "RelationMention-35",
+          "sentence_index": 0,
+          "sentence_text": "Berlin is in Germany, and Tokyo is in Japan.",
+          "label": "_NR",
+          "arg0": {
+            "text": "Tokyo",
+            "type": "LOCATION",
+            "char_start": 26,
+            "char_end": 31,
+            "head_char_start": 26,
+            "head_char_end": 31,
+            "object_id": "EntityMention-25",
+            "mapped_text": "Tokyo"
+          },
+          "arg1": {
+            "text": "Berlin",
+            "type": "LOCATION",
+            "char_start": 0,
+            "char_end": 6,
+            "head_char_start": 0,
+            "head_char_end": 6,
+            "object_id": "EntityMention-23",
+            "mapped_text": "Berlin"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.005099233411510372,
+            "_NR": 0.9805569446744196,
+            "Located_In": 0.013498856107327942,
+            "Work_For": 0.0004146131668156126,
+            "Live_In": 0.00043035263992632737
+          }
+        },
+        {
+          "relation_id": "RelationMention-36",
+          "sentence_index": 0,
+          "sentence_text": "Berlin is in Germany, and Tokyo is in Japan.",
+          "label": "_NR",
+          "arg0": {
+            "text": "Tokyo",
+            "type": "LOCATION",
+            "char_start": 26,
+            "char_end": 31,
+            "head_char_start": 26,
+            "head_char_end": 31,
+            "object_id": "EntityMention-25",
+            "mapped_text": "Tokyo"
+          },
+          "arg1": {
+            "text": "Germany",
+            "type": "LOCATION",
+            "char_start": 13,
+            "char_end": 20,
+            "head_char_start": 13,
+            "head_char_end": 20,
+            "object_id": "EntityMention-24",
+            "mapped_text": "Germany"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.009289430732487674,
+            "_NR": 0.9632813459458256,
+            "Located_In": 0.02612720306044266,
+            "Work_For": 0.0007781084052531446,
+            "Live_In": 0.0005239118559910143
+          }
+        },
+        {
+          "relation_id": "RelationMention-37",
+          "sentence_index": 0,
+          "sentence_text": "Berlin is in Germany, and Tokyo is in Japan.",
+          "label": "_NR",
+          "arg0": {
+            "text": "Tokyo",
+            "type": "LOCATION",
+            "char_start": 26,
+            "char_end": 31,
+            "head_char_start": 26,
+            "head_char_end": 31,
+            "object_id": "EntityMention-25",
+            "mapped_text": "Tokyo"
+          },
+          "arg1": {
+            "text": "Japan",
+            "type": "LOCATION",
+            "char_start": 38,
+            "char_end": 43,
+            "head_char_start": 38,
+            "head_char_end": 43,
+            "object_id": "EntityMention-26",
+            "mapped_text": "Japan"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.01083904159432954,
+            "_NR": 0.8806805008879925,
+            "Located_In": 0.10611395422603695,
+            "Work_For": 0.0011061952599948073,
+            "Live_In": 0.0012603080316460616
+          }
+        },
+        {
+          "relation_id": "RelationMention-38",
+          "sentence_index": 0,
+          "sentence_text": "Berlin is in Germany, and Tokyo is in Japan.",
+          "label": "_NR",
+          "arg0": {
+            "text": "Japan",
+            "type": "LOCATION",
+            "char_start": 38,
+            "char_end": 43,
+            "head_char_start": 38,
+            "head_char_end": 43,
+            "object_id": "EntityMention-26",
+            "mapped_text": "Japan"
+          },
+          "arg1": {
+            "text": "Berlin",
+            "type": "LOCATION",
+            "char_start": 0,
+            "char_end": 6,
+            "head_char_start": 0,
+            "head_char_end": 6,
+            "object_id": "EntityMention-23",
+            "mapped_text": "Berlin"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.005053792093743325,
+            "_NR": 0.9855908026737357,
+            "Located_In": 0.008592134070221153,
+            "Work_For": 0.00037146912794004547,
+            "Live_In": 0.0003918020343599366
+          }
+        },
+        {
+          "relation_id": "RelationMention-39",
+          "sentence_index": 0,
+          "sentence_text": "Berlin is in Germany, and Tokyo is in Japan.",
+          "label": "_NR",
+          "arg0": {
+            "text": "Japan",
+            "type": "LOCATION",
+            "char_start": 38,
+            "char_end": 43,
+            "head_char_start": 38,
+            "head_char_end": 43,
+            "object_id": "EntityMention-26",
+            "mapped_text": "Japan"
+          },
+          "arg1": {
+            "text": "Germany",
+            "type": "LOCATION",
+            "char_start": 13,
+            "char_end": 20,
+            "head_char_start": 13,
+            "head_char_end": 20,
+            "object_id": "EntityMention-24",
+            "mapped_text": "Germany"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.006576722647850333,
+            "_NR": 0.9853729735074259,
+            "Located_In": 0.0074174323727601065,
+            "Work_For": 0.0003794011534207903,
+            "Live_In": 0.00025347031854270626
+          }
+        },
+        {
+          "relation_id": "RelationMention-40",
+          "sentence_index": 0,
+          "sentence_text": "Berlin is in Germany, and Tokyo is in Japan.",
+          "label": "_NR",
+          "arg0": {
+            "text": "Japan",
+            "type": "LOCATION",
+            "char_start": 38,
+            "char_end": 43,
+            "head_char_start": 38,
+            "head_char_end": 43,
+            "object_id": "EntityMention-26",
+            "mapped_text": "Japan"
+          },
+          "arg1": {
+            "text": "Tokyo",
+            "type": "LOCATION",
+            "char_start": 26,
+            "char_end": 31,
+            "head_char_start": 26,
+            "head_char_end": 31,
+            "object_id": "EntityMention-25",
+            "mapped_text": "Tokyo"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.00829823221740584,
+            "_NR": 0.9412468370136612,
+            "Located_In": 0.048152163729348184,
+            "Work_For": 0.0010259772891677457,
+            "Live_In": 0.0012767897504172832
+          }
+        }
+      ]
+    },
+    {
+      "id": "smoke-12",
+      "text": "Sundar Pichai works at Google, which is based in Mountain View.",
+      "sentence_count": 1,
+      "entities": [
+        {
+          "mention_id": "EntityMention-27",
+          "sentence_index": 0,
+          "type": "PEOPLE",
+          "text": "Pichai",
+          "char_start": 0,
+          "char_end": 13,
+          "head_char_start": 7,
+          "head_char_end": 13,
+          "token_start": 0,
+          "token_end": 2,
+          "mapped_text": "Sundar Pichai"
+        },
+        {
+          "mention_id": "EntityMention-28",
+          "sentence_index": 0,
+          "type": "ORGANIZATION",
+          "text": "Google",
+          "char_start": 23,
+          "char_end": 29,
+          "head_char_start": 23,
+          "head_char_end": 29,
+          "token_start": 4,
+          "token_end": 5,
+          "mapped_text": "Google"
+        },
+        {
+          "mention_id": "EntityMention-29",
+          "sentence_index": 0,
+          "type": "LOCATION",
+          "text": "View",
+          "char_start": 49,
+          "char_end": 62,
+          "head_char_start": 58,
+          "head_char_end": 62,
+          "token_start": 10,
+          "token_end": 12,
+          "mapped_text": "Mountain View"
+        }
+      ],
+      "relations": [
+        {
+          "relation_id": "RelationMention-41",
+          "sentence_index": 0,
+          "sentence_text": "Sundar Pichai works at Google, which is based in Mountain View.",
+          "label": "Work_For",
+          "arg0": {
+            "text": "Pichai",
+            "type": "PEOPLE",
+            "char_start": 0,
+            "char_end": 13,
+            "head_char_start": 7,
+            "head_char_end": 13,
+            "object_id": "EntityMention-27",
+            "mapped_text": "Sundar Pichai"
+          },
+          "arg1": {
+            "text": "Google",
+            "type": "ORGANIZATION",
+            "char_start": 23,
+            "char_end": 29,
+            "head_char_start": 23,
+            "head_char_end": 29,
+            "object_id": "EntityMention-28",
+            "mapped_text": "Google"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.20011335881740475,
+            "_NR": 0.04808820626372231,
+            "Located_In": 0.15939807827609578,
+            "Work_For": 0.4392857180984242,
+            "Live_In": 0.15311463854435298
+          }
+        },
+        {
+          "relation_id": "RelationMention-42",
+          "sentence_index": 0,
+          "sentence_text": "Sundar Pichai works at Google, which is based in Mountain View.",
+          "label": "OrgBased_In",
+          "arg0": {
+            "text": "Pichai",
+            "type": "PEOPLE",
+            "char_start": 0,
+            "char_end": 13,
+            "head_char_start": 7,
+            "head_char_end": 13,
+            "object_id": "EntityMention-27",
+            "mapped_text": "Sundar Pichai"
+          },
+          "arg1": {
+            "text": "View",
+            "type": "LOCATION",
+            "char_start": 49,
+            "char_end": 62,
+            "head_char_start": 58,
+            "head_char_end": 62,
+            "object_id": "EntityMention-29",
+            "mapped_text": "Mountain View"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.3344890510752869,
+            "_NR": 0.19967482489183078,
+            "Located_In": 0.10001653573193357,
+            "Work_For": 0.2480743426360953,
+            "Live_In": 0.1177452456648534
+          }
+        },
+        {
+          "relation_id": "RelationMention-43",
+          "sentence_index": 0,
+          "sentence_text": "Sundar Pichai works at Google, which is based in Mountain View.",
+          "label": "Work_For",
+          "arg0": {
+            "text": "Google",
+            "type": "ORGANIZATION",
+            "char_start": 23,
+            "char_end": 29,
+            "head_char_start": 23,
+            "head_char_end": 29,
+            "object_id": "EntityMention-28",
+            "mapped_text": "Google"
+          },
+          "arg1": {
+            "text": "Pichai",
+            "type": "PEOPLE",
+            "char_start": 0,
+            "char_end": 13,
+            "head_char_start": 7,
+            "head_char_end": 13,
+            "object_id": "EntityMention-27",
+            "mapped_text": "Sundar Pichai"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.2673506090365512,
+            "_NR": 0.1273110155033028,
+            "Located_In": 0.1327723211890224,
+            "Work_For": 0.2700917292964321,
+            "Live_In": 0.2024743249746914
+          }
+        },
+        {
+          "relation_id": "RelationMention-44",
+          "sentence_index": 0,
+          "sentence_text": "Sundar Pichai works at Google, which is based in Mountain View.",
+          "label": "_NR",
+          "arg0": {
+            "text": "Google",
+            "type": "ORGANIZATION",
+            "char_start": 23,
+            "char_end": 29,
+            "head_char_start": 23,
+            "head_char_end": 29,
+            "object_id": "EntityMention-28",
+            "mapped_text": "Google"
+          },
+          "arg1": {
+            "text": "View",
+            "type": "LOCATION",
+            "char_start": 49,
+            "char_end": 62,
+            "head_char_start": 58,
+            "head_char_end": 62,
+            "object_id": "EntityMention-29",
+            "mapped_text": "Mountain View"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.37273582559906576,
+            "_NR": 0.5569051653342982,
+            "Located_In": 0.040146181915072576,
+            "Work_For": 0.00696800105644724,
+            "Live_In": 0.02324482609511617
+          }
+        },
+        {
+          "relation_id": "RelationMention-45",
+          "sentence_index": 0,
+          "sentence_text": "Sundar Pichai works at Google, which is based in Mountain View.",
+          "label": "OrgBased_In",
+          "arg0": {
+            "text": "View",
+            "type": "LOCATION",
+            "char_start": 49,
+            "char_end": 62,
+            "head_char_start": 58,
+            "head_char_end": 62,
+            "object_id": "EntityMention-29",
+            "mapped_text": "Mountain View"
+          },
+          "arg1": {
+            "text": "Pichai",
+            "type": "PEOPLE",
+            "char_start": 0,
+            "char_end": 13,
+            "head_char_start": 7,
+            "head_char_end": 13,
+            "object_id": "EntityMention-27",
+            "mapped_text": "Sundar Pichai"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.3344890510752869,
+            "_NR": 0.19967482489183078,
+            "Located_In": 0.10001653573193357,
+            "Work_For": 0.2480743426360953,
+            "Live_In": 0.1177452456648534
+          }
+        },
+        {
+          "relation_id": "RelationMention-46",
+          "sentence_index": 0,
+          "sentence_text": "Sundar Pichai works at Google, which is based in Mountain View.",
+          "label": "_NR",
+          "arg0": {
+            "text": "View",
+            "type": "LOCATION",
+            "char_start": 49,
+            "char_end": 62,
+            "head_char_start": 58,
+            "head_char_end": 62,
+            "object_id": "EntityMention-29",
+            "mapped_text": "Mountain View"
+          },
+          "arg1": {
+            "text": "Google",
+            "type": "ORGANIZATION",
+            "char_start": 23,
+            "char_end": 29,
+            "head_char_start": 23,
+            "head_char_end": 29,
+            "object_id": "EntityMention-28",
+            "mapped_text": "Google"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.013330532758843095,
+            "_NR": 0.9669235972196287,
+            "Located_In": 0.007857954759448815,
+            "Work_For": 0.008373601457200569,
+            "Live_In": 0.0035143138048789845
+          }
+        }
+      ]
+    },
+    {
+      "id": "smoke-13",
+      "text": "Microsoft in Redmond employs Satya Nadella.",
+      "sentence_count": 1,
+      "entities": [
+        {
+          "mention_id": "EntityMention-30",
+          "sentence_index": 0,
+          "type": "ORGANIZATION",
+          "text": "Microsoft",
+          "char_start": 0,
+          "char_end": 9,
+          "head_char_start": 0,
+          "head_char_end": 9,
+          "token_start": 0,
+          "token_end": 1,
+          "mapped_text": "Microsoft"
+        },
+        {
+          "mention_id": "EntityMention-31",
+          "sentence_index": 0,
+          "type": "LOCATION",
+          "text": "Redmond",
+          "char_start": 13,
+          "char_end": 20,
+          "head_char_start": 13,
+          "head_char_end": 20,
+          "token_start": 2,
+          "token_end": 3,
+          "mapped_text": "Redmond"
+        },
+        {
+          "mention_id": "EntityMention-32",
+          "sentence_index": 0,
+          "type": "PEOPLE",
+          "text": "Nadella",
+          "char_start": 29,
+          "char_end": 42,
+          "head_char_start": 35,
+          "head_char_end": 42,
+          "token_start": 4,
+          "token_end": 6,
+          "mapped_text": "Satya Nadella"
+        }
+      ],
+      "relations": [
+        {
+          "relation_id": "RelationMention-47",
+          "sentence_index": 0,
+          "sentence_text": "Microsoft in Redmond employs Satya Nadella.",
+          "label": "_NR",
+          "arg0": {
+            "text": "Microsoft",
+            "type": "ORGANIZATION",
+            "char_start": 0,
+            "char_end": 9,
+            "head_char_start": 0,
+            "head_char_end": 9,
+            "object_id": "EntityMention-30",
+            "mapped_text": "Microsoft"
+          },
+          "arg1": {
+            "text": "Redmond",
+            "type": "LOCATION",
+            "char_start": 13,
+            "char_end": 20,
+            "head_char_start": 13,
+            "head_char_end": 20,
+            "object_id": "EntityMention-31",
+            "mapped_text": "Redmond"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.3913017121096903,
+            "_NR": 0.5449660642651883,
+            "Located_In": 0.05063333333190524,
+            "Work_For": 0.0017145523319608367,
+            "Live_In": 0.01138433796125564
+          }
+        },
+        {
+          "relation_id": "RelationMention-48",
+          "sentence_index": 0,
+          "sentence_text": "Microsoft in Redmond employs Satya Nadella.",
+          "label": "_NR",
+          "arg0": {
+            "text": "Microsoft",
+            "type": "ORGANIZATION",
+            "char_start": 0,
+            "char_end": 9,
+            "head_char_start": 0,
+            "head_char_end": 9,
+            "object_id": "EntityMention-30",
+            "mapped_text": "Microsoft"
+          },
+          "arg1": {
+            "text": "Nadella",
+            "type": "PEOPLE",
+            "char_start": 29,
+            "char_end": 42,
+            "head_char_start": 35,
+            "head_char_end": 42,
+            "object_id": "EntityMention-32",
+            "mapped_text": "Satya Nadella"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.1537796185508451,
+            "_NR": 0.562537522196855,
+            "Located_In": 0.09305965341898224,
+            "Work_For": 0.0853314408767285,
+            "Live_In": 0.10529176495658922
+          }
+        },
+        {
+          "relation_id": "RelationMention-49",
+          "sentence_index": 0,
+          "sentence_text": "Microsoft in Redmond employs Satya Nadella.",
+          "label": "_NR",
+          "arg0": {
+            "text": "Redmond",
+            "type": "LOCATION",
+            "char_start": 13,
+            "char_end": 20,
+            "head_char_start": 13,
+            "head_char_end": 20,
+            "object_id": "EntityMention-31",
+            "mapped_text": "Redmond"
+          },
+          "arg1": {
+            "text": "Microsoft",
+            "type": "ORGANIZATION",
+            "char_start": 0,
+            "char_end": 9,
+            "head_char_start": 0,
+            "head_char_end": 9,
+            "object_id": "EntityMention-30",
+            "mapped_text": "Microsoft"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.005769987455253595,
+            "_NR": 0.9857842878813742,
+            "Located_In": 0.003498060773783408,
+            "Work_For": 0.0019710240463611983,
+            "Live_In": 0.0029766398432280712
+          }
+        },
+        {
+          "relation_id": "RelationMention-50",
+          "sentence_index": 0,
+          "sentence_text": "Microsoft in Redmond employs Satya Nadella.",
+          "label": "_NR",
+          "arg0": {
+            "text": "Redmond",
+            "type": "LOCATION",
+            "char_start": 13,
+            "char_end": 20,
+            "head_char_start": 13,
+            "head_char_end": 20,
+            "object_id": "EntityMention-31",
+            "mapped_text": "Redmond"
+          },
+          "arg1": {
+            "text": "Nadella",
+            "type": "PEOPLE",
+            "char_start": 29,
+            "char_end": 42,
+            "head_char_start": 35,
+            "head_char_end": 42,
+            "object_id": "EntityMention-32",
+            "mapped_text": "Satya Nadella"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.1887841623412824,
+            "_NR": 0.23853662347623067,
+            "Located_In": 0.19672646281586462,
+            "Work_For": 0.18423453845201163,
+            "Live_In": 0.19171821291461066
+          }
+        },
+        {
+          "relation_id": "RelationMention-51",
+          "sentence_index": 0,
+          "sentence_text": "Microsoft in Redmond employs Satya Nadella.",
+          "label": "_NR",
+          "arg0": {
+            "text": "Nadella",
+            "type": "PEOPLE",
+            "char_start": 29,
+            "char_end": 42,
+            "head_char_start": 35,
+            "head_char_end": 42,
+            "object_id": "EntityMention-32",
+            "mapped_text": "Satya Nadella"
+          },
+          "arg1": {
+            "text": "Microsoft",
+            "type": "ORGANIZATION",
+            "char_start": 0,
+            "char_end": 9,
+            "head_char_start": 0,
+            "head_char_end": 9,
+            "object_id": "EntityMention-30",
+            "mapped_text": "Microsoft"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.15544490669583289,
+            "_NR": 0.554193589891208,
+            "Located_In": 0.09439917523153633,
+            "Work_For": 0.08993968547021264,
+            "Live_In": 0.10602264271121005
+          }
+        },
+        {
+          "relation_id": "RelationMention-52",
+          "sentence_index": 0,
+          "sentence_text": "Microsoft in Redmond employs Satya Nadella.",
+          "label": "_NR",
+          "arg0": {
+            "text": "Nadella",
+            "type": "PEOPLE",
+            "char_start": 29,
+            "char_end": 42,
+            "head_char_start": 35,
+            "head_char_end": 42,
+            "object_id": "EntityMention-32",
+            "mapped_text": "Satya Nadella"
+          },
+          "arg1": {
+            "text": "Redmond",
+            "type": "LOCATION",
+            "char_start": 13,
+            "char_end": 20,
+            "head_char_start": 13,
+            "head_char_end": 20,
+            "object_id": "EntityMention-31",
+            "mapped_text": "Redmond"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.1887841623412824,
+            "_NR": 0.23853662347623067,
+            "Located_In": 0.19672646281586462,
+            "Work_For": 0.18423453845201163,
+            "Live_In": 0.19171821291461066
+          }
+        }
+      ]
+    },
+    {
+      "id": "smoke-14",
+      "text": "California contains San Francisco.",
+      "sentence_count": 1,
+      "entities": [
+        {
+          "mention_id": "EntityMention-33",
+          "sentence_index": 0,
+          "type": "LOCATION",
+          "text": "California",
+          "char_start": 0,
+          "char_end": 10,
+          "head_char_start": 0,
+          "head_char_end": 10,
+          "token_start": 0,
+          "token_end": 1,
+          "mapped_text": "California"
+        },
+        {
+          "mention_id": "EntityMention-34",
+          "sentence_index": 0,
+          "type": "LOCATION",
+          "text": "Francisco",
+          "char_start": 20,
+          "char_end": 33,
+          "head_char_start": 24,
+          "head_char_end": 33,
+          "token_start": 2,
+          "token_end": 4,
+          "mapped_text": "San Francisco"
+        }
+      ],
+      "relations": [
+        {
+          "relation_id": "RelationMention-53",
+          "sentence_index": 0,
+          "sentence_text": "California contains San Francisco.",
+          "label": "_NR",
+          "arg0": {
+            "text": "California",
+            "type": "LOCATION",
+            "char_start": 0,
+            "char_end": 10,
+            "head_char_start": 0,
+            "head_char_end": 10,
+            "object_id": "EntityMention-33",
+            "mapped_text": "California"
+          },
+          "arg1": {
+            "text": "Francisco",
+            "type": "LOCATION",
+            "char_start": 20,
+            "char_end": 33,
+            "head_char_start": 24,
+            "head_char_end": 33,
+            "object_id": "EntityMention-34",
+            "mapped_text": "San Francisco"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.006002495414996871,
+            "_NR": 0.9309161230556271,
+            "Located_In": 0.06091270373451147,
+            "Work_For": 0.000958016305021063,
+            "Live_In": 0.001210661489843307
+          }
+        },
+        {
+          "relation_id": "RelationMention-54",
+          "sentence_index": 0,
+          "sentence_text": "California contains San Francisco.",
+          "label": "_NR",
+          "arg0": {
+            "text": "Francisco",
+            "type": "LOCATION",
+            "char_start": 20,
+            "char_end": 33,
+            "head_char_start": 24,
+            "head_char_end": 33,
+            "object_id": "EntityMention-34",
+            "mapped_text": "San Francisco"
+          },
+          "arg1": {
+            "text": "California",
+            "type": "LOCATION",
+            "char_start": 0,
+            "char_end": 10,
+            "head_char_start": 0,
+            "head_char_end": 10,
+            "object_id": "EntityMention-33",
+            "mapped_text": "California"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.003897116221675458,
+            "_NR": 0.893395993756976,
+            "Located_In": 0.10102422139900313,
+            "Work_For": 0.0010696841248090871,
+            "Live_In": 0.0006129844975366609
+          }
+        }
+      ]
+    },
+    {
+      "id": "smoke-15",
+      "text": "Tim Cook had lunch with Satya Nadella.",
+      "sentence_count": 1,
+      "entities": [
+        {
+          "mention_id": "EntityMention-35",
+          "sentence_index": 0,
+          "type": "PEOPLE",
+          "text": "Cook",
+          "char_start": 0,
+          "char_end": 8,
+          "head_char_start": 4,
+          "head_char_end": 8,
+          "token_start": 0,
+          "token_end": 2,
+          "mapped_text": "Tim Cook"
+        },
+        {
+          "mention_id": "EntityMention-36",
+          "sentence_index": 0,
+          "type": "PEOPLE",
+          "text": "Nadella",
+          "char_start": 24,
+          "char_end": 37,
+          "head_char_start": 30,
+          "head_char_end": 37,
+          "token_start": 5,
+          "token_end": 7,
+          "mapped_text": "Satya Nadella"
+        }
+      ],
+      "relations": [
+        {
+          "relation_id": "RelationMention-55",
+          "sentence_index": 0,
+          "sentence_text": "Tim Cook had lunch with Satya Nadella.",
+          "label": "_NR",
+          "arg0": {
+            "text": "Cook",
+            "type": "PEOPLE",
+            "char_start": 0,
+            "char_end": 8,
+            "head_char_start": 4,
+            "head_char_end": 8,
+            "object_id": "EntityMention-35",
+            "mapped_text": "Tim Cook"
+          },
+          "arg1": {
+            "text": "Nadella",
+            "type": "PEOPLE",
+            "char_start": 24,
+            "char_end": 37,
+            "head_char_start": 30,
+            "head_char_end": 37,
+            "object_id": "EntityMention-36",
+            "mapped_text": "Satya Nadella"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.08176653078588902,
+            "_NR": 0.33875187420164804,
+            "Located_In": 0.20719371347292947,
+            "Work_For": 0.1562793890620645,
+            "Live_In": 0.21600849247746892
+          }
+        },
+        {
+          "relation_id": "RelationMention-56",
+          "sentence_index": 0,
+          "sentence_text": "Tim Cook had lunch with Satya Nadella.",
+          "label": "_NR",
+          "arg0": {
+            "text": "Nadella",
+            "type": "PEOPLE",
+            "char_start": 24,
+            "char_end": 37,
+            "head_char_start": 30,
+            "head_char_end": 37,
+            "object_id": "EntityMention-36",
+            "mapped_text": "Satya Nadella"
+          },
+          "arg1": {
+            "text": "Cook",
+            "type": "PEOPLE",
+            "char_start": 0,
+            "char_end": 8,
+            "head_char_start": 4,
+            "head_char_end": 8,
+            "object_id": "EntityMention-35",
+            "mapped_text": "Tim Cook"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.07697445956354353,
+            "_NR": 0.5868648024716454,
+            "Located_In": 0.16178008878145891,
+            "Work_For": 0.08259000971552574,
+            "Live_In": 0.09179063946782638
+          }
+        }
+      ]
+    },
+    {
+      "id": "smoke-16",
+      "text": "Microsoft and Apple compete in the technology market.",
+      "sentence_count": 1,
+      "entities": [
+        {
+          "mention_id": "EntityMention-37",
+          "sentence_index": 0,
+          "type": "ORGANIZATION",
+          "text": "Microsoft",
+          "char_start": 0,
+          "char_end": 9,
+          "head_char_start": 0,
+          "head_char_end": 9,
+          "token_start": 0,
+          "token_end": 1,
+          "mapped_text": "Microsoft"
+        },
+        {
+          "mention_id": "EntityMention-38",
+          "sentence_index": 0,
+          "type": "ORGANIZATION",
+          "text": "Apple",
+          "char_start": 14,
+          "char_end": 19,
+          "head_char_start": 14,
+          "head_char_end": 19,
+          "token_start": 2,
+          "token_end": 3,
+          "mapped_text": "Apple"
+        }
+      ],
+      "relations": [
+        {
+          "relation_id": "RelationMention-57",
+          "sentence_index": 0,
+          "sentence_text": "Microsoft and Apple compete in the technology market.",
+          "label": "_NR",
+          "arg0": {
+            "text": "Microsoft",
+            "type": "ORGANIZATION",
+            "char_start": 0,
+            "char_end": 9,
+            "head_char_start": 0,
+            "head_char_end": 9,
+            "object_id": "EntityMention-37",
+            "mapped_text": "Microsoft"
+          },
+          "arg1": {
+            "text": "Apple",
+            "type": "ORGANIZATION",
+            "char_start": 14,
+            "char_end": 19,
+            "head_char_start": 14,
+            "head_char_end": 19,
+            "object_id": "EntityMention-38",
+            "mapped_text": "Apple"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.0035469901852106475,
+            "_NR": 0.9949429141673198,
+            "Located_In": 0.0002809730364127551,
+            "Work_For": 0.0007911059969000839,
+            "Live_In": 0.00043801661415668975
+          }
+        },
+        {
+          "relation_id": "RelationMention-58",
+          "sentence_index": 0,
+          "sentence_text": "Microsoft and Apple compete in the technology market.",
+          "label": "_NR",
+          "arg0": {
+            "text": "Apple",
+            "type": "ORGANIZATION",
+            "char_start": 14,
+            "char_end": 19,
+            "head_char_start": 14,
+            "head_char_end": 19,
+            "object_id": "EntityMention-38",
+            "mapped_text": "Apple"
+          },
+          "arg1": {
+            "text": "Microsoft",
+            "type": "ORGANIZATION",
+            "char_start": 0,
+            "char_end": 9,
+            "head_char_start": 0,
+            "head_char_end": 9,
+            "object_id": "EntityMention-37",
+            "mapped_text": "Microsoft"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.0035469901852106475,
+            "_NR": 0.9949429141673198,
+            "Located_In": 0.0002809730364127551,
+            "Work_For": 0.0007911059969000839,
+            "Live_In": 0.00043801661415668975
+          }
+        }
+      ]
+    },
+    {
+      "id": "smoke-17",
+      "text": "Yoshua Bengio is a professor at Université de Montréal in Canada.",
+      "sentence_count": 1,
+      "entities": [
+        {
+          "mention_id": "EntityMention-39",
+          "sentence_index": 0,
+          "type": "PEOPLE",
+          "text": "Bengio",
+          "char_start": 0,
+          "char_end": 13,
+          "head_char_start": 7,
+          "head_char_end": 13,
+          "token_start": 0,
+          "token_end": 2,
+          "mapped_text": "Yoshua Bengio"
+        },
+        {
+          "mention_id": "EntityMention-40",
+          "sentence_index": 0,
+          "type": "ORGANIZATION",
+          "text": "Montréal",
+          "char_start": 32,
+          "char_end": 54,
+          "head_char_start": 46,
+          "head_char_end": 54,
+          "token_start": 6,
+          "token_end": 9,
+          "mapped_text": "Université de Montréal"
+        },
+        {
+          "mention_id": "EntityMention-41",
+          "sentence_index": 0,
+          "type": "LOCATION",
+          "text": "Canada",
+          "char_start": 58,
+          "char_end": 64,
+          "head_char_start": 58,
+          "head_char_end": 64,
+          "token_start": 10,
+          "token_end": 11,
+          "mapped_text": "Canada"
+        }
+      ],
+      "relations": [
+        {
+          "relation_id": "RelationMention-59",
+          "sentence_index": 0,
+          "sentence_text": "Yoshua Bengio is a professor at Université de Montréal in Canada.",
+          "label": "Work_For",
+          "arg0": {
+            "text": "Bengio",
+            "type": "PEOPLE",
+            "char_start": 0,
+            "char_end": 13,
+            "head_char_start": 7,
+            "head_char_end": 13,
+            "object_id": "EntityMention-39",
+            "mapped_text": "Yoshua Bengio"
+          },
+          "arg1": {
+            "text": "Montréal",
+            "type": "ORGANIZATION",
+            "char_start": 32,
+            "char_end": 54,
+            "head_char_start": 46,
+            "head_char_end": 54,
+            "object_id": "EntityMention-40",
+            "mapped_text": "Université de Montréal"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.1308104031666917,
+            "_NR": 0.22721254100340593,
+            "Located_In": 0.2077893495394664,
+            "Work_For": 0.28041661548920843,
+            "Live_In": 0.1537710908012275
+          }
+        },
+        {
+          "relation_id": "RelationMention-60",
+          "sentence_index": 0,
+          "sentence_text": "Yoshua Bengio is a professor at Université de Montréal in Canada.",
+          "label": "Live_In",
+          "arg0": {
+            "text": "Bengio",
+            "type": "PEOPLE",
+            "char_start": 0,
+            "char_end": 13,
+            "head_char_start": 7,
+            "head_char_end": 13,
+            "object_id": "EntityMention-39",
+            "mapped_text": "Yoshua Bengio"
+          },
+          "arg1": {
+            "text": "Canada",
+            "type": "LOCATION",
+            "char_start": 58,
+            "char_end": 64,
+            "head_char_start": 58,
+            "head_char_end": 64,
+            "object_id": "EntityMention-41",
+            "mapped_text": "Canada"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.23332194375431548,
+            "_NR": 0.1958985816116808,
+            "Located_In": 0.11494783437014093,
+            "Work_For": 0.2199688534962758,
+            "Live_In": 0.23586278676758676
+          }
+        },
+        {
+          "relation_id": "RelationMention-61",
+          "sentence_index": 0,
+          "sentence_text": "Yoshua Bengio is a professor at Université de Montréal in Canada.",
+          "label": "Work_For",
+          "arg0": {
+            "text": "Montréal",
+            "type": "ORGANIZATION",
+            "char_start": 32,
+            "char_end": 54,
+            "head_char_start": 46,
+            "head_char_end": 54,
+            "object_id": "EntityMention-40",
+            "mapped_text": "Université de Montréal"
+          },
+          "arg1": {
+            "text": "Bengio",
+            "type": "PEOPLE",
+            "char_start": 0,
+            "char_end": 13,
+            "head_char_start": 7,
+            "head_char_end": 13,
+            "object_id": "EntityMention-39",
+            "mapped_text": "Yoshua Bengio"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.14069920520864387,
+            "_NR": 0.22636722295192707,
+            "Located_In": 0.15174141951550194,
+            "Work_For": 0.3108830036648636,
+            "Live_In": 0.17030914865906358
+          }
+        },
+        {
+          "relation_id": "RelationMention-62",
+          "sentence_index": 0,
+          "sentence_text": "Yoshua Bengio is a professor at Université de Montréal in Canada.",
+          "label": "OrgBased_In",
+          "arg0": {
+            "text": "Montréal",
+            "type": "ORGANIZATION",
+            "char_start": 32,
+            "char_end": 54,
+            "head_char_start": 46,
+            "head_char_end": 54,
+            "object_id": "EntityMention-40",
+            "mapped_text": "Université de Montréal"
+          },
+          "arg1": {
+            "text": "Canada",
+            "type": "LOCATION",
+            "char_start": 58,
+            "char_end": 64,
+            "head_char_start": 58,
+            "head_char_end": 64,
+            "object_id": "EntityMention-41",
+            "mapped_text": "Canada"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.7256102585775818,
+            "_NR": 0.22018053120263276,
+            "Located_In": 0.040733552825464814,
+            "Work_For": 0.0014059155931651912,
+            "Live_In": 0.012069741801155382
+          }
+        },
+        {
+          "relation_id": "RelationMention-63",
+          "sentence_index": 0,
+          "sentence_text": "Yoshua Bengio is a professor at Université de Montréal in Canada.",
+          "label": "_NR",
+          "arg0": {
+            "text": "Canada",
+            "type": "LOCATION",
+            "char_start": 58,
+            "char_end": 64,
+            "head_char_start": 58,
+            "head_char_end": 64,
+            "object_id": "EntityMention-41",
+            "mapped_text": "Canada"
+          },
+          "arg1": {
+            "text": "Bengio",
+            "type": "PEOPLE",
+            "char_start": 0,
+            "char_end": 13,
+            "head_char_start": 7,
+            "head_char_end": 13,
+            "object_id": "EntityMention-39",
+            "mapped_text": "Yoshua Bengio"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.08268205079721389,
+            "_NR": 0.5152067575601477,
+            "Located_In": 0.07034989055420618,
+            "Work_For": 0.1807377136532219,
+            "Live_In": 0.1510235874352103
+          }
+        },
+        {
+          "relation_id": "RelationMention-64",
+          "sentence_index": 0,
+          "sentence_text": "Yoshua Bengio is a professor at Université de Montréal in Canada.",
+          "label": "_NR",
+          "arg0": {
+            "text": "Canada",
+            "type": "LOCATION",
+            "char_start": 58,
+            "char_end": 64,
+            "head_char_start": 58,
+            "head_char_end": 64,
+            "object_id": "EntityMention-41",
+            "mapped_text": "Canada"
+          },
+          "arg1": {
+            "text": "Montréal",
+            "type": "ORGANIZATION",
+            "char_start": 32,
+            "char_end": 54,
+            "head_char_start": 46,
+            "head_char_end": 54,
+            "object_id": "EntityMention-40",
+            "mapped_text": "Université de Montréal"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.0036420579115025915,
+            "_NR": 0.9915171370409718,
+            "Located_In": 0.001643643370240206,
+            "Work_For": 0.00126831867161814,
+            "Live_In": 0.0019288430056674907
+          }
+        }
+      ]
+    },
+    {
+      "id": "smoke-18",
+      "text": "Angela Merkel lived in Berlin 🇩🇪 for many years.",
+      "sentence_count": 1,
+      "entities": [
+        {
+          "mention_id": "EntityMention-42",
+          "sentence_index": 0,
+          "type": "PEOPLE",
+          "text": "Merkel",
+          "char_start": 0,
+          "char_end": 13,
+          "head_char_start": 7,
+          "head_char_end": 13,
+          "token_start": 0,
+          "token_end": 2,
+          "mapped_text": "Angela Merkel"
+        },
+        {
+          "mention_id": "EntityMention-43",
+          "sentence_index": 0,
+          "type": "LOCATION",
+          "text": "Berlin",
+          "char_start": 23,
+          "char_end": 29,
+          "head_char_start": 23,
+          "head_char_end": 29,
+          "token_start": 4,
+          "token_end": 5,
+          "mapped_text": "Berlin"
+        }
+      ],
+      "relations": [
+        {
+          "relation_id": "RelationMention-65",
+          "sentence_index": 0,
+          "sentence_text": "Angela Merkel lived in Berlin 🇩🇪 for many years.",
+          "label": "Live_In",
+          "arg0": {
+            "text": "Merkel",
+            "type": "PEOPLE",
+            "char_start": 0,
+            "char_end": 13,
+            "head_char_start": 7,
+            "head_char_end": 13,
+            "object_id": "EntityMention-42",
+            "mapped_text": "Angela Merkel"
+          },
+          "arg1": {
+            "text": "Berlin",
+            "type": "LOCATION",
+            "char_start": 23,
+            "char_end": 29,
+            "head_char_start": 23,
+            "head_char_end": 29,
+            "object_id": "EntityMention-43",
+            "mapped_text": "Berlin"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.25850509389213655,
+            "_NR": 0.17521453226268338,
+            "Located_In": 0.1380326020951233,
+            "Work_For": 0.15371373861048584,
+            "Live_In": 0.2745340331395708
+          }
+        },
+        {
+          "relation_id": "RelationMention-66",
+          "sentence_index": 0,
+          "sentence_text": "Angela Merkel lived in Berlin 🇩🇪 for many years.",
+          "label": "_NR",
+          "arg0": {
+            "text": "Berlin",
+            "type": "LOCATION",
+            "char_start": 23,
+            "char_end": 29,
+            "head_char_start": 23,
+            "head_char_end": 29,
+            "object_id": "EntityMention-43",
+            "mapped_text": "Berlin"
+          },
+          "arg1": {
+            "text": "Merkel",
+            "type": "PEOPLE",
+            "char_start": 0,
+            "char_end": 13,
+            "head_char_start": 7,
+            "head_char_end": 13,
+            "object_id": "EntityMention-42",
+            "mapped_text": "Angela Merkel"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.14512616056389452,
+            "_NR": 0.4768751775219783,
+            "Located_In": 0.07972048441352698,
+            "Work_For": 0.06544505547919507,
+            "Live_In": 0.2328331220214053
+          }
+        }
+      ]
+    },
+    {
+      "id": "smoke-19",
+      "text": "OpenAI was based in San Francisco, California.",
+      "sentence_count": 1,
+      "entities": [
+        {
+          "mention_id": "EntityMention-44",
+          "sentence_index": 0,
+          "type": "LOCATION",
+          "text": "Francisco",
+          "char_start": 20,
+          "char_end": 33,
+          "head_char_start": 24,
+          "head_char_end": 33,
+          "token_start": 4,
+          "token_end": 6,
+          "mapped_text": "San Francisco"
+        },
+        {
+          "mention_id": "EntityMention-45",
+          "sentence_index": 0,
+          "type": "LOCATION",
+          "text": "California",
+          "char_start": 35,
+          "char_end": 45,
+          "head_char_start": 35,
+          "head_char_end": 45,
+          "token_start": 7,
+          "token_end": 8,
+          "mapped_text": "California"
+        }
+      ],
+      "relations": [
+        {
+          "relation_id": "RelationMention-67",
+          "sentence_index": 0,
+          "sentence_text": "OpenAI was based in San Francisco, California.",
+          "label": "Located_In",
+          "arg0": {
+            "text": "Francisco",
+            "type": "LOCATION",
+            "char_start": 20,
+            "char_end": 33,
+            "head_char_start": 24,
+            "head_char_end": 33,
+            "object_id": "EntityMention-44",
+            "mapped_text": "San Francisco"
+          },
+          "arg1": {
+            "text": "California",
+            "type": "LOCATION",
+            "char_start": 35,
+            "char_end": 45,
+            "head_char_start": 35,
+            "head_char_end": 45,
+            "object_id": "EntityMention-45",
+            "mapped_text": "California"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.00017633886584801978,
+            "_NR": 0.06093202360767652,
+            "Located_In": 0.9387858903428206,
+            "Work_For": 6.114321293415475e-05,
+            "Live_In": 4.460397072038714e-05
+          }
+        },
+        {
+          "relation_id": "RelationMention-68",
+          "sentence_index": 0,
+          "sentence_text": "OpenAI was based in San Francisco, California.",
+          "label": "_NR",
+          "arg0": {
+            "text": "California",
+            "type": "LOCATION",
+            "char_start": 35,
+            "char_end": 45,
+            "head_char_start": 35,
+            "head_char_end": 45,
+            "object_id": "EntityMention-45",
+            "mapped_text": "California"
+          },
+          "arg1": {
+            "text": "Francisco",
+            "type": "LOCATION",
+            "char_start": 20,
+            "char_end": 33,
+            "head_char_start": 24,
+            "head_char_end": 33,
+            "object_id": "EntityMention-44",
+            "mapped_text": "San Francisco"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.0013237661713530705,
+            "_NR": 0.9596421178451688,
+            "Located_In": 0.03844971469883045,
+            "Work_For": 0.0004198322161390168,
+            "Live_In": 0.00016456906850827668
+          }
+        }
+      ]
+    },
+    {
+      "id": "smoke-20",
+      "text": "The Eiffel Tower is in Paris.",
+      "sentence_count": 1,
+      "entities": [
+        {
+          "mention_id": "EntityMention-46",
+          "sentence_index": 0,
+          "type": "LOCATION",
+          "text": "Tower",
+          "char_start": 4,
+          "char_end": 16,
+          "head_char_start": 11,
+          "head_char_end": 16,
+          "token_start": 1,
+          "token_end": 3,
+          "mapped_text": "Eiffel Tower"
+        },
+        {
+          "mention_id": "EntityMention-47",
+          "sentence_index": 0,
+          "type": "LOCATION",
+          "text": "Paris",
+          "char_start": 23,
+          "char_end": 28,
+          "head_char_start": 23,
+          "head_char_end": 28,
+          "token_start": 5,
+          "token_end": 6,
+          "mapped_text": "Paris"
+        }
+      ],
+      "relations": [
+        {
+          "relation_id": "RelationMention-69",
+          "sentence_index": 0,
+          "sentence_text": "The Eiffel Tower is in Paris.",
+          "label": "_NR",
+          "arg0": {
+            "text": "Tower",
+            "type": "LOCATION",
+            "char_start": 4,
+            "char_end": 16,
+            "head_char_start": 11,
+            "head_char_end": 16,
+            "object_id": "EntityMention-46",
+            "mapped_text": "Eiffel Tower"
+          },
+          "arg1": {
+            "text": "Paris",
+            "type": "LOCATION",
+            "char_start": 23,
+            "char_end": 28,
+            "head_char_start": 23,
+            "head_char_end": 28,
+            "object_id": "EntityMention-47",
+            "mapped_text": "Paris"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.047010870049032843,
+            "_NR": 0.8851699806158759,
+            "Located_In": 0.06561843722430777,
+            "Work_For": 0.0012788827391667945,
+            "Live_In": 0.0009218293716168346
+          }
+        },
+        {
+          "relation_id": "RelationMention-70",
+          "sentence_index": 0,
+          "sentence_text": "The Eiffel Tower is in Paris.",
+          "label": "_NR",
+          "arg0": {
+            "text": "Paris",
+            "type": "LOCATION",
+            "char_start": 23,
+            "char_end": 28,
+            "head_char_start": 23,
+            "head_char_end": 28,
+            "object_id": "EntityMention-47",
+            "mapped_text": "Paris"
+          },
+          "arg1": {
+            "text": "Tower",
+            "type": "LOCATION",
+            "char_start": 4,
+            "char_end": 16,
+            "head_char_start": 11,
+            "head_char_end": 16,
+            "object_id": "EntityMention-46",
+            "mapped_text": "Eiffel Tower"
+          },
+          "probabilities": {
+            "OrgBased_In": 0.014624262661691624,
+            "_NR": 0.8535426924498983,
+            "Located_In": 0.12821454929101658,
+            "Work_For": 0.0018910986472452655,
+            "Live_In": 0.001727396950148014
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,219 @@
+{
+  "dataset": "Re-DocRED dev_revised",
+  "dataset_sha256": "051ee1d057204a5d08ef5502beacdadf191245b5eaf0e29ec2c607cf002c016f",
+  "snapshot": "C:\\Users\\asus\\OneDrive\\Desktop\\Doc2Graph\\output\\evaluation\\snapshots\\baseline",
+  "documents": 2,
+  "all_dataset_labels": 102,
+  "mapped_gold_facts": 0,
+  "mapping": {
+    "P112": [
+      "FOUNDED",
+      true
+    ],
+    "P108": [
+      "EMPLOYED_BY",
+      false
+    ],
+    "P463": [
+      "MEMBER_OF",
+      false
+    ],
+    "P127": [
+      "OWNS",
+      true
+    ],
+    "P749": [
+      "SUBSIDIARY_OF",
+      false
+    ]
+  },
+  "shared_types": [
+    "EMPLOYED_BY",
+    "FOUNDED",
+    "MEMBER_OF"
+  ],
+  "settings": {
+    "window_size": 3,
+    "window_stride": 2,
+    "resolution_threshold": 0.85
+  },
+  "spacy_model": "core_web_sm",
+  "spacy_model_version": "3.8.0",
+  "metrics": {
+    "end_to_end": {
+      "all_five": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "shared_three": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "EMPLOYED_BY": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "FOUNDED": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "MEMBER_OF": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "OWNS": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "SUBSIDIARY_OF": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      }
+    },
+    "gold_entities": {
+      "all_five": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "shared_three": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "EMPLOYED_BY": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "FOUNDED": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "MEMBER_OF": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "OWNS": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "SUBSIDIARY_OF": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      }
+    }
+  },
+  "entity_mentions_exact_typed": {
+    "tp": 21,
+    "fp": 10,
+    "fn": 14,
+    "precision": 0.6774193548387096,
+    "recall": 0.6,
+    "f1": 0.6363636363636364
+  },
+  "all_predicted_relation_counts": {
+    "RELATED_TO": 9
+  },
+  "errors": [],
+  "elapsed_seconds": 0.9,
+  "documents_detail": [
+    {
+      "index": 0,
+      "title": "Willi Schneider (skeleton racer)",
+      "gold": [],
+      "end_to_end": {
+        "predicted": [],
+        "false_positives": [],
+        "false_negatives": [],
+        "tp": 0,
+        "fp": 0,
+        "fn": 0
+      },
+      "gold_entities": {
+        "predicted": [],
+        "false_positives": [],
+        "false_negatives": [],
+        "tp": 0,
+        "fp": 0,
+        "fn": 0
+      },
+      "false_positive_evidence": []
+    },
+    {
+      "index": 1,
+      "title": "Ross Alger",
+      "gold": [],
+      "end_to_end": {
+        "predicted": [],
+        "false_positives": [],
+        "false_negatives": [],
+        "tp": 0,
+        "fp": 0,
+        "fn": 0
+      },
+      "gold_entities": {
+        "predicted": [],
+        "false_positives": [],
+        "false_negatives": [],
+        "tp": 0,
+        "fp": 0,
+        "fn": 0
+      },
+      "false_positive_evidence": []
+    }
+  ]
+}
