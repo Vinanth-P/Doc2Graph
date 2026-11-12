@@ -20,7 +20,8 @@ from src.api.schemas import ResolvedEdgePayload, ResolvedEntityPayload
 def inspect_document(path: Path) -> dict:
     result = run_pipeline_nlp(path.read_bytes(), path.name, path.suffix.lstrip(".").lower())
     entities = result["resolved_entities"]
-    edges = build_resolved_edges(result["normalized"], result["id_map"])
+    edges = (result["resolved_edges"] if result.get("relation_backend") == "semeval_svm"
+             else build_resolved_edges(result["normalized"], result["id_map"]))
     names = {e.canonical_id: e.name for e in entities}
     linked = {identifier for e in edges for identifier in (e.source_id, e.target_id)}
     adjacency = {identifier: set() for identifier in names}
@@ -65,7 +66,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("document", type=Path)
     parser.add_argument("--output", type=Path, default=Path("output/graph_diagnostics.json"))
-    parser.add_argument("--relation-backend", choices=["rules", "learned", "encoder", "contextual_v2"], default="rules")
+    parser.add_argument("--relation-backend", choices=["rules", "learned", "encoder", "contextual_v2", "classical_news", "semeval_svm"], default="rules")
     parser.add_argument("--model", type=Path, default=Path("models/learned_relations.joblib"))
     args = parser.parse_args()
     from src.config import get_settings

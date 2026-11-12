@@ -135,6 +135,9 @@ def run_pipeline_nlp(
         text = load_document(raw_bytes, ftype)
         if ftype == "pdf":
             text = clean_pdf_text(text)
+        if getattr(settings, "relation_backend", "rules") == "semeval_svm":
+            from src.nlp.semeval_pipeline import extract_pipeline
+            return extract_pipeline(raw_bytes, filename, text, settings.utd_svm_model_path)
         preprocessed = preprocess(raw_bytes, filename, text=text)
         chunks = preprocessed.chunks
         logger.info("[%s] %d sentences extracted", job_id, len(chunks))
@@ -550,6 +553,8 @@ async def run_pipeline_write(nlp_result: dict, job_id: str | None = None) -> dic
             # and mentions for entities that already exist in the graph.
             final_entities, entity_to_chunks = build_resolved_entities(all_entities, full_id_map)
             final_edges = build_resolved_edges(normalized, full_id_map)
+            if nlp_result.get("relation_backend") == "semeval_svm":
+                final_edges = nlp_result["resolved_edges"]
             valid_ids = {entity.canonical_id for entity in final_entities}
             final_edges = [
                 edge for edge in final_edges

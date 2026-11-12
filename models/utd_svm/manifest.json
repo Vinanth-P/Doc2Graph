@@ -1,0 +1,99 @@
+{
+  "schema_version": "1.lexical_svm",
+  "system": "UTD-inspired lexical baseline",
+  "sklearn_version": "1.6.1",
+  "training_count": 8000,
+  "seed": 42,
+  "train_sha256": "c22fee88957d245a4b1650c6743eb8c594dcdeffc6a2aa1fa6cced059eebf0e3",
+  "model_sha256": "496514994dc127c4386c223edcaf5af813b208a415b51aba233ecf3993bb2504",
+  "selected": {
+    "c": 0.1,
+    "class_weight": "balanced",
+    "two_stage": false,
+    "macro_f1": 0.7672198583008645,
+    "accuracy": 0.7100814026299311,
+    "per_family": {
+      "Cause-Effect": {
+        "tp": 155,
+        "fp": 18,
+        "fn": 38,
+        "precision": 0.8959537572254336,
+        "recall": 0.8031088082901554,
+        "f1": 0.8469945355191256
+      },
+      "Instrument-Agency": {
+        "tp": 84,
+        "fp": 43,
+        "fn": 21,
+        "precision": 0.6614173228346457,
+        "recall": 0.8,
+        "f1": 0.7241379310344829
+      },
+      "Product-Producer": {
+        "tp": 114,
+        "fp": 69,
+        "fn": 37,
+        "precision": 0.6229508196721312,
+        "recall": 0.7549668874172185,
+        "f1": 0.6826347305389221
+      },
+      "Content-Container": {
+        "tp": 97,
+        "fp": 34,
+        "fn": 14,
+        "precision": 0.7404580152671756,
+        "recall": 0.8738738738738738,
+        "f1": 0.8016528925619835
+      },
+      "Entity-Origin": {
+        "tp": 123,
+        "fp": 63,
+        "fn": 13,
+        "precision": 0.6612903225806451,
+        "recall": 0.9044117647058824,
+        "f1": 0.7639751552795031
+      },
+      "Entity-Destination": {
+        "tp": 150,
+        "fp": 33,
+        "fn": 15,
+        "precision": 0.819672131147541,
+        "recall": 0.9090909090909091,
+        "f1": 0.8620689655172413
+      },
+      "Component-Whole": {
+        "tp": 140,
+        "fp": 55,
+        "fn": 51,
+        "precision": 0.717948717948718,
+        "recall": 0.7329842931937173,
+        "f1": 0.7253886010362695
+      },
+      "Member-Collection": {
+        "tp": 116,
+        "fp": 49,
+        "fn": 16,
+        "precision": 0.703030303030303,
+        "recall": 0.8787878787878788,
+        "f1": 0.781144781144781
+      },
+      "Message-Topic": {
+        "tp": 95,
+        "fp": 46,
+        "fn": 29,
+        "precision": 0.6737588652482269,
+        "recall": 0.7661290322580645,
+        "f1": 0.7169811320754716
+      }
+    }
+  },
+  "seconds": 12.094558199999938,
+  "final_refit": true,
+  "omitted_features": [
+    "POS",
+    "dependency paths",
+    "WordNet",
+    "semantic roles",
+    "external knowledge"
+  ]
+}

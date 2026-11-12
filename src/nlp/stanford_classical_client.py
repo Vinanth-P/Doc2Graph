@@ -196,6 +196,9 @@ class StanfordClassicalClient:
 
             # Post-process character spans from UTF-16 code units to Python unicode codepoints
             u16_map = build_utf16_to_codepoint_map(text)
+            for phrase in resp.get("noun_phrases", []):
+                phrase["char_start"], phrase["char_end"] = convert_utf16_span(
+                    u16_map, phrase["char_start"], phrase["char_end"])
 
             for s in resp.get("sentences", []):
                 s["char_start"], s["char_end"] = convert_utf16_span(u16_map, s["char_start"], s["char_end"])

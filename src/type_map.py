@@ -22,6 +22,7 @@ NODE_TYPES: frozenset[str] = frozenset(
 
 # Internal type → Neo4j secondary label
 TYPE_TO_LABEL: dict[str, str] = {
+    "CONCEPT": "Concept",
     "PERSON":  "Person",
     "ORG":     "Org",
     "GPE":     "Gpe",

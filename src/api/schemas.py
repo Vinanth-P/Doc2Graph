@@ -34,7 +34,7 @@ class RelationResponse(BaseModel):
     type: str
     target_id: str
     target_name: str
-    confidence: float
+    confidence: float | None
     evidence_count: int
     polarity: str = "unknown"
     modality: str = "unknown"
@@ -118,7 +118,7 @@ class ResolvedEdgePayload(BaseModel):
     target_id: str = Field(..., min_length=1)
     chunk_ids: list[str] = Field(default_factory=list)
     extractors: list[str] = Field(default_factory=list)
-    confidence: float = Field(..., ge=0.0, le=1.0)
+    confidence: float | None = Field(..., ge=0.0, le=1.0)
     raw_predicate: str = ""
     evidence: str = ""
     polarity: str = "unknown"

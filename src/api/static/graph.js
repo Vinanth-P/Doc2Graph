@@ -374,7 +374,8 @@
         } else {
           outgoing.forEach((rel) => {
             const li = document.createElement("li");
-            li.innerHTML = `<strong>${escapeHtml(rel.type)}</strong> → ${escapeHtml(rel.target_name || rel.target_id)} <span style="color:#94A3B8">(${(rel.confidence * 100).toFixed(0)}%)</span>`;
+            const confidenceText = rel.confidence == null ? 'confidence unavailable' : `${(rel.confidence * 100).toFixed(0)}%`;
+            li.innerHTML = `<strong>${escapeHtml(rel.type)}</strong> → ${escapeHtml(rel.target_name || rel.target_id)} <span style="color:#94A3B8">(${confidenceText})</span>`;
             list.appendChild(li);
           });
         }

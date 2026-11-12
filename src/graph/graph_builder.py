@@ -57,7 +57,7 @@ class ResolvedEdge:
     target_id: str
     chunk_ids: list[str]
     extractors: list[str]
-    confidence: float
+    confidence: float | None
     raw_predicate: str = ""
     evidence: str = ""
     polarity: str = "unknown"
@@ -112,6 +112,8 @@ class GraphBuilder:
         "PLANNED_SUBSIDIARY_OF",
         # Classical News Domain Relations
         "WORKS_FOR", "LIVES_IN", "BASED_IN",
+        "CAUSE_EFFECT", "INSTRUMENT_AGENCY", "PRODUCT_PRODUCER", "CONTENT_CONTAINER",
+        "ENTITY_ORIGIN", "ENTITY_DESTINATION", "COMPONENT_WHOLE", "MEMBER_COLLECTION", "MESSAGE_TOPIC",
     ]
 
     async def write_document_graph_atomic(

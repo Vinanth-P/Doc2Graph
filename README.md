@@ -1,18 +1,35 @@
 # 🧠 Doc2Graph — Knowledge Graph Builder from Documents
-### Classical ML Edition (v6)
+### Document extraction with Stanford NLP and feature-based SVM
 
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![Neo4j 5.26](https://img.shields.io/badge/Neo4j-5.26-green.svg)](https://neo4j.com/)
-[![Tests](https://img.shields.io/badge/pytest-77%20passed-brightgreen.svg)]()
+[![Tests](https://img.shields.io/badge/pytest-281%20passed-brightgreen.svg)]()
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.111-teal.svg)](https://fastapi.tiangolo.com/)
 
-> **Classical NLP & ML Architecture:**
-> - **Zero LLM API calls** · **No GPU required** · Runs entirely on CPU
-> - Pre-trained spaCy (`en_core_web_sm`) + Regex + Gazetteers
-> - Rule-based coreference resolution
-> - Dependency-parse syntactic pattern relation extraction
-> - Inverted-index candidate blocking + TF-IDF / Jaro-Winkler entity resolution
-> - Neo4j native graph storage + D3.js v7 interactive visualization
+Doc2Graph extracts entities and relationships from PDF, DOCX and text documents,
+stores evidence in Neo4j, and provides a FastAPI API and D3.js graph explorer.
+
+The experimental `semeval_svm` backend combines Stanford CRF named-entity
+recognition, classical PCFG noun-phrase parsing and a locally trained linear SVM.
+It runs on CPU and supports the full SemEval-2010 Task 8 relation inventory.
+The application selects its backend through `RELATION_BACKEND`, whose default
+value is `rules`.
+
+| Backend | Entity and phrase extraction | Relationship extraction |
+|---|---|---|
+| `semeval_svm` | Stanford CRF NER and PCFG noun phrases | UTD-inspired lexical SVM, nine directed relation families |
+| `classical_news` | Stanford classical NLP | Legacy Stanford supervised news relations |
+| `rules` | Regex, gazetteers and spaCy | Dependency patterns and predicate whitelist |
+| `learned`, `encoder`, `contextual_v2` | Backend-specific experimental stages | Research implementations documented under `docs/` |
+
+The SVM achieved **78.64% official macro F1** and **73.94% accuracy** on 2,717
+SemEval test examples with supplied noun pairs. Automatic document extraction
+has live text smoke coverage and awaits a reviewed end-to-end benchmark.
+The selected model uses lexical features and a direct 19-class classifier.
+Full UTD linguistic and knowledge features are future work.
+
+See the [measured results](docs/UTD_SVM_INITIAL_RESULTS.md) and
+[pipeline details](docs/SEMEVAL_SVM_PIPELINE.md).
 
 ---
 
@@ -20,17 +37,16 @@
 
 ```mermaid
 flowchart TD
-    A["📄 PDF / DOCX / TXT / Scanned"] --> V["1. Upload Validation\nStreaming size cap · Magic bytes · Langdetect"]
-    V --> B["2. Ingestion & Preprocessing\nPDF clean · Sentence split · Deterministic chunk IDs"]
-    B --> C["3. Three-Layer NER\nRegex + Gazetteer + spaCy CRF\nPriority span merger"]
-    C --> D["4. Rule-Based Coreference\nPronoun recency · Definite NPs · Alias matching"]
-    D --> E["5. Relation Extraction\nDep-parse: SVO · Appositive · Prepositional · Nominal\nSliding sentence window"]
-    E --> F["6. Predicate Normalization\nrelations.yaml whitelist mapping & swap flags"]
-    F --> G["7. Entity Resolution\nBlocking (token & initials) · TF-IDF · Jaro-Winkler · LR"]
-    G --> H["8. Graph Construction\nMERGE on :Entity {id} then SET :Label\nIdempotent edge chunk_ids union"]
-    H --> I[("Neo4j 5.26\nConstraints · Indexes · Full-text")]
-    I --> J["FastAPI REST Backend\nSQLite job queue · Async workers · File lock"]
-    J --> K["D3.js Interactive UI\nForce-directed graph · Search · Entity inspector"]
+    A[PDF / DOCX / TXT] --> B[Text extraction]
+    B --> C{Configured backend}
+    C -->|semeval_svm| D[Stanford sentence splitting, CRF NER and PCFG noun phrases]
+    D --> E[Sentence-local noun-pair candidates]
+    E --> F[Lexical SVM and relation direction]
+    C -->|rules| G[spaCy, gazetteers and dependency patterns]
+    F --> H[Entities, directed edges and source evidence]
+    G --> H
+    H --> I[Neo4j]
+    I --> J[FastAPI and D3.js graph explorer]
 ```
 
 ---
@@ -119,7 +135,95 @@ and target IDs. Unsupported predicates are omitted rather than emitted as
 generic `RELATED_TO` edges. Set `debug_pipeline: true` in `config/config.yaml` to
 enable stage-level pipeline logging.
 
-### Relation whitelist configuration
+### Stanford + SVM setup and usage
+
+Install the Python dependencies above. For the SVM artifact used here, the
+recorded scikit-learn version is 1.6.1. The Stanford backend also requires
+OpenJDK 17, CoreNLP 4.5.8 and its matching English model jar. The current client
+expects the following local runtime layout.
+
+```text
+.runtime/jdk17/bin/java.exe
+.runtime/jdk17/bin/javac.exe
+.runtime/stanford_classical/stanford-corenlp-4.5.8.jar
+.runtime/stanford_classical/stanford-corenlp-4.5.8-models.jar
+.runtime/stanford_classical/lib/
+models/utd_svm/model.joblib
+models/utd_svm/manifest.json
+```
+
+Obtain the Java and Stanford distributions from their official publishers and
+retain their license notices. The local runtime and trained artifacts may need
+to be provisioned separately on a fresh checkout. Stanford publishes its code,
+model downloads and licensing details on the [CoreNLP website](https://stanfordnlp.github.io/CoreNLP/).
+
+Compile the bridge from the repository root in PowerShell, then restart any
+running application workers so they load the new bridge.
+
+```powershell
+& '.runtime/jdk17/bin/javac.exe' -encoding UTF-8 -cp '.runtime/stanford_classical/*;.runtime/stanford_classical/lib/*' -d java/stanford-classical-bridge/build java/stanford-classical-bridge/src/StanfordClassicalBridge.java
+```
+
+Inspect a PDF and export its graph without a database connection.
+
+```powershell
+python scripts/inspect_document.py example.pdf --relation-backend semeval_svm --output output/svm_graph.json
+```
+
+Enable the backend for API uploads or CLI ingestion through the environment.
+`UTD_SVM_MODEL_PATH` selects the trusted local model directory.
+
+```powershell
+$env:RELATION_BACKEND = 'semeval_svm'
+$env:UTD_SVM_MODEL_PATH = 'models/utd_svm'
+uvicorn src.api.app:app --reload --port 8000
+# Alternatively, ingest directly into the configured Neo4j instance.
+# python scripts/ingest_sample.py --input data/raw/example.pdf
+```
+
+For pair classification alone, mark the two phrases explicitly.
+
+```powershell
+python scripts/predict_utd_svm.py 'The <e1>water</e1> is in the <e2>bottle</e2>.'
+```
+
+The nine families are Cause?Effect, Instrument?Agency, Product?Producer,
+Content?Container, Entity?Origin, Entity?Destination, Component?Whole,
+Member?Collection and Message?Topic. Each has two directions. `Other` suppresses
+a semantic edge. Ordinary noun phrases become document-scoped `CONCEPT` nodes.
+Predictions carry sentence evidence and unknown assertion status. Confidence is
+nullable, and the UI displays ?confidence unavailable? for these predictions.
+
+Automatic candidate selection considers innermost noun phrases, at most 200
+characters apart and 100 pairs per sentence. Pipeline results record evaluated
+and skipped pair counts. This candidate policy can produce extra relationships.
+The Java client also has an outstanding limitation involving blocking reads
+without enforced request deadlines. Live database round-trip validation of the
+SVM backend is pending.
+
+### SVM training and evaluation
+
+Place the original `TRAIN_FILE.TXT`, `TEST_FILE_FULL.TXT` and official Perl scorer
+under `data/external/semeval2010/`. The existing download manifest records the
+archive source and hash. The training script chooses settings on a fixed
+training-only development split, then refits all 8,000 official training examples.
+It covers every relation family. Evaluation uses the 2,717 official test examples.
+
+Use new output directories to preserve existing runs.
+
+```powershell
+python scripts/train_utd_svm.py --output models/utd_svm_run2
+python scripts/evaluate_utd_svm.py --model models/utd_svm_run2 --output output/utd_svm_run2
+perl data/external/semeval2010/semeval2010_task8_scorer-v1.2.pl output/utd_svm_run2/predictions.txt output/utd_svm_run2/gold.txt
+```
+
+The official metric is direction-aware macro F1 over the nine relation families.
+Development selections and model/data hashes are recorded with the artifacts.
+The held-out test results have already been inspected for the current model.
+Further test-driven changes must account for that evaluation history.
+The [build guide](docs/UTD_SVM_BUILD_GUIDE.md) describes the feature roadmap.
+
+### Rules backend whitelist configuration
 
 Edit `canonical_relations` in `config/relations.yaml` to control which extracted
 predicates become graph edges. Each relation defines matching `lemmas`, optional
@@ -165,12 +269,15 @@ coreference, and correct evidence IDs across sentence windows. Negated
 statements are excluded from asserted graph facts. Cross-document merges retain
 aliases and source mentions.
 
-Local validation: 77 Python tests pass (the optional Neo4j test is skipped when
-Neo4j is unavailable) and three frontend tests pass; NER F1 improved from 0.945 to 1.000 on the existing
-10-example dataset; all 15 full-text relation regression examples match exactly.
-The relation scorer's five-fold cross-validation F1 is 0.88 on 20 labeled feature
-rows. These are small development datasets, not a general-domain accuracy claim.
-See [model artifact notes](models/README.md) for the schema and retraining command.
+Latest pipeline integration verification completed with **281 Python tests
+passed and one skipped**, plus a JavaScript syntax check. The run emitted a
+pytest-cache permission warning. Tests cover software behavior and graph-write
+payloads. The SVM has a live Stanford-to-classifier text smoke test and mocked
+database-write coverage. Its supplied-pair benchmark and automatic extraction
+validation are documented in the linked results and pipeline notes above.
+
+Older small-fixture scorer results are retained in the
+[model artifact notes](models/README.md).
 
 Uploads reject binary or damaged text before NLP. PDF/DOCX extraction failures
 are reported as errors, never decoded as raw text. The upload tests cover real
@@ -186,7 +293,9 @@ their first stored chunks to contain raw PDF headers; it refuses mixed datasets.
 Archived data is retained in Neo4j and excluded from the active entity graph.
 
 Test coverage includes:
-- `test_ner.py`: Regex pattern matching, gazetteer extraction, spaCy CRF layer.
+- `test_utd_svm.py`: Marker parsing, Unicode spans and relation direction scoring.
+- `test_semeval_pipeline.py`: Noun-pair extraction, nullable confidence and graph-write payloads.
+- `test_ner.py`: Regex pattern matching, gazetteer extraction, spaCy statistical NER layer.
 - `test_span_merger.py`: Priority span conflict resolution.
 - `test_coref_resolver.py`: Pronoun recency, definite noun phrase resolution, alias detection.
 - `test_relation_extractor.py`: SVO, appositive, prepositional, nominal dependency patterns + pronoun substitution.
@@ -208,7 +317,7 @@ Doc2Graph/
 │   ├── eval/                      # Evaluation gold sets (NER, relations, resolution)
 │   ├── gazetteers/                # Domain dictionary wordlists
 │   └── raw/                       # Sample raw input documents
-├── models/                        # Serialized Logistic Regression models
+├── models/                        # Versioned trained models, including utd_svm/
 ├── notebooks/
 │   └── exploration.ipynb          # Interactive pipeline exploration
 ├── scripts/

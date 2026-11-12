@@ -10,6 +10,8 @@ import edu.stanford.nlp.pipeline.Annotator;
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import edu.stanford.nlp.stats.Counter;
 import edu.stanford.nlp.util.CoreMap;
+import edu.stanford.nlp.trees.Tree;
+import edu.stanford.nlp.trees.TreeCoreAnnotations;
 
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
@@ -116,6 +118,7 @@ public class StanfordClassicalBridge {
             JsonArrayBuilder sentArr = Json.createArrayBuilder();
             JsonArrayBuilder entArr = Json.createArrayBuilder();
             JsonArrayBuilder relArr = Json.createArrayBuilder();
+            JsonArrayBuilder nounArr = Json.createArrayBuilder();
 
             int globalEntIdx = 0;
             int globalRelIdx = 0;
@@ -138,6 +141,28 @@ public class StanfordClassicalBridge {
                         .add("char_end", sCharEnd)
                         .add("token_count", tokens != null ? tokens.size() : 0);
                 sentArr.add(sentObj);
+                Tree tree = sentence.get(TreeCoreAnnotations.TreeAnnotation.class);
+                if (tree != null && tokens != null) {
+                    List<Tree> leaves = tree.getLeaves();
+                    for (Tree node : tree) {
+                        if (!"NP".equals(node.value())) continue;
+                        boolean nested = false;
+                        for (Tree descendant : node) {
+                            if (descendant != node && "NP".equals(descendant.value())) nested = true;
+                        }
+                        if (nested) continue;
+                        List<Tree> phrase = node.getLeaves();
+                        int begin = leaves.indexOf(phrase.get(0));
+                        int end = begin + phrase.size();
+                        while (begin < end && tokens.get(begin).tag().equals("DT")) begin++;
+                        boolean noun = false;
+                        for (int j = begin; j < end; j++) if (tokens.get(j).tag().startsWith("NN")) noun = true;
+                        if (!noun || begin >= end) continue;
+                        nounArr.add(Json.createObjectBuilder().add("sentence_index", sIdx)
+                            .add("char_start", tokens.get(begin).beginPosition())
+                            .add("char_end", tokens.get(end-1).endPosition()));
+                    }
+                }
 
                 // Entity mentions for this sentence
                 List<EntityMention> entities = sentence.get(MachineReadingAnnotations.EntityMentionsAnnotation.class);
@@ -232,6 +257,7 @@ public class StanfordClassicalBridge {
             resp.add("sentences", sentArr);
             resp.add("entities", entArr);
             resp.add("relations", relArr);
+            resp.add("noun_phrases", nounArr);
 
         } catch (Throwable t) {
             StringWriter sw = new StringWriter();
