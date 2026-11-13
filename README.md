@@ -135,6 +135,14 @@ and target IDs. Unsupported predicates are omitted rather than emitted as
 generic `RELATED_TO` edges. Set `debug_pipeline: true` in `config/config.yaml` to
 enable stage-level pipeline logging.
 
+### Repository artifacts
+
+Source, tests, trained models, sample inputs and benchmark reports are versioned.
+Downloaded benchmark corpora, generated source snapshots, temporary evaluation
+runs and local planning notes are excluded from Git. Restore Re-DocRED inputs
+using the [dataset instructions](data/external/redocred/README.md); SemEval
+inputs are provisioned as described in the training section below.
+
 ### Stanford + SVM setup and usage
 
 Install the Python dependencies above. For the SVM artifact used here, the

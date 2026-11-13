@@ -14,11 +14,15 @@ Downloaded from the dataset authors. The original `dev_revised.json` evaluation 
 
 The evaluation protocol is in `output/evaluation/protocol.md`. Frozen baseline/revised source and model hashes are in `output/evaluation/freeze_manifest.json`. These are Wikipedia-derived text documents, not a representative sample of corporate-finance PDFs. This benchmark does not evaluate OCR or page layout, and its scores are not official Re-DocRED leaderboard results.
 
-To fetch the same validation data in PowerShell:
+The downloaded corpus and compressed relation-name archive are kept locally and
+excluded from Git. The license, provenance notes and decompressed `rel_info.json`
+remain versioned. To fetch all three corpus splits in PowerShell:
 
 ```powershell
-Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/tonytan48/Re-DocRED/main/data/dev_revised.json' -OutFile 'data/external/redocred/dev_revised.json'
-Get-FileHash 'data/external/redocred/dev_revised.json' -Algorithm SHA256
+foreach ($split in 'train', 'dev', 'test') {
+    Invoke-WebRequest -Uri "https://raw.githubusercontent.com/tonytan48/Re-DocRED/main/data/${split}_revised.json" -OutFile "data/external/redocred/${split}_revised.json"
+    Get-FileHash "data/external/redocred/${split}_revised.json" -Algorithm SHA256
+}
 ```
 
 Check the hash before comparing runs; the upstream `main` branch can change.

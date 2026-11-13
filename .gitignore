@@ -87,3 +87,25 @@ tmp/
 java/**/build/
 java/**/probe/*.class
 data/prepared/
+
+# Local development notes and agent prompts
+/GEMINI_*_PROMPT.md
+/CLASSICAL_NEWS_HANDOFF.md
+/MODEL_REDESIGN_HANDOFF.md
+/implementation_plan.md
+/PIPELINE_V1.md
+/PIPELINE_NEW.md
+/scratch/
+
+# Generated evaluation snapshots, probes and temporary runs
+/output/evaluation/snapshots/
+/output/evaluation/followup_guard_probe/
+/output/finance_workflow_review_check/
+/output/**/*.progress.json
+/output/**/*.lock_conflict.json
+
+# Downloaded benchmark corpora (keep provenance and license files)
+/data/external/redocred/*_revised.json
+/data/external/redocred/rel_info.json.gz
+/data/external/semeval2010/*
+!/data/external/semeval2010/download.json
