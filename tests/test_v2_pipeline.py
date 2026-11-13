@@ -13,10 +13,10 @@ from src.nlp.claim_aggregation import aggregate_claims
 from src.pipeline import run_pipeline_nlp
 
 
-def test_default_backend_remains_rules():
-    """Verify that settings default relation backend remains 'rules'."""
+def test_default_backend_uses_semeval_svm():
+    """Verify uploads select the Stanford plus SVM backend by default."""
     settings = get_settings()
-    assert settings.relation_backend == "rules"
+    assert settings.relation_backend == "semeval_svm"
 
 
 def test_claim_aggregation_evidence_pooling():

@@ -9,11 +9,13 @@
 Doc2Graph extracts entities and relationships from PDF, DOCX and text documents,
 stores evidence in Neo4j, and provides a FastAPI API and D3.js graph explorer.
 
-The experimental `semeval_svm` backend combines Stanford CRF named-entity
+The default `semeval_svm` backend combines Stanford CRF named-entity
 recognition, classical PCFG noun-phrase parsing and a locally trained linear SVM.
 It runs on CPU and supports the full SemEval-2010 Task 8 relation inventory.
 The application selects its backend through `RELATION_BACKEND`, whose default
-value is `rules`.
+value is `semeval_svm`. Website uploads use this backend unless
+`RELATION_BACKEND` explicitly selects another backend. The Java/CoreNLP runtime
+and compiled bridge described below must be installed before uploading.
 
 | Backend | Entity and phrase extraction | Relationship extraction |
 |---|---|---|
@@ -85,6 +87,8 @@ NEO4J_USER=neo4j
 NEO4J_PASSWORD=changeme
 NEO4J_URI=bolt://localhost:7687
 PIPELINE_MODE=accurate
+RELATION_BACKEND=semeval_svm
+UTD_SVM_MODEL_PATH=models/utd_svm
 MAX_UPLOAD_MB=50
 RESOLUTION_THRESHOLD=0.85
 ```
@@ -178,7 +182,8 @@ Inspect a PDF and export its graph without a database connection.
 python scripts/inspect_document.py example.pdf --relation-backend semeval_svm --output output/svm_graph.json
 ```
 
-Enable the backend for API uploads or CLI ingestion through the environment.
+API uploads and CLI ingestion use this backend by default. You can also select
+it explicitly through the environment. Restart the API after changing settings.
 `UTD_SVM_MODEL_PATH` selects the trusted local model directory.
 
 ```powershell

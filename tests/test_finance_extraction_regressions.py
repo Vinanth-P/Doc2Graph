@@ -145,8 +145,10 @@ def test_relation_schema_matches_configuration():
     assert set(load_relations_config()) <= set(GraphBuilder.CANONICAL_TYPES)
 
 
-def test_original_finance_pdf_production_pipeline():
+def test_original_finance_pdf_rules_pipeline(monkeypatch):
+    from src.config import get_settings
     from scripts.inspect_document import inspect_document
+    monkeypatch.setattr(get_settings(), 'relation_backend', 'rules')
     path = Path("Doc2Graph_Corporate_Finance_MA_Dummy.pdf")
     if not path.exists():
         pytest.skip("User-provided PDF is not part of the repository")

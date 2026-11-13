@@ -116,7 +116,7 @@ def test_evaluation_report_artifacts_and_decision():
 
 
 def test_pipeline_nlp_classical_news_roundtrip():
-    """Verify pipeline runs through run_pipeline_nlp under classical_news without mutating default rules."""
+    """Verify classical_news restores the previously configured backend."""
     settings = get_settings()
     orig_backend = settings.relation_backend
     settings.relation_backend = "classical_news"
@@ -132,4 +132,4 @@ def test_pipeline_nlp_classical_news_roundtrip():
         assert "Microsoft" in names
     finally:
         settings.relation_backend = orig_backend
-        assert settings.relation_backend == "rules"
+        assert settings.relation_backend == orig_backend

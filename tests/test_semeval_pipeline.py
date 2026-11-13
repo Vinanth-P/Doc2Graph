@@ -6,6 +6,32 @@ from src.api.schemas import ResolvedEdgePayload, ResolvedEntityPayload
 from src.graph.graph_builder import GraphBuilder
 
 
+def test_default_upload_pipeline_dispatches_to_stanford_svm(monkeypatch, tmp_path):
+    from src import pipeline
+    from src.config import Settings
+    from src.nlp import semeval_pipeline
+
+    monkeypatch.delenv('RELATION_BACKEND', raising=False)
+    monkeypatch.setenv('CONFIG_YAML', str(tmp_path / 'absent.yaml'))
+    settings = Settings(_env_file=None)
+    assert settings.relation_backend == 'semeval_svm'
+    monkeypatch.setattr(pipeline, 'get_settings', lambda: settings)
+    monkeypatch.setattr(pipeline.pipeline_lock, 'acquire', lambda: None)
+    monkeypatch.setattr(pipeline.pipeline_lock, 'release', lambda: None)
+
+    calls = []
+    expected = {'relation_backend': 'semeval_svm'}
+
+    def extract(raw_bytes, filename, text, model_dir):
+        calls.append((raw_bytes, filename, text, model_dir))
+        return expected
+
+    monkeypatch.setattr(semeval_pipeline, 'extract_pipeline', extract)
+    text = 'The water is in the bottle.'
+    assert pipeline.run_pipeline_nlp(text.encode(), 'upload.txt', 'txt') is expected
+    assert calls == [(text.encode(), 'upload.txt', text, settings.utd_svm_model_path)]
+
+
 def test_candidate_pipeline_uses_source_spans_and_unknown_confidence():
     text = 'The water is in the bottle.'
     client = SimpleNamespace(annotate=lambda t: dict(sentences=[dict(index=0,char_start=0,char_end=len(t))],
